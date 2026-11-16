@@ -1,0 +1,1583 @@
+{
+  "fixture_origin": "original synthetic material",
+  "python_version": "3.12.14",
+  "sqlite_version": "3.53.1",
+  "node_version": "v24.22.1",
+  "java_version": "openjdk 21.0.13 2026-10-20\nOpenJDK Runtime Environment (build 21.0.13+9-1-deb13u2-Debian)\nOpenJDK 64-Bit Server VM (build 21.0.13+9-1-deb13u2-Debian, mixed mode, sharing)",
+  "case_count": 30,
+  "word_counts": {
+    "A01": 460,
+    "A02": 519,
+    "A03": 544,
+    "A04": 531,
+    "A05": 516,
+    "A06": 535,
+    "A07": 545,
+    "A08": 532,
+    "A09": 504,
+    "A10": 552,
+    "A11": 504,
+    "A12": 540,
+    "A13": 513,
+    "A14": 509,
+    "A15": 521,
+    "A16": 519,
+    "A17": 591,
+    "A18": 556,
+    "A19": 590,
+    "A20": 528,
+    "A21": 531,
+    "A22": 537,
+    "A23": 542,
+    "A24": 526,
+    "A25": 557,
+    "A26": 556,
+    "A27": 557,
+    "A28": 552,
+    "A29": 572,
+    "A30": 578
+  },
+  "cases": {
+    "A01": {
+      "method": "executed_fixture",
+      "command": [
+        "python3",
+        "evals/advanced/fixtures/a/A01_fixture.py"
+      ],
+      "fixture_sha256": "8dd1b92e9846cbc4294bcc491ef8039af2eb67d432ab2ce16d3bd870c8d90ca8",
+      "exit_code": 0,
+      "stdout": "after-gather {'available': 70, 'committed': 0} False False\nfinal {'available': 70, 'committed': 30}\ntrace A:reserved,B:reserved,B:released,B:cleanup,caller:caught,A:committed,A:cleanup\nafter-gather {'available': 70, 'committed': 0} False False\nfinal {'available': 100, 'committed': 0}\ntrace A:reserved,B:reserved,B:released,B:cleanup,caller:caught,A:released,A:cleanup,caller:cancel-observed",
+      "stderr": "",
+      "checks": [
+        {
+          "label": "both intermediate states keep A reserved",
+          "actual": 2,
+          "expected": 2,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "first terminal allocation",
+          "actual": true,
+          "expected": true,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "explicit cancellation terminal allocation",
+          "actual": true,
+          "expected": true,
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A02": {
+      "method": "executed_fixture",
+      "command": [
+        "node",
+        "evals/advanced/fixtures/a/A02_fixture.js"
+      ],
+      "fixture_sha256": "15b40a6249a8bfb01b8fbc5376b9c63d5a0943136b9f6951b535aaae1e53ad37",
+      "exit_code": 0,
+      "stdout": "start | end | first | peer | await-resumed | nested | write:row | caught:write-failed | audit | outer:audit-failed | timer",
+      "stderr": "",
+      "checks": [
+        {
+          "label": "full event order",
+          "actual": "start | end | first | peer | await-resumed | nested | write:row | caught:write-failed | audit | outer:audit-failed | timer",
+          "expected": "start | end | first | peer | await-resumed | nested | write:row | caught:write-failed | audit | outer:audit-failed | timer",
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A03": {
+      "method": "executed_fixture",
+      "command": [
+        "java",
+        "evals/advanced/fixtures/a/A03_fixture.java"
+      ],
+      "fixture_sha256": "0e5a4b0eea0ca945de43fcf4d9b92bcb56f1a24d0a6017422e5fb9b5e84121f0",
+      "exit_code": 0,
+      "stdout": "base=[A, B2, C!, D]\ncopied=[B, C!]\nwrapped=[B2, C!]\ncopied-add=blocked\nwindow-size=invalidated\ncopied-after=[B, C!]",
+      "stderr": "",
+      "checks": [
+        {
+          "label": "observed supplied JDK trace",
+          "actual": "base=[A, B2, C!, D]\ncopied=[B, C!]\nwrapped=[B2, C!]\ncopied-add=blocked\nwindow-size=invalidated\ncopied-after=[B, C!]",
+          "expected": "base=[A, B2, C!, D]\ncopied=[B, C!]\nwrapped=[B2, C!]\ncopied-add=blocked\nwindow-size=invalidated\ncopied-after=[B, C!]",
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A04": {
+      "method": "executed_sqlite_query",
+      "sqlite_version": "3.53.1",
+      "checks": [
+        {
+          "label": "faulty query rows",
+          "actual": [
+            [
+              "Ada",
+              4,
+              320,
+              40,
+              280
+            ],
+            [
+              "Ben",
+              1,
+              40,
+              null,
+              40
+            ]
+          ],
+          "expected": [
+            [
+              "Ada",
+              4,
+              320,
+              40,
+              280
+            ],
+            [
+              "Ben",
+              1,
+              40,
+              null,
+              40
+            ]
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "fixed query rows",
+          "actual": [
+            [
+              "Ada",
+              1,
+              160,
+              20,
+              140
+            ],
+            [
+              "Ben",
+              1,
+              40,
+              0,
+              40
+            ],
+            [
+              "Cy",
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "expected": [
+            [
+              "Ada",
+              1,
+              160,
+              20,
+              140
+            ],
+            [
+              "Ben",
+              1,
+              40,
+              0,
+              40
+            ],
+            [
+              "Cy",
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A05": {
+      "method": "executed_fixture",
+      "command": [
+        "python3",
+        "evals/advanced/fixtures/a/A05_fixture.py"
+      ],
+      "fixture_sha256": "cdc4201b2b19f9483d2ca28115dfeb6c2badc71383c01b3fd7f01adff59e0cb9",
+      "exit_code": 0,
+      "stdout": "clean ok open,body,commit,close,outer-finally\nparse recovered open,body,rollback-value,close,after-with,outer-finally\nlookup forced open,body,close,outer-finally",
+      "stderr": "",
+      "checks": [
+        {
+          "label": "complete control-flow trace",
+          "actual": "clean ok open,body,commit,close,outer-finally\nparse recovered open,body,rollback-value,close,after-with,outer-finally\nlookup forced open,body,close,outer-finally",
+          "expected": "clean ok open,body,commit,close,outer-finally\nparse recovered open,body,rollback-value,close,after-with,outer-finally\nlookup forced open,body,close,outer-finally",
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A06": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "retry-scoped keys total charged",
+          "actual": 1400,
+          "expected": 1400,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "stable key total charged within retention",
+          "actual": 700,
+          "expected": 700,
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A07": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "token-only acceptance",
+          "actual": [
+            true,
+            true,
+            false,
+            true
+          ],
+          "expected": [
+            true,
+            true,
+            false,
+            true
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "token-only final value",
+          "actual": 7,
+          "expected": 7,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "revision acceptance",
+          "actual": [
+            true,
+            true,
+            false,
+            false
+          ],
+          "expected": [
+            true,
+            true,
+            false,
+            false
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "revision final value",
+          "actual": 8,
+          "expected": 8,
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A08": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "watermark sequence",
+          "actual": [
+            -10,
+            10,
+            40,
+            65,
+            65,
+            70,
+            90,
+            90
+          ],
+          "expected": [
+            -10,
+            10,
+            40,
+            65,
+            65,
+            70,
+            90,
+            90
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "outputs and purge",
+          "actual": [
+            [],
+            [],
+            [],
+            [
+              "initial:12"
+            ],
+            [
+              "correction:15"
+            ],
+            [],
+            [
+              "purge"
+            ],
+            [
+              "drop"
+            ]
+          ],
+          "expected": [
+            [],
+            [],
+            [],
+            [
+              "initial:12"
+            ],
+            [
+              "correction:15"
+            ],
+            [],
+            [
+              "purge"
+            ],
+            [
+              "drop"
+            ]
+          ],
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A09": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "expected both-positive true cases",
+          "actual": 144.0,
+          "expected": 144.0,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "expected both-positive false cases",
+          "actual": 392.0,
+          "expected": 392.0,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "both-positive posterior",
+          "actual": 0.26865671641791045,
+          "expected": 0.26865671641791045,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "A-only posterior",
+          "actual": 0.15517241379310345,
+          "expected": 0.15517241379310345,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "A positive B negative posterior",
+          "actual": 0.057692307692307696,
+          "expected": 0.057692307692307696,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "incorrect independence posterior",
+          "actual": 0.7461139896373057,
+          "expected": 0.7461139896373057,
+          "tolerance": 1e-12,
+          "passed": true
+        }
+      ]
+    },
+    "A10": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "old aggregate",
+          "actual": 0.75,
+          "expected": 0.75,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "new aggregate",
+          "actual": 0.45,
+          "expected": 0.45,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "old standardized equal weights",
+          "actual": 0.55,
+          "expected": 0.55,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "new standardized equal weights",
+          "actual": 0.65,
+          "expected": 0.65,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "future old standardization",
+          "actual": 0.4,
+          "expected": 0.4,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "future new standardization",
+          "actual": 0.5000000000000001,
+          "expected": 0.5,
+          "tolerance": 1e-12,
+          "passed": true
+        }
+      ]
+    },
+    "A11": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "median standard x0",
+          "actual": 54.598150033144236,
+          "expected": 54.598150033144236,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "median accelerated x0",
+          "actual": 49.40244910553017,
+          "expected": 49.40244910553017,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "median ratio x0",
+          "actual": 0.9048374180359595,
+          "expected": 0.9048374180359595,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "median ratio x1",
+          "actual": 0.7788007830714049,
+          "expected": 0.7788007830714049,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "mean ratio x0",
+          "actual": 1.1502737988572274,
+          "expected": 1.1502737988572274,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "mean ratio x1",
+          "actual": 0.9900498337491681,
+          "expected": 0.9900498337491681,
+          "tolerance": 1e-12,
+          "passed": true
+        }
+      ]
+    },
+    "A12": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "paired differences",
+          "actual": [
+            -4,
+            -3,
+            -4,
+            -3,
+            -3,
+            -4
+          ],
+          "expected": [
+            -4,
+            -3,
+            -4,
+            -3,
+            -3,
+            -4
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "paired mean",
+          "actual": -3.5,
+          "expected": -3.5,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "paired standard error",
+          "actual": 0.22360679774997896,
+          "expected": 0.22360679774997896,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "paired interval lower",
+          "actual": -4.074799609373736,
+          "expected": -4.074799606441693,
+          "tolerance": 1e-07,
+          "passed": true
+        },
+        {
+          "label": "paired interval upper",
+          "actual": -2.9252003906262636,
+          "expected": -2.925200393558307,
+          "tolerance": 1e-07,
+          "passed": true
+        },
+        {
+          "label": "independent-formula standard error",
+          "actual": 15.907545379473227,
+          "expected": 15.907545379473227,
+          "tolerance": 1e-12,
+          "passed": true
+        }
+      ]
+    },
+    "A13": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "twenty independent null tests at least one false positive",
+          "actual": 0.6415140775914581,
+          "expected": 0.6415140775914581,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "Bonferroni threshold",
+          "actual": 0.0025,
+          "expected": 0.0025,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "Bonferroni adjusted smallest p",
+          "actual": 0.36,
+          "expected": 0.36,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "unjustified eighty-independent-tests comparison",
+          "actual": 0.9834846256149864,
+          "expected": 0.9834846256149864,
+          "tolerance": 1e-12,
+          "passed": true
+        }
+      ]
+    },
+    "A14": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "calibrated powers",
+          "actual": [
+            1000,
+            2000,
+            1000,
+            0
+          ],
+          "expected": [
+            1000,
+            2000,
+            1000,
+            0
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "hold integration joules",
+          "actual": 180000,
+          "expected": 180000,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "hold energy Wh",
+          "actual": 50.0,
+          "expected": 50,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "trapezoidal energy Wh",
+          "actual": 41.666666666666664,
+          "expected": 41.666666666666664,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "unweighted mean energy Wh",
+          "actual": 33.333333333333336,
+          "expected": 33.333333333333336,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "counter difference kWh",
+          "actual": 0.0519999999999996,
+          "expected": 0.052,
+          "tolerance": 1e-12,
+          "passed": true
+        }
+      ]
+    },
+    "A15": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "request R1",
+          "actual": {
+            "sent": true,
+            "client_ms": 6000,
+            "header_ms": 6000,
+            "server_ms": 5000
+          },
+          "expected": {
+            "sent": true,
+            "client_ms": 6000,
+            "header_ms": 6000,
+            "server_ms": 5000
+          },
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "request R2",
+          "actual": {
+            "sent": true,
+            "client_ms": 2500,
+            "header_ms": 2500,
+            "server_ms": 2500
+          },
+          "expected": {
+            "sent": true,
+            "client_ms": 2500,
+            "header_ms": 2500,
+            "server_ms": 2500
+          },
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "request R3",
+          "actual": {
+            "sent": false,
+            "reason": "invalid"
+          },
+          "expected": {
+            "sent": false,
+            "reason": "invalid"
+          },
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A16": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "normalization collision",
+          "actual": [
+            [
+              "li@ex.test",
+              2
+            ]
+          ],
+          "expected": [
+            [
+              "li@ex.test",
+              2
+            ]
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "mixed-writer shadow duplicate rows",
+          "actual": 2,
+          "expected": 2,
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A17": {
+      "method": "executed_fixture",
+      "command": [
+        "python3",
+        "evals/advanced/fixtures/a/A17_fixture.py"
+      ],
+      "fixture_sha256": "ec9536b3cce26172a672a069742c5f9053f8ba83e47808f48b8a9b24b5b85d32",
+      "exit_code": 0,
+      "stdout": "S1 [2, 2] [10, 2] [1, 2]\nS2 [99, 99] [10, 99] [1, 2]\nrows [{'n': 10}, {'n': 20}]\nbuckets [['x', 'y'], ['x', 'y']]\nouter-copy [['x', 'y'], ['x', 'y']]",
+      "stderr": "",
+      "checks": [
+        {
+          "label": "all snapshots",
+          "actual": "S1 [2, 2] [10, 2] [1, 2]\nS2 [99, 99] [10, 99] [1, 2]\nrows [{'n': 10}, {'n': 20}]\nbuckets [['x', 'y'], ['x', 'y']]\nouter-copy [['x', 'y'], ['x', 'y']]",
+          "expected": "S1 [2, 2] [10, 2] [1, 2]\nS2 [99, 99] [10, 99] [1, 2]\nrows [{'n': 10}, {'n': 20}]\nbuckets [['x', 'y'], ['x', 'y']]\nouter-copy [['x', 'y'], ['x', 'y']]",
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A18": {
+      "method": "executed_fixture",
+      "command": [
+        "node",
+        "evals/advanced/fixtures/a/A18_fixture.js"
+      ],
+      "fixture_sha256": "86165fcacd3368e4b15a6987c53ef17fbb073e98052d75ce19fcacaa103647e7",
+      "exit_code": 0,
+      "stdout": "spread {\"tag\":\"new\",\"dateType\":\"Date\",\"year\":2030,\"optionalOwn\":true,\"amount\":1,\"hiddenOwn\":false,\"inheritedOwn\":false,\"secretOwn\":true,\"amountGetter\":\"undefined\"}\njson {\"tag\":\"old\",\"dateType\":\"string\",\"year\":\"2025-01-01T00:00:00.000Z\",\"optionalOwn\":false,\"amount\":2,\"hiddenOwn\":false,\"inheritedOwn\":false,\"secretOwn\":false,\"amountGetter\":\"undefined\"}\ncloned {\"tag\":\"old\",\"dateType\":\"Date\",\"year\":2025,\"optionalOwn\":true,\"amount\":3,\"hiddenOwn\":false,\"inheritedOwn\":false,\"secretOwn\":false,\"amountGetter\":\"undefined\"}\nreads 3\nfunction-clone DataCloneError",
+      "stderr": "",
+      "checks": [
+        {
+          "label": "spread result",
+          "actual": {
+            "tag": "new",
+            "dateType": "Date",
+            "year": 2030,
+            "optionalOwn": true,
+            "amount": 1,
+            "hiddenOwn": false,
+            "inheritedOwn": false,
+            "secretOwn": true,
+            "amountGetter": "undefined"
+          },
+          "expected": {
+            "tag": "new",
+            "dateType": "Date",
+            "year": 2030,
+            "optionalOwn": true,
+            "amount": 1,
+            "hiddenOwn": false,
+            "inheritedOwn": false,
+            "secretOwn": true,
+            "amountGetter": "undefined"
+          },
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "json result",
+          "actual": {
+            "tag": "old",
+            "dateType": "string",
+            "year": "2025-01-01T00:00:00.000Z",
+            "optionalOwn": false,
+            "amount": 2,
+            "hiddenOwn": false,
+            "inheritedOwn": false,
+            "secretOwn": false,
+            "amountGetter": "undefined"
+          },
+          "expected": {
+            "tag": "old",
+            "dateType": "string",
+            "year": "2025-01-01T00:00:00.000Z",
+            "optionalOwn": false,
+            "amount": 2,
+            "hiddenOwn": false,
+            "inheritedOwn": false,
+            "secretOwn": false,
+            "amountGetter": "undefined"
+          },
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "structured clone result",
+          "actual": {
+            "tag": "old",
+            "dateType": "Date",
+            "year": 2025,
+            "optionalOwn": true,
+            "amount": 3,
+            "hiddenOwn": false,
+            "inheritedOwn": false,
+            "secretOwn": false,
+            "amountGetter": "undefined"
+          },
+          "expected": {
+            "tag": "old",
+            "dateType": "Date",
+            "year": 2025,
+            "optionalOwn": true,
+            "amount": 3,
+            "hiddenOwn": false,
+            "inheritedOwn": false,
+            "secretOwn": false,
+            "amountGetter": "undefined"
+          },
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "function error",
+          "actual": "function-clone DataCloneError",
+          "expected": "function-clone DataCloneError",
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A19": {
+      "method": "executed_fixture",
+      "command": [
+        "java",
+        "evals/advanced/fixtures/a/A19_fixture.java"
+      ],
+      "fixture_sha256": "25c812eb81225a77344eb410f31143fb17e1b60bea52d7e03c293d97c838d10c",
+      "exit_code": 0,
+      "stdout": "states=BLOCKED,BLOCKED\ndeadlocked=2",
+      "stderr": "",
+      "checks": [
+        {
+          "label": "deadlock fixture observation",
+          "actual": "states=BLOCKED,BLOCKED\ndeadlocked=2",
+          "expected": "states=BLOCKED,BLOCKED\ndeadlocked=2",
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "same-order repair retains latch deadlock",
+          "actual": "states=BLOCKED,WAITING\ndeadlocked=0",
+          "expected": "states=BLOCKED,WAITING\ndeadlocked=0",
+          "tolerance": null,
+          "passed": true
+        }
+      ],
+      "same_order_repair_execution": {
+        "method": "executed_fixture",
+        "command": [
+          "java",
+          "evals/advanced/fixtures/a/A19_repair_fixture.java"
+        ],
+        "fixture_sha256": "f01a26aed0a4a29478930e140b4807f7f96eaedda3786f41368e2f0ad00cd092",
+        "exit_code": 0,
+        "stdout": "states=BLOCKED,WAITING\ndeadlocked=0",
+        "stderr": "",
+        "checks": []
+      }
+    },
+    "A20": {
+      "method": "executed_sqlite_query",
+      "sqlite_version": "3.53.1",
+      "checks": [
+        {
+          "label": "default peer-sensitive sums",
+          "actual": [
+            5,
+            10,
+            10,
+            9
+          ],
+          "expected": [
+            5,
+            10,
+            10,
+            9
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "explicit frame in selected population",
+          "actual": [
+            [
+              1,
+              5,
+              "paid"
+            ],
+            [
+              2,
+              12,
+              "paid"
+            ],
+            [
+              3,
+              10,
+              "paid"
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              5,
+              "paid"
+            ],
+            [
+              2,
+              12,
+              "paid"
+            ],
+            [
+              3,
+              10,
+              "paid"
+            ]
+          ],
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A21": {
+      "method": "executed_fixture",
+      "command": [
+        "python3",
+        "evals/advanced/fixtures/a/A21_fixture.py"
+      ],
+      "fixture_sha256": "e50cdf78d5f5a4fc2b8fbfd353c0776deea7e4f03619d28e852e3d78cee6679c",
+      "exit_code": 0,
+      "stdout": "line-rounded 1.02\ninvoice-rounded 1.01\nfloat-constructor 1.00\ntext-constructor 1.01\nhalf-up 0.33\nhalf-even 0.32\nbinary-round 2.67",
+      "stderr": "",
+      "checks": [
+        {
+          "label": "rounding outputs",
+          "actual": "line-rounded 1.02\ninvoice-rounded 1.01\nfloat-constructor 1.00\ntext-constructor 1.01\nhalf-up 0.33\nhalf-even 0.32\nbinary-round 2.67",
+          "expected": "line-rounded 1.02\ninvoice-rounded 1.01\nfloat-constructor 1.00\ntext-constructor 1.01\nhalf-up 0.33\nhalf-even 0.32\nbinary-round 2.67",
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "largest-remainder allocation",
+          "actual": [
+            34,
+            34,
+            33
+          ],
+          "expected": [
+            34,
+            34,
+            33
+          ],
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A22": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "complete execution schedule",
+          "actual": [
+            [
+              "J1",
+              "fail",
+              0,
+              1,
+              1
+            ],
+            [
+              "J2",
+              "fail",
+              1,
+              2,
+              1
+            ],
+            [
+              "J3",
+              "success",
+              2,
+              3,
+              1
+            ],
+            [
+              "J1",
+              "fail",
+              3,
+              4,
+              2
+            ],
+            [
+              "J2",
+              "success",
+              4,
+              5,
+              2
+            ],
+            [
+              "J1",
+              "expired",
+              6,
+              3
+            ]
+          ],
+          "expected": [
+            [
+              "J1",
+              "fail",
+              0,
+              1,
+              1
+            ],
+            [
+              "J2",
+              "fail",
+              1,
+              2,
+              1
+            ],
+            [
+              "J3",
+              "success",
+              2,
+              3,
+              1
+            ],
+            [
+              "J1",
+              "fail",
+              3,
+              4,
+              2
+            ],
+            [
+              "J2",
+              "success",
+              4,
+              5,
+              2
+            ],
+            [
+              "J1",
+              "expired",
+              6,
+              3
+            ]
+          ],
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A23": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "difference in differences",
+          "actual": 12.0,
+          "expected": 12,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "pretrend weekly differential",
+          "actual": 3.0,
+          "expected": 3,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "descriptive trend extrapolation adjustment",
+          "actual": 6,
+          "expected": 6,
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A24": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "single request optimized latency",
+          "actual": 14.0,
+          "expected": 14,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "single request speedup",
+          "actual": 1.4285714285714286,
+          "expected": 1.4285714285714286,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "maximum speedup from CPU alone",
+          "actual": 1.6666666666666667,
+          "expected": 1.6666666666666667,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "workload before mean ms",
+          "actual": 19.0,
+          "expected": 19,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "workload after mean ms",
+          "actual": 22.2,
+          "expected": 22.2,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "mean latency relative increase",
+          "actual": 0.1684210526315788,
+          "expected": 0.16842105263157894,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "average request speedup ratios",
+          "actual": 1.1916666666666667,
+          "expected": 1.1916666666666667,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "mean requests in system after",
+          "actual": 4.44,
+          "expected": 4.44,
+          "tolerance": 1e-12,
+          "passed": true
+        }
+      ]
+    },
+    "A25": {
+      "method": "executed_fixture",
+      "command": [
+        "python3",
+        "evals/advanced/fixtures/a/A25_fixture.py"
+      ],
+      "fixture_sha256": "05a9c212247edb95b8908d84376adde9a062899dc558017e9ff88033cfdffa0f",
+      "exit_code": 0,
+      "stdout": "first loaded:x\nsecond-error RuntimeError\nshield False cached-cancelled True\nevents fetch:start,fetch:finally,A:cancelled,B:cancelled\nlater cancelled\nshield True cached-cancelled False\nevents fetch:start,A:cancelled,fetch:finally,B:loaded\nlater loaded",
+      "stderr": "",
+      "checks": [
+        {
+          "label": "full coroutine and task cache trace",
+          "actual": "first loaded:x\nsecond-error RuntimeError\nshield False cached-cancelled True\nevents fetch:start,fetch:finally,A:cancelled,B:cancelled\nlater cancelled\nshield True cached-cancelled False\nevents fetch:start,A:cancelled,fetch:finally,B:loaded\nlater loaded",
+          "expected": "first loaded:x\nsecond-error RuntimeError\nshield False cached-cancelled True\nevents fetch:start,fetch:finally,A:cancelled,B:cancelled\nlater cancelled\nshield True cached-cancelled False\nevents fetch:start,A:cancelled,fetch:finally,B:loaded\nlater loaded",
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A26": {
+      "method": "executed_sqlite_query",
+      "sqlite_version": "3.53.1",
+      "checks": [
+        {
+          "label": "faulty overall numerator denominator",
+          "actual": [
+            [
+              3,
+              6,
+              0.5
+            ]
+          ],
+          "expected": [
+            [
+              3,
+              6,
+              0.5
+            ]
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "correct overall numerator denominator",
+          "actual": [
+            [
+              2,
+              4,
+              0.5
+            ]
+          ],
+          "expected": [
+            [
+              2,
+              4,
+              0.5
+            ]
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "mature cohort proportions",
+          "actual": [
+            [
+              "2026-01-01",
+              1,
+              3,
+              0.3333333333333333
+            ],
+            [
+              "2026-01-02",
+              1,
+              1,
+              1.0
+            ]
+          ],
+          "expected": [
+            [
+              "2026-01-01",
+              1,
+              3,
+              0.3333333333333333
+            ],
+            [
+              "2026-01-02",
+              1,
+              1,
+              1.0
+            ]
+          ],
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A27": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "first alarm posterior",
+          "actual": "9/16",
+          "expected": "9/16",
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "quiet posterior",
+          "actual": "151/1672",
+          "expected": "151/1672",
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "final alarm posterior",
+          "actual": "35433/64936",
+          "expected": "35433/64936",
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "next-minute prior",
+          "actual": "596431/1298720",
+          "expected": "596431/1298720",
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "incorrect static-state posterior",
+          "actual": "1/2",
+          "expected": "1/2",
+          "tolerance": null,
+          "passed": true
+        }
+      ],
+      "filter_trace": [
+        {
+          "prediction": "1/8",
+          "posterior": "9/16",
+          "posterior_float": 0.5625
+        },
+        {
+          "prediction": "151/320",
+          "posterior": "151/1672",
+          "posterior_float": 0.090311004784689
+        },
+        {
+          "prediction": "3937/33440",
+          "posterior": "35433/64936",
+          "posterior_float": 0.5456603424910681
+        }
+      ]
+    },
+    "A28": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "visible items after merge",
+          "actual": [
+            "apple"
+          ],
+          "expected": [
+            "apple"
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "live tags after merge",
+          "actual": [
+            "a1"
+          ],
+          "expected": [
+            "a1"
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "commutative merge",
+          "actual": true,
+          "expected": true,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "idempotent duplicate merge",
+          "actual": true,
+          "expected": true,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "unsafe compaction resurrection",
+          "actual": [
+            "apple"
+          ],
+          "expected": [
+            "apple"
+          ],
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A29": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "deployed acceptance",
+          "actual": {
+            "T1": true,
+            "T2": true,
+            "T3": true,
+            "T4": false
+          },
+          "expected": {
+            "T1": true,
+            "T2": true,
+            "T3": true,
+            "T4": false
+          },
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "policy acceptance",
+          "actual": {
+            "T1": false,
+            "T2": false,
+            "T3": true,
+            "T4": false
+          },
+          "expected": {
+            "T1": false,
+            "T2": false,
+            "T3": true,
+            "T4": false
+          },
+          "tolerance": null,
+          "passed": true
+        }
+      ]
+    },
+    "A30": {
+      "method": "executed_calculation_or_simulation",
+      "checks": [
+        {
+          "label": "electric emissions kg",
+          "actual": {
+            "Alpha": 40000.0,
+            "Beta": 2000.0,
+            "Gamma": 10000.0
+          },
+          "expected": {
+            "Alpha": 40000,
+            "Beta": 2000,
+            "Gamma": 10000
+          },
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "total current emissions bounds kg",
+          "actual": [
+            56000.0,
+            62000.0
+          ],
+          "expected": [
+            56000,
+            62000
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "current fleet intensity bounds kg per shipment",
+          "actual": [
+            0.37333333333333335,
+            0.41333333333333333
+          ],
+          "expected": [
+            0.37333333333333335,
+            0.41333333333333333
+          ],
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "baseline intensity",
+          "actual": 0.35,
+          "expected": 0.35,
+          "tolerance": null,
+          "passed": true
+        },
+        {
+          "label": "relative intensity increase lower",
+          "actual": 0.06666666666666687,
+          "expected": 0.06666666666666667,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "relative intensity increase upper",
+          "actual": 0.18095238095238098,
+          "expected": 0.18095238095238095,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "absolute emissions decrease lower",
+          "actual": 0.11428571428571432,
+          "expected": 0.11428571428571428,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "absolute emissions decrease upper",
+          "actual": 0.19999999999999996,
+          "expected": 0.2,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        {
+          "label": "incorrect equal-site intensity",
+          "actual": 0.2966666666666667,
+          "expected": 0.2966666666666667,
+          "tolerance": 1e-12,
+          "passed": true
+        }
+      ]
+    }
+  },
+  "primary_sources": {
+    "A03-API": {
+      "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html",
+      "publisher": "Oracle Java SE 21 API specification",
+      "consulted": "2026-11-16",
+      "paraphrase": "Unmodifiable lists may contain mutable elements. Structural changes to a backing list outside its subList invalidate the specified semantics of that view.",
+      "used_for": [
+        "A03"
+      ]
+    }
+  },
+  "publication_provenance": {
+    "original_verification_file": "a/verification.json",
+    "original_verification_sha256": "0c73bd88d54d48ecaf10961bc7060f32e60dba99ed6f49b24efb5389049d8353",
+    "normalization_note": "Publication export of the original A authoring report. Only command arguments were normalized: the environment-specific Python executable is represented as python3, and original absolute fixture paths are represented by repository-relative evals/advanced/fixtures/a paths. Commands assume the repository root as working directory. Outputs, exit codes, check records, fixture hashes, runtime versions, and primary-source records are unchanged. publication_provenance is added metadata, not part of the original report. The original report SHA-256 identifies its unmodified bytes; it is not the SHA-256 of this normalized export. No fixture suite was rerun for publication.",
+    "normalized_json_pointers": [
+      "/cases/A01/command/0",
+      "/cases/A01/command/1",
+      "/cases/A02/command/1",
+      "/cases/A03/command/1",
+      "/cases/A05/command/0",
+      "/cases/A05/command/1",
+      "/cases/A17/command/0",
+      "/cases/A17/command/1",
+      "/cases/A18/command/1",
+      "/cases/A19/command/1",
+      "/cases/A19/same_order_repair_execution/command/1",
+      "/cases/A21/command/0",
+      "/cases/A21/command/1",
+      "/cases/A25/command/0",
+      "/cases/A25/command/1"
+    ],
+    "original_source_bytes_preserved": true,
+    "source_files_sha256": {
+      "evals/advanced/fixtures/a/build_cases.py": "dcb8cdf0a4e0e9064b02b5ab25c993924cc36917cf26720e8c23ed45bec00adc",
+      "evals/advanced/fixtures/a/A01_fixture.py": "8dd1b92e9846cbc4294bcc491ef8039af2eb67d432ab2ce16d3bd870c8d90ca8",
+      "evals/advanced/fixtures/a/A02_fixture.js": "15b40a6249a8bfb01b8fbc5376b9c63d5a0943136b9f6951b535aaae1e53ad37",
+      "evals/advanced/fixtures/a/A03_fixture.java": "0e5a4b0eea0ca945de43fcf4d9b92bcb56f1a24d0a6017422e5fb9b5e84121f0",
+      "evals/advanced/fixtures/a/A05_fixture.py": "cdc4201b2b19f9483d2ca28115dfeb6c2badc71383c01b3fd7f01adff59e0cb9",
+      "evals/advanced/fixtures/a/A17_fixture.py": "ec9536b3cce26172a672a069742c5f9053f8ba83e47808f48b8a9b24b5b85d32",
+      "evals/advanced/fixtures/a/A18_fixture.js": "86165fcacd3368e4b15a6987c53ef17fbb073e98052d75ce19fcacaa103647e7",
+      "evals/advanced/fixtures/a/A19_fixture.java": "25c812eb81225a77344eb410f31143fb17e1b60bea52d7e03c293d97c838d10c",
+      "evals/advanced/fixtures/a/A19_repair_fixture.java": "f01a26aed0a4a29478930e140b4807f7f96eaedda3786f41368e2f0ad00cd092",
+      "evals/advanced/fixtures/a/A21_fixture.py": "e50cdf78d5f5a4fc2b8fbfd353c0776deea7e4f03619d28e852e3d78cee6679c",
+      "evals/advanced/fixtures/a/A25_fixture.py": "05a9c212247edb95b8908d84376adde9a062899dc558017e9ff88033cfdffa0f"
+    },
+    "aggregate_statistics_source": "a/audit.json",
+    "aggregate_statistics_source_sha256": "44199f5e40dbc90e320210f44f5511638ee7816b8ea5e9982799fbefce2c1cf6",
+    "aggregate_statistics": {
+      "cases": 30,
+      "splits": {
+        "development": 24,
+        "validation": 6
+      },
+      "min_words": 460,
+      "median_words": 536.0,
+      "mean_words": 537.2333333333333,
+      "max_words": 591,
+      "total_words": 16117,
+      "rubric_criteria": 240,
+      "checks": 103
+    },
+    "evidence_scope": "Authoring and fixture verification only; these records contain no model-response evaluation or human-comprehension measurement."
+  }
+}

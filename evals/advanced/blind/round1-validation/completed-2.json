@@ -1,0 +1,688 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0013",
+      "response_sha256": "b6493de3d36fc47ae324053bae5194a637af73d52bee5bbb5e898ecd626eff11",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response answers every requested accounting, capacity, and evidence-limit question. It correctly compares incremental profit with the optimized existing mix, explains the scarce-hour tradeoff and both demand ceilings, and distinguishes model optimization from observed causation or welfare. Its tables make the arithmetic inspectable, and no material accuracy, support, coverage, or format weakness is present.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Shows Standard contribution of 70 per job and hour versus Rush contribution of 130 per job and 65 per hour, with the 140-versus-130 two-hour opportunity-cost comparison."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The comparison table correctly reports baseline revenue/contribution/profit of 10,000/7,000/5,000 and proposed values of 11,600/8,200/6,200; it separates the absolute and percentage changes."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Identifies 100 Standard and 10 Rush as optimal, uses 120 hours, and calculates contribution 8,300 and profit 6,300."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explicitly states that demand stops at 100 Standard jobs, so the remaining 20 hours can serve 10 Rush jobs without displacing Standard work."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Starts the capacity comparison from 100 Standard and 10 Rush, adds 15 Rush jobs to reach 100 and 25, and calculates 1,950 additional contribution and 750 net additional profit."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Computes expanded contribution 10,250 less existing fixed expense 2,000 and the block fee 1,200, yielding profit 7,050."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Limits the optimum to posted prices and stipulated demand; explains absent price-response, future paid-demand, welfare, and real-world causal evidence using B13-S4 and the model assumptions."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0014",
+      "response_sha256": "cdae4385195bf169e9e0effb232802c7feb55e48125d82807fe345593e174d13",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer is mathematically correct and complete, including the comparison against the best existing-capacity schedule rather than the proposed schedule. It clearly connects per-hour contribution to scarce capacity, makes the demand cap decisive, and maintains the conditional nature of survey-based optimization. The source references support their accompanying claims, and the organization is proportionate to the multi-part request.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The product table gives 70 per Standard hour and 130 per Rush job divided by two hours, or 65 per hour; the prose explains the 10 contribution sacrificed by substituting one Rush for two Standard jobs."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Correctly presents baseline revenue 10,000, contribution 7,000, profit 5,000 and proposed revenue 11,600, contribution 8,200, profit 6,200, with materials and denominators distinguished."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The stated optimum is 100 Standard plus 10 Rush, using all 120 hours and generating contribution 8,300 and profit 6,300."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explicitly rejects 120 Standard repairs because demand ends at 100 and assigns the remaining 20 hours to Rush."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Chooses 100 Standard plus 25 Rush with the block and calculates 15 extra Rush jobs, additional contribution 1,950, and additional profit 750."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "States total profit as 10,250 minus 2,000 minus 1,200, equal to 7,050."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains why the calculation does not determine better prices, future realized demand, customer welfare, social optimality, or an independently identified real-world causal effect of Rush."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0015",
+      "response_sha256": "48df29ffbb48c7b189123615edcaa474e222f9d780eeb25ef67968372786943c",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response applies the correct policy to each publication date and faithfully distinguishes the two outage routes. Day counting, all three clock conversions, and the conditional extension analysis are correct. Foxtrot remains unresolved for the specific missing upload-attempt fact, and informal notes are correctly treated as neither amendments nor evidence of that event.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Counts September 7, 8, 9, 11, and 14 as the five working days, separately excludes the September 10 holiday, and sets the deadline to September 14 at 17:00 local."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Treats Delta's complete 16:58 email during the declared outage as timely; converts 15:03 UTC to 17:03 local and explains that the portal duplicate does not invalidate the email."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Keeps Echo under the pre-September policy, counts September 1 through 7 as seven calendar days, and converts 14:45 UTC to 16:45 local before the 17:00 deadline."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Converts Foxtrot's 09:40 UTC filing to 11:40 local on September 15, after the ordinary deadline but twenty minutes before the possible noon extension."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Makes timeliness conditional on an actual upload attempt during the outage, explicitly notes that the screenshot is only an outage notice, and identifies session logs as potentially resolving eligibility."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "States that neither helpdesk note amended the policy or supplies missing event evidence; also rejects average upload duration as evidence of Foxtrot's actions."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Separately explains publication-based policy selection, exclusion of publication day and holiday, local receipt comparisons, permitted email receipt, and the distinct proof requirement for next-day portal filing."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0016",
+      "response_sha256": "08b6e20f5e4354cde200c85fa070214a01f2e2c3d00c7a49f9a7cdf63b6ad3fa",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly resolves Delta and Echo and keeps Foxtrot conditional rather than assuming the outage automatically granted an extension. It shows all required calendar and time-zone reasoning, including the precise local and UTC outage window for the missing attempt. The explanation is usable for an administrator and grounded in the supplied policy and records.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Lists September 7, 8, 9, 11, and 14 as working days one through five and gives September 14 at 17:00 local, equivalent to 15:00 UTC."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Finds Delta timely at the designated email address at 16:58 during the 14:50-17:10 outage; converts the duplicate to 17:03 local and correctly preserves the valid email receipt."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains that Echo's August 31 publication retains the seven-calendar-day rule, sets September 7 at 17:00 local, and converts its filing to 16:45 local."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Converts Foxtrot's filing to 11:40 local on September 15 and places it after the ordinary deadline but before the next-working-day noon cutoff."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Requires a qualifying upload attempt during 14:50-17:10 local on September 14; states that the supplied screenshot does not establish one and that the record is presently unresolved."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Rejects both informal notes as amendments and explains why general upload-duration statistics do not establish an individual attempt."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Distinguishes the assessment date that selects the policy, excluded publication day and holiday, authorized email route, portal clocks, and evidentiary condition for extension."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0017",
+      "response_sha256": "33554c3b740a81cc391b99107a39a1ef6339d328cebdbcf8faebee136c883d86",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response gives a clear causal explanation of a changed intermediate state that is insufficient for the final outcome. It correctly calculates the descriptive interaction, separates randomized treatment comparisons from unisolated mediation and the bypassed frond link, and offers two interpretable follow-ups. It explicitly retains sampling and side-effect uncertainty rather than claiming that the whole network has been proven.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains that grazer addition restores abundance, film, and measured light while M remains low, so the small colony response does not establish grazer irrelevance."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains the complementary M-only result: M is restored while film and light remain impaired, leaving a possible second requirement unsatisfied."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Interprets 38 colonies under both additions as consistent with jointly limiting conditions and an interaction, while distinguishing proximity to 40 from proven full restoration."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Calculates 5 + (6 - 5) + (7 - 5) = 8 and the 30-colony excess; also contrasts grazer effects of 1 without M and 31 with M."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "States that direct grazer addition bypasses shelter and does not establish the warming-to-frond or shelter-to-colony pathway; rejects frond loss as the proven sole cause."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Notes four tanks per condition, absent individual results and uncertainty, possible M-treatment side effects, film/light co-movement without independent light manipulation, and the shelter pilot's shading limitation."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Proposes crossing direct light manipulation with M treatment using comparable grazer/film conditions and controls, plus usable shelter versus equal-shading non-shelter controls; specifies what outcomes and pathway links each comparison would test."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0018",
+      "response_sha256": "88d0cc373bbe2424333d1fdecdaf28e5fa1e98f545bc7fafad4dff7ed10d20b5",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All core mechanistic and numerical conclusions follow from the packet. The answer usefully distinguishes effects of assigned treatments from proof of a particular intermediate pathway, and the proposed light/M factorial and shade-matched shelter comparisons address specific remaining mechanisms. It does not overread the video, randomization, or mean recovery as establishing universal or sole causation.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Identifies the grazer-only changes from grazers 3 to 10, film 7 to 1, and light 20 to 80, while M remains 2 and can still limit establishment."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that M-only treatment leaves light at 20 and colony establishment low, so a failed single rescue does not invalidate its target mechanism."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Interprets the combined mean of 38 as compatible with complementary requirements and stronger effects when the other requirement is satisfied, not a mathematical impossibility or proof of the only mechanism."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Shows the additive prediction of 8, a 30-colony departure, and both conditional treatment contrasts: grazer effects of 1 versus 31 and M effects of 2 versus 32."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explicitly states that adding grazers bypasses shelter and does not establish warming-induced frond loss, frond loss as the cause of grazer decline, or frond loss as the sole cause of damage."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Identifies four tanks per condition and missing uncertainty, M side effects, unseparated film/light effects, the pilot's shade confounding, and limited inference from one filmed grazing event."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Proposes independent light/M manipulations with carrier controls and an alternative M manipulation, and shelter versus a shade-matched control; explains the complementary-requirement and shelter-pathway predictions."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0019",
+      "response_sha256": "93e471444bb7db4a70c952319143b301d023636ce0f0972f80c5b7852364adac",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The German explanation correctly separates assignment, completion, and noncompletion comparisons, including all requested rates and uncertainty decisions. It explains selection without attributing the selection mechanism with unwarranted certainty and keeps zero-effect, superiority, and noninferiority conclusions distinct. The proposed future measurements match the changed interventions and committee objectives.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The German answer reports 120/160 = 75% and 112/160 = 70%, a difference of 5 Prozentpunkte, and separately calculates relative percentage changes."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Defines the primary comparison as the voluntary offer under trial participation conditions with all assigned learners and two-week follow-up, not the effect of completing the module."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Reports completer rates 90% versus 75%, explains their 15-percentage-point difference, and explains why voluntary completion can make the selected groups noncomparable."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Derives 48 passes among 80 new-module noncompleters and 4 among 16 existing-module noncompleters, while denying that these differences identify a dropout effect or prove no exposure."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains that the -5 to +15 interval includes both disadvantage and advantage, so superiority is unestablished and ineffectiveness is not proven."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Correctly applies the strict lower-bound-above--4 rule: -5 does not qualify despite the +5 estimate; also avoids treating failure of noninferiority as proof of inferiority."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Treats flexible schedules and compelled completion as new interventions; proposes participation, completion, shift conditions, and outcomes for all assigned people, plus later, workplace, and cost measurements when those objectives matter."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0020",
+      "response_sha256": "bf176e2d285b480ac11683a906c016f6dfbb7f26e7591a274e9f40282fb7e6f7",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer satisfies the German-language requirement and maintains the distinctions between the primary offer effect, a selected completer association, and effects of future participation policies. The calculations and prespecified noninferiority test are correct. It gives an appropriately provisional conclusion without replacing the supplied interval or treating participation differences as a fully identified causal mechanism.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Correctly gives assignment rates of 75% and 70%, their +5-Prozentpunkte contrast, and a separate 7.1% relative increase in German."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Defines the original-assignment comparison, including its explained Intention-to-treat label, as the offer under voluntary participation and actual accessibility; notes complete outcome recovery."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Calculates 90% versus 75% for completers and +15 percentage points, then explains post-assignment selection and why randomization does not automatically protect these subsets."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Correctly gives noncompleter results of 48/80 and 4/16 and explicitly says they do not identify a causal effect of dropping out or imply absence of exposure."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Interprets -5 to +15 as compatible with disadvantage, zero, and advantage; neither superiority nor proven ineffectiveness follows."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "States that the required lower bound must exceed -4, whereas the actual bound is -5, so the positive point estimate cannot establish noninferiority."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Distinguishes improved schedules and mandatory participation from the studied offer; proposes randomized comparisons and measurements of actual participation, completion, all-assigned outcomes, access by shifts, and relevant longer-term outcomes and costs."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0021",
+      "response_sha256": "42276cb1f6dbd8f166dcad525b1fa0d15828bd8d7f795f0023ddfc669136ae0d",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The simplified-Chinese answer preserves var and carefully distinguishes original wording, editorial titles, and historical implementation. It gives appropriately different evidentiary weight to the ledger, retrospective plaque, and incomplete alleged sale, including the possibility of compulsory assistance. The proposed contemporary records and linguistic evidence address the live alternatives without inventing a language history or claiming definitive disproof.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Responds in simplified Chinese, retains var in Latin letters, describes its resident-group and duty-assignment usages as incomplete contextual evidence, and identifies both titles as modern additions."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Uses fuel-by-hearth, labor, neighbor-shelter context, and the years 12-14 ledger to support organized provision and work more strongly than an ownership-abolition claim."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains the additional property and surrender assumptions in A, favors B provisionally on context, and explicitly says mutual aid could involve compulsory obligations."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "States that the ledger is not a known title register and that missing transfer, rent, and price columns establish neither abolished nor unchanged property rights."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Places the year-60 plaque 48 years later in the centralization campaign, treats it as possible memory or political expression, and denies that it directly establishes year-12 implementation."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Keeps the alleged sale conditional on authenticity, reliable dating, transferred object, and rights type; notes the partial photograph and unsupported year-90 catalogue dating."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Requests complete contemporary title and transfer records, inheritance or dispute records, obligations and enforcement or opt-out evidence, complete sale provenance, and broader contextual var usages. These directly serve the requested distinctions."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0022",
+      "response_sha256": "65bd8e1715735d1213dc6f3e65c75603fe29461d91c7b511483d06516d11c215",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response supplies a well-supported Chinese synthesis rather than treating translation confidence as new historical evidence. It distinguishes ownership, compulsory contribution, and voluntary aid as separate questions and states the limits of each supplied document. The conditional treatment of the alleged sale and proposed records meet all essentials; no material gold conflict or answer error is present.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Uses simplified Chinese and Latin-letter var, differentiates the gloss and modern titles, and explains why four appearances plus limited comparison texts cannot settle a unique meaning."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Grounds organized winter shelter, fuel allocation, and repair work in the compact's wording and actual ledger entries rather than inferring complete property abolition."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Identifies A's added legal-transfer conclusion, explains why B better fits the contextual and household-group evidence, and explicitly retains the possibility of compulsory mutual-aid duties."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that the fuel/labor ledger lacks the remit and columns of a property register, so its silence cannot show either unchanged rights or collective ownership transfer."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Notes the plaque's 48-year gap and later centralization context and declines to treat symbolic collective language or the sculptor's invoice as contemporary implementation evidence."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Describes the incomplete photograph, unknown transaction object and conditions, uncertain date, and possible use-right transfer; challenges universal impossibility of private transfers only conditionally."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Specifies contemporary title records, complete deeds, implementation rules and decisions, contribution and enforcement or exemption records, participation/withdrawal evidence, and wider var usages and grammar."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0023",
+      "response_sha256": "5cab729079fd0b2d7d3c06e2ac831fec964ba3f79c2c94c7dad513458e5b701e",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response accurately reconstructs the byte-to-parse-to-reservation sequence and identifies the concrete business-rule failure without alleging forgery or an account bypass. It evaluates each proposed fix against the actual data path, including the exact-byte authentication contract and canonicalization caveat. Its claims about intent and broader security remain bounded by the evidence.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "States that the exact signed body was forwarded unchanged, authenticated under K's key, and parsed into units=1 by the first-wins gateway versus units=40 by the last-wins service."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Traces 1 passing the maximum of 10 and the service reserving 40 while trusting the upstream check; ties both values and the reservation to Q9 logs."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Clearly distinguishes byte integrity/authentication from common semantic interpretation and enforcement of the resource limit; clients remain responsible to the cap despite valid signatures."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Says no signature forgery or transit modification is needed, recognizes correct-account use, and does not invent cross-account access."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Proposes duplicate detection before information is discarded, one authoritative checked representation carried into execution, and/or a cap check on the service's actual reservation value."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that canonicalizing only verification input changes the exact-byte contract and leaves the first/last interpretation mismatch intact if original ambiguous bytes still reach execution."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Attributes the HMAC to use of K's key rather than conclusive human intent, preserves possible serializer behavior or other key control, and treats version 5 removal notes as governing over the old checklist."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Limits the established result to Q9's 40-unit allocation despite a 10-unit cap; explicitly declines claims about all payloads, other quotas, cryptographic implementation security, confidentiality, or malicious intent."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0024",
+      "response_sha256": "54e5e7a51955940481af7187909ffec428e2f2c6410c73e7d2d7f05f06a0a531",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer is complete and causally clear: authentication succeeded while the checked and executed meanings differed. It assesses fixes in relation to current parser and forwarding behavior, recognizes the protocol consequence of changing signature input, and preserves the distinction between key authentication and a person's intent. No larger exploitation or security claim is smuggled in from the obsolete checklist or transport dashboard.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Presents the original duplicate-member body, valid exact-byte HMAC, unchanged forwarding, and the two effective objects with units=1 and units=40 under the specified parsers."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that the gateway approves 1 against its 10-unit maximum, while the downstream service omits the rule and logs/reserves 40 for the same Q9."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Separates integrity/authentication, parser agreement, business-rule enforcement, and human intent, and says authentication cannot replace a limit for untrusted authenticated clients."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "States that no broken HMAC, altered bytes, or cross-account access is needed; recognizes that the correct account passed its distinct account check."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Recommends duplicate rejection while duplicates remain detectable, a defined authoritative validated internal representation, and enforcement of the maximum at the allocation service before reservation."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains why signing-form canonicalization alone can leave ambiguous original bytes downstream, distinguishes actual duplicate rejection from merely choosing one value, and notes that signers must share a changed protocol."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Keeps owner intent, serializer behavior, and other control of the key unresolved, and explicitly says the removed checklist features do not establish current canonicalization or duplicate rejection."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Confines the finding to the observed limit mismatch and avoids claims about total exploitation, other endpoints or versions, key custody, account isolation, or all API security."
+        }
+      ],
+      "gold_flags": []
+    }
+  ]
+}

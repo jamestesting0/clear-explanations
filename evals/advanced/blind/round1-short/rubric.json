@@ -1,0 +1,111 @@
+{
+  "N01": {
+    "must_include": [
+      "An object receives the collaborators it needs from outside, rather than constructing them internally.",
+      "Use a small Java-relevant example or equally concrete explanation.",
+      "Explain dependency and injection in ordinary words."
+    ],
+    "must_not": [
+      "Equating dependency injection with inheritance or downloading packages.",
+      "Claiming a framework is required."
+    ],
+    "critical_errors": [
+      "Equating dependency injection with inheritance or downloading packages.",
+      "Claiming a framework is required."
+    ],
+    "source_expectations": "Ground code claims in the supplied snippet and factual claims in appropriate evidence. Any cited source must support the claim; no fabricated citations or execution. Stable background definitions may be explained directly.",
+    "verification": "Known natural-prompt regression scenario from the historical suite; reviewed under the new six-dimension rubric.",
+    "notes": "Natural short request: no explicit style/length limits. Judge whether default presentation helps a smart newcomer; do not enforce an arbitrary word cap."
+  },
+  "N02": {
+    "must_include": [
+      "Explain that the weighted result is the average remaining uncertainty for a randomly selected original example.",
+      "Larger groups are encountered more often and therefore contribute more.",
+      "Make the idea concrete using unequal group sizes and a correct small calculation, without unnecessary formula exposition."
+    ],
+    "must_not": [
+      "An unweighted average regardless of group size.",
+      "Saying weights are arbitrary importance settings."
+    ],
+    "critical_errors": [
+      "An unweighted average regardless of group size.",
+      "Saying weights are arbitrary importance settings."
+    ],
+    "source_expectations": "Ground code claims in the supplied snippet and factual claims in appropriate evidence. Any cited source must support the claim; no fabricated citations or execution. Stable background definitions may be explained directly.",
+    "verification": "Known natural-prompt regression scenario from the historical suite; reviewed under the new six-dimension rubric.",
+    "notes": "Natural short request: no explicit style/length limits. Judge whether default presentation helps a smart newcomer; do not enforce an arbitrary word cap."
+  },
+  "N03": {
+    "must_include": [
+      "Answer no: OAuth is a mechanism/framework for delegated authorization; JWT is a format for carrying claims/data in a token.",
+      "They can be used together; OAuth does not require JWT.",
+      "Explain the important terms in context for a reader unfamiliar with them."
+    ],
+    "must_not": [
+      "Calling OAuth a token format or JWT an authorization protocol.",
+      "Assuming a signed JWT hides/encrypts its payload."
+    ],
+    "critical_errors": [
+      "Calling OAuth a token format or JWT an authorization protocol.",
+      "Assuming a signed JWT hides/encrypts its payload."
+    ],
+    "source_expectations": "Ground code claims in the supplied snippet and factual claims in appropriate evidence. Any cited source must support the claim; no fabricated citations or execution. Stable background definitions may be explained directly.",
+    "verification": "Known natural-prompt regression scenario from the historical suite; reviewed under the new six-dimension rubric.",
+    "notes": "Natural short request: no explicit style/length limits. Judge whether default presentation helps a smart newcomer; do not enforce an arbitrary word cap."
+  },
+  "N04": {
+    "must_include": [
+      "Output is second.",
+      "The finally block executes before the pending return completes; its own return replaces the earlier return.",
+      "Explain the supplied code as written, without changing its behavior. Distinguish a source trace from an actual execution; any execution claim must be truthful."
+    ],
+    "must_not": [
+      "Output first or both.",
+      "Claiming finally is skipped after return."
+    ],
+    "critical_errors": [
+      "Output first or both.",
+      "Claiming finally is skipped after return."
+    ],
+    "source_expectations": "Ground code claims in the supplied snippet and factual claims in appropriate evidence. Any cited source must support the claim; no fabricated citations or execution. Stable background definitions may be explained directly.",
+    "verification": "Known natural-prompt regression scenario from the historical suite; reviewed under the new six-dimension rubric.",
+    "notes": "Natural short request: no explicit style/length limits. Judge whether default presentation helps a smart newcomer; do not enforce an arbitrary word cap."
+  },
+  "N05": {
+    "must_include": [
+      "Opportunity cost is the value of the best alternative given up by the present choice.",
+      "Already spent irrecoverable costs are sunk costs.",
+      "Use a concrete example that also allows non-money costs."
+    ],
+    "must_not": [
+      "Adding all forgone alternatives together.",
+      "Treating money already spent as the opportunity cost of every later decision."
+    ],
+    "critical_errors": [
+      "Adding all forgone alternatives together.",
+      "Treating money already spent as the opportunity cost of every later decision."
+    ],
+    "source_expectations": "Ground code claims in the supplied snippet and factual claims in appropriate evidence. Any cited source must support the claim; no fabricated citations or execution. Stable background definitions may be explained directly.",
+    "verification": "Known natural-prompt regression scenario from the historical suite; reviewed under the new six-dimension rubric.",
+    "notes": "Natural short request: no explicit style/length limits. Judge whether default presentation helps a smart newcomer; do not enforce an arbitrary word cap."
+  },
+  "N06": {
+    "must_include": [
+      "Change the presentation rather than paraphrasing the jargon.",
+      "Explain that a fixed unknown quantity does not vary merely because a different sample was taken, whereas the interval does.",
+      "For a 95% procedure, under its assumptions, about95% of intervals constructed in repeated comparable sampling contain the true value.",
+      "Keep the explanation compact and understandable without a statistics background."
+    ],
+    "must_not": [
+      "Saying the 95% refers to95% of observations lying inside.",
+      "Assigning a frequentist95% probability to the already fixed parameter solely from this interval."
+    ],
+    "critical_errors": [
+      "Saying the 95% refers to95% of observations lying inside.",
+      "Assigning a frequentist95% probability to the already fixed parameter solely from this interval."
+    ],
+    "source_expectations": "Ground code claims in the supplied snippet and factual claims in appropriate evidence. Any cited source must support the claim; no fabricated citations or execution. Stable background definitions may be explained directly.",
+    "verification": "Known natural-prompt regression scenario from the historical suite; reviewed under the new six-dimension rubric.",
+    "notes": "Natural short request: no explicit style/length limits. Judge whether default presentation helps a smart newcomer; do not enforce an arbitrary word cap."
+  }
+}

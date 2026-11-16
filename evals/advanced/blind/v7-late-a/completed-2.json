@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0006",
+      "response_sha256": "808921400bde90eb89f2b7e9cd435ea2355766f58303214f176a742be65b271d",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly separates numeric representation, rounding mode, rounding scope, allocation, and refund conservation. It explains all seven printed results, derives the required 101-cent invoice and 34/34/33 allocation, and demonstrates why both proposed repairs fail. The refund example makes the order-independent reconciliation invariant concrete. It treats negative amounts and partial refunds as extensions requiring policy choices rather than inventing an authoritative rule. Citations consistently use the supplied product contract as policy authority. Local execution reproduced the seven values and the allocation; the response hash also verified. No material weakness or hard-constraint violation was found.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Reports exact per-line 0.34 amounts summing to 1.02 and the raw 1.005 invoice sum rounding once to 1.01."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Explains that Decimal(1.005) receives an already inexact binary float, gives its below-tie approximation and 1.00 result, and contrasts exact text construction producing 1.01."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Gives 0.33 for half-up and 0.32 for half-even at exact 0.325, explaining the final even retained digit."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Reports round(2.675, 2) as 2.67, identifies the binary input as below the decimal tie, and explicitly rejects the claim that ties always round downward."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Shows 33.5 raw cents for each line, 99 floored cents, two residual cents, and the ascending-identifier allocation to 10 and 20, yielding 34/34/33."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explains that exact arithmetic cannot make three separately rounded 34-cent lines equal the 101-cent invoice-level total; the policies choose different rounding scopes."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Requires stored allocated cents for whole-line refunds, rejects both 102-cent recalculated refunds and a display-only fix, and supplies a 33/34/34 refund sequence ending at zero."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Identifies signed pools, floors versus truncation, allocation symmetry and tie handling as negative-amount policy questions, and cumulative entitlement, fractional cents and residual assignment as partial-refund questions."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0007",
+      "response_sha256": "ddd462fce54f22598b2afbf560cebee198f715356568de3035ea3b1134974eaa",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The full timeline obeys eligibility ordering, one-second execution, completion-based retry delays, and selection-time deadline checks. It correctly distinguishes enqueueing J1's third attempt at time 4 from expiring the job at time 6, without counting expiration as execution. The explanation evaluates every incident claim, preserves the exact-deadline boundary, and proposes a distinct terminal expiry policy. Its timestamp definitions distinguish retry delay, eligible queue waiting, execution and selection without execution; the jitter discussion remains outside the deterministic fixture. An independent heap simulation reproduced every run, the idle interval and the expiration. No material weakness was found.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Timeline gives J1 attempt 1 at 0–1 with retry eligibility 2, and J2 attempt 1 at 1–2 with retry eligibility 3."},
+        {"criterion": "C2", "verdict": "pass", "notes": "J3 runs at 2–3 because its original scheduled time 0 precedes J1's retry eligibility 2; the ordering is explicitly explained."},
+        {"criterion": "C3", "verdict": "pass", "notes": "J1 attempt 2 runs 3–4 and schedules attempt 3 for 6; J2 attempt 2 runs 4–5 and succeeds."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Shows idle time 5–6 and expiration at selection time 6 because completion at 7 would exceed deadline 6; no third attempt starts."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Explicitly treats J1's third success as hypothetical, states that the initial attempt counts toward the maximum, and distinguishes an upper bound from guaranteed attempts."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explains backoff from each actual failed completion and why eligibility times do not reserve the worker or confer priority on retries."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Recommends an explicit expired state with reason and executed-attempt count, surfaced to the owning workflow, with deliberate review or authorized resubmission rather than silently removing the deadline."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Specifies enqueue, due, selection, start and completion timestamps, attempt identifiers and expiry reason; separately explains retry delay, queue waiting and execution. Jitter addresses correlated retries across workers and is explicitly absent here."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0008",
+      "response_sha256": "8deb9d290fb15858be2e39925d386a4b5e28f59e4462788892c94e60af606414",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response computes every requested contrast and explains the counterfactual requirement, unequal pretrends, trend extrapolation, simultaneous staffing, case-mix uncertainty and inconclusive test without promoting an observed contrast to a causal effect. Its randomized rollout proposal is feasible under the stated authority; independently randomized staffing is expressly conditional, with an alternative that does not overclaim causal staffing comparisons. It also correctly identifies an internal defect in the supplied data: a percentage of tickets resolved cannot be 104%. It retains the stipulated arithmetic while distinguishing it from validated rate evidence. Local arithmetic reproduced the means, 12-point contrast and 6-point detrended contrast. The gold's omission of the invalid percentage is flagged rather than penalizing the answer for detecting it.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Reports before means North 86 and South 51.5, and after means North 102 and South 55.5, using equal week weights; appropriately qualifies 102 as arithmetic on an invalid percentage input."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Derives changes of 16 and 4 and their 12-point difference; keeps them descriptive and flags the underlying 104% measurement contradiction."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Defines the missing untreated North outcome and equal untreated changes as the required counterfactual comparison; explains why a stable level difference cancels and addresses differential staffing and case mix."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Computes both pre-period transitions as North +4 versus South +1, giving a growing gap of 30, 33 and 36, and explains why this challenges but does not disprove future parallel untreated trends."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Uses period midpoints −1.5 and 0.5, multiplies the three-point weekly differential by two weeks, and subtracts six from twelve; also checks the result by separately extrapolating each center."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explicitly describes the six-point result as dependent on unverified trend persistence and explains why historical detrending removes neither newly added North-only staffing nor possible case-mix changes."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Rejects non-significance as proof of parallel trends, identifies missing model, sample size and uncertainty needed to assess power, and avoids inventing a p-value, standard error or interval."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Proposes randomized future tool timing with staffing held stable, conditionally a factorial tool/staffing design, and randomized timing within staffing settings if necessary. Reports only the supplied arithmetic and its identification and data-validity limits now."}
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C1/C2",
+          "issue": "The gold preserves correct arithmetic but omits a contradiction in the supplied outcome scale. The resulting 102 and 16/12-point summaries must be qualified as calculations on the entered numbers, not accepted as validated ticket-resolution percentages.",
+          "evidence": "The prompt defines each entry as the percentage of observed tickets resolved within two days, yet A23-SERIES assigns North 104 at week +1. A subset percentage cannot exceed 100; consequently the North after average is also outside that scale. The response correctly calls out this defect while still computing the requested values, and C1/C2 remain satisfied as conditional arithmetic."
+        }
+      ]
+    },
+    {
+      "review_id": "REVIEW-0009",
+      "response_sha256": "ef0bc90097aaf97f7f845da5bc60b5bf71684e57dd641c8c8f51a2e48f142b7d",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly scopes the microbenchmark, representative replay and stable operating interval. It supplies the path speedup and limit, count-weighted means and percentage change, exact requested percentiles, both dashboard averaging errors, and occupancy with units. Its discussion of accumulated response times versus concurrent wall-clock time prevents another possible aggregation mistake. It clearly limits inverse latency to one sequential no-think-time client, and proposes controlled load and resource measurements for a saturation claim while retaining the fast-endpoint benefit. Local calculations verified the numerical results. The absent optional before-period reciprocal is not an essential omission under the actual prompt; the corresponding overrestrictive reading of C7 is explicitly flagged.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Derives 20 ms before, 14 ms after, 20/14 approximately 1.43×, and the zero-CPU limit of 20/12 approximately 1.67×."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Uses the 900/100 request counts to obtain 19 ms and 22.2 ms, a 3.2 ms or 16.84% increase; explains the larger total loss from slow requests."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Locates the 950th observation in the slow group and reports 100 ms before and 150 ms after."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Computes the mean request ratio as approximately 1.192 and distinguishes it from 19/22.2 approximately 0.856. Also computes 55 and 79 ms as equal-endpoint averages corresponding to a hypothetical 50/50 mix."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Converts 22.2 ms to 0.0222 seconds and computes 200 × 0.0222 = 4.44 mean in-system requests, including execution and waiting."},
+        {"criterion": "C6", "verdict": "pass", "notes": "States that sustaining 200/s at one load does not establish saturation, and asks for comparable deployment load tests, queue buildup, latency/error limits and resource demand/capacity measurements."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Correctly states the single sequential client, one outstanding request and no-think-time assumptions, computes the conditional after rate of 45.05/s, and rejects its use as concurrent deployment capacity. The before reciprocal 52.63/s is not printed; the prompt does not require both reciprocals, as detailed in the gold flag."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Keeps microbenchmark, replay and operating interval distinct throughout and expressly acknowledges the fast endpoint's 20% improvement alongside worse overall mean and tail."}
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C7",
+          "issue": "Treating both parenthetical reciprocal values as mandatory would exceed the user request. The essential criterion is the conditional single-client relationship and its capacity limitation; this answer satisfies that relationship using the after-period value.",
+          "evidence": "The prompt says, 'If you compare inverse mean latency with throughput, state the single-sequential-client assumption under which that comparison is meaningful.' It does not require before and after reciprocal calculations. The answer explicitly assumes one outstanding request and no think time, conditions the 45.05/s result on experiencing the same 22.2 ms mean, and explains why it does not establish deployment capacity. C7 is therefore assessed as satisfied rather than penalizing the absent optional 52.63/s illustration."
+        }
+      ]
+    }
+  ]
+}

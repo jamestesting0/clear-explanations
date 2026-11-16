@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0001",
+      "response_sha256": "044b0294d914335944678f202510c880cdc67040a49d3d8b38679a0b0ee42943",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer accurately separates E abundance, Q production, Q location, Q consumption, and light. It treats the pathway as a stipulated working model, uses the measured means without inventing precision, and explains why M and the R deletion do not isolate a unique mechanism. Its proposed measurements give explicit outcomes that distinguish production, transport, acidity, and membrane repair. The isolated preparation is correctly bounded and the supplier's score is dismissed as mechanistic evidence. The detail serves the apprentice's causal misunderstanding; no material omission or clarity weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening pathway explanation states that E requires charged C, Q must cross an intact membrane through R, and L requires permissive local acidity; A raises E without supplying the other functions."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It explains that the whole-cell assay combines both locations and that a large Q pool can reflect slow consumption rather than completion of the pathway."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It interprets the 38-to-17 Q decrease alongside the 9-to-31 light increase as compatible with faster downstream use, while allowing reduced production as a separate possible contributor."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It explicitly uses M's separate transport assay as support for a transport contribution and says unmeasured acidity changes or combined effects remain possible."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It identifies membrane damage as a confound of deleting R and explains why failure of externally supplied Q and an R rescue that also repairs membranes cannot isolate transport necessity or a sole bottleneck."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It states that internal Q produces light in intact isolated compartments below the acidity threshold without A, while explaining that supplied charged C and removed proteins limit inference to whole cells."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The three proposed experiment groups measure compartment-specific Q, production and product formation, control local acidity, and separate R restoration from membrane repair, with discriminating outcomes stated."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0002",
+      "response_sha256": "34175d213f075f00d3e3c65daec6dfafa609eb6ae10918fb05589764f7fa64e1",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response correctly compares assignment, selection, measured outcomes, and transfer conditions. It preserves the building-level randomized design, interprets the interval without treating zero crossing as proof of no effect, and separates missing comfort responses from the temperature result. The contractor's selected groups and unequal shading are explained as causal limitations, while chamber evidence is restricted to its actual physical endpoint and conditions. The proposed local trial addresses comfort, nonresponse, humid evenings, roof materials, and the hottest apartments. No important claim exceeds the supplied evidence, and the summary table supports rather than substitutes for the explanation.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "It identifies 20 independently assigned buildings rather than 740 independently assigned apartments and explains why linked apartment measurements require the building-adjusted analysis."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It gives the -0.6 estimate and -1.4 to +0.2 interval and explicitly describes cooling, no difference, and slight warming as compatible possibilities."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It discusses voluntary coating and survey participation, prior discomfort, and the 70% versus 15% shading difference, explaining why age adjustment and a larger sample do not isolate a coating effect."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It confines the 18% result to heat flow in the tested panels and distinguishes it from room temperature and resident comfort effects."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It gives the 78% versus 51% response rates, explains potential differential selection among respondents, and states that random assignment does not repair missing responses."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It connects the town's humid-evening top-floor complaints with the pilot's afternoon endpoint and drier out-of-town buildings, and discusses the chamber's one-substrate limitation."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It recommends a local building-randomized trial with comfort and humidity measures, nonresponse follow-up, roof-material coverage, and prespecified hottest-apartment comparisons, plus relevant missing pilot data."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0003",
+      "response_sha256": "ec73ff15dade7501627e7d138e9548d7357308200f4a2a13ca93f8ad20382cf8",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All shipment conclusions follow the enacted eligibility and filing rules. The answer correctly distinguishes current authority from later publication dates and does not assume either enactment or non-enactment beyond what the packet establishes. Alder fails customer-delivery eligibility; Birch's post-use appointment is timely but not evidence of a completed filing. Cedar receives explicit jurisdiction branches and the additional warranted qualification that warehouse delivery may not be physical customer delivery. That extra uncertainty is a strength, not a conflict with the rubric. The date ordering was independently checked, and no unsupported outside-jurisdiction rule was introduced.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The dates table states that the certificate requirement applies to commercial equipment first placed into service within Port Meridian from June 1."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It treats the signed-agreement cutoff before April 2 and physical-customer-delivery cutoff before June 1 as separate conjunctive eligibility conditions."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It accepts Alder's March 29 agreement but rejects May 29 intermediate warehouse arrival as a substitute for the stated June 3 customer delivery; June 5 service requires a certificate under the supplied rule."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It correctly accepts Birch's April 1 agreement and May 31 customer delivery, permits filing after June 2 use, and identifies the July 10 appointment as timely before July 15 while requiring actual completed filing."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It says Cedar's workshop district is missing, rejects the postal label as proof, and explains both inside-port and outside-port consequences. It additionally identifies the unresolved customer-delivery status of Cedar's warehouse event."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It distinguishes the enacted ordinance and authorized implementing circular from the incomplete informal slide and the proposal/news digest, and explains why later publication does not confer higher authority."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It explicitly states that the packet does not establish an enacted amendment and cannot determine rules applying outside Port Meridian."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0004",
+      "response_sha256": "2b7c7fb1caa0b3f02b76a9f5bbcff7c6c76f559ddcab3ebc70ea6496f155f498",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The arithmetic, including all-acquisition-cost contribution, is correct and was independently executed. The answer explains that reduced waste and increased sales are linked by fixed total receipts, while sell-through does not measure successful customer demand fulfillment. It considers supply changes, timing, the cafeteria contract, road construction, and selection after unusually high waste without attributing their effects as established facts. Its exact unmet-demand limit is appropriately strong: these records supply neither the desired quantity nor a justified finite upper bound. The final randomized evaluation connects measurement improvement with the distinct missing counterfactual. The tables and store-level details serve the requested causal analysis.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The ledger table correctly totals receipts at 1,400 in both periods, sales at 1,260 then 1,330, and expired waste at 140 then 70."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It calculates 90% and 95% and defines them as sell-through, illustrating why low ordering can improve that ratio while leaving customers unable to purchase."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It reports North's rise from 2 to 18 stockout hours and explains that reduced or poorly timed supply can cause more stockouts even if underlying demand falls."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It uses 10 times sold minus 6 times received, obtaining 4,200 and 4,900 and a 700-unit increase; store contributions and the sold-margin-minus-waste reconciliation also check out."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It covers bus-stop road construction, South's new cafeteria contract, other period changes, the lack of comparison stores, and the possibility that unusually high selected baseline waste would not repeat."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It explains missing departures, substitution, and deterred customers, and states that no numerical unmet-demand total is identified without assumptions about arrivals and desired quantities. It also explains why demand reconstruction alone does not identify causation."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It proposes contemporaneous randomized store comparisons with forecasts, stock timing, expiry, lost-request observations, and separate contribution, waste, availability, and fulfillment outcomes."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0005",
+      "response_sha256": "623c6ddd670f700a72cb24b5d701823a9d393b29690ef388fd18b9600899b683",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer gives a weighted historical interpretation without inventing a definitive origin or imposing equal weight on all documents. It carefully distinguishes practical clearance intentions, administrative accommodation, possible oppositional effects, and later political framing. The retrospective memoir is neither accepted wholesale nor discarded, and accurate gate descriptions are kept separate from evidence about motives. The song and later catalog are read at their stated evidential strength. A live resistance-centered alternative and explicit prevalence, chronology, and motive limits complete the actual request. No unsupported external history or material weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "It connects the 19 annotations and 13 recorded dusk boat operators with trading and taxation, while noting incomplete occupation records, unknown annotation dates, missing pages, and limits on prevalence."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It identifies the four traders' stated demand for faster clearance and keeping both names, and accurately notes that the letter describes mismatched names delaying trade rather than proving the additional names inherently accelerated it."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It treats the watch officer's recollection as explicit but conditional evidence of oppositional use, discussing the 36-year interval, admitted memory error, and anti-tax political setting without declaring the account false."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It explicitly says confirmed gate geography does not independently authenticate naming practices or traders' motives."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It interprets 'buried neither' as compatible with retaining two identities and rejects the catalog's claim that household names were abandoned."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It defines function and intention separately and describes how practical names, administrative recording, deliberate evasion, and later political meanings could coexist, while marking the suggested sequence as unproven."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It prioritizes the petition and register, offers substantial early resistance in some groups as a live alternative, and separately states what cannot be concluded about prevalence, chronology, and a chief motive."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0006",
+      "response_sha256": "28181ab2b18e99df2b202e5f3b5dd331e64d9e9d489c1dac98c686b00efb6383",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The simplified-Chinese explanation correctly traces all four outcomes under the supplied current contract and service code. It preserves the endpoint paths, header, and existing code tokens, distinguishes gateway authentication from tenant authorization, and attributes actual duplication to storage evidence rather than to two status codes alone. It does not invent a gateway rejection status or undocumented universal save_order behavior. The proposed operation identifier is scoped and payload-bound, with atomic result storage, conflict handling, renewed request signatures, and explicit retention limits. These are clearly proposed additions, not observed guarantees. The incident's limited coverage is stated precisely, with no material omission or unsupported cryptographic claim.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "In simplified Chinese it explains recognized-client authentication and integrity of signed fields, and explicitly separates these from tenant membership and one-time execution."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It explains that timestamp bounds request freshness rather than uniqueness and that both the 8-second original and 15-second identical retry remain inside the 60-second window."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It states that both T1 calls reached 201 without documented operation-level idempotency, and uses two distinct stored identifiers with reference R7 as the evidence that duplication actually occurred in this incident."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It explains that changing /tenants/T1/orders to /tenants/T2/orders without re-signing breaks verification before forwarding, whereas K's legitimate T2 signature authenticates K but reaches the membership check and returns 403 before parsing or saving."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It keeps tenant and business-resource authorization in the service at execution time using X-Client-ID and tenant, matching the current contract and gateway-only deployment."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It proposes a stable operation_id covered through body_bytes, scoped by client, tenant, and operation path, stored with payload identity and results atomically; it specifies concurrent retries, content conflicts, result-access authorization, renewed signatures, retention, and expiry limitations."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It explicitly demotes version 1's removed nonce database and the slide's shorthand, rejects availability as replay evidence, labels all new protections as proposals, and limits conclusions to the documented requests and logs."
+        }
+      ],
+      "gold_flags": []
+    }
+  ]
+}

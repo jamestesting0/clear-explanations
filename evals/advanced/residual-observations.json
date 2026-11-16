@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "scope": "Observed limitations in passing answers; preserve raw wording and original scores.",
+  "entries": [
+    {
+      "variant": "v7",
+      "case_id": "B28",
+      "finding": "The opening arithmetic contains literal TeX-style escapes without matching math delimiters, such as 2{,}000 and 8\\%. The numerical meaning is still clear.",
+      "review": "The secondary reviewer explicitly noted the formatting issue and retained 12/12, pass; the primary was also 12/12, pass.",
+      "handling": "No response text or score was changed. Passing the rubric permits a minor readable formatting defect; do not describe the recorded outputs as flawless.",
+      "review_file": "reviews/v7-audit-holdout.json"
+    }
+  ]
+}

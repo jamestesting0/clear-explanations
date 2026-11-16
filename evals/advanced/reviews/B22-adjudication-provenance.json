@@ -1,0 +1,20 @@
+{
+  "original_sha256": "3bfee5023f37a63f8187cabbeefd232c03acb8ba6656907165e67bdee306c043",
+  "normalization": "Only three local sandbox link targets were changed to archived relative paths. Judgment text is unchanged.",
+  "link_replacements": [
+    {
+      "original": "sandbox:/workspace/scratch/b0f4fa91c45f/explain-advanced-blind/round1-holdout/packets/REVIEW-0007.json",
+      "published": "../blind/round1-holdout/packets/REVIEW-0007.json"
+    },
+    {
+      "original": "sandbox:/workspace/scratch/b0f4fa91c45f/explain-advanced-blind/round1-holdout/packets/REVIEW-0008.json",
+      "published": "../blind/round1-holdout/packets/REVIEW-0008.json"
+    },
+    {
+      "original": "sandbox:/workspace/scratch/b0f4fa91c45f/clear-explanations/evals/advanced/protocol.json",
+      "published": "../protocol.json"
+    }
+  ],
+  "published_sha256": "ad0ea52d0c480664324db5fadb2960aede2a3481779b75083df58dc458b27f0f",
+  "verification": "Applying exactly these three target replacements to the original reproduces the published text byte for byte; reversing them reconstructs the recorded original SHA-256."
+}

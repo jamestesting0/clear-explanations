@@ -10,10 +10,11 @@ import signal
 import subprocess
 import sys
 
-from core import (SCHEMA, canonical, collect, evaluate_many, now, packet_integrity, paths,
-                  read_index, read_json, select_packets, sha, valid_id, validate_cases,
-                  within, write_json)
+from core import (BUNDLE_MODE, BUNDLE_NOTE, SCHEMA, bundle_digest, canonical, collect, evaluate_many, format_packet,
+                  now, packet_integrity, paths, read_index, read_json, read_runtime_bundle,
+                  select_packets, sha, valid_id, validate_cases, within, write_json)
 from report import render_report
+from review_packets import import_blind_reviews, make_review_packets
 
 
 def make_packets(args):
@@ -23,16 +24,23 @@ def make_packets(args):
              and (not wanted or c["id"] in wanted)]
     if not cases or (wanted and wanted - {c["id"] for c in cases}):
         raise ValueError("Selection is empty or includes unknown/excluded case IDs")
-    variants = {}
-    for value in args.skill:
-        name, separator, source = value.partition("=")
-        valid_id(name)
-        if not separator or not source or name in variants:
-            raise ValueError("Use unique --skill VARIANT=PATH (PATH 'none' means baseline)")
-        raw = None if source == "none" else Path(source).read_bytes()
-        if raw is not None:
-            raw.decode("utf-8")
-        variants[name] = raw
+    variants, seen = {}, set()
+    for option in ("skill", "bundle"):
+        for value in getattr(args, option, None) or []:
+            name, separator, source = value.partition("=")
+            valid_id(name)
+            if not separator or not source or name.casefold() in seen:
+                raise ValueError("Use unique variants across --skill VARIANT=PATH and --bundle VARIANT=DIR")
+            seen.add(name.casefold())
+            if option == "bundle":
+                variants[name] = (None, read_runtime_bundle(source))
+            else:
+                raw = None if source == "none" else Path(source).read_bytes()
+                if raw is not None:
+                    raw.decode("utf-8")
+                variants[name] = (raw, None)
+    if not variants:
+        raise ValueError("Provide at least one --skill VARIANT=PATH or --bundle VARIANT=DIR")
     run = Path(args.out)
     if run.exists() and any(run.iterdir()):
         raise ValueError("Run directory must be new or empty; frozen runs are never overwritten")
@@ -40,29 +48,40 @@ def make_packets(args):
     write_json(run / "cases.json", cases)
     index = {"schema_version": SCHEMA, "name": args.name or run.name, "created_at": now(),
              "source_cases_sha256": sha(Path(args.cases).read_bytes()), "packets": []}
-    prefix = ("Answer the single user request below. Return only your answer. "
-              "Do not access other evaluation cases, answer keys, reviewer rubrics, or previous responses. "
-              "If general style guidance conflicts with the user's explicit request, follow the user's request.\n\n")
-    for variant, raw in variants.items():
-        skill_path = f"skills/{variant}.md" if raw is not None else None
-        skill_hash = sha(raw) if raw is not None else None
+    if any(resources is not None for _, resources in variants.values()):
+        index["bundle_note"] = BUNDLE_NOTE
+    for variant, (raw, resources) in variants.items():
+        bundle_fields = {}
+        if resources is not None:
+            frozen = []
+            for resource_path, contents in resources:
+                frozen_path = f"skills/{variant}/{resource_path}"
+                destination = run / frozen_path
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.write_bytes(contents)
+                frozen.append({"resource_path": resource_path, "frozen_path": frozen_path,
+                               "sha256": sha(contents), "bytes": len(contents)})
+            root = next(resource for resource in frozen if resource["resource_path"] == "SKILL.md")
+            skill_path, skill_hash = root["frozen_path"], root["sha256"]
+            bundle_fields = {"guidance_mode": BUNDLE_MODE, "runtime_resources": frozen,
+                             "bundle_sha256": bundle_digest(frozen)}
+        else:
+            skill_path = f"skills/{variant}.md" if raw is not None else None
+            skill_hash = sha(raw) if raw is not None else None
         if raw is not None:
             destination = run / skill_path
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_bytes(raw)
         for case in cases:
-            prompt = prefix
-            if raw is not None:
-                prompt += "## General explanation guidance\n\n" + raw.decode("utf-8") + "\n\n"
-            prompt += "## User request\n\n" + case["prompt"] + "\n"
+            prompt = format_packet(case, skill=raw, resources=resources)
             relative = f"packets/{variant}/{case['id']}.txt"
             destination = run / relative
             destination.parent.mkdir(parents=True, exist_ok=True)
-            destination.write_bytes(prompt.encode("utf-8"))
+            destination.write_bytes(prompt)
             index["packets"].append({"case_id": case["id"], "variant": variant, "split": case["split"],
-                                     "prompt_path": relative, "prompt_sha256": sha(prompt.encode("utf-8")),
+                                     "prompt_path": relative, "prompt_sha256": sha(prompt),
                                      "frozen_skill_path": skill_path, "skill_sha256": skill_hash,
-                                     "case_sha256": sha(canonical(case))})
+                                     "case_sha256": sha(canonical(case)), **bundle_fields})
     write_json(run / "index.json", index)
     print(f"Created {len(index['packets'])} packets in {run}")
 
@@ -162,11 +181,16 @@ def review_template(args):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     actions = parser.add_subparsers(dest="action", required=True)
-    packets = actions.add_parser("packets", help="Freeze cases/skills and create independent task prompts")
+    packets = actions.add_parser("packets", help="Freeze cases/skills and create independent task prompts",
+                                 epilog=BUNDLE_NOTE)
     packets.add_argument("--cases", required=True)
     packets.add_argument("--out", required=True)
-    packets.add_argument("--skill", action="append", required=True, metavar="VARIANT=PATH")
-    packets.add_argument("--split", choices=("all", "development", "holdout"), default="all")
+    packets.add_argument("--skill", action="append", metavar="VARIANT=PATH",
+                         help="Freeze one UTF-8 skill file; PATH 'none' means baseline (repeatable)")
+    packets.add_argument("--bundle", action="append", metavar="VARIANT=DIR",
+                         help="Freeze SKILL.md plus direct references/*.md and inject their exact contents; "
+                              "no symlinks or recursive traversal (repeatable)")
+    packets.add_argument("--split", choices=("all", "development", "validation", "holdout"), default="all")
     packets.add_argument("--ids", help="Comma-separated case IDs")
     packets.add_argument("--name")
     packets.set_defaults(function=make_packets)
@@ -199,6 +223,22 @@ def main(argv=None):
     template.add_argument("--run", required=True, action="append")
     template.add_argument("--out", required=True)
     template.set_defaults(function=review_template)
+    blind = actions.add_parser("review-packets", help="Prepare separate blind reviewer inputs and a private identity key",
+                               epilog="Share only the reviewer directory. This prepares inputs; it does not perform "
+                                      "independent review or hide identity clues within response text. Mechanical "
+                                      "constraint failures remain reviewable; missing/stale/failed responses are rejected.")
+    blind.add_argument("--run", required=True, action="append")
+    blind.add_argument("--out", required=True, help="New or empty reviewer directory")
+    blind.add_argument("--key", required=True, help="New private mapping file outside the reviewer directory")
+    blind.add_argument("--rubric", help="Optional separate JSON rubric, copied only into reviewer inputs")
+    blind.set_defaults(function=make_review_packets)
+    unblind = actions.add_parser("review-import", help="Validate and resolve blind reviews into the existing review schema")
+    unblind.add_argument("--run", required=True, action="append")
+    unblind.add_argument("--packets", required=True, help="Original blind reviewer directory")
+    unblind.add_argument("--key", required=True, help="Separate private identity mapping")
+    unblind.add_argument("--reviews", required=True, help="Completed blind review JSON with review_id entries")
+    unblind.add_argument("--out", required=True, help="New completed review JSON for check/report")
+    unblind.set_defaults(function=import_blind_reviews)
     args = parser.parse_args(argv)
     try:
         return args.function(args) or 0

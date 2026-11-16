@@ -1,0 +1,22 @@
+{
+  "selected_at": "2026-11-16T13:58:38.660666+00:00",
+  "candidate": "v5",
+  "summary": {
+    "v4": {
+      "cases": 36,
+      "pass": 36,
+      "mean_score": 11.972222222222221,
+      "mean_words": 925.9444444444445,
+      "mean_characters": 6249.888888888889
+    },
+    "v5": {
+      "cases": 36,
+      "pass": 36,
+      "mean_score": 12.0,
+      "mean_words": 862.3888888888889,
+      "mean_characters": 5866.805555555556
+    }
+  },
+  "decision": "Proceed with unchanged v5 to validation: all36 development cases pass; independent reviews found no runtime-text blocker. Preserve baseline A19 imprecision and A23/A24 source/key caveats. No claim of general superiority.",
+  "remaining": "Validation12 and heldout12 plus6matched short regression prompts. Holdout contents remain unread."
+}

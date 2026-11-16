@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "registered_at": "2026-11-16",
+  "registered_before_response_generation": true,
+  "objective": "Accurate, source-supported, complete explanations that remain clear and proportionate on long, tricky requests.",
+  "case_plan": {
+    "total": 60,
+    "development": 36,
+    "validation": 12,
+    "holdout": 12,
+    "minimum_prompt_whitespace_words": 400,
+    "authors": "Two separate fresh-context agents; neither receives the candidate skill or earlier response evidence.",
+    "source_policy": "Original synthetic fixtures are labeled in prompts. External factual gold must use applicable primary sources or executable checks. Supplied source labels are usable citations, not claims that fictional documents exist publicly."
+  },
+  "planned_comparison": {
+    "baseline": "Frozen v4 on all 60 new cases.",
+    "candidate": "Development draft on 36 development cases; revise general guidance based on observed failures and independent review. Evaluate the selected candidate on 12 validation cases before the final holdout.",
+    "release": "Freeze the final bundle before revealing the 12 holdout prompts. A changed bundle must be regenerated on all 60 cases for any full-release aggregate claim.",
+    "repetition": "A small explicitly identified stress subset may be repeated in fresh contexts to examine variability. Repeated cases are not additional unique scenarios."
+  },
+  "isolation": {
+    "responders": "Fresh context per batch of at most 6 cases. Receive frozen guidance and user prompts only; no gold criteria, previous answers, scores, or intended fixes.",
+    "reviewers": "Fresh context; anonymized variant labels and shuffled records. Receive prompt, response, gold criteria, and rubric, not skill identity or expected winner. Blinding is imperfect because output style may reveal guidance.",
+    "holdout": "B19–B30 remain sealed until the release bundle is frozen. Authors and unavoidable tooling may access them; the skill author and development reviewers must not inspect their contents before freeze.",
+    "runtime": "Text-only bundle packets inject all runtime references. This evaluates their content, not native selective file loading. Surrounding environment instructions are not fully captured by the replay packet. Model identifiers are recorded only when observed."
+  },
+  "dimensions": {
+    "accuracy": {"0": "Material factual, logical, code, or numerical error.", "1": "Central result sound but a meaningful imprecision remains.", "2": "Relevant claims, conditions, calculations, and behavior are correct."},
+    "evidence": {"0": "Central claim unsupported, misattributed, fabricated, or stronger than the available evidence.", "1": "Support generally sound but a local citation, scope, or inference distinction is unclear.", "2": "Important claims are supported at the stated strength; source scope, conflicts, derivations, and unknowns are handled correctly."},
+    "coverage": {"0": "Essential requested part missing or wrong.", "1": "Useful answer but a meaningful causal or explanatory link is missing.", "2": "All essential questions and connections covered; equivalent plain-language explanations count."},
+    "clarity": {"0": "Reader cannot follow the central explanation or jargon substitutes for meaning.", "1": "Understandable overall, with a localized terminology or prerequisite gap.", "2": "Meaning is clear for the stated reader; necessary unfamiliar terms and symbols are explained in context."},
+    "structure": {"0": "Organization obstructs understanding.", "1": "Usable but some sections, tables, or repetition add friction.", "2": "Opening, order, paragraphs, and optional tables serve the question without decorative scaffolding."},
+    "fit": {"0": "Explicit format, language, scope, or length requirement violated.", "1": "Compliant but appreciably too long, compressed, or miscalibrated for the reader.", "2": "Detail and presentation are proportionate and comply with the actual request."}
+  },
+  "verdict_policy": {
+    "maximum_score": 12,
+    "pass": "At least 11/12, all essential scenario criteria satisfied, no critical errors, and explicit constraints satisfied.",
+    "partial": "Useful central explanation, but below the pass threshold or with a meaningful noncritical clarity/support/coverage weakness.",
+    "fail": "Material factual/code/calculation error, unsupported central claim, fabricated citation or execution, missing essential requested answer, or explicit constraint violation.",
+    "critical_errors_override_score": true,
+    "gold_is_fallible": "Reviewers must flag incorrect or overrestrictive gold. Accept semantically equivalent reasoning rather than enforcing particular wording. Any correction must be documented, source-verified, and applied to every affected variant; preserve the original record."
+  },
+  "review_rounds": [
+    "Round 1: independent design review and blinded development-response review; revise general rules and retain failures.",
+    "Round 2: independent release audit, blinded validation/holdout response review, and second review of failures or disputed cases. Record disagreements and the evidence for any adjudication."
+  ],
+  "integrity": [
+    "Freeze exact instruction and resource bytes with hashes before generation.",
+    "Preserve each raw response without editing; a retry is a separate record.",
+    "Bind reviews to exact response hashes; missing, stale, or altered records cannot pass.",
+    "Mechanical integrity and synthetic harness tests are separate from semantic answer quality.",
+    "Report denominators, split status, failed cases, repeat runs, and actual completed responses."
+  ],
+  "stopping_policy": "Resolve observed material errors in the skill where general guidance can help. Retest affected cases and transfer cases after a behavioral change. Do not claim universal correctness or keep tuning to already exposed holdout cases while calling them unseen. Any unresolved failures or evaluation limits must remain visible in the release report.",
+  "limitations": [
+    "Purposive scenarios, not a random sample of user requests.",
+    "Model-generated fixtures and model-based reviews need human validation.",
+    "One model family and batch contexts; no cross-model causal guarantee.",
+    "Source-packet reasoning does not measure live retrieval quality.",
+    "Readability ratings do not measure human comprehension or satisfaction.",
+    "Longer prompts and more criteria do not by themselves prove a harder or better benchmark."
+  ]
+}

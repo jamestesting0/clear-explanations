@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-16T16:25:10.497390+00:00",
+  "review_file": "evals/advanced/reviews/publication-review.md",
+  "review_type": "Read-only publication-readiness review with two review outputs; no runtime, answer, score, or documentation edits by this reviewer.",
+  "evidence_snapshot": {
+    "path": "evals/advanced/reviews/publication-evidence-snapshot.json",
+    "sha256": "32020387cd0d677a5484d08ac02fdf70b585878a73559660cb1dbcb8460ee854",
+    "scope": "This stable snapshot was byte-identical to evals/advanced/evidence.json when refreshed for the final review. The working manifest was read earlier and compared again, but its moving path is deliberately excluded from hashed inputs to prevent circular dependencies when the final manifest binds the publication review."
+  },
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "6c39dcce05ea30cba5060d0f92823de19f28dae411fa2634dd12c00fec547300",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "README.md",
+      "sha256": "d98c775cc51ca54755252afd9640a26befb07fbfbf5606113c0293ec2667ac27",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "bf209d2419999cce2451be7a1c5eaf8d24ebe46bc2270299aebceb2204d27aa2",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "docs/installation-check-v7-local.json",
+      "sha256": "01ae9db172cf82473b570654bee4043c8adb7c511748e12f92ed18d17e419633",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "docs/installation.md",
+      "sha256": "b9d73cbcb105e9f57324dae539b252fc789d7883551b7c818f7380f2e6b24fe1",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "docs/release-checks-v7.json",
+      "sha256": "e6d378ef3dd6bff1109593dfe8f4331e256c7049d9a93da64a9c844d509ce8ac",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "docs/sources.md",
+      "sha256": "1033c266ec871286c2371a088fe34cea5f57ad6df9b09fdafd9efdd4c8a808d6",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/README.md",
+      "sha256": "da7fedafaf161cc839e208ede1afad5a8d6a7f8fb81d03e5328514427c46af93",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/advanced/REPORT.md",
+      "sha256": "fe1a6cea096ac4ed868f3a89e50f910046ef83ab728b8b2465f3696fb15a53b1",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/advanced/cases.json",
+      "sha256": "e586b242e49dbb3061c0899a0eaa024795ba58313149a316526b7a0762463456",
+      "inspection": "Parsed JSON to count cases and prompt whitespace lengths; no new grading of cases or answers."
+    },
+    {
+      "path": "evals/advanced/examples/N04.md",
+      "sha256": "b73698838fe1c673b178469f3b44726f3f4209283d74e2bd2d634b846ee88a6e",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/advanced/gold-annotations.json",
+      "sha256": "a1befafe1046757ae95bd2afbdcae924236af731725c5105f3e7985a7fe648ed",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/advanced/measurement-notes.json",
+      "sha256": "cbfc89d238010cd8261611ebd8c34e6d0fbd7f5ca145c4702886a2d9a84877a4",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/advanced/outputs/v7/N04.md",
+      "sha256": "6866b88ab9e2fc12def859526a0c5a83bfefa5b20a50918086d3387f8e40bd86",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/advanced/protocol-addendum.json",
+      "sha256": "d23b840bcd3876ada1897c8c4d6baab7d9fbe286bfad43d162f4df6cfe4b6d3c",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/advanced/protocol.json",
+      "sha256": "3728cceee2e0660275f2f3452f76878729b5f4beee65dc6d63ef5a16e591f313",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/advanced/residual-observations.json",
+      "sha256": "d784f1180e5b02611ab12e0d2540794fbf880678324226b0602602729584b9f7",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/advanced/reviews/publication-evidence-snapshot.json",
+      "sha256": "32020387cd0d677a5484d08ac02fdf70b585878a73559660cb1dbcb8460ee854",
+      "inspection": "Parsed the complete JSON; inspected schema, provenance/file bindings, coverage, summaries, split and paired outcomes; reconciled refreshed annotation bindings and final outcome summaries. No answer regeneration or regrading."
+    },
+    {
+      "path": "evals/advanced/reviews/round2-development.json",
+      "sha256": "4de39908c20941e63c821b6a492ba34977578580fe624ba30cfa331d8c1242aa",
+      "inspection": "Parsed JSON to inspect structure and count secondary reviews; no semantic regrade."
+    },
+    {
+      "path": "evals/advanced/reviews/round2-holdout.json",
+      "sha256": "190d2ae392b62b05b17acd143892e21d8931db9aa101ffbf55133d1e992bd4a4",
+      "inspection": "Parsed JSON to inspect structure and count secondary reviews; no semantic regrade."
+    },
+    {
+      "path": "evals/advanced/reviews/round2-validation.json",
+      "sha256": "803dcfb0bb4d80057a228d4cd1ebd4cb82da0c2eeaa88493b9e355d885ac1742",
+      "inspection": "Parsed JSON to inspect structure and count secondary reviews; no semantic regrade."
+    },
+    {
+      "path": "evals/advanced/reviews/v6-audit-development.json",
+      "sha256": "5ba1aa93b71f41c54b11d10a50b3ccc389804a7c13c372b31530a0cfc144da78",
+      "inspection": "Parsed JSON to inspect structure and count secondary reviews; no semantic regrade."
+    },
+    {
+      "path": "evals/advanced/reviews/v6-audit-holdout.json",
+      "sha256": "8447d927c194c787c947e0e63aaf079ceed27e85229a84e284de0bebd89e4fda",
+      "inspection": "Parsed JSON to inspect structure and count secondary reviews; no semantic regrade."
+    },
+    {
+      "path": "evals/advanced/reviews/v7-audit-development.json",
+      "sha256": "d835e5e48f58070f68ce5988f26b6d7d17e8d02d717e9ea10415fee13e6d7e7b",
+      "inspection": "Parsed JSON to inspect structure and count secondary reviews; no semantic regrade."
+    },
+    {
+      "path": "evals/advanced/reviews/v7-audit-holdout.json",
+      "sha256": "acb2f45b6a53cec29553d8a9e8470ade94402d3767382b7c72bd38fac90d85b1",
+      "inspection": "Parsed JSON to inspect structure and count secondary reviews; no semantic regrade."
+    },
+    {
+      "path": "evals/advanced/reviews/v7-audit-validation.json",
+      "sha256": "d5f72240c00a50792c7868ca7c408ad321aab9a10ac662cd293807b0f9a910d2",
+      "inspection": "Parsed JSON to inspect structure and count secondary reviews; no semantic regrade."
+    },
+    {
+      "path": "evals/advanced/software-checks.json",
+      "sha256": "44f662130e9a1eca4fe4a5b2af394b57ac697ee9068be2206eefdbb81fd0fef0",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/advanced/v7-outcome.json",
+      "sha256": "36d0f6c8bf68d2aed44c922facc5e7314cb3b68295d212d195b7820f36d873f4",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/advanced/v7-release-freeze.json",
+      "sha256": "be8e45a9a3cf3785497f52df9798a4e5e0f885ef5872e3ee6c9c3602f90dea44",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "evals/cases.json",
+      "sha256": "a14c9c36edee01021dd559395fad99bbe5d0a3f5341670c5f88cb3eeb53e4a39",
+      "inspection": "Parsed JSON to count cases and prompt whitespace lengths; no new grading of cases or answers."
+    },
+    {
+      "path": "evals/results.jsonl",
+      "sha256": "f433790cf1cd7e584782a8606ec68a19e044d7c0394716a37f2cff35abb44b3a",
+      "inspection": "Read text to count nonempty historical response-record lines only."
+    },
+    {
+      "path": "references/evidence-and-sources.md",
+      "sha256": "438ad5342c7236e432eb664b3723730f63298b951af24e5e821e51cd34db705e",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "references/explanation-patterns.md",
+      "sha256": "af8cc5d4c1aa324b7da18e6274782536878766a77cfb66e3f807fc9ad588fb51",
+      "inspection": "Full content read and reviewed."
+    },
+    {
+      "path": "references/worked-examples.md",
+      "sha256": "df0ba2d6f812d934aac113b03441f702e42fdf5ef59dfed4e9d24544efe720f1",
+      "inspection": "Full content read and reviewed."
+    }
+  ],
+  "checks_performed": [
+    "Reconciled documented response/version/split outcomes with the reviewed evidence summaries and v7 outcome record.",
+    "Counted 225 variant-case entries, 66 distinct prompts, 29 secondary full-answer reviews, and 9 final-version secondary reviews.",
+    "Recomputed 60 advanced prompt lengths (460-597; mean 545.1 whitespace tokens), 46 historical prompt lengths (mean 48.06521739130435), their 11.340841248303935 ratio, and 194 historical response-record lines.",
+    "Recomputed core/reference whitespace counts (1585, 822, 846, 944), v7-versus-v4 word-token change (0.22203010178016847 percent), and character change (1.0548712012078854 percent).",
+    "Compared four current runtime hashes with the frozen v7 and local installation records; all matched.",
+    "Compared the README quotation and recorded example with the raw v7 N04 answer; text matched after removing Markdown blockquote prefixes.",
+    "Summed the recorded synthetic software suites to 81 without rerunning them.",
+    "Checked declared binding-path existence and SHA-256 syntax in the original working evidence; checked refreshed annotation bindings in the stable snapshot.",
+    "Delegated maintained-documentation link and current official installation-source checking; results recorded below."
+  ],
+  "link_audit": {
+    "local_inline_link_occurrences": 87,
+    "local_missing_paths": 0,
+    "local_fragment_links": 1,
+    "local_missing_fragments": 0,
+    "external_distinct_urls": 34,
+    "external_returned_page_content": 31,
+    "external_retrieval_undetermined": 3,
+    "external_confirmed_broken": 0,
+    "undetermined": [
+      {
+        "source_file": "README.md",
+        "url": "https://github.com/jamestesting0",
+        "result": "Retrieval service DisabledError; no destination HTTP status established."
+      },
+      {
+        "source_file": "README.md",
+        "url": "https://github.com/jamestesting0/clear-explanations/issues",
+        "result": "Retrieval service DisabledError; no destination HTTP status established."
+      },
+      {
+        "source_file": "docs/sources.md",
+        "url": "https://github.com/jamestesting0/extended-karpathy-guidelines/blob/main/SKILL.md",
+        "result": "Retrieval service DisabledError; no destination HTTP status established."
+      }
+    ],
+    "scope": "Links in README.md, docs/installation.md, docs/sources.md, evals/README.md, evals/advanced/REPORT.md, SKILL.md, and the three runtime references. Targets were not read merely because their path existed. External reachability is a point-in-time web-retrieval result."
+  },
+  "prior_checks_not_rerun": [
+    "Archive checker reported passed on 225 actual responses, including the refreshed export.",
+    "81 separate synthetic software tests recorded as passing in evals/advanced/software-checks.json."
+  ],
+  "limits": [
+    "No new model answers, semantic regrades, native host activation, Windows tests, or human comprehension measurements.",
+    "Review-count and case-length inputs were inspected programmatically, as labeled per file.",
+    "No assertion that hashes authenticate unarchived generation context or historical execution.",
+    "Three external destinations remain unverified through the available retrieval service."
+  ],
+  "confidence": 0.97,
+  "required_corrections": []
+}

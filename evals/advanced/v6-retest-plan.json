@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "registered_at": "2026-11-16T14:50:05.455394+00:00",
+  "reason": "Primary blind holdout review found a local unsupported categorical negative in v5 B22: an unreported event was stated not to have occurred. Second review is pending.",
+  "revision": "Add a concrete negative-claim audit and a contrast between missing information and an explicit recorded absence. No case text or case-specific facts enter runtime guidance.",
+  "planned_retest": "Freeze reviewed v6 before generation, then regenerate all 60 original long prompts and all 6 known short prompts with the original batch membership/order and generation instructions. Preserve all v4/v5 responses and reviews.",
+  "holdout_status": "B19\u2013B30 are now exposed. Every v6 result on the original suite is retrospective regression evidence; no unseen claim will be made.",
+  "review": "Use the same six-dimension rubric and blind review instructions. Review every new answer; second-review every material failure/dispute and the original first passing case per split. Preserve disagreements.",
+  "additional_cases": "No additional unique prompts are counted merely because the same cases are rerun."
+}

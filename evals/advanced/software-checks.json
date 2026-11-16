@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-16",
+  "purpose": "Synthetic software checks, separate from actual model-response evaluation.",
+  "total_tests": 81,
+  "suites": [
+    {
+      "command": "python evals/tools/test_harness.py",
+      "tests": 38,
+      "exit_code": 0,
+      "output": "......................................\n----------------------------------------------------------------------\nRan 38 tests in 0.373s\n\nOK\n"
+    },
+    {
+      "command": "python evals/tools/test_codex_adapter.py",
+      "tests": 4,
+      "exit_code": 0,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.275s\n\nOK\n"
+    },
+    {
+      "command": "python evals/advanced/test_check.py",
+      "tests": 27,
+      "exit_code": 0,
+      "output": "...........................\n----------------------------------------------------------------------\nRan 27 tests in 6.310s\n\nOK\n"
+    },
+    {
+      "command": "python evals/advanced/test_materialize.py",
+      "tests": 12,
+      "exit_code": 0,
+      "output": "test_01_bundle_preserves_bytes_and_restores_entry_filename (__main__.ReplayHelperChecks.test_01_bundle_preserves_bytes_and_restores_entry_filename) ... ok\ntest_02_single_file_canonical_entry (__main__.ReplayHelperChecks.test_02_single_file_canonical_entry) ... ok\ntest_03_existing_file_is_not_overwritten (__main__.ReplayHelperChecks.test_03_existing_file_is_not_overwritten) ... ok\ntest_04_existing_directory_is_not_modified (__main__.ReplayHelperChecks.test_04_existing_directory_is_not_modified) ... ok\ntest_05_existing_and_dangling_output_symlinks_are_rejected (__main__.ReplayHelperChecks.test_05_existing_and_dangling_output_symlinks_are_rejected) ... ok\ntest_06_existing_and_dangling_parent_symlinks_are_rejected (__main__.ReplayHelperChecks.test_06_existing_and_dangling_parent_symlinks_are_rejected) ... ok\ntest_07_unknown_variant_fails_without_creating_output (__main__.ReplayHelperChecks.test_07_unknown_variant_fails_without_creating_output) ... ok\ntest_08_changed_archived_bytes_are_rejected_before_writes (__main__.ReplayHelperChecks.test_08_changed_archived_bytes_are_rejected_before_writes) ... ok\ntest_09_source_file_symlink_is_rejected_before_writes (__main__.ReplayHelperChecks.test_09_source_file_symlink_is_rejected_before_writes) ... ok\ntest_10_source_reference_directory_symlink_is_rejected (__main__.ReplayHelperChecks.test_10_source_reference_directory_symlink_is_rejected) ... ok\ntest_11_unrecorded_runtime_reference_is_rejected (__main__.ReplayHelperChecks.test_11_unrecorded_runtime_reference_is_rejected) ... ok\ntest_12_cli_status_and_messages (__main__.ReplayHelperChecks.test_12_cli_status_and_messages) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.014s\n\nOK\n"
+    }
+  ],
+  "timing_note": "Any durations in unittest output concern these synthetic software checks, not model answer latency."
+}

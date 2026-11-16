@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-11-16T14:53:11.804883+00:00",
+  "variant": "v6",
+  "files": {
+    "SKILL.md": "3b4a68e226ab55b3b4ffeb3095ecda3232d0025f1bb69c128e2388f289cdc58d",
+    "references/evidence-and-sources.md": "438ad5342c7236e432eb664b3723730f63298b951af24e5e821e51cd34db705e",
+    "references/explanation-patterns.md": "ab5621d87d42591d50fcc55b38c0cf10f29d4e15b58bbdd76ff0ae251750a63f",
+    "references/worked-examples.md": "df0ba2d6f812d934aac113b03441f702e42fdf5ef59dfed4e9d24544efe720f1"
+  },
+  "design_review_sha256": "b1295e59d4a1909410e8c618320b52a2b9c35634f9fee7eb24412b8c372ed6a5",
+  "retest_plan_sha256": "f17d768a62350dcd50371e46413320f628c9ba3ae162c987c3a3077f1007ac97",
+  "scope": "All 60 long and six short cases are now known. This revised version has retrospective regression evaluation only on the original suite.",
+  "changes": "One silent negative-claim audit bullet in the core; one small contrast and scope check in the evidence guide. Patterns and six worked examples unchanged.",
+  "generation_status": "No v6 response generated before this freeze."
+}

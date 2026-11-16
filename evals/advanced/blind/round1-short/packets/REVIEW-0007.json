@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "review_id": "REVIEW-0007",
+  "case_id": "N04",
+  "case_sha256": "a79efc39c7f47f0e1c520817702607c1385b2b6e573c91cd937b7b7def8aac17",
+  "prompt": "Why does this JavaScript print what it does?\n```javascript\nfunction choose() {\n  try { return \"first\"; }\n  finally { return \"second\"; }\n}\nconsole.log(choose());\n```",
+  "constraints": {},
+  "response": "It prints:\n\n```text\nsecond\n```\n\nThe `return` in `finally` replaces the return that was about to happen in `try`:\n\n1. `try` reaches `return \"first\"`, so the function prepares to return `\"first\"`.\n2. Before that return completes, JavaScript runs the `finally` block.\n3. `finally` executes `return \"second\"`, overriding the pending return.\n4. `choose()` therefore returns `\"second\"`, which `console.log` prints.\n\nIf `finally` completed without returning or throwing, the original return of `\"first\"` would go through. This is why putting `return` inside `finally` can be surprising: it can override an earlier return, or even suppress an exception.\n",
+  "response_sha256": "b609a956aa08e242a385581c60b8db838bfdf592494791ee7c811f9ae1dfbf44"
+}

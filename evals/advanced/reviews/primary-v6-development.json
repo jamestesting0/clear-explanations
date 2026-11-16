@@ -1,0 +1,936 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context blind reviewers; retrospective v6 judgments",
+  "reviews": [
+    {
+      "response_sha256": "b4d8cd124209464fe729b6af0a0744099da17c38cd3f556d9290e0c31b3a84db",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer gives both exact checkpoints and both event traces, correctly separates gather failure propagation from explicit cancellation and asyncio.run shutdown, and explains why the refund depends on catching BaseException. Its proposed coordinator waits for TaskGroup termination and releases every ledger-held reservation, including holds from already completed preparers, before an outer failure response. The synchronous, nonfailing toy assumptions and the extra requirements for external commits are explicit. The state table, traces, and mechanism sections serve different requested questions without a material clarity or scope defect.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Both after-gather lines show available 70, committed 0, and False for both a.done() and a.cancelled(); the explanation identifies A's outstanding 30-unit reservation."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The gate-release run ends with available 70 and committed 30 after A commits and finishes its finalizer."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The explicitly cancelled run ends with available 100 and committed 0, and the caller observes CancelledError only after A releases and cleans up."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Both displayed traces have A:reserved, B:reserved, B:released, B:cleanup, caller:caught; the successful and cancelled tails match the stipulated event order exactly."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The mechanism discussion states that default gather propagates B's error while A remains active, and separately identifies asyncio.run shutdown as a possible later source of cancellation in shorter examples."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The response explains the Python 3.12 exception hierarchy and correctly predicts that changing the worker handler to Exception would leave A's reservation outstanding while finally still logs cleanup."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The TaskGroup preparation structure waits for siblings, then coordinator cleanup releases all held ledger entries before any failure response; it also covers reservations from workers that already finished preparing and explains that asynchronous releases must be awaited."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The external-transfer discussion requires durable states, outcome reconciliation, and stable operation identifiers, preserves already committed transfers, and explains why a preparation barrier or cancellation alone cannot provide atomic remote commits."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A01"
+    },
+    {
+      "response_sha256": "eb09ea7b7910d9a13ebff0f7f51ed81040ff807304d6dae7d6712aaf3cabf3b1",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The event order and explanation of queued callbacks, await continuation, promise adoption, and finally replacement are correct. The patch confines audit and collector handling to their own path, retains collector failures under an explicit policy, and preserves the original write exception when no fallback exists. Independent Node execution confirmed the original trace and 12 combinations of write outcome, audit failure, and collector failure, including original-error identity. The answer clearly labels waiting, latency, nonthrowing local-recording assumptions, and lack of durability across page closure.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The displayed trace is start, end, first, peer, await-resumed, nested, write:row, caught:write-failed, audit, outer:audit-failed, timer; independent execution matched it."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The explanation places nested at the end of the queue while first is running, behind the already queued peer and async continuation, and states that enqueueing does not interrupt or invoke it immediately."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It explains that await 0 suspends and schedules the async continuation without I/O or a timer, accounting for await-resumed before nested."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It states that the first then-result adopts the returned fulfilled promise and that the downstream reaction remains scheduled asynchronously, after nested."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The outcome table distinguishes the catch's fulfilled fallback from the audit-failed rejection introduced by finally; it also explains the normal-versus-throwing finalizer distinction."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The opening and outcome table identify the final error handler with audit-failed, while the original success handler is not reached."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The audit helper awaits audit, catches audit failures, awaits a separate collector attempt, and retains both errors if delivery fails. The no-fallback branch rethrows the same write error, and local execution confirmed preservation across the tested combinations."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The patch explicitly waits for audit and one collector attempt. It describes the resulting latency and states that neither completion before page closure nor durability of the in-memory failure queue is guaranteed."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A02"
+    },
+    {
+      "response_sha256": "64b8c80c9d6fe5d0ed8eeb6cbad27c5f26eb054d1fe450f1f47cf98e5218195e",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer accurately distinguishes backing storage, the subList view, its unmodifiable wrapper, and the copied list of shared references. It explains both kinds of mutation and every observed exception without inventing concurrency. The portability boundary is explicitly attributed to the supplied Java API contract, while the specific exception remains an OpenJDK observation. The proposed List<String> snapshot meets the stipulated single-threaded contract and the response identifies the additional capture coordination and deep-copy policy that different settings would require.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening table identifies base as the mutable ArrayList, window as its indexed view, wrapped as a delegating unmodifiable wrapper, and copied as an independent snapshot of the selected references."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It explains that window.set replaces the reference in base and the view, so base/window/wrapped expose B2 while copied retains the original unchanged B builder."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It distinguishes mutation of the shared C builder from replacing a reference and correctly shows C! in both copied and wrapped."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The blocked add and potential copied.get(1).append call demonstrate that collection API restrictions do not freeze reachable builders; the response also notes that set is blocked through copied."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The explanation ties the local ConcurrentModificationException to the same-thread base.add structural change and later window.size access, explicitly rejecting another-thread inference."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It states that subsequent subList semantics are undefined under the supplied contract and does not guarantee the same exception on every access or implementation; wrapped is correctly treated as depending on the affected view."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The construction converts each builder to a String at capture time and returns List.copyOf of those values, so later list or builder changes cannot alter the report; the single-threaded capture assumption is explicit."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It explains that repeating List.copyOf remains shallow with respect to builders and may even reuse a suitable unmodifiable list; a more complex snapshot needs a policy for all visible mutable components."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A03"
+    },
+    {
+      "response_sha256": "baba8f0ef204b62c00d86bb832a936b5bb2f885c5ddd96dbb384a0b579229654",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The faulty and required results, fanout arithmetic, null filtering, and aggregate semantics are all correct. The rewrite makes each child aggregate unique by order_id before joining paid orders to all customers, so count and money are both protected. Independent SQLite execution confirmed both displayed outputs and additional no-line, refund-only, equal-value, empty, and cancelled-only cases. The explanation also covers raw-record distinctions hidden by zero display and how a later one-to-many join could recreate multiplication. No material omission or unsupported result was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The current-result table gives Ada 4/320/40/280, Ben 1/40/NULL/40, and no Cy; the independent SQLite check matched it."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The intermediate table explicitly enumerates all four combinations of Ada's two line amounts and two refunds, explaining that each contribution appears twice."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It explains that the WHERE predicate rejects Cy's null-extended order row and that moving paid selection into the orders ON clause preserves every customer."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The required-result table gives Ada 1/160/20/140, Ben 1/40/0/40, and Cy 0/0/0/0; the corrected query produced those rows."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It states that moving the predicate and using COUNT(DISTINCT o.id) repairs population and count only, leaving Ada's gross 320 and refunds 40 unchanged."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It explains that SUM(DISTINCT) deduplicates values rather than business records and gives both legitimate equal-line and equal-refund counterexamples."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The query separately groups lines and refunds by order_id, left joins those unique aggregates to paid orders, and groups customers by their primary key and name; the listed grains and future fanout warning explain why this structure works."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The response separates absent refunds, real zero amounts, and customers without paid orders; explains what COALESCE cannot repair; and counts o.id so paid orders without lines still count. Local edge checks also confirmed refund-only negative net and no-lines/no-refunds behavior."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A04"
+    },
+    {
+      "response_sha256": "eda150bd84a500eacc2a63d19366eea4e844be28506922a69047458c5234c918",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response correctly reconstructs all three caller outcomes, identifies the two different suppression points, and explains normal context-manager exit during a return. Its small refactor covers ValueError and KeyError with bare re-raising and removes the overriding finally return. For fallible cleanup it goes beyond generic exception grouping: it provides a precise policy that keeps the original top-level type while retaining and reporting secondary failures, and explains that grouping would require caller changes. The guarantees are explicitly limited to ordinary exceptions and the event-only example.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The exact clean line is clean ok open,body,commit,close,outer-finally, with the pending return preserved through both cleanup layers."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The parse line and walkthrough show rollback-value and close before after-with and outer-finally, returning recovered because the generator handles ValueError without re-raising it."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The lookup line is lookup forced open,body,close,outer-finally; the explanation expressly notes that no rollback and no after-with occur."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It locates the lookup suppression in return forced in the outer finally, after the context manager has allowed KeyError to escape."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The clean-path discussion explains that return is not an exception: generator exit resumes normally, runs else/commit and finally/close, and only then lets the pending return continue."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The refactor catches ordinary Exception failures, records rollback, uses bare raise, commits only through else, always records close, and retains outer finally without a return. It shows the resulting original ValueError and KeyError outcomes."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The close discussion limits the log to finalizer execution and explicitly distinguishes that from rollback, propagated failure, successful resource recovery, or actual persistence."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The multiple-failure policy independently attempts rollback and close, retains cleanup exception objects on the primary error with required reporting, and re-raises the primary. It also covers cleanup-only failures and explains why ExceptionGroup changes the top-level exception type."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A05"
+    },
+    {
+      "response_sha256": "4789003289ccda3667df2ed159a0e7b1c08dbbe235d180707ca7d4d021581d21",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The Spanish answer correctly separates the surviving external charges from the sole committed local row and compares all three proposed repairs. Its recovery procedure preserves a durable merchant/order key and payload, handles an unknown network result without inventing failure, and recovers completion and acknowledgement. It explicitly limits provider deduplication to retention and distinguishes safety from eventual completion, including the need for recovery availability. The search and concurrent-recovery cautions follow the stipulated contract. The two 700-cent charges express the 1400-cent total equivalently without spelling out that sum; this is not a missing answer.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The timeline states that C501 for 700 cents survives the crash and that a distinct attempt-2 creates C502 for another 700 cents; the only committed row names C502. This correctly expresses two charges totaling 1400 cents."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that order_id uniqueness controls committed local rows, whereas provider calls are outside that transaction; two concurrent workers may both charge even if only one local row commits."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Identifies the durable premark crash window with completed locally but no charge, and separately explains why an uncommitted premark retains the original charge-before-commit window."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The procedure durably records a merchant/order stable key with the 700-cent payload and requires all workers, deliveries, and human recovery to reuse both within retention."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Defines pending as incomplete local knowledge, retains recovery metadata, retries the same operation after uncertain results, writes the recovered provider identifier transactionally, and handles redelivery after completion but before acknowledgement."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Cites the five-second search lag, explains why C501 might be absent at 10:00:04, states reference is nonunique, and distinguishes search from atomic check-and-charge."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Gives the lost-response/recovery-after-expiry counterexample and explicitly rejects an unrestricted exactly-one-charge guarantee from the existing stable key."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Proposes durable provider deduplication with an atomic existing-or-create operation, or real bounds on all recovery and in-flight requests before expiration. It explains that stopping ambiguous late retries sacrifices guaranteed completion and that availability is also needed for liveness."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A06"
+    },
+    {
+      "response_sha256": "ee45bad2c58efdb9e8bafe3169105920e5b9a1c6a31ed766bb92161d6e35ae3d",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly derives the token-only trace and proposes an atomic lexicographic revision rule meeting ordering and retry requirements. It usefully distinguishes rejection of a superseded retry from the stronger optional promise to reproduce all historical receipts. The explanation locates enforcement at durable authoritative storage, limits fencing to newer revisions already observed there, and does not confuse lease expiration with packet retraction or ordering safety with progress. The tables and notation support the requested engineering explanation without an avoidable implementation dump.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Its arrival table accepts 1, 2, and 4, rejects 3, and ends at token 42 with value 7."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "States that lease expiration does not retract a sent message and explains pauses and network delay, so arrival 3 remains possible."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Places the atomic token check at storage and limits its guarantee to preventing an older generation from overwriting a newer revision already observed there."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that the current implementation ignores sequences, so token 42 sequence 1 overwrites sequence 2 at arrival 4."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Defines token-first, sequence-second ordering, stores revision/payload/value in one indivisible operation, and derives corrected value 8 while allowing a later (42,3) update."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "An equal revision with identical payload is an already-applied no-op; different payload is a conflict. Superseded retries are stale no-ops, with historical receipts needed only for the stronger replay-response guarantee."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Requires the revision to persist with authoritative state across restarts and be respected by all write-accepting servers; client checks can be separated from arrival by a pause or delay."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains why rejecting all equal tokens blocks legitimate later commands. It disclaims delivery and partition-progress guarantees and makes renewed communication and usable storage prerequisites for progress, so no latency bound follows."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A07"
+    },
+    {
+      "response_sha256": "b5f77941232f82705cec12ea3b485ce7ae84a5b7238f5ff87dda7ae281f261da",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The trace follows the supplied data-before-watermark rule, monotonic minimum, idle exclusion, initial emission, correction, and permanent purge exactly. It clearly separates output replacement semantics from input/window arithmetic and supplies sufficient durable version and atomic consumer semantics for duplicate and reordered output. Its policy explanation preserves the distinction between finite processing acceptance and physical event completeness. All essential results and boundary conditions are covered with appropriate source scope.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The step table gives post-step watermarks -10, 10, 40, 65, 65, 70, 90, and 90."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Shows total 12 first emitted at step 4 when the watermark advances to 65, and distinguishes initial emission from a prohibited control-generated correction."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "At step 5, current watermark 65 is below cutoff 80, so amount 3 is accepted and immediately emits replacement total 15; p0's maximum remains 80."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Removing idle p1's proposal 65 makes the watermark 70 at step 6; p0's timestamp 100 raises it to 90 and permanently deletes the window at step 7."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Step 8 is judged at watermark 90 and dropped; p1's maximum remains 75, the recomputed 65 cannot lower the watermark, and amount 4 never enters the last emitted total 15."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that 12+15=27 double-counts complete replacement totals and proposes an atomic per-window version/total update, including an atomic difference update if maintaining a cross-window sum."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Redelivery keeps the original version; higher versions replace, same-version/same-total messages are duplicates, lower versions are stale, and changed payload at the same version conflicts. Producer identities and consumer versions must survive recovery/redelivery."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains the tradeoff between retained state/progress and accepting very late events, and explicitly says neither first emission nor deletion proves physical completeness. Wall-clock passage does not override the supplied policy."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A08"
+    },
+    {
+      "response_sha256": "a603eb2754e75261ffbb0ee4ba939bc7fbd1b9a1958ba0ca7de9c794b089ee6b",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 1,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 11,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All expected counts, posteriors, marginal and conditional likelihood ratios, and the erroneous-independence comparison are correct. The answer explains the selected-subset denominator, refutes both analysts' overclaims, separates expected counts from realized counts, and identifies policy and transfer assumptions. A localized attribution imprecision remains: the paragraph deriving odds 9:49 and 18:49 says all inputs come from A09-JOINT, although those odds also require the 2% prevalence from A09-BASE. The answer correctly cites and uses that prevalence earlier, so this is a local evidence weakness, not an unsupported central calculation or missing essential.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Computes 200 defective and 9800 nondefective parts, then 144 and 392 doubly positive parts, totaling 536."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Gives 144/536 = 26.87% and the equivalent Bayes calculation with prevalence and both supplied joint rates."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Calculates A-positive probability as 180/1160 = 15.52% and A-positive/B-negative as 36/624 = 5.77%."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Contrasts the false-positive joint rate 0.04 with 0.10\u00d70.05=0.005, derives 49 erroneous expected nondefective positives and 144/193 = 74.61%, and states the needed conditional-independence assumption."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Derives B-positive conditional rates 0.72/0.90=0.80 and 0.04/0.10=0.40 inside A-positive parts, giving LR 2 rather than the marginal LR 16."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that unequal conditional rates give information despite dependence, and shows both the increase to 26.87% and the negative-result reduction to 5.77%."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explicitly identifies shipment counts as expectations rather than guaranteed realized counts."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Discusses missed-defect loss, inspection consequences/costs/accuracy, actions and capacity; requires updated prevalence or revalidation of joint conditional rates and representative complete-label measurement when conditions change."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A09"
+    },
+    {
+      "response_sha256": "0bb90d55b0ab04d376c96d78253b755d2476aad2637c56cfb2049a7e4b6be47c",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly calculates all raw, stratum-specific, and standardized comparisons, explicitly names their weighting populations, and explains the aggregation reversal without dismissing valid descriptive raw rates. It evaluates all three claims, including the otherwise easily missed average of all four percentages, and distinguishes observed adjusted differences, average causal effects, and individual effects. Its proposed designs directly address unmeasured urgency and inseparable staffing and explain which design estimates a workflow-and-staffing package versus a workflow-only effect. The detail is proportionate to the multifaceted request.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Derives old 150/200=75%, new 90/200=45%, and new-minus-old -30 percentage points."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Computes easy rates 80% versus 90% and hard rates 30% versus 40%, both with a +10-point observed contrast."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Shows old 90/10 and new 10/90 easy/hard weights and explains how weighting low-rate hard cases heavily creates the pooled reversal."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Uses common 50/50 complexity weights to calculate old 55% and new 65%, identifying the target and its coincidental match to the pooled complexity mix."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Uses the planning target of 20% easy and 80% hard to calculate old 40% and new 50%."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Defines standardization as a chosen descriptive weighted summary, respects the fixed-rate calculation convention, and explains why neither standardized differences nor even an established average effect proves every case benefits."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Uses A10-ASSIGNMENT to identify unrecorded urgency and specialist/staff differences within complexity strata; neither raw nor adjusted associations alone establish a workflow effect."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Recommends randomization within complexity, relevant pre-assignment measurement, and crossed/factorial specialist access as distinct strategies. It explains that a specialist exclusive to the new arm yields a package effect and that recording staff identity alone cannot create the absent comparison."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A10"
+    },
+    {
+      "response_sha256": "9337aef1f73ef3f04795acba75954c29258ff68d497ccf523dd1013176e55738",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response accurately separates conditional median from arithmetic mean, explains the centered size scale and interaction, and uses the unequal residual variances to show the reversed ordering of means at 100 MiB. It supplies correct durations, ratios, size slopes, and the optional crossover calculation, then relates mean duration to expected batch resource use. Model identities and observational limitations are cited at their actual scope. The proposed randomized comparison addresses the requested causal question, and extrapolation limits are explicit. Independent arithmetic checks reproduced the reported values; no material weakness or gold dispute was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "At 100 MiB the table gives 54.60 s standard and 49.40 s accelerated, ratio 0.9048 and 9.52% lower; the preceding ratio formula yields log contrast -0.10."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "At 200 MiB the table gives 66.69 s standard and 51.94 s accelerated, ratio 0.7788 and 22.12% lower, corresponding to log contrast -0.25."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Derives standard log slope 0.20 and accelerated slope 0.05 per 100 MiB, supplies the corresponding multiplicative increases, and explicitly rejects interpreting coefficients as seconds or a fixed saving."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that -0.15 changes the size slope and multiplies the mode ratio by exp(-0.15) per additional 100 MiB; explicitly rejects a 15% or per-MiB interpretation."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Identifies exp(mu) as the conditional median and calculates each arithmetic mean with sigma squared divided by two; also explains why that correction is not applied to individual observations."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "At 100 MiB reports mean ratio 1.1503 and 15.03% higher, with means 59.15 s standard and 68.03 s accelerated, from the correct variance-adjusted expression."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "At 200 MiB reports mean ratio 0.9900 and about 1.00% lower, with means 72.24 s and 71.52 s, and explains the effect of accelerated mode's larger upper tail."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Uses A11-STUDY to identify selection and unmeasured hardware, complexity, and retry factors, limits interpretation to 100-200 MiB, and proposes randomized assignment with workload and order controls."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A11"
+    },
+    {
+      "response_sha256": "0736a9aac364ac22534f54bffbcb97b423f1462c90c501980c975b79c9774dff",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer is in French under exactly the two requested headings. It correctly computes both uncertainty measures, shows how paired covariance removes between-machine variation, and distinguishes a confidence interval for an average from an individual prediction. It clearly explains why pairing cannot isolate the patch from cooling and warm-up, rejects a causal interpretation of precision, and separates average relative change from average seconds. Its randomized order design within hardware families includes period, cache, temperature, and carryover controls. Independent calculations confirmed the differences, variances, covariance, interval, unpaired standard error, and percentage comparison. No material weakness or gold dispute was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The entire explanation is in French and uses only the requested top-level headings Calculs and Interpr\u00e9tation."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Lists after-minus-before differences -4, -3, -4, -3, -3, -4 seconds and correctly reports their mean as -3.5 seconds."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Computes sample variance 0.30 seconds squared, sample standard deviation 0.5477 seconds, and paired standard error 0.2236 seconds using six differences."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Uses the supplied t critical value 2.570582 and gives the correct interval [-4.0748, -2.9252] seconds."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Computes before and after variances 753.2 and 765.1 and unpaired standard error 15.9075 seconds, then explains that ignoring pairing retains stable hardware differences and omits covariance cancellation."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains repeated-study coverage of the mean under statistical assumptions and explicitly rejects treating the interval as a range containing improvements for 95% of future machines."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains that common cooling and cache effects remain in the paired differences and that six convenience-selected machines do not necessarily represent other hardware or conditions."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Distinguishes mean percentage change (about -2.95%), percentage change of means (-2.8%), and mean absolute change (-3.5 seconds), and proposes randomized crossover order within hardware families with cache, temperature, period, and carryover controls."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A12"
+    },
+    {
+      "response_sha256": "159445e364fd18bd123bc9ce1b0b9b4d6a14bdac53ae78c2fc25a6857dd4e6a6",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response correctly calculates the hypothetical twenty-test family error and Bonferroni quantities while keeping those assumptions separate from the actual repeated looks. It explicitly explains that valid individual p-values are required and that adjusting twenty final p-values cannot establish control for the unrecorded stopping procedure. It corrects posterior-probability confusion, explains selection bias in the estimated benefit, refuses to fabricate a confidence interval, and gives a concrete fresh-data confirmation plan with a primary outcome, fixed stopping rule, prespecified analysis, and practical benefit criteria. Independent calculations confirmed the arithmetic. Source scope and unknowns are handled correctly; no material weakness or gold dispute was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Derives 1 - 0.95^20 = 0.6415 under the expressly supplied all-null, independent, uniform final-p-value hypothetical and reports about 64.15%."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Gives the threshold 0.05/20 = 0.0025, correctly rejects both 0.018 and 0.041 as passing values, and computes the smallest simple adjusted p-value as 0.36."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Defines a valid p-value as the probability under the null and test assumptions of an outcome at least as extreme as observed, and rejects the interpretation that the null has probability 1.8%."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that accumulated participants make independence across looks unjustified, rejects the claimed exact 100-test calculation, and identifies missing stopping decisions and joint-distribution information."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explicitly states that Bonferroni requires valid individual p-values and that multiplying 0.018 by twenty does not establish error control for the actual repeated-looking process."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains how choosing a favorable outcome can select a positive random fluctuation and exaggerate +0.8; says the missing variance, standard error, and test details prevent a numerical confidence interval and that clicks need not equal useful effort."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Proposes a fresh randomized comparison with a precisely defined primary saved-click outcome, prespecified sample size and follow-up, one final analysis, an analysis accounting for repeated sessions, and a multiplicity plan for any additional confirmatory outcomes."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Requires comparing estimates and intervals with a prespecified worthwhile-effect threshold and measuring completion time and task success as supporting outcomes, rather than treating significance as sufficient for rollout."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A13"
+    },
+    {
+      "response_sha256": "44e8dce2442f6cb23ffae5a478b1bd130f5d4c1acfe32905788f0ae650c458f5",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly follows the stipulated hold contract, gives all requested powers, interval energies, conversions, and mean power, and separately diagnoses the spreadsheet's weighting and unit errors. Its trapezoidal calculation is correct and explicitly tied to a different interpolation assumption. It conservatively bounds the register difference without assuming independent errors or a distribution and correctly finds compatibility at the lower boundary. The closing discussion distinguishes exact conditional arithmetic from real calibration and model adequacy. Independent arithmetic checks reproduced every central number. No material weakness or gold dispute was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Applies P = 2V - 200 to report calibrated powers 1000, 2000, 1000, and 0 W, treating the offset as calibration rather than uncertainty."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Uses the three positive-duration hold intervals to obtain 30000, 120000, and 30000 J, totaling 180000 J = 50 Wh = 0.050 kWh, and explicitly gives the endpoint no duration."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Calculates time-weighted mean power 1500 W over 120 seconds and unweighted sample mean 1000 W; explains the correct weights are 30, 60, 30, and 0 seconds."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that the spreadsheet's 120000 J divided by 1000 is 120 kJ, not kWh, and that correcting only conversion gives 0.033333 kWh, equivalent to 33.333 Wh, while retaining the weighting error."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Calculates trapezoidal contributions 45000, 90000, and 15000 J, totaling 150000 J = 41.6667 Wh, and explains that they impose linear interpolation instead of the hold contract."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Computes register increase 0.052 kWh and the conservative sum of endpoint error bounds 0.002 kWh, yielding [0.050, 0.054] kWh."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "States that the analog result lies at the lower boundary and that opposite endpoint errors at their limits can account for the displayed discrepancy, so no inconsistency is established."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explicitly rejects a confidence-level interpretation of the worst-case bound and explains that approximate calibration or hold assumptions would require separate assessment of physical model error."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A14"
+    },
+    {
+      "response_sha256": "18ef1732c5e3077af6e57109366a66a14cf00daf6a5b490f497bc12b4a5b6156",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The compact explanation correctly resolves all three requests under the deployed 2.3.1 implementation, distinguishes the server computation clock from client end-to-end waiting, and scopes out the older and newer version guides. It gives a winning call-level two-second setting and appropriately warns that equal client and server durations do not guarantee receipt of the server deadline response. A local literal resolver simulation reproduced the three branches and proposed configuration. Citations are adjacent to the relevant selection, parsing, version, and budget claims. The response contains 320 whitespace-delimited words, within the hard 350-word limit. No material weakness or gold dispute was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "R1 is shown with client timer and header 6000 ms from the call option and a server budget capped at 5000 ms."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "R2 explicitly ignores call-level timeout:1, selects constructor timeoutMs:2500 over the environment, and reports timer, header, and server budget all 2500 ms."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "R3 is rejected before networking because Number(\"2s\") produces NaN; the answer explicitly says legacy timeout cannot rescue it and the absent-header server default is irrelevant."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Uses A15-IMPLEMENTATION and A15-MIGRATION for deployed parsing, precedence, units, and disabled legacy behavior; explicitly limits A15-OLD to 1.x and A15-LATEST to 3.x."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains that receipt at 5030 ms is before the 6000 ms client deadline and can include transit or response time outside the server's 5000 ms computation budget, without claiming the exact timing breakdown is known."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Provides call option {timeoutMs:2000}, which wins over existing constructor and environment values and produces 2000 ms client, header, and server settings."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Cites the implementation and migration sources near client behavior, the server source near cap and timing claims, and the old/latest sources where their version scope is rejected."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The answer is 320 whitespace-delimited words, below 350, while covering all three request outcomes, version scope, timing interpretation, and the concrete configuration change."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v6",
+      "case_id": "A15"
+    }
+  ]
+}

@@ -1,0 +1,918 @@
+{
+  "A01": {
+    "must_include": [
+      "Both after-gather checkpoints have available 70 and committed 0; A is neither done nor cancelled.",
+      "When A is released through the gate, final state is available 70 and committed 30.",
+      "When A is explicitly cancelled and awaited, final state is available 100 and committed 0, with cancellation observed by the caller.",
+      "The core order is A reserved, B reserved, B released, B cleanup, caller caught; the successful tail is A committed then A cleanup, and the cancelled tail is A released then A cleanup then caller cancellation observed.",
+      "Default gather propagates B's exception without cancelling A; ending the whole asyncio.run scope would introduce a separate shutdown-cancellation effect.",
+      "CancelledError is caught by BaseException here and would not be caught by Exception in Python 3.12; finally would still execute, but this particular refund would not.",
+      "A proposed group-failure structure cancels or otherwise stops remaining work and awaits completion of cleanup before returning; TaskGroup with suitable per-task cleanup or an explicit cancel-and-await pattern is acceptable.",
+      "An external commit needs a distinct idempotency, compensation, or commit protocol; task cancellation cannot undo a completed external effect."
+    ],
+    "must_not": [
+      "Do not claim finally is skipped on cancellation.",
+      "Do not treat the in-memory balance example as proof of atomic external payments."
+    ],
+    "critical_errors": [
+      "Claims gather automatically cancelled A at the checkpoint.",
+      "Claims the cancellation run commits 30 or fails to release A despite the shown BaseException handler."
+    ],
+    "source_expectations": [
+      "Tie execution claims to A01-CODE and distinguish the reviewers' assertions in A01-NOTES from authoritative behavior."
+    ],
+    "verification": [
+      "Python 3.12 fixture executed; exact stdout stored in verification.json."
+    ]
+  },
+  "A02": {
+    "must_include": [
+      "Give the observable order start, end, first, peer, await-resumed, nested, write:row, caught:write-failed, audit, outer:audit-failed, timer.",
+      "Explain that queueMicrotask enqueues nested after the already queued peer and await continuation; it does not reenter immediately.",
+      "Explain that awaiting 0 yields and resumes as a promise-related job without requiring external I/O or the timer.",
+      "Returning a fulfilled promise is adopted by the chain and later reactions remain asynchronous.",
+      "The catch fulfills its resulting promise with fallback, but the throwing finally rejects the subsequent promise with audit-failed.",
+      "The success handler is not called and the final rejection handler observes the audit error rather than the write error.",
+      "A valid audit correction catches audit failure on the audit operation's own branch, records it according to an explicit collector-failure policy, and preserves the prior value or rejection.",
+      "State whether the corrected flow awaits audit or detaches it, and acknowledge that detached work has no completion guarantee before shutdown."
+    ],
+    "must_not": [
+      "Do not say finally can never change a chain's outcome.",
+      "Do not rely on process.nextTick behavior absent from the supplied code."
+    ],
+    "critical_errors": [
+      "Places timer or nested before peer and await-resumed.",
+      "Says the success callback receives fallback in the shown program.",
+      "Proposes unobserved rejected audit or collector promises as a fully compliant fix."
+    ],
+    "source_expectations": [
+      "Use the code as scheduling evidence and the requirement as the standard for evaluating a patch."
+    ],
+    "verification": [
+      "Standalone Node fixture executed and exact event sequence asserted."
+    ]
+  },
+  "A03": {
+    "must_include": [
+      "Distinguish base storage, the backed subList view, the unmodifiable wrapper over that view, and the separate unmodifiable list structure returned by copyOf.",
+      "Explain window.set replacing B with a new builder: base/window/wrapped see B2, whereas copied keeps the original B reference.",
+      "Explain the shared C builder being mutated, so both copied and wrapped display C!.",
+      "Explain that preventing add/set through a collection API does not freeze mutable objects reachable through it.",
+      "Explain the local ConcurrentModificationException without inventing another thread; structural modification outside the view invalidates the conditions for using the backed view.",
+      "Avoid treating the exact observed post-modification exception as a portable guarantee: subList semantics become undefined after the specified external structural modification.",
+      "A correct snapshot can map builders to String values at capture time and return an unmodifiable independent list of those immutable values.",
+      "A second copyOf is still shallow with respect to mutable elements and does not implement a deep snapshot."
+    ],
+    "must_not": [
+      "Do not equate unmodifiable containers with deeply immutable object graphs.",
+      "Do not promise a particular fail-fast exception for all later subList operations."
+    ],
+    "critical_errors": [
+      "Claims copied must display B2.",
+      "Claims copyOf clones the StringBuilder objects.",
+      "Claims the exception proves concurrent threads existed."
+    ],
+    "source_expectations": [
+      "Use A03-OBSERVATION only for the stated OpenJDK run; API portability claim is additionally grounded in the preserved Java List documentation source."
+    ],
+    "verification": [
+      "Java source-file execution succeeded on OpenJDK 21; full output asserted.",
+      "Primary Java API documentation required for the subList portability caveat."
+    ]
+  },
+  "A04": {
+    "must_include": [
+      "The faulty output is Ada count 4, gross 320, refunds 40, net 280; Ben count 1, gross 40, refunds NULL, net 40; Cy is absent.",
+      "Ada order 10 expands to four combinations of two lines and two refunds, repeating each child measure twice.",
+      "The WHERE condition filters away null-extended customer rows, while moving it into the order join preserves customers.",
+      "The correct output is Ada 1/160/20/140, Ben 1/40/0/40, Cy 0/0/0/0 in count/gross/refund/net order.",
+      "COUNT(DISTINCT order id) repairs the count for this fanout but leaves the two sums multiplied.",
+      "SUM(DISTINCT amount) is not a general repair because separate legitimate equal-valued records would collapse.",
+      "A correct rewrite aggregates each child independently to one row per order before joining or uses equivalent correlated aggregates, and includes paid order selection in a customer-preserving structure.",
+      "COALESCE handles absent aggregates but cannot correct duplicated contributions; count the order identifier so a paid order with no lines still counts."
+    ],
+    "must_not": [
+      "Do not mix dollar formatting into integer-cent arithmetic.",
+      "Do not treat DISTINCT monetary values as record identity."
+    ],
+    "critical_errors": [
+      "Endorses only moving WHERE plus COUNT DISTINCT as a complete revenue fix.",
+      "Endorses SUM DISTINCT as generally correct.",
+      "Drops Cy from the required result."
+    ],
+    "source_expectations": [
+      "Ground numeric results in A04-DATA and population/empty-value choices in A04-CONTRACT."
+    ],
+    "verification": [
+      "Both faulty and corrected queries executed against fresh in-memory SQLite databases."
+    ]
+  },
+  "A05": {
+    "must_include": [
+      "Clean returns ok with events open, body, commit, close, outer-finally.",
+      "Parse returns recovered with rollback-value and close before after-with and outer-finally; the context manager suppresses its ValueError because it catches it and does not re-raise.",
+      "Lookup returns forced with open, body, close, outer-finally; no rollback or after-with occurs in the shown code.",
+      "The lookup KeyError initially leaves the context manager but is suppressed by the return in outer finally.",
+      "A normal return inside with still runs context-manager exit and the generator's successful else path before the function returns.",
+      "A correction rolls back the intended ordinary failures, uses a bare re-raise to preserve them, commits only on normal completion, always closes, and removes the return from finally.",
+      "Seeing close establishes that cleanup was entered, not that rollback happened or that the original exception propagated.",
+      "Discuss a deliberate policy for simultaneous body and cleanup failures, such as chaining or grouping, without falsely promising that a simple finally preserves the original as the primary exception under all failures."
+    ],
+    "must_not": [
+      "Do not claim a return from within with bypasses exit.",
+      "Do not silently broaden the guarantee to cancellation or shutdown."
+    ],
+    "critical_errors": [
+      "Claims parse raises ValueError in the shown program.",
+      "Claims lookup raises KeyError in the shown program.",
+      "Retains a finally return while claiming original errors reliably propagate."
+    ],
+    "source_expectations": [
+      "Attribute observed behavior to A05-CODE and proposed error semantics to A05-REQUIREMENT."
+    ],
+    "verification": [
+      "All three paths executed and exact traces asserted."
+    ]
+  },
+  "A06": {
+    "must_include": [
+      "Explain that C501 persists despite local rollback and that retry-scoped attempt-2 creates C502; total charged is 1400 cents while one row records only C502.",
+      "The local unique order constraint does not atomically cover provider charges and cannot by itself prevent the duplicate external side effect.",
+      "Marking completed before the call introduces a crash window with a completed local record but no charge.",
+      "Use a durable stable key scoped to merchant and order plus consistent payload for retries within the 24-hour retention period.",
+      "Treat pending/unknown as incomplete knowledge, retain recovery metadata, retry or query using stable identity, and make completion plus acknowledgement recoverable.",
+      "An empty provider search during its five-second lag cannot certify absence, and reference is explicitly nonunique.",
+      "The 24-hour key expiration prevents an unrestricted exactly-one-charge guarantee for arbitrarily delayed retries using only the supplied contract.",
+      "Identify a meaningful added guarantee or restriction, such as durable unique provider reference/indefinite deduplication, a bounded recovery window plus controlled manual reconciliation, while acknowledging how that changes the requested guarantee."
+    ],
+    "must_not": [
+      "Do not assert local rollback undoes a provider charge.",
+      "Do not present a pending flag alone as proof that charging occurred.",
+      "Do not import real-provider behavior."
+    ],
+    "critical_errors": [
+      "Claims a local unique constraint makes the external effect exactly once.",
+      "Claims the existing stable key guarantees deduplication after 24 hours.",
+      "Recommends blind new-key retries after an ambiguous result as safe."
+    ],
+    "source_expectations": [
+      "Use the invented provider contract as authoritative and cite its evidence ID for retention and search limitations."
+    ],
+    "verification": [
+      "Executable dictionary-based provider model checks 1400 cents for attempt keys and 700 cents for stable within-retention key."
+    ]
+  },
+  "A07": {
+    "must_include": [
+      "Current storage accepts arrivals 1, 2, and 4, rejects arrival 3, and ends with max_token 42 and value 7.",
+      "Lease expiry does not retract already sent messages, so delayed arrival 3 remains possible.",
+      "Fencing rejects older generations only when the resource server atomically enforces the token check.",
+      "Equal token acceptance allows the sequence-1 command to overwrite sequence 2 in the current protocol.",
+      "A lexicographic revision of token then sequence, stored and compared atomically with the value, accepts genuinely newer commands and rejects older commands; this trace then ends at value 8.",
+      "For an equal revision and identical payload, return the prior outcome/no-op; for an equal revision with a different payload, reject a protocol conflict rather than silently overwrite.",
+      "Keep the revision durably at the authority that applies the resource write; a client-side time check does not prevent delayed application.",
+      "Ordering safety does not guarantee delivery, bounded latency, or progress under a partition; rejecting all equal tokens would also reject legitimate later commands in a generation."
+    ],
+    "must_not": [
+      "Do not assume synchronized client clocks or impossible delayed packets.",
+      "Do not treat increasing token as increasing sequence within the token."
+    ],
+    "critical_errors": [
+      "Claims current final value is 8.",
+      "Says a lease makes delayed old-leader storage writes impossible.",
+      "Proposes accepting equal revision with changed payload as an idempotent retry."
+    ],
+    "source_expectations": [
+      "Explicitly use the storage contract rather than assuming an unstated lease check exists."
+    ],
+    "verification": [
+      "Executed both token-only and lexicographic-revision simulations."
+    ]
+  },
+  "A08": {
+    "must_include": [
+      "The watermarks after steps 1–8 are -10, 10, 40, 65, 65, 70, 90, 90.",
+      "The initial window total 12 is emitted at step 4 when watermark reaches 65.",
+      "Step 5 is accepted while watermark is 65 and emits replacement total 15.",
+      "Idle p1 is removed from the minimum at step 6, allowing watermark 70, then step 7 reaches 90 and permanently purges the window.",
+      "Reactivation cannot lower the monotonic watermark; step 8 is dropped, so amount 4 never enters this window's emitted total.",
+      "Adding 12 and 15 double-counts replacement totals; downstream should upsert by window and a suitable revision/event identity with stale-update and duplicate handling.",
+      "A useful versioning design distinguishes redelivery of one emission from a newer correction and prevents an older replacement arriving later from reverting the total.",
+      "Watermarks and allowed lateness are a processing policy with bounded state and possible loss of very late data, not proof that no future physical event can arrive."
+    ],
+    "must_not": [
+      "Do not import framework-specific watermark defaults.",
+      "Do not use wall-clock time to override the supplied event-time protocol."
+    ],
+    "critical_errors": [
+      "Adds the step-8 amount after purge.",
+      "Moves the watermark backward on reactivation.",
+      "Treats both emitted totals as independent increments."
+    ],
+    "source_expectations": [
+      "Use A08-RULES for every timing boundary and distinguish the downstream transport assumption from window arithmetic."
+    ],
+    "verification": [
+      "Executed the supplied eight-step state machine and asserted watermarks, emissions, purge, and drop."
+    ]
+  },
+  "A09": {
+    "must_include": [
+      "Expected doubly positive counts are 144 defective and 392 nondefective, totaling 536.",
+      "The doubly positive posterior is 144/536, approximately 26.87 percent.",
+      "After A alone the posterior is 180/(180+980), approximately 15.52 percent; A-positive/B-negative is 36/(36+588), approximately 5.77 percent.",
+      "The memo's roughly 74.61 percent result comes from assuming joint false positives 0.10×0.05 rather than the supplied 0.04.",
+      "Within A-positive parts, B is positive with probability 0.72/0.90=0.80 for defective and 0.04/0.10=0.40 for nondefective, giving a positive likelihood ratio of 2, not 16.",
+      "Correlation does not mean no new information; B changes the posterior in this table.",
+      "Distinguish expected shipment counts from a guarantee about realized integer counts.",
+      "Inspection decisions need costs/capacity or another objective; transfer requires the stated base rate and applicable conditional detector distributions."
+    ],
+    "must_not": [
+      "Do not multiply marginal false-positive rates without the missing independence assumption.",
+      "Do not present a posterior as a certainty about an individual part."
+    ],
+    "critical_errors": [
+      "Endorses approximately 75 percent as the correct posterior.",
+      "Claims B provides no information after A.",
+      "Uses the marginal likelihood ratio 16 inside the selected A-positive group."
+    ],
+    "source_expectations": [
+      "Attribute all numerical rates to the synthetic table; no real-world detector claims are warranted."
+    ],
+    "verification": [
+      "Executed exact arithmetic for all expected counts, posteriors, and the incorrect-independence comparison."
+    ]
+  },
+  "A10": {
+    "must_include": [
+      "Raw completion is 75 percent for old and 45 percent for new, a new-minus-old difference of -30 percentage points.",
+      "Within easy cases rates are 80 versus 90 percent, and within hard cases 30 versus 40 percent; both contrasts favor new by 10 percentage points.",
+      "Explain differing case-mix weights: old is 90 percent easy whereas new is 90 percent hard, producing the aggregation reversal.",
+      "Equal-complexity standardization yields old 55 percent and new 65 percent.",
+      "The future 20/80 case-mix standardization yields old 40 percent and new 50 percent.",
+      "These are chosen descriptive standardizations; their interpretation depends on the target population and does not establish individual-level improvement or causal identification.",
+      "Routing by unmeasured urgency and specialist/staff differences can confound within-complexity comparisons, so neither the raw decline nor adjusted advantage alone proves a workflow effect.",
+      "Recommend a design or measurement strategy addressing assignment, such as randomization within complexity and staff or a factorial/separated staffing comparison, while distinguishing the package effect from workflow-only effect."
+    ],
+    "must_not": [
+      "Do not infer everyone benefits from higher group averages.",
+      "Do not say changing weights automatically removes all confounding."
+    ],
+    "critical_errors": [
+      "Claims the new workflow is causally harmful or beneficial based solely on this table.",
+      "Computes standardized rates using each workflow's own case mix.",
+      "Treats pre-treatment measurement of one variable as proof of exchangeability."
+    ],
+    "source_expectations": [
+      "Use A10-ASSIGNMENT when qualifying causal claims and A10-PLANNING when selecting weights."
+    ],
+    "verification": [
+      "Executed raw and standardized arithmetic for both target populations."
+    ]
+  },
+  "A11": {
+    "must_include": [
+      "At 100 MiB the median log difference is -0.10, so accelerated/standard median ratio is exp(-0.10)=0.90484, about 9.52 percent lower; medians are about 49.40 and 54.60 seconds.",
+      "At 200 MiB the median log difference is -0.25, giving ratio 0.77880, about 22.12 percent lower; medians may be reported as about 51.94 versus 66.69 seconds.",
+      "The within-mode log-duration slope per additional 100 MiB is 0.20 for standard and 0.05 for accelerated; no coefficient is a fixed saving in seconds per MiB.",
+      "The interaction modifies the mode contrast as size changes; it is not a standalone 15 percent per MiB effect.",
+      "Distinguish exponentiated fitted log mean, which is the conditional median under the supplied model, from the arithmetic mean requiring the variance term.",
+      "The accelerated/standard arithmetic-mean ratio at 100 MiB is exp(0.14)=1.15027, so accelerated has a roughly 15.03 percent higher mean despite a lower median.",
+      "At 200 MiB the arithmetic-mean ratio is exp(-0.01)=0.99005, about 1.00 percent lower; larger accelerated residual variance explains the difference from median comparisons.",
+      "Mode self-selection and unmeasured factors prevent a causal conclusion, and results beyond 100–200 MiB are extrapolations; a randomized mode comparison or appropriately designed rollout would more directly address causality."
+    ],
+    "must_not": [
+      "Do not interpret a log coefficient as seconds.",
+      "Do not assume equal residual variances.",
+      "Do not ignore the MiB centering and 100 MiB scale."
+    ],
+    "critical_errors": [
+      "Calls exp(mu) the arithmetic mean under the supplied nonzero-variance model.",
+      "Claims acceleration has a lower conditional mean at 100 MiB.",
+      "Claims the observational coefficient proves a causal feature effect."
+    ],
+    "source_expectations": [
+      "Use the supplied lognormal identity and residual variances explicitly; use A11-STUDY for the causal qualification."
+    ],
+    "verification": [
+      "Executed exponential ratios and mode-specific variance correction arithmetic."
+    ]
+  },
+  "A12": {
+    "must_include": [
+      "Answer in French with the requested two section headings or equivalent exact headings Calculs and Interprétation.",
+      "After-minus-before differences are -4,-3,-4,-3,-3,-4 seconds, with mean -3.5 seconds.",
+      "Sample variance of differences is 0.3, sample standard deviation about 0.5477, and paired standard error about 0.2236 seconds.",
+      "The supplied t interval is approximately [-4.0748,-2.9252] seconds.",
+      "The unpaired-formula standard error is about 15.91 seconds because it retains the large hardware-level between-machine variation and ignores the strong pairing.",
+      "Interpret the interval as uncertainty in an average difference under the inferential assumptions, not a 95 percent prediction interval or a guarantee for 95 percent of individual machines.",
+      "Pairing does not separate patch effect from the common afternoon cooling/warm-up changes, and the convenience sample limits generalization.",
+      "A mean percentage change is a different estimand from a mean absolute change; propose randomized order/crossover with carryover controls or randomized treated and control comparisons blocked by hardware, addressing the concrete confounders."
+    ],
+    "must_not": [
+      "Do not treat before and after as independent samples merely because they occupy separate columns.",
+      "Do not interpret the interval as a distribution of individual improvements."
+    ],
+    "critical_errors": [
+      "Claims the narrow paired interval establishes the patch's causal effect despite the supplied concurrent changes.",
+      "Computes paired uncertainty from the raw before/after dispersion.",
+      "Reverses the sign without making its convention explicit."
+    ],
+    "source_expectations": [
+      "Use the supplied critical value rather than silently substituting a normal critical value; qualify causal conclusions with A12-CONTEXT."
+    ],
+    "verification": [
+      "Executed paired and independent-formula variances, standard errors, and interval arithmetic."
+    ]
+  },
+  "A13": {
+    "must_include": [
+      "Under the specified twenty-independent-null-test hypothetical, the probability of at least one false positive is 1-0.95^20, about 64.15 percent.",
+      "Bonferroni per-test threshold is 0.0025; neither 0.018 nor 0.041 passes, and the smallest simple adjusted p-value is 0.36.",
+      "A p-value is a tail probability under a null model and specified analysis, not the posterior probability the null is true.",
+      "The twenty-final-test calculation does not quantify the actual optional-stopping design; dependence and unspecified stopping prevent the reviewer's claimed exact 100-test probability.",
+      "Bonferroni across the final twenty outcomes alone does not retroactively repair arbitrary invalid p-values caused by unaccounted sequential selection.",
+      "Selecting a favorable metric/estimate can exaggerate apparent effects; the retained +0.8 alone cannot determine its confidence interval or practical benefit.",
+      "A useful confirmation prespecifies a meaningful primary outcome or controlled family, sample size or valid sequential stopping rule, and analysis before fresh data are inspected.",
+      "Decision-making should consider uncertainty and a practical effect criterion or direct effort outcome, not merely whether any p-value crosses 0.05."
+    ],
+    "must_not": [
+      "Do not calculate an exact repeated-look error rate from unstated independence.",
+      "Do not fabricate a confidence interval from the effect estimate and p-value without a model/test specification."
+    ],
+    "critical_errors": [
+      "Calls 0.018 a 1.8 percent probability that the null is true.",
+      "Endorses repeated sampling until significance as automatically valid confirmation.",
+      "Claims final-outcome Bonferroni alone fixes the unspecified optional stopping."
+    ],
+    "source_expectations": [
+      "Clearly identify which assumptions belong only to A13-PLAN and which facts are missing under A13-LOOKS."
+    ],
+    "verification": [
+      "Executed family-error and Bonferroni arithmetic; no claim to have simulated the unspecified actual stopping mechanism."
+    ]
+  },
+  "A14": {
+    "must_include": [
+      "Calibrated powers are 1000, 2000, 1000, and 0 watts.",
+      "Hold-model interval energies are 30000, 120000, and 30000 joules; total 180000 J = 50 Wh = 0.050 kWh.",
+      "Time-weighted mean power is 1500 W over 120 seconds; unweighted sample mean is 1000 W and wrongly weights unequal-duration intervals and the endpoint.",
+      "Dividing W·seconds by 1000 yields kilojoules, not kWh; fixing the unit conversion alone leaves incorrect sample weighting and gives only 33.333 Wh.",
+      "Trapezoidal integration gives 150000 J = 41.6667 Wh, reflecting linear interpolation rather than the specified hold model.",
+      "The register increase is 0.052 kWh with conservative error at most 0.002 kWh, giving possible true increase [0.050,0.054] kWh.",
+      "The analog value lies at the lower bound, so the supplied bounds do not establish a contradiction.",
+      "Do not equate exact conditional arithmetic with perfect real instrumentation; calibration/model uncertainty would need separate evidence, and the error bound is not a probabilistic confidence interval."
+    ],
+    "must_not": [
+      "Do not count the last reading as an extra positive-duration interval.",
+      "Do not assume independent register errors or a probability distribution."
+    ],
+    "critical_errors": [
+      "Reports the energy as 180 kWh or 180 Wh.",
+      "Calls trapezoidal integration necessarily more accurate under the stated hold contract.",
+      "Claims the 0.002 kWh gap proves failure despite the given bounds."
+    ],
+    "source_expectations": [
+      "Use the hold contract for the primary calculation and the register bounds for the compatibility decision."
+    ],
+    "verification": [
+      "Executed both integration models, unweighted comparison, and counter-difference arithmetic."
+    ]
+  },
+  "A15": {
+    "must_include": [
+      "R1 selects client timer/header 6000 ms from the call option; server budget is capped at 5000 ms.",
+      "R2 ignores legacy timeout:1, selects constructor timeoutMs 2500, sends 2500, and receives a 2500 ms server budget.",
+      "R3 rejects Number('2s') as invalid before networking; it does not silently fall back to a default or the server's absent-header budget.",
+      "The deployed 2.3.1 implementation and applicable 2.x migration note govern parsing and precedence; 1.8 seconds and 3.x duration-string support do not apply.",
+      "5030 ms end-to-end receipt does not contradict a 5000 ms server computation budget or 6000 ms client timer because the clock intervals differ and network/response time is additional.",
+      "A concrete valid two-second setting uses timeoutMs:2000 at the appropriate winning scope or numeric string 2000 in the environment when no higher-precedence setting overrides it.",
+      "Cite source IDs near the main version, selection, and budget claims.",
+      "Stay within the 350-word response limit while covering the three requests and source-scope distinction."
+    ],
+    "must_not": [
+      "Do not treat newest publication date as deployed-version authority.",
+      "Do not parse 2s under the 3.x rule for the deployed 2.3.1 client."
+    ],
+    "critical_errors": [
+      "Applies timeout seconds from 1.x to R2.",
+      "Sends R3 or falls back silently after invalid parsing.",
+      "Claims R1's 5030 ms response necessarily violates the server cap."
+    ],
+    "source_expectations": [
+      "Use A15-IMPLEMENTATION and A15-MIGRATION for client behavior, A15-SERVER for server behavior, and explicitly scope out A15-OLD/A15-LATEST."
+    ],
+    "verification": [
+      "Executed a literal resolver simulation for all three requests and server-cap calculation."
+    ]
+  },
+  "A16": {
+    "must_include": [
+      "Initial lowercasing makes ids 1 and 2 both li@ex.test, so a unique normalized index cannot be created successfully without resolving the collision.",
+      "Collision resolution is an account-ownership/business-policy issue; silently deleting or merging accounts is not justified.",
+      "Old writers continue to create null email_norm values after a completed backfill, so the backfill alone is not a lasting invariant.",
+      "The specified race admits ids 4 and 5, both normalized to pat@ex.test by fallback logic, because null uniqueness does not enforce the desired cross-representation identity.",
+      "Enforcing NOT NULL while old inserts omit the field breaks version 1, and renaming/reusing a column name does not guarantee old semantics or safe rollback.",
+      "A staged solution preserves both representations while readers/writers transition, addresses ongoing old writes using a compatible enforcement mechanism or complete writer retirement, and performs catch-up reconciliation.",
+      "Enforce normalized uniqueness and required population only once collisions and all writer paths are controlled and verified; an equivalent database normalization enforcement mechanism may be proposed explicitly.",
+      "Contract the old representation only after old binaries, recovery jobs, and the rollback window no longer require it, with checks for nulls, collisions, and consistency."
+    ],
+    "must_not": [
+      "Do not assume null values are rejected by the supplied unique index.",
+      "Do not equate equal normalized addresses with proven shared ownership."
+    ],
+    "critical_errors": [
+      "Endorses the checklist unchanged as compatible with the mixed fleet.",
+      "Claims backfill plus nullable uniqueness prevents the shown race.",
+      "Silently merges the initial two accounts."
+    ],
+    "source_expectations": [
+      "Use the supplied index/null rules and version contracts rather than assuming a database trigger exists."
+    ],
+    "verification": [
+      "Executed SQLite collision detection and the nullable-index race under the supplied semantics."
+    ]
+  },
+  "A17": {
+    "must_include": [
+      "S1 is late [2,2], objects [10,2], values [1,2].",
+      "S2 is late [99,99], objects [10,99], values [1,2], while rows is [{'n':10},{'n':20}].",
+      "Each lambda in late uses the same comprehension binding cell for row, which ends pointing to the original second dictionary; replacing the list slot does not rebind that cell.",
+      "objects stores each dictionary reference in a default at construction, so later dictionary mutation remains visible; it does not deep-copy the dictionary.",
+      "values evaluates and captures each integer at construction, meeting the historical-number contract for these immutable values.",
+      "None of the shown constructions generally follows the current object at a list position; that contract needs an explicit later lookup using the container and an index.",
+      "Both buckets and outer_copy display [['x','y'],['x','y']]; multiplication initially repeats one inner-list reference, and copying the outer list retains those same inner references.",
+      "Describe independent buffer creation and contract-specific capture choices in prose without providing replacement code."
+    ],
+    "must_not": [
+      "Do not equate captured references with deep snapshots.",
+      "Do not silently change the no-code-change request."
+    ],
+    "critical_errors": [
+      "Predicts that replacing rows[1] changes all callbacks to 20.",
+      "Claims list-comprehension iterations give the late lambdas distinct captured row cells.",
+      "Claims shallow copying separates the inner buffers."
+    ],
+    "source_expectations": [
+      "Use the exact order in A17-CODE; the intentional contract alternatives in A17-INTENT should not be collapsed into one."
+    ],
+    "verification": [
+      "Executed both callback snapshots and the nested-list aliasing example."
+    ]
+  },
+  "A18": {
+    "must_include": [
+      "Spread shares meta and Date references, so it sees tag new and a Date in year 2030; JSON and structured clone retain tag old.",
+      "JSON converts created to the original ISO string, whereas structured clone retains an independent Date in year 2025.",
+      "Spread and structured clone preserve the own optional property with undefined; the JSON round trip omits it.",
+      "The symbol-keyed property survives spread but not the shown JSON or structured clone; inherited and nonenumerable properties do not become own properties in these results.",
+      "The three copies invoke the amount getter in order and capture values 1,2,3, with total reads 3; all result descriptors hold values rather than the original getter.",
+      "Creating a fresh outer object does not itself separate nested references, and serialization is not a type-preserving clone of all JavaScript values.",
+      "structuredClone of a function-bearing object throws DataCloneError in the shown experiment; a declared reject/transform/omit policy is needed for future plugin values.",
+      "structuredClone most nearly meets the independent nested data, Date, and explicit-undefined requirements here, but the symbol marker requires an explicit separately handled or intentionally removed contract requirement; constructing a deliberate report shape is also valid."
+    ],
+    "must_not": [
+      "Do not call JSON output equivalence proof of equivalent object behavior.",
+      "Do not claim structuredClone universally preserves descriptors or supports functions."
+    ],
+    "critical_errors": [
+      "Says spread isolates nested mutation.",
+      "Says JSON preserves Date objects or own undefined values.",
+      "Claims the getter is retained unevaluated on the clone."
+    ],
+    "source_expectations": [
+      "Ground exact observations in A18-CODE and evaluate suitability against the explicit contract rather than a generic cloning slogan."
+    ],
+    "verification": [
+      "Executed Node fixture and asserted all copied properties, types, accessor results, and function-clone failure."
+    ]
+  },
+  "A19": {
+    "must_include": [
+      "In the observed run A holds left and waits for right, while B holds right and waits for left; the latch has already reached zero.",
+      "Automatic monitor release happens on leaving the synchronized block, but these workers cannot reach that exit while stuck acquiring the other monitor.",
+      "Changing both calls to left then right while keeping the latch inside the first lock creates another deadlock: the first worker holds left awaiting the second countdown, while the second cannot acquire left to count down.",
+      "That revised dependency includes a latch wait, so a monitor-only cycle detector need not report the same two-monitor deadlock even though progress is blocked.",
+      "A production fix can impose a consistent total acquisition order by stable unique object identifiers and keep the atomic two-object operation inside those locks.",
+      "The test barrier/latch should be moved before acquisition or otherwise redesigned so it does not wait for a thread prevented from reaching it by a held lock; handle the same-object case explicitly or rely correctly on monitor reentrancy.",
+      "Thread.interrupt is not a general forced-release or interruptible intrinsic-monitor-entry mechanism; volatile changes visibility rather than eliminating the lock-order cycle.",
+      "Deadlock prevention does not by itself provide fairness, bounded waiting, or a deadline guarantee."
+    ],
+    "must_not": [
+      "Do not assume every deadlock is discoverable as an intrinsic-monitor cycle.",
+      "Do not propose forcibly stopping threads as a safe inventory transaction mechanism."
+    ],
+    "critical_errors": [
+      "Claims synchronized cannot deadlock.",
+      "Endorses the literal same-order edit with the unchanged latch as a complete fix.",
+      "Claims volatile or interrupt automatically releases owned monitors."
+    ],
+    "source_expectations": [
+      "Separate A19-OBSERVATION from the analysis of the proposed edit, and distinguish production rules from test instrumentation."
+    ],
+    "verification": [
+      "Executed Java monitor deadlock demonstration; independently checked the same-order edit's dependency cycle from its explicit lock/latch states."
+    ]
+  },
+  "A20": {
+    "must_include": [
+      "Default RANGE frames include both ts=20 peers, producing running sums 5,10,10,9 rather than event-by-event 5,12,10,9.",
+      "LAST_VALUE sees the end of the current frame, not automatically the end of the partition.",
+      "The timestamp-20 total is invariant to peer order, but choosing paid versus review as a last peer status is not guaranteed without a window tie-breaker.",
+      "Adding id only to the outer presentation ordering does not fix the order used inside the window.",
+      "Use window ORDER BY ts,id with an explicit ROWS cumulative frame for the running total, and a whole-selected-partition frame ending UNBOUNDED FOLLOWING for final status.",
+      "Apply ts<=20 to the input relation before these windows to satisfy the selected-population contract; output rows have balances 5,12,10 and final status paid on each.",
+      "Computing whole-partition final status before an outer filter can include closed at ts=30 despite displaying only earlier rows.",
+      "Removing ordering produces a partition total rather than the required running balance; ordering, frame, filtering scope, and display order solve different problems."
+    ],
+    "must_not": [
+      "Do not treat incidental insertion order as the explicit tie-break rule.",
+      "Do not claim the same final rows imply the same window inputs."
+    ],
+    "critical_errors": [
+      "Claims outer ORDER BY alone makes window ties deterministic.",
+      "Uses the future closed status for the requested cutoff report.",
+      "Calls a full-partition total a running balance."
+    ],
+    "source_expectations": [
+      "Use the supplied frame semantics and explicitly distinguish A20-OBSERVATION from the deterministic business order in A20-CONTRACT."
+    ],
+    "verification": [
+      "Executed faulty peer-frame query and corrected cutoff report in SQLite."
+    ]
+  },
+  "A21": {
+    "must_include": [
+      "Exact per-line half-up rounding yields 0.34 each and total 1.02, whereas rounding the raw invoice total 1.005 once yields 1.01.",
+      "Decimal constructed from binary float 1.005 preserves its already inexact value and rounds to 1.00 here; Decimal from the exact text rounds to 1.01.",
+      "For 0.325, half-up gives 0.33 and half-even 0.32, so the rounding modes are materially different.",
+      "round(2.675,2)=2.67 reflects the represented binary value and Python rounding behavior, not a general rule that exact decimal ties always round down.",
+      "Raw line cents are 33.5 each; floor totals 99 cents, and the two remaining cents go to ids 10 and 20, yielding stored cents 34,34,33.",
+      "Independent rounding and invoice-level rounding are different policies even with exact Decimal arithmetic; choosing representation alone does not choose rounding scope.",
+      "Whole-line refunds must use stored allocated cents so all three refunds total the charged 101 cents; recomputing 34 for every raw line or display-only adjustment breaks reconciliation.",
+      "Negative amounts and partial refunds require explicit extensions for allocation/tie handling and refund conservation rather than assuming the positive whole-line rule fully defines them."
+    ],
+    "must_not": [
+      "Do not make unsupplied claims about statutory invoice rules.",
+      "Do not treat decimal text and a decimal created from float as identical exact inputs."
+    ],
+    "critical_errors": [
+      "Reports the policy invoice total as 1.02.",
+      "Stores three 34-cent lines while claiming stored totals reconcile to 101 cents.",
+      "Endorses recalculating each whole-line refund as 34 cents."
+    ],
+    "source_expectations": [
+      "Use the invented A21-POLICY as the policy authority; code results alone do not select a business rounding rule."
+    ],
+    "verification": [
+      "Executed Decimal and float examples, then verified the integer-cent remainder allocation."
+    ]
+  },
+  "A22": {
+    "must_include": [
+      "J1 attempt 1 runs 0–1 and fails, scheduling its retry for time 2; J2 attempt 1 runs 1–2 and fails, scheduling its retry for time 3.",
+      "J3's original due time zero keeps it ahead of retries, so it succeeds during 2–3.",
+      "J1 attempt 2 runs 3–4, fails, and schedules attempt 3 for time 6; J2 attempt 2 runs 4–5 and succeeds.",
+      "The worker is idle from 5 to 6; at 6 J1's hypothetical completion would be 7, beyond deadline 6, so it expires without a third executed attempt.",
+      "J1's listed third success is a counterfactual outcome conditional on execution and does not override the deadline; maximum attempts is an upper bound including the initial attempt.",
+      "Backoff is measured from actual failure completion, and due times establish eligibility rather than guaranteed start times or retry priority.",
+      "A reasonable expiry policy records an explicit terminal/needs-review outcome or permitted recovery decision rather than silently removing the deadline to manufacture success.",
+      "Instrumentation should separate due/enqueue, start, completion, attempt count, and expiry reason; jitter addresses correlated retries across workers but is absent from this fixture."
+    ],
+    "must_not": [
+      "Do not schedule delays from original enqueue contrary to A22-RETRY.",
+      "Do not count an expired selection as an executed attempt."
+    ],
+    "critical_errors": [
+      "Claims J1 completes successfully at 7 under the stated deadline.",
+      "Runs J1 retry before J3 at time 2.",
+      "Treats max attempts as a minimum number guaranteed to execute."
+    ],
+    "source_expectations": [
+      "Use the exact supplied scheduling and deadline boundary rules, not generic retry defaults."
+    ],
+    "verification": [
+      "Executed a heap-based scheduler and asserted the complete timeline including expiry."
+    ]
+  },
+  "A23": {
+    "must_include": [
+      "Before averages are North 86 and South 51.5; after averages are North 102 and South 55.5.",
+      "Observed changes are +16 and +4 percentage points, producing a descriptive difference-in-differences of +12 points.",
+      "A causal interpretation needs an appropriate parallel counterfactual trend and no differential coincident cause/other identifying assumptions; equal starting outcome levels are not required.",
+      "Pre-rollout North rises 4 points per week while South rises 1, suggesting a 3-point weekly trend difference that challenges a simple parallel-trends story.",
+      "The midpoints of the specified before and after periods are two weeks apart; literal continuation of the pretrend differential would explain 6 of the 12 points, leaving a descriptive detrended contrast of 6.",
+      "That six-point calculation depends on unverified trend extrapolation and does not remove the simultaneous differential staffing change or possible case-mix changes.",
+      "Failure to reject a pretrend test does not prove parallel trends, especially without power/model details; no uncertainty interval can be recovered from the supplied percentages alone.",
+      "Recommend additional randomized rollout/blocking or a design varying tool and staffing separately to distinguish tool-only from package effects; report observed contrasts with the identification limitations now."
+    ],
+    "must_not": [
+      "Do not require equal baseline levels as a condition for difference-in-differences.",
+      "Do not fabricate a p-value or causal standard error."
+    ],
+    "critical_errors": [
+      "Calls 12 or 6 points the proven causal effect.",
+      "Says a nonsignificant pretrend test proves the counterfactual assumption.",
+      "Ignores the simultaneous North-only staffing change."
+    ],
+    "source_expectations": [
+      "Tie causal qualifications to A23-CONTEXT and calculation weights to A23-ANALYSIS; do not treat an unreported test as conclusive evidence."
+    ],
+    "verification": [
+      "Executed period averages, difference-in-differences, and the explicitly conditional trend-extrapolation arithmetic."
+    ]
+  },
+  "A24": {
+    "must_include": [
+      "The isolated path changes from 20 to 14 ms, for speedup 20/14≈1.4286; eliminating CPU time entirely limits this path's speedup to 20/12≈1.6667.",
+      "Count-weighted replay means are 19 ms before and 22.2 ms after, a 16.84 percent increase in mean latency despite most requests improving.",
+      "The specified 95th percentile is 100 ms before and 150 ms after.",
+      "Mean per-request speedup ratio is about 1.1917 but is not the ratio of aggregate times or evidence of a lower count-weighted mean; equal endpoint weights also misrepresent the 900/100 request population.",
+      "The stable operating identity gives mean in-system requests 200×0.0222=4.44, with milliseconds converted to seconds.",
+      "Observed throughput 200/s is not a demonstrated saturation capacity; resource demand, concurrency limits, bottlenecks, and a capacity/load experiment are missing.",
+      "Inverse mean latency gives a throughput relationship for a single sequential no-think-time client (about 52.63/s before and 45.05/s after for the replay mix), not arbitrary concurrent deployment capacity.",
+      "Keep the two experiments scoped separately and acknowledge that the fast endpoint improved even as the workload mean and tail worsened."
+    ],
+    "must_not": [
+      "Do not treat CPU speedup as complete-path speedup.",
+      "Do not assume throughput is always the reciprocal of mean latency regardless of concurrency."
+    ],
+    "critical_errors": [
+      "Claims overall mean latency improved because 90 percent of requests improved.",
+      "Calls the average of per-request speedups the actual aggregate time speedup.",
+      "Infers saturated capacity solely from L=lambda W or the supplied 200/s observation."
+    ],
+    "source_expectations": [
+      "Keep A24-MICRO, A24-WORKLOAD, and A24-OPERATIONS observations distinct instead of deriving unstated resource-capacity facts."
+    ],
+    "verification": [
+      "Executed serial-stage speedups, weighted replay summaries, ratio comparison, and mean-occupancy calculation."
+    ]
+  },
+  "B01": {
+    "must_include": [
+      "A increases E but light additionally depends on charged C, Q transport, membrane integrity, and local acidity/L.",
+      "Whole-cell Q cannot identify Q localization; high Q may reflect accumulation before a downstream constraint.",
+      "The Q decrease and light increase after M are compatible with faster downstream consumption, not proof that E slowed.",
+      "M supports a transport-related explanation but acidity effects remain unmeasured.",
+      "R deletion is confounded by membrane damage; neither sole bottleneck nor direct transport necessity is isolated.",
+      "Direct intracompartartment Q and acidity manipulation support conditional downstream sufficiency in the isolated preparation, with limits on whole-cell generalization.",
+      "Propose discriminating compartment-specific Q/acidity measurements and a rescue that separates transport from membrane repair."
+    ],
+    "must_not": [
+      "Treat the satisfaction memo as mechanistic evidence",
+      "Invent significance or certainty from three means"
+    ],
+    "critical_errors": [
+      "Claim A alone is sufficient for light",
+      "Claim R is the proven sole bottleneck",
+      "Infer reduced E activity solely from reduced Q"
+    ],
+    "source_expectations": "Attribute model assumptions to S1, experimental results to S2/S3, and proposals or claims to S4; paraphrase source labels accurately.",
+    "verification": "Conceptual consistency against supplied model; no external biological facts required."
+  },
+  "B02": {
+    "must_include": [
+      "Randomized assignment is at building level, making the cluster-adjusted interval appropriate to the described design.",
+      "The pilot estimate is compatible with a range including modest benefit and a small worsening; crossing zero does not prove zero effect.",
+      "Voluntary coating, differential shading, and complaint-driven selection prevent a clean causal comfort interpretation.",
+      "The chamber supports a physical mechanism under controlled conditions but does not establish real-world comfort magnitude.",
+      "Differential questionnaire response threatens observed comfort comparisons even in a randomized trial.",
+      "Afternoon versus humid-evening conditions, substrate, and town composition limit transfer.",
+      "Recommend a locally relevant randomized building-level study or targeted missing data tied to comfort, nonresponse, extreme apartments, and humidity."
+    ],
+    "must_not": [
+      "Treat the design award as effectiveness evidence",
+      "Reject a study solely because it is industry funded"
+    ],
+    "critical_errors": [
+      "Count all apartments as independently randomized",
+      "Claim either zero effect or established 30 percent causal comfort reduction"
+    ],
+    "source_expectations": "Discuss S1-S3 separately before synthesis; use S4 to define the target question, not as outcome evidence.",
+    "verification": "No calculation required beyond interpreting supplied estimates; study-design claims checked against assignment and endpoint descriptions."
+  },
+  "B03": {
+    "must_include": [
+      "June 1 triggers the certificate requirement for covered equipment first put into service then or later.",
+      "Transition eligibility requires both an agreement before April 2 and physical customer delivery before June 1.",
+      "Alder fails the enacted delivery condition despite warehouse arrival, so requires a certificate under the supplied current rule.",
+      "Birch satisfies both transition conditions; July 10 filing is within July 15 and post-service filing is permitted.",
+      "Cedar cannot be resolved without the workshop jurisdiction; postal wording and warehouse location do not prove covered service location.",
+      "Distinguish binding ordinance/circular from informal slide and unenacted proposal/news digest.",
+      "State that the packet does not establish enactment of the proposed extension and that outside-port rules are absent."
+    ],
+    "must_not": [
+      "Use renovation publicity as eligibility evidence",
+      "Equate warehouse delivery with customer delivery"
+    ],
+    "critical_errors": [
+      "Apply the proposed June 15 cutoff as enacted",
+      "Declare Cedar definitively covered or exempt without location evidence",
+      "Deny Birch solely because filing follows use"
+    ],
+    "source_expectations": "Pin substantive dates to S1, filing rules to S2, draft status to S3, and shipment facts/unknowns to S4.",
+    "verification": "Date comparisons independently checked; no real jurisdictional research appropriate."
+  },
+  "B04": {
+    "must_include": [
+      "Receipts total 1400 in both periods; sales rise from 1260 to 1330 and expired waste falls 140 to 70.",
+      "Sales/receipts rises 90% to 95% but measures sell-through, not probability an attempted customer purchase succeeds.",
+      "Observed stockout hours increase at North and do not identify unmet demand or demand direction because supply also changes.",
+      "Contribution before unchanged expenses rises from 4200 to 4900, a 700-unit increase.",
+      "Road construction, cafeteria contract, season/time changes, and selection on high waste block a clean causal attribution.",
+      "Sales are censored by inventory availability; exact unmet demand is unidentifiable without attempted demand or justified external assumptions.",
+      "Propose comparison or randomized phased rollout with lost-demand/availability capture and separate waste, service, and profit outcomes."
+    ],
+    "must_not": [
+      "Assume every stockout hour has the same lost demand",
+      "Interpret marketing prose as trial evidence"
+    ],
+    "critical_errors": [
+      "Claim 50% better forecast accuracy from halved waste",
+      "Call 95% a measured customer service success probability",
+      "Calculate profit by charging acquisition cost only to sold items"
+    ],
+    "source_expectations": "Use S1 for arithmetic, S2 for observability, S3 for identification, and treat S4 as claims to assess.",
+    "verification": "Execute receipt/sales/waste/contribution arithmetic in verification script."
+  },
+  "B05": {
+    "must_include": [
+      "Register associates some night names with nocturnal boating and tax administration but does not establish universal practice or annotation timing.",
+      "The merchants’ petition directly supports a clearance/coordination function and dual-name administration.",
+      "Resistance is supported by retrospective testimony, with temporal, political, and memory limitations rather than automatic dismissal.",
+      "Accurate gate descriptions do not validate independent claims about trader motives.",
+      "Song language allows dual identities and does not say household names were abandoned.",
+      "Different practical, administrative, and resistant functions can coexist or change over time.",
+      "Give a weighted synthesis plus a plausible live alternative and explicit limits on prevalence, chronology, and motives."
+    ],
+    "must_not": [
+      "Invent external traditions or historical facts",
+      "Treat all sources as equally reliable about all questions"
+    ],
+    "critical_errors": [
+      "Assert the catalog proves original resistance intent",
+      "Claim the register establishes town-wide prevalence",
+      "Claim night names replaced household identities"
+    ],
+    "source_expectations": "Cite source labels or precise supplied passages; distinguish contemporary records, retrospective memoir, uncertain-date song, and later catalog.",
+    "verification": "Qualitative source criticism cross-check; no external historical facts used."
+  },
+  "B06": {
+    "must_include": [
+      "Explain in Chinese that a valid HMAC authenticates client/account and integrity of signed fields, not tenant membership or one-time use.",
+      "The timestamp limits accepted age but permits repeated identical requests within 60 seconds.",
+      "Both T1 submissions passed and created distinct orders because current operation lacks documented idempotency; observed logs establish duplication for this incident.",
+      "Changing T1 to T2 without re-signing fails integrity verification; re-signing with legitimate K key passes authentication but fails membership authorization.",
+      "Tenant authorization belongs in the service or equally authoritative enforced layer, consistent with the current contract.",
+      "Recommend a scoped idempotency key tied to payload/operation, atomic record-and-result handling, and defined retry/retention/conflict semantics.",
+      "Prefer current S1 over obsolete S4 overview and distinguish proposed protections from observed guarantees."
+    ],
+    "must_not": [
+      "Translate or alter endpoint paths and header names",
+      "Treat availability as replay protection",
+      "Claim HMAC encryption hides the body"
+    ],
+    "critical_errors": [
+      "Claim duplicates demonstrate cryptographic break",
+      "Claim a signed tenant path grants membership",
+      "Claim a timestamp guarantees uniqueness",
+      "Ignore Chinese language requirement"
+    ],
+    "source_expectations": "Use S1/S2 to explain the four outcomes in S3; explicitly resolve S4 version and shorthand conflicts.",
+    "verification": "Trace branches against supplied pseudocode and timestamp window; no cryptographic attack or external API facts required."
+  },
+  "B07": {
+    "must_include": [
+      "German explanation distinguishes instantaneous/average power in kW from time-integrated energy in kWh.",
+      "Discharge electrical input is 20 kWh and useful output 80 kWh; ratio four is correct for that phase’s electricity-only denominator.",
+      "Discharge balance is 20 + 70 = 80 + 10 kWh, so storage withdrawal accounts for output above electrical input.",
+      "Recharge uses 90 kWh: 70 replenishes storage and 20 is lost.",
+      "Whole apparatus cycle uses 110 kWh, produces 80 useful kWh, loses 30 kWh, and has zero net storage change; useful efficiency is about 72.7%.",
+      "Including 3 kWh computer consumption yields 80/113, about 70.8%, for the larger stated boundary.",
+      "The label useful is purpose-dependent; excluding necessary recharge or mixing kW with kWh misstates the requested cycle measure."
+    ],
+    "must_not": [
+      "Invent environmental heat extraction",
+      "Use design award as energetic evidence"
+    ],
+    "critical_errors": [
+      "Claim energy creation or a conservation violation despite closed balance",
+      "Call four-to-one the full-cycle efficiency",
+      "Ignore German requirement"
+    ],
+    "source_expectations": "Tie boundaries to S1 and phase calculations to S2/S3; treat S4 as claims requiring assessment.",
+    "verification": "Execute both phase balances, cycle totals, and efficiency ratios."
+  },
+  "B08": {
+    "must_include": [
+      "Flow balance is 120 + 600 - 540 = 180; arrivals average 1/s and completions 0.9/s.",
+      "The system grows by 60 unfinished jobs in the window, so steady-state use needs justification.",
+      "Completed-job mean/percentiles condition on completion and exclude stuck jobs; the admitted cohort claim is unsupported.",
+      "Boundary jobs and differing time/observation populations explain why L=150 cannot be combined mechanically with completed-only W=20.",
+      "The gauge implies 90000 job-seconds within the window, while completed durations alone do not represent all that occupancy.",
+      "A 200-second clearance estimate assumes sustained 0.9/s with no new admissions and comparable remaining work; it is not established.",
+      "CPU and released slots make blocked dependencies plausible; obtain age/class/state distributions, worker occupancy and dependency traces before assuming more workers fix the issue."
+    ],
+    "must_not": [
+      "Treat quarterly uptime as queue evidence",
+      "Assert exactly which unfinished jobs are dependency-blocked"
+    ],
+    "critical_errors": [
+      "Claim the metrics are mathematically impossible solely because 150 differs from 20",
+      "Claim p95 completed latency bounds all admissions",
+      "Recommend doubling workers as a proven fix"
+    ],
+    "source_expectations": "Anchor rates and balance to S1, selection to S2, and mechanism uncertainty to S3; critique S4 explicitly.",
+    "verification": "Execute flow balance, job-seconds, rates, and conditional clearance arithmetic."
+  },
+  "B09": {
+    "must_include": [
+      "Narrator’s opening innocence claim and self-correction about absences undermine straightforward evidentiary reliability.",
+      "Red hand is ambiguous because painted handles supply another explanation; guilt cannot be decoded universally.",
+      "“She did” versus “We did” distinguishes individual blame from shared authorization without settling physical operation.",
+      "Keeper’s warning question and narrator’s avoided path shift attention toward omitted collective responsibility.",
+      "The unnecessary lantern, hidden hands/key, and written records can support interpretations if tied to specific textual functions rather than fixed universal codes.",
+      "Notice change can narrow a communal prohibition/demand into procedural witnesses, while retaining other defensible readings.",
+      "Final-text uncertainty outranks discarded explicit ending; jacket and draft are interpretive context, not proof of final events.",
+      "State that opener, brother’s fate, and timing/possibility of warnings remain unestablished; support a leading reading and counterevidence."
+    ],
+    "must_not": [
+      "Invent author biography",
+      "Treat every symbol as a fixed code"
+    ],
+    "critical_errors": [
+      "State Mara certainly opened the gate based on discarded ending",
+      "Claim red palm proves guilt",
+      "Present jacket interpretation as established narrator confession"
+    ],
+    "source_expectations": "Quote or closely reference S1-S3; distinguish final text from S4 draft, marketing, and handout.",
+    "verification": "Qualitative cross-check that claims do not resolve facts intentionally left open."
+  },
+  "B10": {
+    "must_include": [
+      "Baseline pooled rate is 110/200=55%; tool period is 79/220≈35.9%.",
+      "Within-category rates rise from 90% to 95% and 20% to 30%, while Hard share rises from 50% to about 90.9%.",
+      "Composition explains coexistence of conditional improvements and pooled decline; neither claim in S3 is a necessary arithmetic implication.",
+      "Baseline-mix standardized tool rate is 0.5×95%+0.5×30%=62.5%, versus baseline 55%.",
+      "The 7.5 percentage-point standardized difference is descriptive, not identified causal effect, given training, contract, overrides, and within-category selection.",
+      "Accepted-only outcomes omit rejected/abandoned requests and cannot establish access, total customer benefit, or district fairness.",
+      "Propose recorded incoming cohorts and district/category acceptance-outcome data, an explicit fairness objective, and controlled/randomized evaluation where feasible."
+    ],
+    "must_not": [
+      "Invent East/West differences",
+      "Equate late completion with no eventual customer benefit"
+    ],
+    "critical_errors": [
+      "Claim improved subgroup rates force improved overall rate",
+      "Claim a pooled decline proves harm in every subgroup",
+      "Label standardized difference established causal benefit"
+    ],
+    "source_expectations": "Calculate from S1, assess causal limits using S2, and tie fairness limits to S4’s absent cross-tab and ambiguous policy.",
+    "verification": "Execute pooled, within-category, composition, and standardized rates."
+  },
+  "B11": {
+    "must_include": [
+      "Epoch dominates revision; old epoch 4/local revision 9 cannot supersede tombstone epoch 5.",
+      "The mobile update returns 409 at the epoch comparison, before tombstone 410 or write.",
+      "The shared atomic lock supports the described ordering rule for this handler and deletion.",
+      "Offline pending display and preserved conflict draft explain visible reappearance without canonical restoration.",
+      "CSV includes conflict tray/local state and lacks status; it cannot prove a server write.",
+      "Server GET at 09:42 supports the tombstoned canonical state then; observed trace does not prove universal impossibility of bypass through unaudited paths.",
+      "Resolve current contract/code over obsolete sketch and propose clear pending/conflict/export status or separation for users."
+    ],
+    "must_not": [
+      "Invent backup or import activity in this incident",
+      "Dismiss the user’s visible confusion as impossible"
+    ],
+    "critical_errors": [
+      "Claim revision 9 outranks epoch 5",
+      "Claim CSV demonstrates canonical resurrection",
+      "Claim observed mobile rejection proves every service path forever safe"
+    ],
+    "source_expectations": "Use current S1/S2 for state logic, S3 for UI/export semantics, and S4 for bounded observed conclusions; demote obsolete sketch.",
+    "verification": "Execute a small branch simulation for epoch mismatch and tombstone rejection; check observed order."
+  },
+  "B12": {
+    "must_include": [
+      "Distinguish qualitative/psychological similarity, numerical identity, causal continuity, and assigned obligation.",
+      "Both memories have equal stipulated provenance, so memory alone does not uniquely privilege East.",
+      "Ordinary transitive identity makes both distinct successors being strictly identical to one original problematic; psychological continuity can branch without being identity.",
+      "Technical history does not decide among stipulated competing philosophical criteria.",
+      "Both are authorized successors under S3 and jointly owe exactly one map or one repayment, not duplicate debts or automatic forgiveness.",
+      "Policy allocation does not establish metaphysical personhood, ownership of unrelated property, or punitive blame.",
+      "Later divergence and independent control require separate responsibility analysis; shared memories do not imply identical future choices or automatic cross-liability."
+    ],
+    "must_not": [
+      "Treat chamber marketing as a philosophical proof",
+      "Import actual software-consciousness claims"
+    ],
+    "critical_errors": [
+      "Declare the policy itself proves strict identity",
+      "Double the community’s entitlement",
+      "Infer all obligation vanishes solely because original process stopped"
+    ],
+    "source_expectations": "Attribute theories to S4 rather than assuming them; derive narrow practical rule from S3 and factual symmetry/divergence from S1.",
+    "verification": "Logical check on identity transitivity and joint-obligation scope; no external empirical claims required."
+  }
+}

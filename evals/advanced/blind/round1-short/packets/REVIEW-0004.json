@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "review_id": "REVIEW-0004",
+  "case_id": "N02",
+  "case_sha256": "5096bfa982337e12f9de4970a8be093a0048a077ca3542c90065013707f5f9d7",
+  "prompt": "I do not understand entropy weights: why do you multiply each group's entropy by its fraction of the original examples?",
+  "constraints": {},
+  "response": "You multiply by each group’s fraction because you want the **average uncertainty per example**, and a bigger group contains more of the examples you are averaging over.\n\nHere, entropy measures uncertainty about an example’s label. A group where every label is the same has entropy zero; a group evenly split between two labels has entropy one bit, using base-2 logarithms.\n\nSuppose a split divides 100 examples like this:\n\n| Group | Examples | Entropy within the group | Contribution |\n| --- | ---: | ---: | ---: |\n| A: all the same label | 90 | 0 bits | 0.9 × 0 = 0 |\n| B: evenly split between two labels | 10 | 1 bit | 0.1 × 1 = 0.1 |\n\nThe average uncertainty after learning which group an example belongs to is **0.1 bits per example**.\n\nWhy those weights? Choose one of the original 100 examples at random. There is a 90% chance it comes from A and only a 10% chance it comes from B. Your average must reflect those chances.\n\nSimply averaging the two entropies would give `(0 + 1) / 2 = 0.5`. That treats the two groups as equally common, even though A has nine times as many examples.\n\nFor a decision-tree split, the denominator is the number of examples at the node being split, not necessarily the entire training dataset.\n",
+  "response_sha256": "18a85e0a660d13d545eb730e1d93f49d366e9f362a56a7b473279c25cb747413"
+}

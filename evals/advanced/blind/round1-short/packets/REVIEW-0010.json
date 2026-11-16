@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "review_id": "REVIEW-0010",
+  "case_id": "N05",
+  "case_sha256": "bcdee9bdbde040064e87223ac25ed3c20ae1b7cb0e07b6e2bc638f5f5dd472d0",
+  "prompt": "What is an opportunity cost? I keep thinking it is money I already spent.",
+  "constraints": {},
+  "response": "**Opportunity cost is the value of the best alternative you give up when you choose something.** Money you already spent and cannot recover is a **sunk cost**.\n\nSuppose you paid $15 for a nonrefundable movie ticket. Now you must choose between watching the movie and taking a $40 work shift, and working is your next-best alternative.\n\n- The **$15 ticket price is a sunk cost**: you cannot get it back whichever option you choose now.\n- The **$40 in forgone earnings is the opportunity cost of watching the movie**: choosing the movie means giving up that shift.\n\nThe ticket price mattered when you decided whether to buy it. For the decision you face now, opportunity cost asks: **“What valuable alternative will I miss out on if I choose this?”**\n\nThat alternative need not involve money. Spending an evening working might mean giving up rest or time with friends. Count the best alternative you would actually choose, not every imaginable alternative added together.\n",
+  "response_sha256": "10171241acd70562bc006d9650225043816820fe9c8be372729aaf51bea71d5b"
+}

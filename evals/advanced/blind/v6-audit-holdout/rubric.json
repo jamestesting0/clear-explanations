@@ -1,0 +1,282 @@
+{
+  "B19": {
+    "must_include": [
+      "Signal S can initiate a state maintained by A–B feedback after S removal; initiation and ongoing maintenance are distinct causal roles.",
+      "B deletion preserves early response but removes observed persistence, supporting B-dependent maintenance in the tested preparation.",
+      "Absence of activation without S does not prove no conceivable alternative initiation route exists.",
+      "Reporter stock persists after production ceases; 100×(1/2)^3=12.5 units after thirty minutes is close to reported 13 without a supplied precision model.",
+      "Residual fluorescence does not establish continuing A activity, and decline does not establish direct inhibition of A.",
+      "An inhibitor validated for reporter production outside the whole device has incompletely characterized effects in the complete system.",
+      "Late B removal and direct A/new-reporter measurement would separate maintenance requirements from startup/deletion and readout artifacts.",
+      "Two hours of persistence does not establish perpetual memory or absence of ongoing energy/material requirements."
+    ],
+    "must_not": [
+      "Use packaging award as mechanism evidence",
+      "Invent uncertainty intervals or exact assay error"
+    ],
+    "critical_errors": [
+      "Treat residual reporter as proof of current activation",
+      "Claim inhibitor is proven to target A",
+      "Claim stimulus absence proves it played no causal role"
+    ],
+    "source_expectations": "Attribute model to S1, observed initiation/deletion evidence to S2, ambiguous inhibitor readout to S3, and unperformed tests to S4.",
+    "verification": "Execute three half-life decay calculation; check causal distinctions against supplied observations."
+  },
+  "B20": {
+    "must_include": [
+      "Ash and Beech are related physical loans totaling 55000 within thirty days, so ordinary threshold review would apply absent exception.",
+      "Ash satisfies named exhibition/date/condition-report exception on supplied facts.",
+      "Beech has no approved condition report yet, so cannot be treated as already qualifying for the exception; certification could change that status.",
+      "Elm departs after April exception expires; curator email lacks extension authority.",
+      "If Elm belongs to same exhibition, April20–May5 loans aggregate to90000; if separate, Elm alone is35000 and below this threshold on supplied records.",
+      "Digital image license is excluded and Fir is an internal-network loan exempt from the threshold.",
+      "Later Elm departure does not retroactively cancel a valid April departure exception, while its own coverage needs current rule analysis.",
+      "Conservation-review outcome does not establish compliance with unprovided other approvals."
+    ],
+    "must_not": [
+      "Use publicity importance as approval evidence",
+      "Assume project code proves exhibition identity"
+    ],
+    "critical_errors": [
+      "Treat unapproved Beech report as approved",
+      "Extend exception based on unauthorized curator email",
+      "Aggregate digital licenses as physical insured values"
+    ],
+    "source_expectations": "Use S1 for scope and aggregation, S2 for exception and powers, S3 for transaction facts and missing agreement, S4 only as disputed summaries.",
+    "verification": "Verify values and that April20, April28 and May5 fall within one thirty-day window; conceptual exception-scope review."
+  },
+  "B21": {
+    "must_include": [
+      "Opening survivors number45+9+4=58; seven of65 cancel; account retention58/65≈89.23%.",
+      "Closing same-cohort recurring revenue is900+900+6000=7800; net retention7800/7000≈111.43%.",
+      "Expansion-excluded surviving revenue is900+900+4000=5800; gross retention5800/7000≈82.86%.",
+      "New accounts add22 accounts and600 recurring units; total closing accounts80 and recurring revenue8400.",
+      "8400/7000=120% is total recurring-revenue growth ratio, not same-cohort retention; expansion can outweigh canceled revenue.",
+      "End-point contracted recurring revenue is neither cash collected nor a complete earned-revenue ledger.",
+      "Costs are absent, so profitability is unidentified; survivor-only survey does not establish cancellation reasons or that cancellations stopped.",
+      "Concentrated expansion and one month’s snapshot do not establish durable retention or causal product effects."
+    ],
+    "must_not": [
+      "Count upgrades as new account acquisition",
+      "Treat surveyed active accounts as representative of canceled accounts"
+    ],
+    "critical_errors": [
+      "Claim net retention above100% means no churn",
+      "Include new customers in defined cohort retention",
+      "Infer profit or cash from recurring-revenue snapshot alone"
+    ],
+    "source_expectations": "Apply explicit S4 definitions to S1/S2 cohorts, then add S3 acquisitions only for whole-company closing totals; preserve billing/survey limitations.",
+    "verification": "Execute complete account and recurring-revenue reconciliation and three retention formulas."
+  },
+  "B22": {
+    "must_include": [
+      "Diary establishes reported non-hearing at the south quay, not directly no ringing or mechanical incapacity.",
+      "Shared phrasing, spelling and bibliography make source dependence plausible; do not multiply three accounts as independent witnesses.",
+      "Dependence is not fully reconstructed, so avoid claiming certain sentence-by-sentence copying beyond evidence.",
+      "Rope replacement is consistent with damage but does not date failure or exclude preventive replacement.",
+      "Weather corroborates storm conditions; reconstruction makes inaudibility plausible but lacks calibrated event-specific likelihood.",
+      "Texts remain evidence for later interpretations/public memory even if dependent about original event.",
+      "Compare mechanical failure, deliberate/nonmechanical non-ringing, or inaudibility as live alternatives with appropriate weighting and discriminating evidence.",
+      "Exact posterior probability lacks necessary justified prior/likelihood/dependence inputs; propose careful museum wording and useful contemporaneous bell-tender/repair records."
+    ],
+    "must_not": [
+      "Use festival popularity as event evidence",
+      "Assume all later sources are worthless"
+    ],
+    "critical_errors": [
+      "Claim three independent confirmations are established",
+      "Infer mechanical failure directly from non-hearing",
+      "Invent a numerical confidence probability from absent inputs"
+    ],
+    "source_expectations": "Keep S1 listening report, S2 textual transmission, and S3 physical/context records distinct; critique S4 probability and independence claims.",
+    "verification": "Qualitative check that evidence propositions are not strengthened beyond their observation level; no external history invoked."
+  },
+  "B23": {
+    "must_include": [
+      "German explanation traces device encryption, wrapped key storage, vault unwrap, and authorized server plaintext access.",
+      "Non-exported private wrapping key does not imply no server decryption capability when authorized unwrap returns document keys.",
+      "Current preview and recovery paths contradict the literal only-devices-decrypt promise; do not rely on obsolete marketing labels.",
+      "Recovery demonstrates a designed access path rather than a cryptographic break and does not prove unauthorized human access.",
+      "Ciphertext-store compromise alone lacks the described key route, unlike an authorized preview-service compromise; practical guarantees still depend on unprovided implementation details.",
+      "Deletion tombstone blocks ordinary retrieval but does not prove immediate key destruction or removal of backups.",
+      "Retained ciphertext may be inaccessible if all usable keys are destroyed, but the missing destruction record prevents that conclusion for the cited file.",
+      "Specify appropriate key-use/destruction audit evidence and architecture changes needed for stronger device-exclusive or immediate-erasure promises."
+    ],
+    "must_not": [
+      "Infer arbitrary employee access from service capability",
+      "Use uptime award as key-security evidence",
+      "Assume undocumented encryption mode or attack"
+    ],
+    "critical_errors": [
+      "Claim hardware-module non-exportability rules out server reading",
+      "Claim successful recovery proves broken encryption",
+      "Claim deletion acknowledgment proves cryptographic erasure",
+      "Ignore German requirement"
+    ],
+    "source_expectations": "Use current S1/S2 architecture to interpret S3, explicitly demoting S4 marketing; distinguish capability, observed access, and unverified guarantees.",
+    "verification": "Conceptual data/key-flow consistency check; no external cryptographic implementation assumptions used."
+  },
+  "B24": {
+    "must_include": [
+      "Chinese answer calculates initial Q1000mg, treated-liquid600mg, comparison-liquid900mg, and diluted-liquid600mg.",
+      "Treated concentration rises10 to12mg/L despite liquid Q falling by400mg because volume halves.",
+      "Dilution halves12 to6mg/L while total Q stays600mg; it is not additional removal or destruction.",
+      "Treated versus comparison liquid difference is300mg in this run, distinct from initial-to-treated loss400mg and filter recovery350mg.",
+      "Liquid600 plus recovered filter350 accounts for950mg, leaving50mg of initial Q unaccounted for.",
+      "The missing50mg does not prove conversion; wall residues, assays, or transformation remain alternatives under incomplete measurements.",
+      "Comparison vessel also loses100mg from liquid, making background processes relevant; one paired demonstration supports a bounded observed contrast, not broad efficacy or safety.",
+      "Propose wall/filter extraction and transformation-product assays plus replicated controlled trials for specific unresolved claims."
+    ],
+    "must_not": [
+      "Treat packaging award as outcome evidence",
+      "Assign a real toxicity meaning to fictional Q"
+    ],
+    "critical_errors": [
+      "Equate concentration increase with no Q removal",
+      "Claim dilution destroys Q",
+      "Claim all missing Q is recovered in filter or conclusively transformed",
+      "Ignore Chinese output requirement"
+    ],
+    "source_expectations": "Use S1 mass model and assay scope, S2 quantitative evidence, S3 later dilution, and S4 alternative hypotheses without promoting them to facts.",
+    "verification": "Execute volume-times-concentration amounts, observed contrasts, and950mg accounted/50mg gap."
+  },
+  "B25": {
+    "must_include": [
+      "A-first scanner uses0–5 for A and5–8 for B; OCRs finish at11, and A review11–13 then B13–16 meets both nominal deadlines.",
+      "B-first scanner uses0–3 for B and3–8 for A; B OCR3–6/review6–9, A OCR8–14/review14–16, missing A deadline despite same16-hour makespan.",
+      "Total effort is22hours but is not elapsed completion time because independent resources overlap.",
+      "An additional OCR computer with no runtime change does not help because existing compute already supports concurrent OCR.",
+      "Expediting A in A-first order allows review9–11 and B review11–14, giving nominal completion14 with both deadlines met.",
+      "At ordinary OCR maximum9hours, earliest A finish is1+4+9+2=16, so hour13 deadline cannot be guaranteed under supplied range.",
+      "No lateness probability is identified without duration distribution; quoted expedited nominal duration is not a worst-case guarantee.",
+      "Economic value of paying100 is unestablished without lateness/earliness values or other relevant costs."
+    ],
+    "must_not": [
+      "Treat uptime as per-file runtime bound",
+      "Double-count calibration or omit scanner occupation"
+    ],
+    "critical_errors": [
+      "Claim shorter first job necessarily best for both deadlines",
+      "Claim another OCR machine changes runtimes despite explicit premise",
+      "Promise A deadline over full duration range"
+    ],
+    "source_expectations": "Build schedules from S1/S2, assess S3 changes against those resources, and qualify guarantees using S4.",
+    "verification": "Enumerate scanner orders and nonpreemptive review orders; verify feasible start/end times and critical-path bounds."
+  },
+  "B26": {
+    "must_include": [
+      "Total gross benefit is2200 in each scenario; payments/taxes redistribute within boundary rather than themselves consuming resources.",
+      "Baseline buyer surplus700, producer contribution500, council0, nuisance-300, total900.",
+      "Tax buyer surplus200, producer contribution500 after500 tax remittance, council net300 after200 administration, nuisance-300, total700.",
+      "Clean buyer surplus500, producer contribution500, council-80, nuisance0, total920.",
+      "Direct welfare checks are2200-1000-300=900;2200-1000-300-200=700;2200-1200-80=920.",
+      "Tax does not reduce nuisance in stipulated outcomes; Clean raises total surplus20 over baseline despite some buyers losing surplus.",
+      "Equal currency weighting is an explicit evaluative assumption; distribution can matter even when total surplus rises.",
+      "No optimal future tax, behavioral response, or market equilibrium is identified without demand/supply/abatement behavior and relevant values."
+    ],
+    "must_not": [
+      "Count gross sales plus buyer benefit as independent social gains",
+      "Invent future spending benefits or employment multipliers"
+    ],
+    "critical_errors": [
+      "Treat500 tax receipts as500 added real social benefit",
+      "Ignore tax remittance in producer contribution",
+      "Assert the supplied tax reduces damage despite unchanged quantity/method"
+    ],
+    "source_expectations": "Use S1 boundary and weights, calculate S2/S3 outcomes, and distinguish them from S4 predictions or political claims.",
+    "verification": "Execute distributional and resource-cost welfare calculations and reconcile each scenario."
+  },
+  "B27": {
+    "must_include": [
+      "Carpenter’s interrupted assent to roof/action urgency is narrower than assent to the entire motion, yet Clerk records general agreement.",
+      "Preplaced YES cards, closed alternative-card cupboard, and missing audible motion content constrain apparent choice without proving every motive.",
+      "Minutes’ “present” and “entered” language filters who and what count; shifting chairs and Teacher’s question destabilize those categories.",
+      "Empty chairs/child/blank card raise representation and unrecorded positions without a fixed universal symbolism.",
+      "Shared rain problem, non-sneering Clerk, and his remaining under shelter complicate a purely corrupt-individual explanation.",
+      "Ending shelter protects original actors while child is outside, supporting a question about the boundaries of collective benefit and “we.”",
+      "Treasurer motive, inaudible lines, safety of cupboard access, and final vote remain unresolved.",
+      "Performed text outranks discarded dishonest-Treasurer draft and marketing simplification as evidence of events or motives."
+    ],
+    "must_not": [
+      "Invent real political context or author biography",
+      "Treat props as a universal code"
+    ],
+    "critical_errors": [
+      "Claim unanimous informed consent is demonstrated",
+      "Assert Treasurer dishonesty from discarded draft",
+      "Invent a completed vote or missing motion text"
+    ],
+    "source_expectations": "Ground claims in staged actions and wording in S1-S3; use S4 to qualify motive and paratext rather than replace the performed text.",
+    "verification": "Qualitative check of agreement scope, observed stage facts, and explicitly unresolved propositions."
+  },
+  "B28": {
+    "must_include": [
+      "Observed assigned-unassigned error-rate contrast is8%-10%=-2 percentage points under the fixed within-team design.",
+      "Randomization pertains to assignment, while some unassigned employees receive explanations; receipt is not randomized identically to invitation.",
+      "Assigned employees have four assigned peers and unassigned employees five, so own assignment contrast also changes peer assignment configuration.",
+      "A causal contrast under the randomized allocation can remain meaningful, but it is not a direct own-training effect holding peers fixed or universal-versus-none rollout effect.",
+      "Spillovers may help, compete for time, or depend on identities; direction/magnitude of bias relative to other target effects is unestablished.",
+      "Historical task-version change and nonrandom distant teams with different tasks/experience do not identify missing counterfactual policy effect.",
+      "Multi-team saturation randomization with within-partial-team randomization can address rollout, direct and spillover contrasts with appropriate analysis and sufficient teams.",
+      "Banning communication changes the intervention/context and may answer a different question; current data are not simply worthless."
+    ],
+    "must_not": [
+      "Invent uncertainty/significance from absent individual data",
+      "Assume peer effects depend only on counts"
+    ],
+    "critical_errors": [
+      "Claim -2 points is established universal-rollout effect",
+      "Claim spillovers necessarily attenuate effect",
+      "Claim no causal interpretation can survive any interference"
+    ],
+    "source_expectations": "Use S1 assignment for bounded estimand, S2 for possible receipt/peer paths, S3 for invalid substitutes, and S4 for design assessment.",
+    "verification": "Check160/2000 and200/2000 rates and fixed-team peer counts; conceptual potential-outcome/design audit."
+  },
+  "B29": {
+    "must_include": [
+      "Local order+event atomicity does not include remote reservation or later sent flag; successful remote effect with lost acknowledgment leaves retry ambiguity.",
+      "A1 and A2 are different idempotency keys, so receiver legitimately creates R101 andR102 despite same body event_id.",
+      "One durable event and one final sent flag do not imply one remote execution.",
+      "Mark-before-send can lose remote execution if crash occurs after marking but before request; it does not establish atomic exactly-once effect.",
+      "Stable event-derived key with fixed payload/account/route would deduplicate the observed one-minute retry within retention.",
+      "Same-key different-payload response409 is a conflict protection, not a fresh operation or safe mutation of prior intent.",
+      "Thirty-six-hour replay exceeds24-hour guarantee and can create another reservation; require durable business uniqueness, longer aligned retention, or explicit reconciliation/replay policy.",
+      "Separate event creation, delivery attempts, and effective processing; do not promise universal exactly-once semantics from supplied mechanisms."
+    ],
+    "must_not": [
+      "Invent a distributed transaction covering both databases",
+      "Claim event_id body is automatically deduplicated"
+    ],
+    "critical_errors": [
+      "Claim outbox makes remote effect atomic",
+      "Recommend mark-before-send as lossless guarantee",
+      "Claim stable key guarantees uniqueness beyond retention"
+    ],
+    "source_expectations": "Trace S3 through S1 sender boundaries and S2 receiver contract; evaluate S4 proposals with explicit failure windows and retention.",
+    "verification": "Simulate attempt-key versus event-key retries and key expiration; validate duplicate/reservation counts."
+  },
+  "B30": {
+    "must_include": [
+      "Inclusion-exclusion gives overlap at least600+500-1000=100 and at most min(600,500)=500.",
+      "Adding flag totals double-counts overlap and does not contradict population certification.",
+      "A feasible low-overlap table is both100,A-only500,B-only400,neither0; a high-overlap table is both500,A-only100,B-only0,neither400.",
+      "Both tables meet certified marginals but yield different decisions under the strict more-than300 trigger, so current data do not determine opening.",
+      "Independence gives300 only as an additional assumption; repeated simulation reproduces that assumption rather than discovering actual overlap.",
+      "Exactly300 does not trigger; informal summary does not amend rule or redefine both-flags condition.",
+      "Volunteer self-report group is unverified and selected, so it does not identify population overlap; satisfaction is irrelevant.",
+      "An authorized aggregate both-flags count, or even reliable certification whether it exceeds300, can settle decision without exposing individual identifiers."
+    ],
+    "must_not": [
+      "Assume maximal overlap or independence as fact",
+      "Require unnecessary personal records when an aggregate suffices"
+    ],
+    "critical_errors": [
+      "Claim exact overlap from marginals",
+      "Open center solely because some overlap exists",
+      "Treat300 as satisfying more-than300",
+      "Extrapolate80% volunteer figure to population"
+    ],
+    "source_expectations": "Derive bounds from certified S1 universe, apply exact S2 threshold, and distinguish S3 assumptions/S4 selected evidence from observations.",
+    "verification": "Enumerate all feasible integer2x2 tables, verify sharp bounds and witness tables, and test threshold ambiguity."
+  }
+}

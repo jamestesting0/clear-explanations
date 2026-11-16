@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "registered_at": "2026-11-16T15:12:01.857552+00:00",
+  "variant": "v7",
+  "reason": "V6 fixed the observed negative-claim error in the new B22 answer, but B21 exposed an internally inconsistent multi-row count and propagated totals.",
+  "revision": "Retain negative-claim safeguards; require an available calculator/code tool for multi-step arithmetic and independently reconcile original components and changes. Keep tool-free fallback and final answers compact.",
+  "generation": "Freeze reviewed v7 before any generation. Generate all 60 original long prompts and all 6 known short prompts with original batch membership/order and unchanged common task wording.",
+  "review": "Same six dimensions, gold and blind instructions; same smaller single-condition review batches as the disclosed v6 review plan. Review every generated answer; second-review failures/disputes, first passing cases in represented original hard splits, and B21/B22 as the observed failure cases.",
+  "exposure": "All original prompts are known; final results are retrospective. No new unseen status or unique-case count is claimed.",
+  "retention": "Preserve every v4/v5/v6 answer and judgment, including v5 partial, v6 failure, and reviewer disagreements."
+}

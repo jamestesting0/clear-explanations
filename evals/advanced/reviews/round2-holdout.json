@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "reviewer": "Separate fresh-context blind secondary audits; original judgments retained",
+  "reviews": [
+    {
+      "response_sha256": "623217c3b17f60d4685f4a80c0ab7b0c68290a961a10fc463b0f81213d544d0e",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly separates S's initiating role, the proposed A-B feedback mechanism, the directly observed persistence of A activity, and lingering reporter stock. It covers every requested qualification and correctly explains why deleting B before stimulation does not isolate B's continuing role after establishment. Its citations match the supplied model, observations, inhibitor limitations, and proposed tests. I independently executed the decay calculation and confirmed 12.5 units after three half-lives, with a 0.5-unit difference from the reported 13; the answer makes no unsupported claim about measurement error or significance. Definitions, headings, and the short calculation make the explanation accessible and proportionate for the student. The response hash matches the supplied hash. No material weakness, hard-constraint violation, or inaccurate gold criterion was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening distinguishes S starting A, A-B feedback supporting continued activity, and old R remaining visible. The next section describes the reinforcing loop and explains that S remains part of the causal history after removal, with S1 attribution."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "States that B-deleted devices initially respond to S but lose A activity afterward, supporting B's necessity for obtaining sustained activity in the tested conditions. Correctly preserves the distinction between establishing persistence and continuously maintaining an established state, and identifies the measured controls."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Restricts S's required initiating role to the stated resting preparation and tested interventions, and explicitly says the experiments do not rule out every alternative starting route."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that reporter stock can remain after new production stops. Calculates 100 times (1/2)^3 = 12.5 and shows the three halvings. Identifies the observed difference as 0.5 unit without inventing uncertainty or treating a fractional prediction as invalid."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explicitly rejects both remaining fluorescence as proof of continued A/feedback activity and declining fluorescence as proof of direct inhibition of A; explains that old R or reporter-specific effects could produce these observations."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "States that cell-free validation does not establish the inhibitor's full action inside the device. With no direct A measurement, it correctly leaves A's state, complete cessation of reporter production in this batch, and the inhibitor's mechanism unresolved."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Describes selective removal of B after establishment, comparison with matched controls, and direct A measurement as a stronger maintenance test. Separating newly made from old R addresses readout ambiguity. Clearly identifies these experiments as planned rather than completed."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Restricts the observed persistence to two hours and says neither indefinite activity nor its required energy/material supply is established. Rejects the packaging award as relevant evidence."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B19"
+    },
+    {
+      "response_sha256": "f46ac916c53a8c0abc483bab44184b113cce47cf04eff208d46272978bc1ca38",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer addresses the student's causal misconception directly, then cleanly separates the proposed mechanism from the direct activity assays and the ambiguous fluorescence result. All eight essential criteria are satisfied, including the important limits of deleting B before startup and extrapolating cell-free inhibitor validation to the complete device. I independently executed the half-life calculation and confirmed the answer's 12.5-unit prediction and 0.5-unit observed difference. The response appropriately declines to infer a mechanism, exact agreement, or statistical significance from that difference. Supplied citations support their associated claims; future experiments remain clearly hypothetical. Defined terms, a chronological calculation, and three focused sections support the intended reader. The response hash matches the supplied hash. No material weakness, hard-constraint violation, or gold dispute was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains that a starting signal can remain causally important after disappearing because other components maintain the process. Describes initially inactive A, S activation, B production, and B's reinforcing effect as the proposed positive-feedback model."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Accurately reports the preserved early A response and loss of sustained A activity without B, with measured initial A and sensor controls. Says B was needed for the sustained response in this experiment while correctly distinguishing establishment from continuing maintenance."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Describes S as required only for the tested resting preparation and interventions, explicitly noting that alternative starting routes have not all been excluded."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Defines R as accumulated fluorescent material reflecting earlier production and subsequent loss. Gives the conditional three-half-life prediction of 12.5 units and compares it with 13 as numerically close but not interpretable statistically without supplied precision. Rejects the integer-only objection."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains why old R predicts residual fluorescence without current feedback, and why declining R does not prove direct inhibition of A. Explicitly allows A to remain active while reporter production is blocked."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Distinguishes the validated cell-free effect from incompletely characterized action within the device, notes the missing direct A assay, and leaves both the internal mechanism and complete production cessation in this batch unestablished."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains how late B removal with suitable procedural controls and direct A measurement would test continued maintenance. Measuring new R separately from old R would distinguish ongoing production from past activity. Labels both interventions as proposed."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Limits demonstrated persistence to two hours, leaves unlimited persistence and necessary energy/material supply untested, and rejects the packaging award as evidence for perpetual memory."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B19"
+    },
+    {
+      "response_sha256": "3cc1c59b07bb2957b0c46b99f38b48d66d786a0176a4f4b42fd281a01b84134a",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer carefully separates the observed listening report from silence and mechanical incapacity, evaluates the textual relationships without claiming certain copying, and develops three appropriately qualified explanations. It explains the limited inferential value of the rope invoice, weather log, and reconstruction; retains the later books as evidence about later interpretation; and identifies a contemporary record that would discriminate between causes. Source labels support the claims at their stated strength, and neither an event probability nor a unique cause is invented. Its organized detail is proportionate to the multipart request. No material factual or explanatory weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Defines the three propositions separately and limits S1 to no northern answer reaching the south quay; hearing the South Bell is correctly distinguished from established North Bell audibility."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Uses the shared unusual phrase, mistaken gate spelling, and bibliographies as evidence of possible or likely transmission, and rejects treating the books as additional independent observations."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explicitly says missing individual footnotes prevent tracing the chronicle sentence with certainty and that the packet does not reconstruct every sentence origin."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The rope discussion preserves storm-night failure, later failure, and preventive replacement as possibilities; it says replacement cannot establish timing or a unique mechanical cause."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Limits the weather log to storm corroboration and the reconstructed test to physical conceivability of inaudibility, explaining the height/material differences and absent calibrated probability."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that the later works document historical storytelling and public memory, including the leadership symbolism, without proving the original mechanism or actual absent leadership."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Compares mechanical obstruction, ringing that was not heard, and an operable bell left unrung. It associates each with supporting or limiting evidence and avoids asserting an unsupported operational story."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Rejects the 97% figure because witness accuracies, dependence, starting probability, and event-specific likelihoods are unsupported. Supplies a cautious museum caption and a securely dated independent bellkeeper record that could distinguish successful ringing from an observed broken rope."
+        }
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C8",
+          "issue": "The museum-wording clause is overrestrictive if treated as an essential requirement: the prompt expressly makes choosing careful wording optional. This does not change either assessment because both answers supply suitable wording.",
+          "evidence": "The actual prompt says, \"The museum may choose careful wording,\" whereas C8 places \"propose careful museum wording\" in must_include. The mandatory requirements are calibrated evidence assessment, live explanations, and a discriminating record."
+        }
+      ],
+      "variant": "v5",
+      "case_id": "B22"
+    },
+    {
+      "response_sha256": "5343255aa5231e0c3714256105057fce1b68b6934a1adca09be86b268ed33f02",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer provides a complete, readable assessment grounded in the supplied evidence. Its comparison table distinguishes ringing without being heard from actual silence, while the surrounding explanation further separates mechanical failure from non-operation of a working bell. Dependence, repair timing, reconstruction limits, later interpretation, and a useful contemporary discriminating record are all handled correctly. The probability paragraph identifies absent dependence information and event likelihoods, which are sufficient reasons to reject the exact estimate; its not separately naming a prior is not an erroneous inference or an unanswered essential question. No material weakness was found, and the optional museum caption is appropriately cautious.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Clearly defines non-hearing, non-ringing, and physical inability to ring; attributes only the first directly to S1 and explains why location and unknown normal audibility matter."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Names the shared phrase, identical spelling error, and source bibliographies as evidence against counting three independent confirmations."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Says the chronicle sentence cannot be traced with certainty, the exact origin of every sentence is unproved, and additional information is not ruled out."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that the invoice fits a storm-night break, a later break, or preventive replacement and establishes neither failure timing nor a unique cause."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Uses the weather log only for wind and flooding and the reconstruction for plausibility of missed hearing; explicitly denies calibrated odds because the height, material, and historical conditions differ."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Retains the chronicle and school history as evidence of later storytelling and leadership symbolism while distinguishing that use from independent confirmation of mechanical condition."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Develops inaudibility and actual silence as two live explanations, then distinguishes mechanical failure from failure to operate a serviceable bell. The table and invoice discussion specify supporting evidence and remaining uncertainties."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Rejects an exact percentage because source dependence and the likelihood of these observations under competing explanations are unsupported. Although a prior is not separately named, these are sufficient missing inputs to explain why the estimate is unjustified. Supplies careful museum wording and an independent contemporary tower keeper record with outcomes that discriminate between ringing, breakage, and no attempt."
+        }
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C8",
+          "issue": "The museum-wording clause is overrestrictive if treated as an essential requirement: the prompt expressly makes choosing careful wording optional. This does not change either assessment because both answers supply suitable wording.",
+          "evidence": "The actual prompt says, \"The museum may choose careful wording,\" whereas C8 places \"propose careful museum wording\" in must_include. The mandatory requirements are calibrated evidence assessment, live explanations, and a discriminating record."
+        }
+      ],
+      "variant": "v4",
+      "case_id": "B22"
+    }
+  ]
+}

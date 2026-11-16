@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "kind": "blind-review-packets",
+  "created_at": "2026-11-16T14:20:55.375406Z",
+  "note": "Review scores are separate judgments, not mechanical checks. Same case IDs have identical case snapshots. Anonymous order is shuffled within each case. No independent review is implied by preparing these files; answer text may contain identity clues.",
+  "packets": [
+    {
+      "review_id": "REVIEW-0001",
+      "case_id": "A25",
+      "packet_path": "packets/REVIEW-0001.json",
+      "packet_sha256": "4f0975d11c8584cdfb1f625554dcd2f18d9908fc7125e1310d928a8e1d077c14"
+    },
+    {
+      "review_id": "REVIEW-0002",
+      "case_id": "A25",
+      "packet_path": "packets/REVIEW-0002.json",
+      "packet_sha256": "b95d076195bbbfefd089b530c41ebef2b8fb51fd77422f817b1b632ef9e5d0e2"
+    },
+    {
+      "review_id": "REVIEW-0003",
+      "case_id": "A26",
+      "packet_path": "packets/REVIEW-0003.json",
+      "packet_sha256": "fbd090279858123b9eea7d0921cf421be158279fb2465b35c219334f436cdb91"
+    },
+    {
+      "review_id": "REVIEW-0004",
+      "case_id": "A26",
+      "packet_path": "packets/REVIEW-0004.json",
+      "packet_sha256": "7f9735a2c2b19a703d4453b38c8f848bbda4847c142b2fb74026d2c84f498623"
+    },
+    {
+      "review_id": "REVIEW-0005",
+      "case_id": "A27",
+      "packet_path": "packets/REVIEW-0005.json",
+      "packet_sha256": "650458610d5226f4f648d01554dfb36fff75d36f73bf2dde5b24aeb9449acf0b"
+    },
+    {
+      "review_id": "REVIEW-0006",
+      "case_id": "A27",
+      "packet_path": "packets/REVIEW-0006.json",
+      "packet_sha256": "3364f8d554c76532be15f3d1a4f597348a64ece08d01de8777b3d180946c3949"
+    },
+    {
+      "review_id": "REVIEW-0007",
+      "case_id": "A28",
+      "packet_path": "packets/REVIEW-0007.json",
+      "packet_sha256": "62b8ef674bd2aa70fe7fce98da60f62d74eb75ad22371e75d5044cbfbeaa64f5"
+    },
+    {
+      "review_id": "REVIEW-0008",
+      "case_id": "A28",
+      "packet_path": "packets/REVIEW-0008.json",
+      "packet_sha256": "bfbd8e1962536076f7761895e10f7e1e988eaa75c5888eff612ec9c266ac0148"
+    },
+    {
+      "review_id": "REVIEW-0009",
+      "case_id": "A29",
+      "packet_path": "packets/REVIEW-0009.json",
+      "packet_sha256": "21dcdbcbc82ed36295dfff708794aa8c5aa5c8c595c47376f00d2fc6aada5ae7"
+    },
+    {
+      "review_id": "REVIEW-0010",
+      "case_id": "A29",
+      "packet_path": "packets/REVIEW-0010.json",
+      "packet_sha256": "579aea700e772904e0f404738e132b5277e0e25b5458960b7b0ba608740ebecb"
+    },
+    {
+      "review_id": "REVIEW-0011",
+      "case_id": "A30",
+      "packet_path": "packets/REVIEW-0011.json",
+      "packet_sha256": "4a751987e55969607b94fb52744ef3766c26a814db9f55b7dc3cee3f55a2b914"
+    },
+    {
+      "review_id": "REVIEW-0012",
+      "case_id": "A30",
+      "packet_path": "packets/REVIEW-0012.json",
+      "packet_sha256": "b136d4a01ee71c2029e8314c28ebaa415b9954d3eb40061b577c5837071ab725"
+    },
+    {
+      "review_id": "REVIEW-0013",
+      "case_id": "B13",
+      "packet_path": "packets/REVIEW-0013.json",
+      "packet_sha256": "42be4ed6a58b46c9c29e21f1ca7a0c69754b0d0893b9f051724da5e299fb210c"
+    },
+    {
+      "review_id": "REVIEW-0014",
+      "case_id": "B13",
+      "packet_path": "packets/REVIEW-0014.json",
+      "packet_sha256": "96b58c4f31ebcac5cd21d1926e1e3e657a2535404065abfc78892a817a608f29"
+    },
+    {
+      "review_id": "REVIEW-0015",
+      "case_id": "B14",
+      "packet_path": "packets/REVIEW-0015.json",
+      "packet_sha256": "79c6f864202957fb0993b2e99007c1e1d74031261c7a466b19d85361ce19dae6"
+    },
+    {
+      "review_id": "REVIEW-0016",
+      "case_id": "B14",
+      "packet_path": "packets/REVIEW-0016.json",
+      "packet_sha256": "e26844bf5412862120c8fa03341d926e5a10d99a672fc7ee6b3ae104a976c38e"
+    },
+    {
+      "review_id": "REVIEW-0017",
+      "case_id": "B15",
+      "packet_path": "packets/REVIEW-0017.json",
+      "packet_sha256": "bb6e98b68e7593d5f33c7020582e094e9939b902008d81da175e5f4c13096356"
+    },
+    {
+      "review_id": "REVIEW-0018",
+      "case_id": "B15",
+      "packet_path": "packets/REVIEW-0018.json",
+      "packet_sha256": "1ad73ac2b04697c45e4ddf9b32aae7747706ea2d8c40b7e7157e7f736b710873"
+    },
+    {
+      "review_id": "REVIEW-0019",
+      "case_id": "B16",
+      "packet_path": "packets/REVIEW-0019.json",
+      "packet_sha256": "778dd287e6a03d59cca35c543eaba6436b884b51679399cc31988f0ffae72bec"
+    },
+    {
+      "review_id": "REVIEW-0020",
+      "case_id": "B16",
+      "packet_path": "packets/REVIEW-0020.json",
+      "packet_sha256": "ae8d12dd5fb011b92bcf1ab1bd5138d4a72c248965f4fc2497b25e8e846bbbd7"
+    },
+    {
+      "review_id": "REVIEW-0021",
+      "case_id": "B17",
+      "packet_path": "packets/REVIEW-0021.json",
+      "packet_sha256": "f16cc594cd70add0ff4e4f404455d6d38929df2e07316573d6b3571f656eb604"
+    },
+    {
+      "review_id": "REVIEW-0022",
+      "case_id": "B17",
+      "packet_path": "packets/REVIEW-0022.json",
+      "packet_sha256": "fdd1962d330356fe80eefdb198020b408d2120365d93bff97568ddbb42e1b1c1"
+    },
+    {
+      "review_id": "REVIEW-0023",
+      "case_id": "B18",
+      "packet_path": "packets/REVIEW-0023.json",
+      "packet_sha256": "350507def5335295e94fc5e8ba8c535a904cc826353a1822bffcee17eee12e6c"
+    },
+    {
+      "review_id": "REVIEW-0024",
+      "case_id": "B18",
+      "packet_path": "packets/REVIEW-0024.json",
+      "packet_sha256": "be50a89a8f37e81bec75728f4f1a21e06ff9b38787869fc4a0ddcf2a80a4c596"
+    }
+  ],
+  "rubric_path": "rubric.json",
+  "rubric_sha256": "5f48bf2a57a256610db5a3fc774ec8869d18ec07c5447219ccd511c826fd7fad"
+}

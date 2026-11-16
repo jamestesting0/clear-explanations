@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-16",
+  "installer": "skills 1.9.0",
+  "node": "24.22.1",
+  "platform": "Linux",
+  "source": "local public-package checkout, frozen v5 runtime",
+  "mode": "project, default symlink",
+  "targets": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "github-copilot",
+    "opencode"
+  ],
+  "canonical_directory": ".agents/skills/explain-clearly",
+  "alias": ".claude/skills/explain-clearly",
+  "runtime_files_sha256": {
+    "SKILL.md": "c4b371b7a60b69ed7cf9b5a72f07e880f03523f875295d1f66d9157db4830bdb",
+    "references/evidence-and-sources.md": "08bb9148e8195b54233197e01ecc2b3e6fa93c2e0af440cd1999014713a7d853",
+    "references/explanation-patterns.md": "ab5621d87d42591d50fcc55b38c0cf10f29d4e15b58bbdd76ff0ae251750a63f",
+    "references/worked-examples.md": "df0ba2d6f812d934aac113b03441f702e42fdf5ef59dfed4e9d24544efe720f1"
+  },
+  "all_runtime_bytes_match": true,
+  "claude_alias_resolves": true,
+  "discovered_skills": 1,
+  "native_agent_invocation_tested": false,
+  "windows_tested": false
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0007",
+      "response_sha256": "196234183c740d48bbbb04d26a51e22ca91541af1a66193677aed93452734be9",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer supplies feasible schedules for both scanner orders, explains the reviewer conflict and job-specific deadlines, and evaluates both changes against the actual resource constraints. Its lower-bound argument correctly separates nominal feasibility from a guarantee over the supplied duration range. Local enumeration of scanner and review orders verified the reported times and expedited schedule. Citations support the claims at the stated scope, and the tables make the resource relationships easy to follow. No material weakness was identified.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Shows A calibration/scanning at 0–5 and B at 5–8, both OCRs finishing at 11, followed by A review 11–13 and B review 13–16; explicitly identifies this as meeting both deadlines."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Shows B scanner 0–3, OCR 3–6 and review 6–9, then A scanner 3–8, OCR 8–14 and review 14–16; explains that A is three hours late despite the same hour-16 project finish."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Identifies 22 hours as work summed across resources and explains why overlapping OCR, scanning and review make that different from elapsed time."},
+        {"criterion": "C4", "verdict": "pass", "notes": "States that another OCR computer adds no useful capacity under the premise that the existing system already runs both OCR jobs concurrently without slowing them."},
+        {"criterion": "C5", "verdict": "pass", "notes": "For expedited A in A-first order, gives A OCR 5–9/review 9–11 and B OCR 8–11/review 11–14, with both deadlines met and final completion at 14."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Derives A's earliest path as 1+4+d+2=7+d and substitutes the allowed nine-hour OCR duration to obtain 16, proving that the hour-13 deadline cannot be guaranteed."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Explicitly declines a lateness probability without a distribution and distinguishes the expedited nominal quote and cluster uptime from a worst-case processing guarantee."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Explains that the two-hour nominal gain does not establish the value of the 100-unit fee without monetary values for earlier completion or avoided lateness."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0008",
+      "response_sha256": "6ef890910f554b55d2ddda9fe6d38aa6b74be9ebd9ef0c0746f40b88b7f5b0b4",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All distributional accounts reconcile with the direct resource-cost calculation, which was independently executed. The answer distinguishes gross receipts, producer contribution, transfers and total surplus, and it explains why a small aggregate gain need not benefit every group. It correctly confines the ranking to the stipulated outcomes and identifies the missing behavioral evidence for future policy optimization. The definitions, comparison table and reconciliation serve distinct explanatory purposes; no material weakness was identified.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Calculates 100×22=2,200 total buyer benefit in every scenario and explains that product and tax payments redistribute within the island rather than create or consume additional resources merely through payment."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Gives baseline buyer surplus 700, producer contribution 500, council 0 and nuisance cost 300, and sums them to 900."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Gives Tax buyer surplus 200, producer contribution 500 after the 500 remittance, council net 300 after 200 administration, nuisance cost 300 and total 700."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Gives Clean buyer surplus 500, producer contribution 500, council cost 80, no nuisance cost and total surplus 920."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Explicitly reconciles the distributional sums with 2,200−1,000−300=900, 2,200−1,000−300−200=700 and 2,200−1,200−80=920; warns against subtracting administration twice."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explains that Tax leaves nuisance unchanged and reduces surplus through administration, while Clean gains 20 by avoiding 300 damage at 280 additional production and monitoring cost despite lower buyer surplus."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Calls equal currency weighting a substantive value judgment independent of recipients' initial resources and explains why aggregate gains do not establish universal benefit or acceptable distribution."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Rejects inference of an optimal future tax rate and identifies missing quantity, price, production-method, damage and administration responses; it does not invent future spending or employment gains."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0009",
+      "response_sha256": "766795dfbbaa88f8dda615f22e31ea620dfa6a5e05e52335d8768a6d524e0200",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The interpretation consistently connects claims to performed words, stage actions and the production notes. It explains the conversion of limited assent into a general record, the record's selective treatment of participation, and the ending's unequal distribution of shelter. It presents procedural exclusion as a supported reading while preserving uncertainty about motives, unheard content, safe access and any final vote. It neither invents context nor treats theatrical objects as a fixed code. No material weakness was identified.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Explains that the bell cuts off the Carpenter's potentially limited roof-related assent and that the repeated urgency statement does not approve every part of the motion, even though both become 'Agreement recorded.'"},
+        {"criterion": "C2", "verdict": "pass", "notes": "Connects the preplaced YES cards, unused alternatives in the closed cupboard and inaudible motion lines to constrained participation and uncertain approval, without asserting that everyone secretly opposes the motion."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Analyzes 'present' as a membership-and-time boundary exposed by moving chairs and 'Present when?', and 'entered' as describing the record rather than proving that nobody objected."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Offers several possible meanings of the blank card and treats empty chairs as questions about representation without assigning a fixed constituency or universal symbolic meaning."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Uses the real shared rain problem, instruction against a sneering Clerk and his place beneath the table to complicate an account of a single knowingly corrupt official."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Highlights the original actors' shelter and the child's exclusion, then relates the child's audience-facing question to who is included in the collective 'we.'"},
+        {"criterion": "C7", "verdict": "pass", "notes": "Keeps the Treasurer's motive and cupboard danger unresolved, refuses to reconstruct the unheard lines, and explicitly states that the script supplies no final vote."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Explicitly rejects using the discarded dishonest-Treasurer draft or promotional simplification to erase ambiguities in the performed version."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0010",
+      "response_sha256": "1173dd7b3715ec68faa8880deb2de561ae7d1ac1efbad036a39ddab7f2e7a150",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly distinguishes observed rates, randomized invitations, information received and the joint own/peer assignment contrast. It preserves a bounded causal interpretation without asserting a rollout effect or a known spillover-bias direction. Its proposed study assessment is especially careful: it explains policy and spillover comparisons, recognizes that fixed-size partial assignment still does not hold peers fixed, and proposes independent invitations for that separate target. Rates and peer counts were checked locally. The only review caveat is a potentially overbroad reading of gold criterion C7, recorded below; the response itself has no material weakness.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Computes 160/2,000=8% and 200/2,000=10%, describing a two-percentage-point lower observed error rate under the five-per-team scheme; it does not convert that observation into a deterministic future effect."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Explains that invitations were randomized whereas information actually received was not identically randomized, cites at least six exposed unassigned employees, and defines the assignment-based intention-to-treat interpretation."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Shows four assigned peers for an assigned employee and five for an unassigned employee, and explicitly notes that the comparison also averages over which teammates are assigned."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Describes a causal contrast between the joint conditions supported by this allocation while distinguishing it from changing only one's own invitation with peers fixed and from universal-versus-zero training."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Explains possible benefits of sharing and harms through competition for colleagues' time, keeps identities relevant, and rejects any necessary direction or known magnitude of bias relative to other target effects."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explains why the historical 20%-to-8% difference changes time and task version, and why distant teams with different tasks and experience supply no justified counterfactual policy comparison."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Assesses many-team zero/partial/full randomization for rollout and spillover contrasts, with team-level uncertainty and cross-team-interaction qualifications. Correctly explains that a fixed partial-team count still does not isolate own assignment holding peers fixed, and proposes independent individual invitations to compare own assignment over the same peer-assignment distribution. This is a sound assessment of the proposed design; see the gold scope clarification."},
+        {"criterion": "C8", "verdict": "pass", "notes": "States that banning communication changes the workplace intervention, may leave time competition, and requires a separate justification for ordinary rollout; it explicitly rejects declaring the existing experiment useless."}
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C7",
+          "issue": "The statement that saturation randomization with within-partial-team randomization can address direct effects needs a qualification if 'direct' means the own-assignment effect holding peers fixed, as distinguished in C4. A fixed-size partial allocation does not by itself identify that effect. The answer should receive credit for explicitly qualifying this and proposing a suitable change, rather than be required to promise that the unmodified proposal identifies every direct effect.",
+          "evidence": "B28-S1 and S2 stipulate exactly five assigned per team, producing four assigned peers when the employee is assigned and five when unassigned; changing own assignment within that fixed total necessarily changes peers. B28-S4 explicitly says the current contrast does not hold every peer's assignment fixed, and its proposed within-partial-team randomization does not specify a design that removes this issue. Independent invitations, as proposed in the response, allow own assignment to vary over a common distribution of peer assignments; full-versus-zero and spillover contrasts can still be addressed by the team-level design with the stated interaction qualifications."
+        }
+      ]
+    },
+    {
+      "review_id": "REVIEW-0011",
+      "response_sha256": "9d4940425708ea039ff2308a904de2dd4c34644ed38a239228151dab01442af5",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer traces the incident across the three distinct state changes and correctly explains both lost-acknowledgment and post-response crash windows. It evaluates marking first, stable keys, payload conflicts and retention limits without claiming universal exactly-once effects. A local fixture following the stipulated receiver contract verified two reservations with attempt keys, one with a retained stable key, a 409 for conflicting payload, and a possible new reservation after permitted expiration. The proposed atomic business-identity check and reconciliation safeguards are clearly marked as design implications. No material weakness was identified.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Separates the local order/event transaction, receiver reservation and later local sent transaction; explains why lost acknowledgment leaves the sender unable to infer the remote result from its unsent flag."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Traces A1 creating R101 and A2 creating R102, explaining that different attempt keys are different operations under S2 and that event_id in the body has no independent deduplication effect."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Explicitly explains that the same durable outbox row was delivered twice and that one eventual sent update is compatible with both remote reservations already existing."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Explains the loss window when the flag commits before a request and a crash prevents sending, causing ordinary unsent-row processing to skip an unexecuted event."},
+        {"criterion": "C5", "verdict": "pass", "notes": "States that a stable event-derived key with the same account, route and payload would make the observed one-minute retry return R101 rather than create R102."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explains that a changed payload under the retained key returns 409 and does not authorize reinterpreting the original operation."},
+        {"criterion": "C7", "verdict": "pass", "notes": "States that a 36-hour replay can outlive retention and create another reservation; proposes durable receiver uniqueness or retention covering all permitted replay, plus authoritative reconciliation and holding unresolved cases."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Keeps durable event creation, repeated delivery attempts and remote effects distinct; states the precise retained-key guarantee and rejects unconditional exactly-once delivery or permanent uniqueness."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0012",
+      "response_sha256": "5a7387ad7b3d8ac99072611cb7fb98ad4a12afe8c6d2f4b3220165b3ac082c82",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer derives sharp overlap bounds from nonnegative group counts, supplies valid endpoint populations and applies the strict decision threshold correctly. It explains why independence simulations and selected self-reports do not identify the missing overlap, then specifies the minimal authorized aggregate threshold result needed. Local enumeration verified all 401 feasible integer tables, both endpoints and the feasible exactly-300 boundary. The presentation is complete and proportionate, with no material weakness identified.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Defines both-flags count x, derives neither=x−100 and B-only=500−x, and obtains the equivalent sharp inclusion-exclusion bounds 100≤x≤500."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Explains that 1,100 counts flag memberships with both-flag learners counted twice, so it does not contradict 1,000 distinct learners."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Gives both=100/A-only=500/B-only=400/neither=0 and both=500/A-only=100/B-only=0/neither=400, with population and marginal totals shown correctly."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Shows that the two feasible populations satisfy identical certified totals but respectively fail and meet the more-than-300 trigger, so unavoidable overlap does not determine opening."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Treats 300 as the expected overlap under an added independence model and explains that more simulations stabilize that model's average without revealing the actual administrative overlap."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explicitly states that exactly 300 does not qualify, supplies a feasible 300-overlap composition, and rejects the informal summary as an amendment or reliable replacement of the both-flags definition."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Identifies voluntary recruitment, the intensive-support channel and unverified self-report as reasons not to extrapolate 80%, and explains that satisfaction measures something else."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Specifies a trustworthy aggregate yes/no answer to whether at least 301 distinct learners in the same population/date/definitions have both flags; explains that an authorized custodian can provide it without disclosing names or linked individual records."}
+      ],
+      "gold_flags": []
+    }
+  ]
+}

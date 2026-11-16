@@ -18,7 +18,7 @@ def require(condition, message):
         raise ValueError(message)
 
 
-def verify():
+def verify(require_current=False):
     evaluation = Path(__file__).resolve().parents[1]
     repo = evaluation.parent
     evidence = json.loads((evaluation / "evidence.json").read_text(encoding="utf-8"))
@@ -27,9 +27,10 @@ def verify():
     require(evidence["schema_version"] == 1, "Unsupported evidence schema")
     for name, digest in evidence["recorded_files_sha256"].items():
         require(sha((evaluation / name).read_bytes()) == digest, f"Recorded file changed: {name}")
-    require(sha((repo / "SKILL.md").read_bytes()) == evidence["skill_sha256"], "Current skill differs from the recorded release")
     frozen = evaluation / evidence["files"]["frozen_final_skill"]
-    require(frozen.read_bytes() == (repo / "SKILL.md").read_bytes(), "Frozen release and current skill differ")
+    require(sha(frozen.read_bytes()) == evidence["skill_sha256"], "Frozen historical release differs from its recorded hash")
+    if require_current:
+        require(frozen.read_bytes() == (repo / "SKILL.md").read_bytes(), "Current skill differs from the historical v4 release")
     require(len(records) == evidence["actual_responses"], "Response count differs from summary")
     seen = set()
     for record in records:
@@ -80,9 +81,10 @@ def verify():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--report", type=Path, help="Write a local HTML view after successful integrity checks")
+    parser.add_argument("--require-current", action="store_true", help="Also require the current root skill to be the historical v4 release")
     args = parser.parse_args()
     try:
-        evidence, cases, records = verify()
+        evidence, cases, records = verify(require_current=args.require_current)
         print(f"Verified {len(records)} response hashes and reviews across {len(cases)} scenarios.")
         print(f"Recorded {evidence['release']} outcome: {evidence['final_pass']}/{evidence['final_responses']} pass.")
         print("No new model generation or semantic grading was performed.")

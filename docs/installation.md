@@ -2,7 +2,7 @@
 
 [README](../README.md) · [Skill instructions](../SKILL.md) · [License](../LICENSE)
 
-The repository's root `SKILL.md` is the canonical source. Install it into the project where you want to use it, or into your user account for use across projects. You do not need a custom installer or separate editions of the skill for each agent.
+The repository's root `SKILL.md` is the canonical entry point, with optional supporting guides in `references/`. Install the complete runtime bundle into the project where you want to use it, or into your user account for use across projects. You do not need a custom installer or separate editions of the skill for each agent.
 
 ## Requirements
 
@@ -89,7 +89,7 @@ For a dependency-free install, download the repository and create this directory
 .agents/skills/explain-clearly/
 ```
 
-Copy the repository's [SKILL.md](../SKILL.md) into it as `SKILL.md`, and include [LICENSE](../LICENSE) when redistributing it. The current skill is self-contained. If a future version adds referenced files, preserve their relative paths when copying the skill.
+Copy the repository's [SKILL.md](../SKILL.md) into it as `SKILL.md`, copy the complete [references](../references) directory beside it, and include [LICENSE](../LICENSE) when redistributing it. Preserve the relative paths: `SKILL.md` links to the three reference files. Evaluation files and documentation are not needed at runtime.
 
 For user scope, use `.agents/skills/explain-clearly/` inside your home directory. For a Claude-only manual installation, use `.claude/skills/explain-clearly/` instead. The standard installer is the convenient option when you want shared storage plus the Claude alias.
 
@@ -109,9 +109,11 @@ This is an instruction to read a file; it does not register a native skill or cr
 
 ## Installation check
 
-The package was installed into an isolated Linux project with **skills 1.9.0**, selecting Codex, Claude Code, Cursor, Gemini CLI, GitHub Copilot, and OpenCode. Source discovery found one skill. The installed `.agents/skills/explain-clearly/SKILL.md` matched the tested release byte for byte, and the Claude alias resolved to it. `skills list` found the installed skill.
+The v7 runtime was installed from the local release checkout into an isolated Linux project with **skills 1.9.0**, selecting Codex, Claude Code, Cursor, Gemini CLI, GitHub Copilot, and OpenCode. Source discovery found one skill. The core and all three references matched the frozen v7 files byte for byte, and the Claude alias resolved to the shared directory.
 
-This checks the installer and file layout. It does not claim that every native agent, IDE, or Windows environment was launched. The [machine-readable check record](installation-check.json) records the scope.
+The standard installer also copies repository documentation and optional evaluation material; only the core and references provide runtime guidance. These checks establish installer discovery, file layout, and exact runtime bytes. Native agent invocation and Windows were not exercised.
+
+The [v7 local check](installation-check-v7-local.json) records the selected targets, runtime hashes, and observed scope. Earlier [v5](installation-check-v5-local.json) and [v4](installation-check.json) records remain as historical evidence.
 
 ## Official sources
 

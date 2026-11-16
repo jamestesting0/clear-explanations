@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0007",
+      "response_sha256": "3cc1c59b07bb2957b0c46b99f38b48d66d786a0176a4f4b42fd281a01b84134a",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer carefully separates the observed listening report from silence and mechanical incapacity, evaluates the textual relationships without claiming certain copying, and develops three appropriately qualified explanations. It explains the limited inferential value of the rope invoice, weather log, and reconstruction; retains the later books as evidence about later interpretation; and identifies a contemporary record that would discriminate between causes. Source labels support the claims at their stated strength, and neither an event probability nor a unique cause is invented. Its organized detail is proportionate to the multipart request. No material factual or explanatory weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Defines the three propositions separately and limits S1 to no northern answer reaching the south quay; hearing the South Bell is correctly distinguished from established North Bell audibility."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Uses the shared unusual phrase, mistaken gate spelling, and bibliographies as evidence of possible or likely transmission, and rejects treating the books as additional independent observations."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explicitly says missing individual footnotes prevent tracing the chronicle sentence with certainty and that the packet does not reconstruct every sentence origin."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The rope discussion preserves storm-night failure, later failure, and preventive replacement as possibilities; it says replacement cannot establish timing or a unique mechanical cause."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Limits the weather log to storm corroboration and the reconstructed test to physical conceivability of inaudibility, explaining the height/material differences and absent calibrated probability."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that the later works document historical storytelling and public memory, including the leadership symbolism, without proving the original mechanism or actual absent leadership."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Compares mechanical obstruction, ringing that was not heard, and an operable bell left unrung. It associates each with supporting or limiting evidence and avoids asserting an unsupported operational story."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Rejects the 97% figure because witness accuracies, dependence, starting probability, and event-specific likelihoods are unsupported. Supplies a cautious museum caption and a securely dated independent bellkeeper record that could distinguish successful ringing from an observed broken rope."
+        }
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C8",
+          "issue": "The museum-wording clause is overrestrictive if treated as an essential requirement: the prompt expressly makes choosing careful wording optional. This does not change either assessment because both answers supply suitable wording.",
+          "evidence": "The actual prompt says, \"The museum may choose careful wording,\" whereas C8 places \"propose careful museum wording\" in must_include. The mandatory requirements are calibrated evidence assessment, live explanations, and a discriminating record."
+        }
+      ]
+    },
+    {
+      "review_id": "REVIEW-0008",
+      "response_sha256": "5343255aa5231e0c3714256105057fce1b68b6934a1adca09be86b268ed33f02",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer provides a complete, readable assessment grounded in the supplied evidence. Its comparison table distinguishes ringing without being heard from actual silence, while the surrounding explanation further separates mechanical failure from non-operation of a working bell. Dependence, repair timing, reconstruction limits, later interpretation, and a useful contemporary discriminating record are all handled correctly. The probability paragraph identifies absent dependence information and event likelihoods, which are sufficient reasons to reject the exact estimate; its not separately naming a prior is not an erroneous inference or an unanswered essential question. No material weakness was found, and the optional museum caption is appropriately cautious.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Clearly defines non-hearing, non-ringing, and physical inability to ring; attributes only the first directly to S1 and explains why location and unknown normal audibility matter."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Names the shared phrase, identical spelling error, and source bibliographies as evidence against counting three independent confirmations."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Says the chronicle sentence cannot be traced with certainty, the exact origin of every sentence is unproved, and additional information is not ruled out."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that the invoice fits a storm-night break, a later break, or preventive replacement and establishes neither failure timing nor a unique cause."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Uses the weather log only for wind and flooding and the reconstruction for plausibility of missed hearing; explicitly denies calibrated odds because the height, material, and historical conditions differ."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Retains the chronicle and school history as evidence of later storytelling and leadership symbolism while distinguishing that use from independent confirmation of mechanical condition."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Develops inaudibility and actual silence as two live explanations, then distinguishes mechanical failure from failure to operate a serviceable bell. The table and invoice discussion specify supporting evidence and remaining uncertainties."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Rejects an exact percentage because source dependence and the likelihood of these observations under competing explanations are unsupported. Although a prior is not separately named, these are sufficient missing inputs to explain why the estimate is unjustified. Supplies careful museum wording and an independent contemporary tower keeper record with outcomes that discriminate between ringing, breakage, and no attempt."
+        }
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C8",
+          "issue": "The museum-wording clause is overrestrictive if treated as an essential requirement: the prompt expressly makes choosing careful wording optional. This does not change either assessment because both answers supply suitable wording.",
+          "evidence": "The actual prompt says, \"The museum may choose careful wording,\" whereas C8 places \"propose careful museum wording\" in must_include. The mandatory requirements are calibrated evidence assessment, live explanations, and a discriminating record."
+        }
+      ]
+    }
+  ]
+}

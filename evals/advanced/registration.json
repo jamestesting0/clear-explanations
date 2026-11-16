@@ -1,0 +1,11 @@
+{
+  "frozen_at": "2026-11-16T12:38:30.425555+00:00",
+  "purpose": "First expanded candidate, before any new prompt inspection or response generation",
+  "files": {
+    "SKILL.md": "fc2cbdced26137cefa8d974e91d68a15b7ff1785099bfda7de265c2489f07f04",
+    "references/evidence-and-sources.md": "66853487e90bef346ce6df1ba5f47bb9cf3e4dfb47fce21cef78f6078b32a989",
+    "references/explanation-patterns.md": "ab5621d87d42591d50fcc55b38c0cf10f29d4e15b58bbdd76ff0ae251750a63f",
+    "references/worked-examples.md": "cb09278a3d9672208a6816c442d4e1f6a32c48bfff605038e531f43fc3cac92b"
+  },
+  "protocol_sha256": "3728cceee2e0660275f2f3452f76878729b5f4beee65dc6d63ef5a16e591f313"
+}

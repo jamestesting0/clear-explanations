@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0021",
+      "response_sha256": "ebaaf468e9a32e97dfdde7b7e8bddccb22a723f7e462a80d1c84e7f66936a480",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly derives both mode equations, median comparisons, unequal-variance mean comparisons, and the within-range mean crossover. A local arithmetic check reproduced the reported durations and ratios. The explanation connects the larger accelerated spread to its higher mean at 100 MiB, distinguishes expected batch totals from a typical request, and gives appropriately bounded causal and extrapolation conclusions. Tables serve the requested comparison and the detail is proportionate. No material weakness found.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "At x=0, gives exp(-0.10)=0.9048, a 9.52% lower median, and medians of 49.40 s accelerated versus 54.60 s standard."},
+        {"criterion": "C2", "verdict": "pass", "notes": "At x=1, the ratio formula yields exp(-0.25); the table reports 0.7788, 22.12% lower, and 51.94 s versus 66.69 s."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Derives log-duration slopes 0.20 and 0.05 per 100 MiB and explains the associated 22.14% and 5.13% median increases; rejects a fixed 0.10-second saving."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Explains that -0.15 changes the size slope and multiplies the mode ratio by exp(-0.15) per 100 MiB, not a further 15% saving per MiB."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Explicitly identifies exp(mu) as the conditional median and uses exp(mu+sigma squared/2) for the arithmetic mean; also says the variance adjustment is not an individual-observation coefficient."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Computes variance adjustments 0.08 and 0.32 and mean ratio exp(0.14)=1.1503 at 100 MiB, with accelerated mean 68.03 s versus 59.15 s."},
+        {"criterion": "C7", "verdict": "pass", "notes": "At 200 MiB gives exp(-0.01)=0.9900 and about 1.00% lower mean; explains how the larger accelerated residual spread raises the arithmetic mean relative to the median."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Uses voluntary selection and unrecorded hardware, complexity, and retry factors to reject causal identification, limits claims to 100–200 MiB, and proposes randomized modes or controlled paired runs with randomized order."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0022",
+      "response_sha256": "3341bf645b8ce5f2f6438fb947333d82287ccc2ee4904b411b3c62f01d83e672",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The model interpretation and arithmetic are correct throughout, including the optional per-MiB percentages, 193.33 MiB mean crossover, and distinction between summed expected durations and median experience. Local calculations reproduced the main durations and ratios. The answer explains the interaction rather than merely restating coefficients, ties each claim to the relevant supplied source, and addresses both observational confounding and extrapolation. No material weakness found.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Shows the -0.10 log contrast at 100 MiB and reports median ratio 0.9048, 9.52% lower, with 49.40 s accelerated and 54.60 s standard."},
+        {"criterion": "C2", "verdict": "pass", "notes": "The ratio exp(-0.10-0.15x) gives -0.25 at 200 MiB; reports 0.7788, 22.12% lower, and medians 51.94 s and 66.69 s."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Explicitly derives 0.20 and 0.05 log slopes per 100 MiB, converts them into multiplicative effects, and distinguishes log coefficients from seconds saved."},
+        {"criterion": "C4", "verdict": "pass", "notes": "States that the interaction reduces the accelerated size slope and changes the mode ratio by exp(-0.15) per 100 MiB; rejects both a 15% per-MiB effect and a fixed percentage-point change."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Uses the lognormal identity to distinguish exp(mu), the median, from exp(mu+sigma squared/2), the arithmetic mean, and explains the distribution-level role of the correction."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Uses 0.08 versus 0.32 half-variance corrections and reports exp(0.14)=1.1503, or a 15.03% higher accelerated mean at 100 MiB."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Reports exp(-0.01)=0.9900 at 200 MiB, with means 71.52 s and 72.24 s, and explains the upper-tail effect of greater log-duration spread."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Explains voluntary selection and omitted common causes, proposes randomized feature assignment or randomized-order repeat workloads, and expressly limits the chart to the observed 100–200 MiB range."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0023",
+      "response_sha256": "be2f632643cb75d79811bbaddbca6cf10e36f6dbc6629b0ede58d49bfd9dff1c",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Fully complies with the French language and two-heading request. Local arithmetic confirmed the paired and unpaired standard errors, interval, covariance, and percentage summaries. The numerical covariance identity is accompanied by a plain-language explanation, and the response carefully separates uncertainty about a mean from individual prediction and causal identification. The additional detail supports the requested comparison and experimental redesign rather than introducing irrelevant material. No material weakness found.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "The answer is in French and organized under exactly Calculs and Interprétation."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Defines after minus before, lists -4,-3,-4,-3,-3,-4 s by machine, and calculates mean -3.5 s."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Shows sample variance 1.5/5=0.3 s squared, sample standard deviation 0.5477 s, and paired SE 0.2236 s."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Uses the supplied t critical value 2.570582 to obtain [-4.0748,-2.9252] s and clearly labels the alternative positive-reduction convention."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Computes the raw variances 753.2 and 765.1 s squared, unpaired SE 15.9075 s, and covariance 759.0 s squared; explains that within-machine subtraction removes stable hardware-level differences."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explains repeated-sampling coverage for the mean under the t-model assumptions and expressly rejects the claim about 95% of future individual machines."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Shows that common cooling and cache changes remain in each difference despite pairing; identifies absent randomization/control and the convenience sample as causal and generalization limits."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Distinguishes -2.950% mean individual relative change, -2.800% relative change of means, and -3.5 s absolute change. Proposes randomized crossover within hardware family with cache/thermal controls, or contemporaneous immediate-versus-delayed patch groups when reversal is unsuitable."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0024",
+      "response_sha256": "a19406d649b3619303f56621df71b615b15e1616d29f6f122fa62ec8c41c7b8e",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "A complete and clear French explanation with the required headings. Local calculations reproduced all substantive numerical results. The concrete common-shift example explains particularly well why pairing can give a narrow interval while retaining time-of-day confounding. The response correctly treats percentage and absolute outcomes as different quantities, limits the interval's interpretation, and proposes designs that address order, carryover, hardware, and environmental effects. No material weakness found.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Uses French throughout the explanatory text and exactly the headings Calculs and Interprétation."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Explicit after-minus-before convention yields the six signed differences -4,-3,-4,-3,-3,-4 s and mean -3.5 s."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Calculates 6 times 0.5 squared divided by 5 as 0.30 s squared, then 0.5477 s standard deviation and 0.2236 s paired SE."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Applies the supplied 2.570582 critical value and reports the correct nominal 95% interval [-4.0748,-2.9252] s."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Gives unpaired SE 15.9075 s from variances 753.2 and 765.1; explains retained between-machine variation and omitted strong positive covariance, without treating column separation as independence."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Describes conditional repeated-experiment coverage of the mean and directly denies that the interval predicts improvements for 95% of future machines."},
+        {"criterion": "C7", "verdict": "pass", "notes": "States that a common shift c changes every paired difference's mean without changing its standard deviation; identifies cooling, caches, and convenience sampling as unresolved causal or transfer issues."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Distinguishes mean relative change -2.95%, relative mean change -2.80%, and absolute mean change -3.5 s. Recommends randomized sequences within hardware family with cache/environment standardization and a reversal assumption, or contemporaneous randomized controls if reversal is infeasible."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0025",
+      "response_sha256": "4f81a341c7a03283e1dcee8e262b39e84d6161f95b2fb3630a6e219f46282876",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly separates the fully specified twenty-test calculation from the unspecified sequential design and explicitly states that final-family Bonferroni arithmetic does not fix invalid stopping-dependent p-values. Local arithmetic reproduced 64.15%, 0.0025, and 0.36. The p-value explanation, selection-bias caution, refusal to invent a confidence interval, and concrete fresh randomized follow-up all meet the prompt. The follow-up specifies both statistical and practical decision criteria. No material weakness found.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Derives 1-0.95^20=0.6415 and explicitly restricts the 64.15% result to the independent, all-null hypothetical experiment."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Computes 0.05/20=0.0025, rejects both reported values against that threshold, and gives min(1,20 times 0.018)=0.36."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Defines the nominal p-value as the chance of a result at least as extreme under the null and reference assumptions, not the chance that the feature has no effect."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Explains why reused accumulating participants do not supply the independence required for 1-0.95^100, and identifies missing joint behavior and stopping decisions."},
+        {"criterion": "C5", "verdict": "pass", "notes": "States that Bonferroni needs individually valid p-values and that the 0.36 final-family adjustment does not also correct unplanned stopping; rejects collecting until significance as repair."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explains favorable-noise selection of the +0.8 estimate, states that the amount of exaggeration and its confidence interval cannot be recovered from this packet, and distinguishes clicks from saved effort."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Proposes fresh randomized users, a fixed saved-click primary outcome and analysis, an advance sample size and follow-up window, and no significance-driven stopping or extension."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Requires an effect interval and minimum worthwhile improvement plus prespecified task-completion time; makes statistical evidence for an increase only one component of the product decision."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0026",
+      "response_sha256": "0390c9f53dd6d98a96ae61e4a9feb00e0a22b4656e7c85602b73641a5ca6e2fc",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correct and complete on the calculable hypothetical, final-family correction, optional-stopping uncertainty, and selected-estimate limitations. Local arithmetic reproduced the numerical answers. The answer does not convert either 64.15% or the reported p-value into the posterior probability of a false finding and does not treat nonsignificance as proof of no effect. The follow-up has a meaningful outcome, fixed stopping rule, analysis, and practical decision framework. No material weakness found.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Calculates 1-0.95^20=0.641514, or 64.15%, under the supplied hypothetical assumptions and distinguishes it from the probability that the selected finding is false."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Gives threshold 0.0025, states neither 0.018 nor 0.041 passes, and calculates the smallest adjusted value as 0.36."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Defines the p-value using the null, the test assumptions, and at-least-as-extreme results; explicitly says it is not the probability that the null is true."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Rejects the claimed exact 100-test formula because the repeated looks reuse observations and lack the needed joint/stopping specification; confines supplied independence to the hypothetical final outcomes."},
+        {"criterion": "C5", "verdict": "pass", "notes": "States that Bonferroni requires valid individual null p-values and that 0.36 is only the twenty-outcome arithmetic adjustment, not proof of sequential error control."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explains that the selected smallest p-value can exaggerate the selected +0.8 estimate, refuses to derive an interval without test/uncertainty information, and notes the absence of measured task time."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Proposes a fresh randomized trial with an advance primary saved-click definition, sample size, fixed follow-up, repeated-session analysis, and no p-value-driven stopping; specifies multiplicity treatment for extra confirmatory outcomes."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Requires prespecified practical click-reduction criteria, uncertainty intervals, task time, task success, and harms; explains that a nonzero effect need not be large enough to justify adoption."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0027",
+      "response_sha256": "6538a2d71f1afd3fea328c22f714763ca067999b6c0867219b672dfb745f548c",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All calibration, integration, mean-power, unit-conversion, and conservative register-bound calculations are correct and were reproduced locally. The endpoint explanation distinguishes duration from its role in the alternative interpolation model. The answer gives a concrete compatible pair of true register readings and correctly avoids assigning probabilities to deterministic error bounds. Its sections and tables support the requested audit without losing the conditional nature of the model. No material weakness found.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Calibration table gives 1000, 2000, 1000, and 0 W and identifies the -200 W term as a calibration offset."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Calculates held-interval energies 30000,120000,30000 J and total 180000 J=50 Wh=0.050 kWh; gives the endpoint zero duration."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Derives 1500 W from energy over 120 s, contrasts the incorrect 1000 W sample mean, and explicitly gives time weights 25%,50%,25%,0%."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Explains that W times seconds divided by 1000 is kJ, not kWh, and that fixing the divisor gives 0.033333... kWh (33.333... Wh) while retaining the wrong weighting."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Computes trapezoidal contributions 45000,90000,15000 J and total 150000 J=41.6667 Wh; explains the linear path differs from the specified hold contract."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Calculates displayed increase 0.052 kWh and adds the two possible endpoint errors to obtain [0.050,0.054] kWh."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Identifies 0.050 kWh as the inclusive lower boundary and provides true readings 12.001 and 12.051 kWh as a compatible example."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Explicitly calls the range a possible-error range rather than a confidence interval, rejects unstated probability/independence assumptions, and separates real calibration/timing/model validation from exact arithmetic."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0028",
+      "response_sha256": "f83396f50f651def869a655531b8df444b389dd9c67804a9212f005fb6ba4f4a",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly separates the spreadsheet's unit and weighting errors, computes both interpolation models, and resolves the register comparison using worst-case endpoint bounds. Local arithmetic reproduced the powers, energies, and register range. It explains why trapezoids are a different physical assumption and why agreement within the register range does not independently validate calibration or holding behavior. The necessary numerical detail remains well organized. No material weakness found.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Applies P=2V-200 and reports 1000,2000,1000,0 W for the four readings."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Gives interval energies 30000,120000,30000 J, including Wh equivalents, with total 180000 J=50 Wh=0.050 kWh and no endpoint-duration contribution."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Computes time-weighted mean 1500 W and unweighted mean 1000 W; explains the correct quarter, half, quarter, zero duration weights."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Identifies the original divide-by-1000 output as kilojoules, states the required 3600000 divisor for kWh, and shows the partially fixed result 0.033333... kWh remains wrong."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Explicit trapezoidal arithmetic gives 150000 J=41.666... Wh and explains that the final zero endpoint imposes a preceding linear decline absent from the hold model."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Computes observed increase 0.052 kWh, maximum difference error 0.001+0.001=0.002 kWh, and possible true range [0.050,0.054] kWh."},
+        {"criterion": "C7", "verdict": "pass", "notes": "States the analog total equals the lower boundary, supplies compatible true cumulative readings, and concludes that inconsistency is not established."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Does not assign a confidence level or a probability to boundary errors; identifies separate real-world calibration, time-alignment, and between-sample model uncertainties."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0029",
+      "response_sha256": "1c2244555dff4af1112197048830fa403f37056508d35f0e2e5b2a39ac6cfdd6",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly resolves all three requests using the deployed 2.x behavior, explains the distinction between client wall time and the server computation clock, and selects a per-call setting that actually overrides existing configuration. All main claims have relevant supplied IDs nearby, and incompatible version guidance is expressly scoped out. The response is 333 whitespace-separated tokens including Markdown and citations, below the 350-word cap even under that conservative count. No material weakness found.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "R1 table and explanation give client timer/header 6000 ms from the call and capped server budget 5000 ms."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Explains that timeout:1 is ignored and constructor timeoutMs:2500 wins; timer, header, and server budget are all 2500 ms."},
+        {"criterion": "C3", "verdict": "pass", "notes": "R3 produces Number(\"2s\")=NaN and fails validation before networking; explicitly denies fallback to the client default, and reports no server request."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Assigns units and precedence to applicable 2.x migration guidance and exact conversion/validation to verified 2.3.1 code; rejects both 1.8 seconds and 3.x duration-string rules for this deployment."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Explains that the server clock starts at computation while transport/response adds wall time; 5030 ms remains below the 6000 ms client timer and does not identify the time split."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Recommends per-call {timeoutMs:2000}, which wins over the existing constructor/environment and sets both header and computation budget to 2000 ms; adds the appropriate client-clock caveat."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Places A15-MIGRATION and A15-IMPLEMENTATION near selection/parsing claims, A15-SERVER near cap/timing claims, and cites A15-OLD/A15-LATEST when excluding incompatible versions."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Measured 333 whitespace-separated tokens including Markdown and citations, within 350 words; all three requests and the version-scope issue are covered."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0030",
+      "response_sha256": "d581c6733ee324b38106bebcc3748c5986519b2dd2995b5b7a1cbc36c0b3e64e",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "A compact and complete incident explanation. It correctly handles non-nullish precedence, ignored legacy fields, pre-network rejection of the invalid environment value, independent server capping, and the 5030 ms trace. The concrete two-second setting is at the winning scope, with an accurate warning about differing clock starts. Citation scope is sound, and the response contains 320 whitespace-separated tokens including Markdown and citations, satisfying the hard cap. No material weakness found.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "R1 explicitly resolves call timeoutMs:6000 over constructor/environment, sends 6000, and receives a 5000 ms server computation cap."},
+        {"criterion": "C2", "verdict": "pass", "notes": "R2 ignores both legacy timeout values and selects constructor timeoutMs:2500, with matching timer/header and 2500 ms server budget."},
+        {"criterion": "C3", "verdict": "pass", "notes": "R3 ignores timeout:30, converts environment 2s with Number to NaN, rejects before networking, and expressly says invalid environment values do not trigger the default."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Uses the verified 2.3.1 implementation and 2.x migration note for the deployed rules, and explicitly excludes the 1.8 seconds and 3.x duration-string/default guidance."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Explains that 5030 ms is within the client timer and includes time outside the server computation budget; correctly refuses to locate the extra time from this trace alone."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Specifies per-call {timeoutMs:2000}, producing 2000 ms client timer, header, and server budget, without promising response receipt before the client timer expires."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Relevant supplied evidence IDs appear beside each request explanation and the timing/version discussion, with client and server authorities kept distinct."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Measured 320 whitespace-separated tokens including Markdown and citations, within the 350-word cap, while retaining all three request results and source-scope distinctions."}
+      ],
+      "gold_flags": []
+    }
+  ]
+}

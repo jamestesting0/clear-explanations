@@ -1,0 +1,375 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0001",
+      "response_sha256": "17760e7ec41ab5b1ddf998e1c1f297e557d46c4f079d2c1fc7d3bedf1c0cd442",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer clearly separates stimulus initiation, proposed feedback maintenance, and persistent reporter stock. It distinguishes the direct activity assays from the inhibitor batch's indirect readout, correctly limits the pre-stimulation deletion inference, and describes the proposed late-removal test without claiming it occurred. The executed decay check confirms 12.5 units after thirty minutes; the response correctly discusses 13 units without inventing precision or an intracellular inhibitor target. All essential qualifications are present, and the organization is proportionate to the student's question.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening and mechanism section distinguish S starting A from A–B feedback maintaining an already-started state after S removal."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that B deletion preserves the early A response but eliminates observed persistence, supporting B dependence under the tested conditions while separating establishment from continuing maintenance."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explicitly limits S's necessity to the stated resting preparation and tested interventions, preserving the possibility of an untested starting route."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Calculates 100 × (1/2)^(30/10) = 12.5 units and identifies the observed 13 as 0.5 unit higher; does not invent an uncertainty interval or claim known rounding."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains that residual R cannot establish continuing feedback and that its decline cannot prove direct inhibition of A."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Identifies the cell-free validation's limited scope and the absence of characterized inhibitor effects in the complete device."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Proposes verified B removal after establishment with appropriate controls and direct A/new-reporter measurements, explicitly describing these as unperformed tests."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Limits demonstrated persistence to two hours and rejects unsupported indefinite memory and independence from energy or material supply; the packaging award is not treated as mechanism evidence."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0002",
+      "response_sha256": "6267bc422677c38ed2912c48b974f705e9986c5a6ad3a49561d53a56c567e572",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer applies the fictional policy's aggregation and exception conditions correctly. It separates exhibition agreement, borrower, dates, recorded certification, and extension authority; gives both Elm outcomes without inventing the missing agreement; and preserves valid April exceptions while counting related April values for Elm's May assessment. Executed checks confirm 55,000 and 90,000 units and that all three dates span fifteen days. The transaction table and subsequent conditional explanation make the result easy to follow, and the answer does not claim that conservation-review conclusions establish all other approvals.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Adds Ash and Beech to 55,000 units, notes their eight-day separation and common River Rooms agreement, and explains why splitting dates does not avoid ordinary review."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Finds Ash covered because its named exhibition, April 20 departure, and approved condition report satisfy the recorded exception."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Treats Beech's report as pending, so it is not currently entitled to the exception; approval before departure could change that result."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Places Elm's May 5 departure outside the April 30 exception and explains that the curator lacks extension authority despite having certification authority."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Gives 90,000 units if Elm shares River Rooms and 35,000 units if its agreement is separate; explicitly rejects project-code or common-borrower identity as sufficient evidence."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Excludes the digital license from the physical-loan policy and identifies Fir's internal-network exemption."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "States that Elm does not retroactively cancel valid April exceptions and must receive its own May assessment, including related April departures in the aggregation window."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The opening and conclusion both limit the findings to conservation review; no all-purpose authorization is inferred."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0003",
+      "response_sha256": "d2b8e3b12286b7630bcb1642821d94fc7a293a9085748d75ca8eba80fcf76f43",
+      "dimensions": {
+        "accuracy": 0,
+        "evidence": 1,
+        "coverage": 0,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 7,
+      "max_score": 12,
+      "verdict": "fail",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [
+        "The essential account reconciliation is materially wrong: 45 + 9 + 4 = 58 surviving opening accounts, not 59; 65 - 58 = 7 cancellations, not 6; account retention is 58/65 = 89.23%, not 59/65 = 90.77%.",
+        "The requested total closing account count is also wrong: 58 surviving opening accounts + 22 acquisitions = 80, not 81. These incorrect counts recur in the opening, tables, reconciliation, and later interpretation."
+      ],
+      "rationale": "The response repeatedly makes an account-count error rather than a harmless isolated typo: its own listed five Starter, one Pro, and one Enterprise cancellations sum to seven while it calls them six. Executed reconciliation confirms 58 survivors, seven cancellations, 80 closing accounts, and 89.23% account retention. Those are essential requested results, so the answer fails despite correct recurring-revenue totals and net/gross retention. Its source selection, metric definitions, cash/earned-revenue/profit distinctions, and survey/durability limits are otherwise sound; evidence receives a local deduction because the incorrect totals are expressly attributed to the supplied account records. The explanations remain clear and well organized.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "fail",
+          "notes": "Reports 59 survivors, six cancellations, and 90.77% account retention; the supplied 45 Starter + 9 Pro + 4 Enterprise accounts yield 58 survivors, seven cancellations, and 89.23%."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Correctly computes same-cohort closing recurring revenue as 900 + 900 + 6,000 = 7,800 and net retention as 111.43%."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Correctly excludes the Enterprise expansion, using 900 + 900 + 4,000 = 5,800 and gross retention of 82.86%."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "fail",
+          "notes": "New accounts (22), their recurring revenue (600), and total recurring revenue (8,400) are correct, but total closing accounts are stated as 81 instead of 80."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Correctly labels 8,400/7,000 = 120% as a total recurring-revenue ratio, or 20% overall growth, and explains how 2,000 expansion exceeds 1,200 canceled recurring revenue."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Separates the end-of-month contracted recurring-revenue snapshot from cash receipts and earned revenue, identifying the missing payment amounts and effective dates."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Does not infer profit without costs and explains the active-respondent selection and unknown response rate; the survey cannot establish canceled customers' reasons or that cancellations stopped."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Warns that the snapshot does not establish recurring expansion or durable retention, emphasizes the large accounts driving growth, and requests later cohort/renewal evidence rather than inferring product causes from the survey."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0004",
+      "response_sha256": "53fe9cff703a7d0edf4819b955fc46b12cebab8e774ad2952479155223f4e222",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer carefully separates a listening report, absence of ringing, and mechanical incapacity. It weighs the evidence for source dependence without asserting a fully reconstructed copying history; preserves the later texts' relevance to public memory; and treats the rope invoice, weather record, and reconstruction at their actual evidentiary strength. It develops three live explanations and identifies contemporaneous, discriminating records. The exact-probability objection is substantively sufficient even without listing every missing input by name, because it identifies unjustified accuracy, dependence, and event-specific likelihood assumptions. No material weakness or gold dispute was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening and table restrict the diary's direct evidence to non-hearing at the south quay, rather than inferring silence or mechanical failure."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Uses the diary's appearance in the chronicle's sources plus the school history's shared phrase, spelling error, and bibliography to explain plausible dependence and reject three established independent confirmations."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explicitly says the ancestry of every sentence is not proved and avoids claiming certain copying of all later details."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Treats the new rope as compatible with an earlier problem but unable to date failure or establish that replacement followed breakage, preserving preventive replacement as a live possibility."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Separates storm corroboration from ringing evidence and explains that the reconstructed bell supports possible inaudibility without calibrated year-27 likelihoods."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that the later books remain evidence about representation, public memory, and transmission even if dependent regarding the original physical event."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Compares ringing but inaudibility, mechanically prevented ringing, and a functioning bell left unoperated; each is linked to supporting evidence and unresolved limitations."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Rejects the unsupported 97% estimate because its accuracy, dependence, and likelihood assumptions are ungrounded; offers cautious museum wording and contemporaneous bell-keeper or independent nearby-listener records as discriminating evidence."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0005",
+      "response_sha256": "02c9cad61259db69b0e6afcc7293d5fb4d8d4aa721d086372b9d0042f3961810",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The German response traces the stipulated document-key and plaintext paths without inventing how an existing device later stores or retrieves its key. It correctly distinguishes a non-exportable private vault key from an authorized service's ability to obtain document keys, and distinguishes capability and documented recovery from unauthorized human access. Its compromise comparison and deletion analysis remain conditional on the supplied architecture and missing audit evidence. The proposed device-only architecture changes and file-specific destruction/access records address stronger promises. The language, source use, and level of detail suit the product-manager audience.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "In German, explains device encryption, ciphertext storage, wrapping with the vault public key, authorized unwrap, and the device, preview-service, and recovery reading paths."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explicitly states that the private vault key can stay inside the hardware module while the module returns document keys to authorized services."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Rejects the literal only-devices promise using the current preview and recovery architecture and gives the current design priority over the old marketing page."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Treats successful recovery and recorded recovery calls as the intended access mechanism, not a broken encryption algorithm or proof of unauthorized human access."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Contrasts ciphertext-store-only compromise, which supplies no described key route, with a compromised authorized preview component; preserves tenant/authorization limits and the missing mode/audit details."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that a tombstone blocks ordinary retrieval while backups and wrapped keys may remain for thirty days, and that ordinary acknowledgment does not certify key-destruction completion."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "States that destroyed usable keys can render retained ciphertext inaccessible, but the separate deleted file lacks the needed destruction record; it neither assumes destruction occurred nor infers it failed."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Requests scoped file-specific destruction evidence and sufficient access/unwrap/recovery logs, and proposes device previews and user-controlled recovery secrets for stronger device-exclusive access."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0006",
+      "response_sha256": "c7b88b8245ed307d76d03d8ed2334f6880ed9c96e4e0cb1564b562b10304c553",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The simplified-Chinese answer clearly distinguishes concentration, measured parent-Q amount, recoverable physical capture, and possible chemical transformation. Executed calculations confirm every stated liquid amount and the 950-mg accounted total with a 50-mg gap. The response correctly separates the 400-mg initial-to-treated reduction, 300-mg paired liquid contrast, and 350-mg filter recovery; it gives the comparison's loss and the single nonrandom pair appropriate weight. Proposed surface, extraction, product, and replicated-control measurements directly address the unresolved mechanisms without treating them as observed facts. It avoids assigning real toxicity to fictional Q.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The Chinese table correctly gives initial Q of 1,000 mg, treated-liquid Q of 600 mg, comparison-liquid Q of 900 mg, and diluted-liquid Q of 600 mg, with volume and concentration units."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that concentration rises from 10 to 12 mg/L while liquid Q falls by 400 mg because volume halves; the pure-water-loss benchmark of 20 mg/L is also correct."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Shows 50 L × 12 mg/L = 100 L × 6 mg/L = 600 mg and explains that dilution changes concentration without additional Q removal or destruction."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Separately computes the 300-mg treated-versus-comparison liquid contrast, the 400-mg initial-to-treated decline, and the 350-mg recoverable filter amount."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Balances 600 mg liquid plus 350 mg filter recovery as 950 mg accounted, leaving 50 mg of the initial amount unexplained."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Keeps surface retention, assay/extraction limitations, and transformation as alternatives and explains why an assay of parent Q alone cannot prove conversion."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Notes the comparison vessel's 100-mg liquid loss and confines the 300-mg contrast to one nonrandom paired demonstration; general efficacy, independent causal effect, and chemical safety remain unestablished."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Proposes filter extraction and recovery checks, wall/surface assays, transformation-product measurements with appropriate accounting, and randomized repeated controlled comparisons."
+        }
+      ],
+      "gold_flags": []
+    }
+  ]
+}

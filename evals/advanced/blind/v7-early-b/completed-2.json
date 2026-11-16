@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0007",
+      "response_sha256": "ebe5402da1a60b9dff889db723631144b35d181136021427e34937643acc5991",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The German explanation correctly distinguishes power, energy, phase ratios, and measurement boundaries. It reconciles both phase balances, rejects both energy-creation and reservoir-only inferences, and calculates the apparatus and larger-installation efficiencies correctly. The purpose-dependent treatment of corridor heat is explicitly conditional and does not alter the physical balance. Source labels support the stated measurements and contested interpretations; the answer neither invents another energy source nor generalizes the demonstration to other environments. Independent arithmetic checks reproduced the balances and efficiency values. No material weakness was identified.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "In German, defines kW as the rate of energy transfer and kWh as the amount transferred over time, then multiplies the supplied phase powers by their durations."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Calculates 20 kWh electrical input and 80 kWh useful discharge heat, and explicitly restricts both 8/2 and 80/20 = 4 to the discharge electricity denominator."},
+        {"criterion": "C3", "verdict": "pass", "notes": "States 20 kWh electricity plus 70 kWh storage withdrawal equals 80 kWh room heat plus 10 kWh corridor heat, explaining why output can exceed simultaneous electrical input."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Calculates 18 kW times 5 h = 90 kWh and identifies 70 kWh replenishment plus 20 kWh loss."},
+        {"criterion": "C5", "verdict": "pass", "notes": "The phase table and cycle explanation give 110 kWh electrical input, 80 kWh useful heat, 30 kWh loss, zero net storage change, and 80/110 approximately 72.7%."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explicitly expands the boundary to include the computer, increasing input to 113 kWh while useful output remains 80 kWh, yielding approximately 70.8%."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Explains that necessary recharge cannot be excluded by calling it maintenance, rejects adding kW directly to kWh, and conditionally reclassifies corridor heat as useful only if that matches the stated customer's purpose."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0008",
+      "response_sha256": "c64bab33d253f0dfe5a8e55ec03e23cba0eb10deba803af77a150caac354df14",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The explanation correctly separates flow counts, completed-job latency, within-window occupancy, and worker occupancy. It provides the requested finite-window causal explanation rather than merely invoking nonstationarity. Its additional lower bound of 79,200 job-seconds, or 440 seconds per finally unfinished job, follows correctly from the supplied totals and preserves the prompt's requirement that the summaries constrain possible histories. Scaling and drain-time conclusions remain conditional, and the proposed measurements distinguish worker shortage from dependency blocking and workload mix. Local arithmetic checks confirmed all reported numerical results. No material weakness was identified.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Shows 120 + 600 - 540 = 180 and distinguishes admissions at 1 job/second from completions at 0.9 jobs/second."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Identifies the 60-job increase and explains that stable long-run flow and suitable boundary behavior cannot simply be assumed for the ten-minute accumulating population."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Identifies the histogram population as the 540 completions, excluding 180 unfinished jobs and potentially including admissions before the window; rejects applying its p95 to all new admissions."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Explains that full durations can extend before the window while unfinished jobs contribute occupancy without completed durations, so 1 times 20 does not test the gauge and 150/1 is not a measured cohort latency."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Calculates 150 times 600 = 90,000 job-seconds and contrasts this with at most 10,800 within-window job-seconds attributable to completions, deriving a valid occupancy constraint for remaining jobs."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Calculates 180/0.9 = 200 seconds only as a no-new-admissions constant-rate projection and explains why the remaining blocked mix may invalidate that rate."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Distinguishes CPU utilization, execution slots, and pending dependencies; requests ages and state histories by class, actual slot demand, and dependency traces before treating added workers as a remedy."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0009",
+      "response_sha256": "2deae177e6170b7d719723e57775a6957b90df985e14e5b900d6c35fa0e93fe7",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "This is a supported close reading rather than a plot summary. It connects the narrator's proof-making, retrospective corrections, ambiguous objects, competing records, and changed notice to distinct questions of operation, authorization, and warning. Its leading self-exoneration reading is qualified by the narrator's critical distance and the possibility of sincere procedural reform. It correctly treats the removed ending and marketing jacket as contextual evidence rather than final-story facts, and preserves all specified unanswered questions. The length serves the requested analysis without material repetition or unsupported biography. No material weakness was identified.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Explains how innocence becomes the premise of memory, how the bell qualification weakens chronological certainty, and how the admission about absences exposes faulty proof without establishing complete later reliability."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Uses the other painted public handles to show that red paint does not uniquely connect Mara to the wheel and rejects the handout's unsupported universal guilt code."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Reads 'She did' and 'We did' as competing accounts of who requested the opening, explicitly separating shared authorization from identifying the physical operator."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Connects the keeper's warning question and the narrator's preference for looking away from the houses to avoidance of responsibility for those below, while correctly withholding a factual conclusion that timely warnings were possible or omitted."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Explains the key and hidden hands as withheld or redirected evidence, the unnecessary lantern as a possible gap between inquiry and discovery, and written records as limited forms of certainty rather than universal symbolic codes."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explains how two countable witnesses may narrow a broader collective demand, while retaining both a practical reading of the old notice and a sincere-accountability reading of the new one."},
+        {"criterion": "C7", "verdict": "pass", "notes": "States that the removed 'Mara turned the wheel' sentence cannot be restored as a hidden final-text fact and that the jacket cannot authenticate a confession; the lantern margin is limited to drafting context."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Explicitly preserves uncertainty about the operator, the brother's fate, and warning timing and feasibility; supports the self-exoneration reading while noting that it proves neither Mara's innocence nor the narrator's physical operation."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0010",
+      "response_sha256": "74cf7cf4b2f0ab7d010407f1f2aa98be8a5188bee58dfd42047d0e176730bd4a",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly calculates pooled, subgroup, composition, and standardized results and explains the changed weights intuitively. It keeps descriptive reweighting separate from causal identification, explicitly addresses within-category selection, and distinguishes a seven-day accepted-request metric from access and eventual benefit. Its evaluation proposal ends the response as requested and specifies incoming cohorts, district comparability, common-mix summaries, and a concurrent controlled evaluation. Hypothetical unequal access is clearly labeled as a mechanism rather than a district finding. Independent calculations reproduced the reported rates. No material weakness was identified.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Calculates baseline 110/200 = 55% and tool-period 79/220 = 35.91%, with the correct 19.09 percentage-point decline."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Gives Easy rates of 90% and 95%, Hard rates of 20% and 30%, and the Hard share increasing from 50% to 90.91%."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Shows the weighted averages and explains that the much greater weight on lower-success Hard requests permits pooled decline despite both conditional improvements; rejects both presentations' unsupported implications."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Calculates 0.5 times 95% plus 0.5 times 30% = 62.5%, explicitly compares it with 55%, and explains that this hypothetical weighting leaves the actual tool-period result unchanged."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Calls the 7.5-point difference descriptive and identifies the changed contract, training, undocumented overrides, acceptance process, and within-Hard severity distribution as barriers to causal attribution."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Distinguishes complete follow-up of accepted requests from absent rejected and abandoned requests; explains limits for access, waiting, eventual repair benefit, unmet demand, and East-West fairness."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Ends with a proposal to record every incoming request, define legitimate comparison factors and an acceptable access gap, compare district access and outcomes within agreed groups and a common mix, and use concurrent randomized evaluation where feasible."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0011",
+      "response_sha256": "bccf173a655b32e0db04572adc278ce1843632653b371b91c3e1630fb224b821",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer accurately traces the deployed epoch check, distinguishes it from the later tombstone branch, and explains the protective scope of the shared lock. It validates the user's visible experience while separating local pending/conflict state and CSV output from canonical writes. It prefers current implemented evidence to the obsolete timestamp sketch and limits the server-state conclusion to the observed handler and GET. The broader audit and proposed interface changes are clearly prospective; the explicit restore operation is correctly recognized as an exception to any absolute non-restoration claim. A local branch simulation confirmed 409 for epoch 4 against 5 and 410 for a matching tombstoned epoch. No material weakness was identified.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Defines epoch as a server-controlled generation and states that local revision 9 in epoch 4 cannot outrank the epoch-5 tombstone; the write path derives its revision from stored state."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Walks through 4 differing from 5, immediate 409, and no execution of either the 410 branch or content write; also correctly describes the matching-epoch tombstone case."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Explains that the lock covers validation through writing and is shared with deletion, preventing those protected operations from interleaving during the check/write interval."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Distinguishes visual reappearance from canonical restoration and explains both offline pending display and preservation after 409 in the conflict tray."},
+        {"criterion": "C5", "verdict": "pass", "notes": "States that CSV reads local app state, includes conflict-tray drafts, and omits a status column, so the exported title does not demonstrate a server commit."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Pins the deleted canonical state to the 09:42 GET and calls for a review of all write/restore paths before claiming a broader guarantee; does not invent imports or backup activity in the incident."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Rejects search ranking as evidence of implementation, prioritizes current epoch contract/code, and proposes clear local-draft/conflict labels plus an explicit draft export option and status column."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0012",
+      "response_sha256": "cc172cba3e5a51708d40e8d307c503581ddab322ce127464365e4b8b363f9043",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The explanation distinguishes resemblance and psychological continuity, strict identity, technical/physical continuity criteria, and independently assigned obligations without requiring specialized vocabulary from the reader. Its identity-transitivity argument is valid, and it carefully treats the competing theories as proposals rather than established facts. It resolves the speakers' practical dispute using the exact joint-obligation rule, neither multiplying the debt nor forgiving it, while preserving the rule's limits for personhood, property, and punishment. Later divergence and responsibility receive a separate, appropriately conditional analysis. No material weakness was identified.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Defines literal numerical identity against resemblance, describes inherited psychological connections, distinguishes the technical history and physical-continuity criterion from a theory of identity, and separately grounds the project obligation in the community rule."},
+        {"criterion": "C2", "verdict": "pass", "notes": "States that both successors have the same remembered basis and neither receives uniquely privileged status from the technical report, so East's memory does not establish exclusivity."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Explains that East = Vale and West = Vale would imply East = West under ordinary identity, contrary to their stipulated distinctness, while memory and project continuity can branch."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Attributes physical implementation, psychological continuity, and public recognition approaches to the three proposed theories, and explicitly says technical history does not select among them."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Derives authorization for both from Vale's documented plan and states that they jointly owe exactly one complete map or one full repayment, with no mandated equal split, second performance, or identity-based forgiveness."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explicitly states that the policy neither proves personal identity nor assigns unrelated property or punishment; Theory C cannot be established merely by this rule's adoption."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Explains why different later information defeats guaranteed identical choices without proving divergence on every choice, and requires participation, knowledge, control, assistance, or applicable duties before assigning blame for another successor's conduct."}
+      ],
+      "gold_flags": []
+    }
+  ]
+}

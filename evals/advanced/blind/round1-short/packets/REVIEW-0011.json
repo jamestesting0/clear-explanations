@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "review_id": "REVIEW-0011",
+  "case_id": "N06",
+  "case_sha256": "65e0b4de5f40c4e8bb98fb9f27d6510e3dedaca4abcd9ad9d913dd4b8f460734",
+  "prompt": "I am lost. You wrote: \"A confidence interval is not the probability that the fixed parameter lies in the realized interval.\" Explain that again.",
+  "constraints": {},
+  "response": "The confusing part is that **“95%” describes how reliably the method works across repeated samples**.\n\nImagine a batch of 10,000 packages. Their true average weight is one particular number, but you do not know it. You weigh a random sample and calculate a confidence interval—say, **98–102 grams**.\n\nNow imagine repeating the sampling process many times:\n\n- Each new sample gives you a new range.\n- The batch’s true average stays the same.\n- With a valid 95% confidence method, about 95% of those ranges would contain that true average.\n\nSo the **ranges change; the number they are trying to capture stays put**.\n\nFor your particular range, 98–102 grams, the true average either falls inside it or does not. You remain uncertain which. But the 95% guarantee describes the method’s success rate across repeated samples; it does not assign a 95% probability to this particular range containing the average.\n\nYou can read “95% confident” as: **“I used a method that produces ranges containing the true value 95% of the time, when its assumptions hold.”**\n",
+  "response_sha256": "5c090327993a6a9d336a146b69e6fd9e0d53769012dd667d5a6adab7662a6754"
+}

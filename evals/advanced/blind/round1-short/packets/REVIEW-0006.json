@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "review_id": "REVIEW-0006",
+  "case_id": "N03",
+  "case_sha256": "1ca95c3e40b102cfd5e9dc2db19c25a513235c6e6c767047652cc7aebe29e72c",
+  "prompt": "Is JWT a replacement for OAuth? Explain the difference.",
+  "constraints": {},
+  "response": "**JWT is not a replacement for OAuth.** JWT describes a token's format; OAuth describes how an application obtains and uses permission to access a service. They can work together.\n\n| | JWT | OAuth 2.0 |\n| --- | --- | --- |\n| What it is | A format called JSON Web Token | A framework for granting limited access |\n| What it defines | How to package statements such as who issued a token and when it expires | How an application obtains and uses access tokens |\n| What it doesn't require | Using OAuth | Using JWTs |\n\nFor example, suppose a scheduling app needs permission to read your calendar:\n\n1. Through an OAuth flow, the calendar service lets you authorize that access without giving the scheduling app your password.\n2. The app receives an **access token**, a credential it presents when requesting calendar data.\n3. That token might be a JWT containing information the calendar service can validate. It could also be an **opaque token**: a string whose meaning the service looks up.\n\nJWTs are often signed, allowing a recipient to verify who signed the contents and that they haven't changed. Signing does **not** hide the contents; encryption is separate.\n\nChoosing JWT as your token format still leaves you needing rules for requesting permission, issuing tokens, and checking access. OAuth supplies a framework for those interactions.\n",
+  "response_sha256": "fa758761aef28f576f08f3750a48930e040e76527b44a67adc79bcc803ca6a5e"
+}

@@ -2,7 +2,7 @@
 
 An agent skill for explaining code, concepts, and ideas in plain language while preserving the details that matter. It guides an assistant to answer the question first, define unfamiliar terms where they appear, and use a concrete example when it makes the explanation easier to follow.
 
-The skill's name is **`explain-clearly`**. Its complete, canonical instructions are in [`SKILL.md`](SKILL.md), with no runtime dependencies. You can read the whole skill before installing it.
+The skill's name is **`explain-clearly`**. [`SKILL.md`](SKILL.md) is the entry point, with three optional Markdown guides for difficult questions. The runtime bundle has no code dependencies and can be inspected before installation.
 
 ## Install
 
@@ -24,10 +24,9 @@ The current installer requires **Node.js 22.20 or newer**. The skill itself is M
 
 ## Example
 
-This natural-language request is scenario N04 from the recorded evaluation:
+This natural-language request is N04 from the recorded evaluation:
 
-> Why does this JavaScript print what it does?
-
+Why does this JavaScript print what it does?
 ```javascript
 function choose() {
   try { return "first"; }
@@ -36,7 +35,7 @@ function choose() {
 console.log(choose());
 ```
 
-**Excerpt from the recorded v4 answer:**
+**Recorded v7 answer:**
 
 > It prints:
 >
@@ -44,17 +43,17 @@ console.log(choose());
 > second
 > ```
 >
-> The `return` inside `finally` **replaces the return that was about to leave `try`**.
+> The `finally` block runs **before the function finishes returning**, even when the `try` block has reached a `return`.
 >
-> 1. `try` evaluates `return "first"`, preparing to return `"first"`.
-> 2. Before the function exits, it must run the `finally` block.
-> 3. `finally` executes `return "second"`, which replaces the pending return. The caller therefore receives `"second"`.
+> 1. `return "first"` prepares to return `"first"`.
+> 2. Before that return completes, JavaScript runs `finally`.
+> 3. `return "second"` replaces the pending return, so `choose()` returns `"second"`.
 >
-> `console.log` prints the value returned by `choose()`, so it prints `second`.
+> Then `console.log` prints that single returned value. `"first"` never reaches it.
 >
-> If `finally` finished normally, without its own `return` or `throw`, the pending return of `"first"` would take effect. Merely entering `finally` does not erase that return; the new `return` does.
+> If `finally` finished normally—without its own `return` or a thrown error—the original `"first"` return would continue.
 
-See the [complete recorded example](evals/examples/N04.md), including its review. This illustrates one response; outputs vary with the model, surrounding instructions, and available context.
+See the [complete recorded example](evals/advanced/examples/N04.md), including its review. Outputs vary with the model, instructions, and available context.
 
 ## When to use it
 
@@ -76,13 +75,30 @@ The skill is scoped to explanation requests. Implementation-only tasks and ordin
 
 Explicit requests for length, language, format, and depth take precedence over the skill's defaults. Its final check asks the agent to verify examples and remove repetition while preserving conditions and uncertainty.
 
+### Optional reference guides
+
+| Guide | What it adds |
+| --- | --- |
+| [Evidence and sources](references/evidence-and-sources.md) | Match claims to applicable evidence, resolve version or scope conflicts, distinguish inference from observation, and cite the support actually available. |
+| [Explanation patterns](references/explanation-patterns.md) | Handle long requests, code state changes, quantitative reasoning, mechanisms, interpretations, and decisions without losing essential connections. |
+| [Worked examples](references/worked-examples.md) | Six original examples showing useful code traces, numerical comparisons, source reconciliation, uncertainty, interpretation, and a one-sentence answer. |
+
+The core tells the agent when each guide is useful. Simple questions can use the core alone. Writing references support the skill's design; facts in an explanation still need evidence appropriate to the user's question.
+
 ## Evaluation
 
-The [recorded evaluation](evals/REPORT.md) includes **194 actual responses across 46 distinct scenarios**, spanning code, mathematics, science, everyday decisions, and English, Chinese, and German requests. Final v4 responses passed the project's rubric on **46/46 scenarios**. The harness has **20 separate synthetic checks** for transport and integrity.
+The [expanded benchmark](evals/advanced/REPORT.md) adds **60 long, tricky prompts** averaging **545 whitespace tokens**—about **11.3 times** the previous suite's mean length—and **six known short-question checks**. Four recorded versions produced **225 actual responses**, each independently reviewed.
 
-Reviews were performed by models. The final scenarios are regression cases after development; these results do not establish general superiority, performance on unseen tasks, or measured human comprehension gains. The [report](evals/REPORT.md) describes the method and limitations. The [evidence summary](evals/evidence.json) and [complete responses and reviews](evals/results.jsonl) make the results inspectable.
+| Version | Long prompts passed | Short prompts passed | Outcome |
+| --- | ---: | ---: | --- |
+| Previous v4 | 60/60 | 6/6 | Strong baseline |
+| Expanded v5 | 59/60 | 6/6 | One partial: unsupported negative claim |
+| Revised v6 | 26/27 generated | Not generated | Stopped after one arithmetic failure |
+| Final v7 | 60/60 | 6/6 | Complete retrospective retest |
 
-To run your own evaluation, follow the [evaluation guide](evals/README.md). The optional harness uses the Python standard library and requires Python 3.10 or newer.
+Two design-review rounds, additional revision reviews, and independent answer audits informed the changes. Failed answers and conflicting reviews remain public. **All final v7 cases are retrospective**, and v6 has incomplete coverage. The baseline already passed the long suite; model review does not establish universal superiority or measured human comprehension.
+
+The harness has **81 separate synthetic software tests**. Browse the [case catalogue](evals/advanced/CASES.md), [exact evidence](evals/advanced/evidence.json), and [evaluation guide](evals/README.md). The earlier [194-response study across 46 scenarios](evals/REPORT.md) remains intact. Optional tools use the Python standard library and require Python 3.10+.
 
 ## Contributing and support
 

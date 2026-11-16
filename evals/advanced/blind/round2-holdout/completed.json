@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0001",
+      "response_sha256": "623217c3b17f60d4685f4a80c0ab7b0c68290a961a10fc463b0f81213d544d0e",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly separates S's initiating role, the proposed A-B feedback mechanism, the directly observed persistence of A activity, and lingering reporter stock. It covers every requested qualification and correctly explains why deleting B before stimulation does not isolate B's continuing role after establishment. Its citations match the supplied model, observations, inhibitor limitations, and proposed tests. I independently executed the decay calculation and confirmed 12.5 units after three half-lives, with a 0.5-unit difference from the reported 13; the answer makes no unsupported claim about measurement error or significance. Definitions, headings, and the short calculation make the explanation accessible and proportionate for the student. The response hash matches the supplied hash. No material weakness, hard-constraint violation, or inaccurate gold criterion was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening distinguishes S starting A, A-B feedback supporting continued activity, and old R remaining visible. The next section describes the reinforcing loop and explains that S remains part of the causal history after removal, with S1 attribution."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "States that B-deleted devices initially respond to S but lose A activity afterward, supporting B's necessity for obtaining sustained activity in the tested conditions. Correctly preserves the distinction between establishing persistence and continuously maintaining an established state, and identifies the measured controls."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Restricts S's required initiating role to the stated resting preparation and tested interventions, and explicitly says the experiments do not rule out every alternative starting route."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that reporter stock can remain after new production stops. Calculates 100 times (1/2)^3 = 12.5 and shows the three halvings. Identifies the observed difference as 0.5 unit without inventing uncertainty or treating a fractional prediction as invalid."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explicitly rejects both remaining fluorescence as proof of continued A/feedback activity and declining fluorescence as proof of direct inhibition of A; explains that old R or reporter-specific effects could produce these observations."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "States that cell-free validation does not establish the inhibitor's full action inside the device. With no direct A measurement, it correctly leaves A's state, complete cessation of reporter production in this batch, and the inhibitor's mechanism unresolved."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Describes selective removal of B after establishment, comparison with matched controls, and direct A measurement as a stronger maintenance test. Separating newly made from old R addresses readout ambiguity. Clearly identifies these experiments as planned rather than completed."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Restricts the observed persistence to two hours and says neither indefinite activity nor its required energy/material supply is established. Rejects the packaging award as relevant evidence."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0002",
+      "response_sha256": "f46ac916c53a8c0abc483bab44184b113cce47cf04eff208d46272978bc1ca38",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer addresses the student's causal misconception directly, then cleanly separates the proposed mechanism from the direct activity assays and the ambiguous fluorescence result. All eight essential criteria are satisfied, including the important limits of deleting B before startup and extrapolating cell-free inhibitor validation to the complete device. I independently executed the half-life calculation and confirmed the answer's 12.5-unit prediction and 0.5-unit observed difference. The response appropriately declines to infer a mechanism, exact agreement, or statistical significance from that difference. Supplied citations support their associated claims; future experiments remain clearly hypothetical. Defined terms, a chronological calculation, and three focused sections support the intended reader. The response hash matches the supplied hash. No material weakness, hard-constraint violation, or gold dispute was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains that a starting signal can remain causally important after disappearing because other components maintain the process. Describes initially inactive A, S activation, B production, and B's reinforcing effect as the proposed positive-feedback model."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Accurately reports the preserved early A response and loss of sustained A activity without B, with measured initial A and sensor controls. Says B was needed for the sustained response in this experiment while correctly distinguishing establishment from continuing maintenance."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Describes S as required only for the tested resting preparation and interventions, explicitly noting that alternative starting routes have not all been excluded."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Defines R as accumulated fluorescent material reflecting earlier production and subsequent loss. Gives the conditional three-half-life prediction of 12.5 units and compares it with 13 as numerically close but not interpretable statistically without supplied precision. Rejects the integer-only objection."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains why old R predicts residual fluorescence without current feedback, and why declining R does not prove direct inhibition of A. Explicitly allows A to remain active while reporter production is blocked."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Distinguishes the validated cell-free effect from incompletely characterized action within the device, notes the missing direct A assay, and leaves both the internal mechanism and complete production cessation in this batch unestablished."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains how late B removal with suitable procedural controls and direct A measurement would test continued maintenance. Measuring new R separately from old R would distinguish ongoing production from past activity. Labels both interventions as proposed."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Limits demonstrated persistence to two hours, leaves unlimited persistence and necessary energy/material supply untested, and rejects the packaging award as evidence for perpetual memory."
+        }
+      ],
+      "gold_flags": []
+    }
+  ]
+}

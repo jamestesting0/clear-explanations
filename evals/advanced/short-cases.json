@@ -1,0 +1,44 @@
+[
+  {
+    "id": "N01",
+    "split": "development",
+    "category": "natural_dependency_injection",
+    "prompt": "I know basic Java but not Spring. What does dependency injection actually mean?",
+    "constraints": {}
+  },
+  {
+    "id": "N02",
+    "split": "development",
+    "category": "natural_entropy_weights",
+    "prompt": "I do not understand entropy weights: why do you multiply each group's entropy by its fraction of the original examples?",
+    "constraints": {}
+  },
+  {
+    "id": "N03",
+    "split": "development",
+    "category": "natural_oauth_jwt",
+    "prompt": "Is JWT a replacement for OAuth? Explain the difference.",
+    "constraints": {}
+  },
+  {
+    "id": "N04",
+    "split": "development",
+    "category": "natural_finally_control_flow",
+    "prompt": "Why does this JavaScript print what it does?\n```javascript\nfunction choose() {\n  try { return \"first\"; }\n  finally { return \"second\"; }\n}\nconsole.log(choose());\n```",
+    "constraints": {}
+  },
+  {
+    "id": "N05",
+    "split": "development",
+    "category": "natural_opportunity_cost",
+    "prompt": "What is an opportunity cost? I keep thinking it is money I already spent.",
+    "constraints": {}
+  },
+  {
+    "id": "N06",
+    "split": "development",
+    "category": "natural_explanation_repair",
+    "prompt": "I am lost. You wrote: \"A confidence interval is not the probability that the fixed parameter lies in the realized interval.\" Explain that again.",
+    "constraints": {}
+  }
+]

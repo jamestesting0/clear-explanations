@@ -1,0 +1,616 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0011",
+      "response_sha256": "0a2c97f0f1bf3ca4625939e1d2b6d3d59457356656e5eee527c5943eca1f9e18",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "A complete Spanish explanation follows the provider contract, correctly reconciles two external charges with one local row, and distinguishes all three proposals and their crash windows. The recovery procedure makes the durable intent, stable payload, commit, and acknowledgement order concrete. Its qualifications about retention, requests in transit, human recovery, and eventual availability keep the guarantee at the strength supported by the packet. The detail directly serves the requested failure analysis; no material weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Traces C501 surviving the failed local transaction, attempt-2 creating C502, and 1,400 cents charged while the sole completed orders row identifies C502."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that order_id uniqueness governs committed local rows and cannot undo or exclude separate provider charges; also covers concurrent workers charging before one local write loses."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Identifies a crash after committing completed but before the provider call as leaving a completed order without a charge, and separately explains that an uncommitted early status write retains the original failure window."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Persists one order intent with merchant, stable key, amount, and reference; requires concurrent workers and human recovery to reuse the same request during a conservatively bounded retention interval."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Defines pending as incomplete local knowledge, including not sent, in flight, accepted with lost response, or locally unrecorded success. The recovery procedure repeats the stable request, stores its result, commits completed, and only then acknowledges the queue."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explicitly cites the five-second visibility lag and nonunique reference, and explains why even a later empty search cannot exclude a still-in-flight request."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "States that the same key can charge again after expiration, and that refusing uncertain old work preserves only some safety while potentially sacrificing eventual completion."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Offers permanent operation identity/deduplication or an atomic unique provider reference, and separately describes bounded recovery including delayed requests and human actions as a restriction that changes the original requirement."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0012",
+      "response_sha256": "eac9dc66586d50607c2287171c2ae91dc93e4f65e09f713426317cddde064acf",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response accurately explains the incident and every proposed repair in Spanish, with source labels attached to the relevant fictional contract and trace. Its concrete stable-key recovery flow distinguishes local knowledge from an external effect and handles both lost responses and lost acknowledgements. It explicitly limits the 24-hour guarantee and offers an adequate permanent provider capability or narrower operational requirement. No missing essential or material error was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Correctly describes C501 remaining after the worker crash, the new attempt-2 key creating C502, and one committed row naming C502 despite total charges of 1,400 cents."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Clarifies that local uniqueness constrains local rows rather than provider operations; the proposal table also explains how two concurrent workers can charge before only one row commits."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Describes completed-before-call as vulnerable to a crash that leaves no charge and causes later deliveries to skip the order; also covers the variant where the early status write is not yet committed."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Specifies a durable pending row containing merchant, order-derived stable key, amount, and reference, reused by all workers and manual recoveries with unchanged payload."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains pending as an unresolved local result, including a still-travelling or already successful call, then orders stable request recovery, local result commit, and queue acknowledgement so later redelivery can safely read completed."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Uses the trace-specific four-second gap to show that C501 can be absent from search, explicitly notes nonunique references, and identifies the remaining in-flight request uncertainty after visibility catches up."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Limits duplicate exclusion to the first-success retention period and correctly identifies old unresolved pending orders as ambiguous after expiry; a known completed row may still safely suppress a late delivery."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Proposes permanent idempotency or an atomic permanent merchant/order uniqueness rule, and explains that guaranteed timely recovery with controls on delayed and human requests narrows the requested guarantee."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0013",
+      "response_sha256": "48f175e1706061b79d454e169dd7165fc37db57ed03065676b4596457a0267f1",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response correctly traces token-only behavior and supplies an atomic token-then-sequence repair with explicit duplicate and conflict semantics. It usefully distinguishes storage having observed a higher token from the lock service merely granting it, and distinguishes stale-command rejection from retaining historical successful responses. Durability, all write paths, and progress limitations are explained without assuming an unstated lease check. No material weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The arrival table accepts 1, 2, and 4, rejects 3, and ends with max_token 42 and value 7."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "States that lease expiration changes entitlement but does not retract messages already sent, and explains the pause/delay interval after a pre-send check."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Bases the result on the supplied atomic storage token check and emphasizes that old generations are rejected only after storage has remembered a higher token."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Distinguishes arrival 4 from an old-leader write: equal token 42 passes while the ignored sequence allows sequence 1 to overwrite sequence 2."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Defines revision as (token, sequence), compares token first and sequence second, and makes comparison plus value/revision mutation indivisible; the repaired trace ends at value 8."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "For an equal revision, identical content returns an already-applied/no-change result, whereas differing content is a conflict. Older applied retries cause no new change; historical result replay is separately identified as requiring durable history."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Places revision with durable authoritative state across restarts, failover, replicas, and every write path, and explains why client clocks or pre-send lease checks cannot control delayed application."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Rejects the equal-token-only proposal because a leader needs multiple updates, and explicitly denies guarantees of every command or response being delivered or of progress during a prolonged partition."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0014",
+      "response_sha256": "33f1004aecb3b47a383c2851175bebeff9f68570e6054937f9e31f525278fb89",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer applies the exact storage rule to every arrival, separates cross-generation fencing from within-generation reordering, and presents a correct atomic lexicographic acceptance rule. Its explanations of duplicate versus conflicting command identities and historical superseded retries match the business requirement. The authority, durability, lease-observation boundary, and partition limits are all addressed clearly and proportionately.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Lists the current decisions as accept, accept, reject, accept and shows the final state as token 42, value 7."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains how a validly sent message from A remains in transit beyond lease expiration, consistent with nonoverlapping grants."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Ties the ordering protection to the storage-side comparison and later explicitly notes that granting token 42 does not itself make storage reject token 41 before the higher token is observed."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that arrival 4 passes the equality check although B sequence 1 is older than B sequence 2."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Compares (token, sequence) in the required order and makes the decision and update one atomic storage operation, yielding final revision (42,2) and value 8."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The rule returns already applied for an identical equal revision and rejects differing payloads as conflicting reuse without mutation; it separately handles historical retries as superseded without a new business change."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Requires the revision to be durable alongside the authoritative value and preserved across all write paths and failover, and explains the failure of client-side state or time checks."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains why rejecting every equal token prohibits legitimate successive commands, and states that the correction cannot ensure delivery, responses, or useful progress through a long partition."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0015",
+      "response_sha256": "e57ea4c69daa257dbb9778a039c35795c95ae99ec1570c11378e0b194516e681",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The eight-step trace exactly follows the stipulated acceptance-before-update, idle, monotonic watermark, emission, and purge rules. The downstream proposal supplies sufficient durable identity and atomic version semantics to handle both redelivery and out-of-order replacements. The answer clearly distinguishes finality under the retention policy from physical completeness, and its explanations of the threshold steps add causal context to the table. No material weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The table gives post-step watermarks -10, 10, 40, 65, 65, 70, 90, and 90 in the requested order."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Shows total 12 first emitted at step 4, when proposals 70 and 65 give watermark 65 and cross the initial threshold of 60."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains that step 5 is judged at the existing watermark 65, remains below cutoff 80, and immediately emits replacement total 15."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Shows p1 idle removing its 65 proposal, advancing the watermark to 70 at step 6; the step-7 heartbeat then raises it to 90 and permanently deletes state without another output."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Drops and counts the step-8 record at the existing watermark 90; p1 reactivates with maximum 75 but cannot lower the watermark or restore the window, so amount 4 is excluded."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Identifies 12 + 15 = 27 as double-counting complete replacements and specifies a per-window atomic newer-version replacement; also explains safe grand-total delta maintenance."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Uses stable (window, version) identity across redelivery/recovery, newer revision acceptance, older revision rejection, same-version duplicate no-op, and conflict treatment for changed content; requires retained consumer version knowledge."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains that the first emission remains revisable and deletion is a policy boundary trading very late data for progress and released state, not proof of physical-world completeness or a consequence of wall-clock time."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0016",
+      "response_sha256": "f9ede285c942be727512feb5b75d126ebef3362069be3d65676e9531c120190d",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response gets every watermark, emission, state transition, and drop correct and anchors the boundary behavior to the supplied protocol. Its versioned replacement contract covers duplicate and stale delivery without confusing an emission with an increment. The distinction between a preliminary result, deletion under policy, and unknown future physical events is clear. All requested essentials are satisfied.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The trace lists the exact watermark sequence -10, 10, 40, 65, 65, 70, 90, 90."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Places the initial total 12 at step 4 when the watermark first reaches 65, with state retained."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains why being older than the watermark does not itself reject step 5: existing watermark 65 is below the stated cutoff, so amount 3 is accepted and total 15 replaces 12."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains p1 exclusion raising the watermark to 70 and the following p0 heartbeat raising it to 90, deleting the window permanently at step 7."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Shows step 8 dropped and counted, p1 maximum remaining 75 after reactivation, and monotonicity preserving watermark 90 so amount 4 never enters an emitted total."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Computes the erroneous downstream sum 27 versus accepted total 15 and replaces addition with atomic per-window revision comparison and stored-total replacement."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Distinguishes revision-1 redelivery from revision-2 correction, preserves producer identity across recovery, ignores older updates, no-ops identical equal revisions, and treats changed equal-revision contents as conflict."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains the storage/progress versus late-data tradeoff, says initial emission is preliminary, and explicitly limits deletion finality to the acceptance policy rather than a physical completeness claim."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0017",
+      "response_sha256": "8fecb6854398126b89aa774ebf051c864ad736cc2f678adc21c59022cd3cc904",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response calculates all requested posteriors and expected counts correctly and identifies the memo error numerically rather than relying on a generic warning about correlation. It conditions B on the selected A-positive group, explains odds versus probability, and uses the full-label validation assumption appropriately. The inspection illustration is explicitly hypothetical, with required costs, capacity, and transfer conditions left open. No material weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Computes expected doubly positive counts as 200 times 0.72 = 144 defective and 9,800 times 0.04 = 392 nondefective, totaling 536."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Gives 144/536 and the equivalent base-rate expression, approximately 26.87%, for the doubly positive posterior."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Computes A-positive posterior 180/1,160 = 15.52% and A-positive/B-negative posterior 36/624 = 5.77%."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Shows the unsupported 0.10 times 0.05 = 0.005 joint false-positive rate predicts only 49 false positives and produces 144/(144+49) = 74.61%, instead of using the supplied 0.04."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Derives B conditional rates 0.72/0.90 = 0.80 and 0.04/0.10 = 0.40, so its added positive likelihood ratio is 2; explains why marginal 16 is inapplicable after A selection."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Rejects the no-extra-information claim using the changed positive and negative posteriors and explains that correlated evidence can still update the odds."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explicitly calls the shipment counts expectations rather than promises about a realized random shipment, while respecting the stipulated exact probability rates."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Lists missing decision costs, inspection effectiveness, severity, and capacity; treats a cost threshold as illustrative assumptions and requires updating the base rate or revalidating the joint conditional table when population or operating conditions change."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0018",
+      "response_sha256": "5c7dad9041e71eb3bee469a57065af10694864967f4d3dd21790877aabd57bfa",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer supplies correct arithmetic for every requested comparison, including the conditional likelihood ratio and the memo incorrect denominator. It clearly defines odds and the selected-subset reasoning for management, while rejecting both exaggerated confirmation and no-information claims. The recommendation distinguishes probability estimation from an inspection policy and states applicable population and validation assumptions. Rounded percentages remain faithful to the exact supplied ratios.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Calculates 144 expected defective and 392 expected nondefective doubly positive parts, with denominator 536 shown in the table."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Gives 144/536 approximately 26.9%, which is the appropriately rounded 26.87% result."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Shows 180/1,160 approximately 15.5% after A and 36/624 approximately 5.77% for A-positive/B-negative."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Identifies the memo assumption 0.005 instead of the supplied 0.04, derives 49 rather than 392 nondefective double positives, and shows the resulting incorrect 74.6% posterior."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Computes within-A-positive B rates 80% and 40% from the joint table and their likelihood ratio 2, explicitly distinguishing that from the unconditioned ratio 16."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Says B separates the A-positive group into 26.9% and 5.77% defect probabilities, directly demonstrating that correlation does not eliminate all additional information."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Identifies the shipment counts as expectations, not guarantees, before applying the table."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Calls for missed-defect losses, inspection burden/accuracy/action, and capacity; the threshold example is conditional, and transfer requires an updated prevalence and representative joint conditional behavior with reliable labels."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0019",
+      "response_sha256": "11014f53519ee6fc9f79e1b4cfd104d363d5440cbe4d8d9e14ec090450d2bf95",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All raw, stratum-specific, standardized, and supplementary calculations are correct. The explanation separates differing case-mix weights from the unresolved urgency and staffing selection, evaluates all three claims, and explicitly rejects individual guarantees from average rates. Its design discussion distinguishes the effect of a feasible workflow-plus-staffing package from the workflow component and observational adjustment. The additional arithmetic decomposition is relevant and clearly labeled descriptive.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Calculates old 150/200 = 75% and new 90/200 = 45%, with new-minus-old -30 percentage points."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Gives easy rates 80% and 90% and hard rates 30% and 40%, both new-minus-old +10 percentage points."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains the actual weights as old 90% easy and new 90% hard, and shows how the lower hard-case rates cause the aggregate reversal despite both within-group advantages."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Uses common 0.50/0.50 weights to calculate old 55% and new 65%, describing the corresponding equal-complexity target population."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Uses common 0.20/0.80 weights for the expected next-quarter mix and calculates old 40% and new 50%."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Defines standardization as summarizing observed group rates under a chosen target mix, denies it proves a future intervention result or individual benefit, and explains the four-cell 60% average as a different combined summary."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Uses the supplied urgency routing and exclusive specialist pairing to explain residual confounding; explicitly says pre-assignment complexity alone does not capture all common causes of assignment and outcome."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Proposes randomization within complexity, relevant baseline measurements, and designs crossing workflow with staff/specialist involvement; distinguishes package effects, workflow effects, and the assumptions still needed for observational comparisons."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0020",
+      "response_sha256": "f0ec3ad0a1e3e96de9d603aab21621d1ac763f0d7545f0a6a5f8268b10c1eb77",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response correctly derives and explains every required rate, weighting scheme, and comparison. It critiques the director, implementation lead, and unqualified averaging suggestion without dismissing valid descriptive uses. Causal and individual-effect limitations are grounded in the actual routing and staffing facts, and the proposed evidence distinguishes the decision-relevant service package from the workflow-only question. No material omission or error was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Shows the raw rates 75% old and 45% new and explicitly calculates the -30-percentage-point difference."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Calculates 80% versus 90% among easy cases and 30% versus 40% among hard cases, giving +10 points in both strata."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Lists old weights 90% easy/10% hard and new weights 10% easy/90% hard, explaining how emphasizing the lower-rate hard group reverses the aggregate comparison."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Calculates equal-complexity standardized rates 55% and 65% with explicit 0.50/0.50 weights and target description."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Calculates next-quarter standardized rates 40% and 50% with explicit 0.20/0.80 weights and the fixed-observed-rate convention."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that chosen weights define descriptive target summaries rather than an established intervention forecast or individual effect, and clarifies the distinct equal-cell and actual pooled weightings that happen to yield 60%."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Identifies unrecorded urgency routing, the specialist exclusive to the new workflow, and possible staff differences as unresolved causal alternatives even within pre-assignment complexity strata."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Recommends randomization within complexity and potentially staff, measurement of baseline routing variables, and independently varying workflow/specialist involvement; explains that a specialist-exclusive trial estimates the combined package rather than the workflow component."
+        }
+      ],
+      "gold_flags": []
+    }
+  ]
+}

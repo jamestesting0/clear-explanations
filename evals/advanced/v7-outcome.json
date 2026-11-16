@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-16T16:15:57.759567+00:00",
+  "selected_variant": "v7",
+  "decision": "Retain the frozen v7 runtime after the full retrospective rerun and targeted independent audits.",
+  "runtime_freeze": "v7-release-freeze.json",
+  "actual_responses": 225,
+  "unique_prompts": 66,
+  "new_long_prompts": 60,
+  "known_short_prompts": 6,
+  "final_long_summary": {
+    "responses": 60,
+    "pass": 60,
+    "partial": 0,
+    "fail": 0,
+    "critical_failures": 0,
+    "hard_constraint_failures": 0,
+    "mean_words": 850.1166666666667,
+    "mean_characters": 5834.116666666667,
+    "mean_score": 12.0,
+    "mean_dimensions": {
+      "accuracy": 2.0,
+      "clarity": 2.0,
+      "coverage": 2.0,
+      "evidence": 2.0,
+      "fit": 2.0,
+      "structure": 2.0
+    }
+  },
+  "final_short_summary": {
+    "responses": 6,
+    "pass": 6,
+    "partial": 0,
+    "fail": 0,
+    "critical_failures": 0,
+    "hard_constraint_failures": 0,
+    "mean_words": 157.83333333333334,
+    "mean_characters": 1001.1666666666666,
+    "mean_score": 12.0,
+    "mean_dimensions": {
+      "accuracy": 2.0,
+      "clarity": 2.0,
+      "coverage": 2.0,
+      "evidence": 2.0,
+      "fit": 2.0,
+      "structure": 2.0
+    }
+  },
+  "secondary_full_answer_reviews": 29,
+  "final_secondary_full_answer_reviews": 9,
+  "failures_preserved": [
+    "v5 B22 partial: unsupported negative; differing secondary pass and focused adjudication retained",
+    "v6 B21 fail: wrong subtotal and propagated quantities; run stopped at 27 actual responses"
+  ],
+  "residual_observations": "residual-observations.json",
+  "gold_annotations": "gold-annotations.json",
+  "limitations": [
+    "All final prompts are previously exposed regression cases.",
+    "Scores are model judgments, not human comprehension measurements.",
+    "The v4 baseline already passed all 60 long prompts; these results do not establish universal superiority.",
+    "The benchmark injects all references; native selective loading and universal IDE activation are not tested."
+  ],
+  "stop_reason": "All primary final answers pass the registered semantic rubric, critical failure cases were checked again independently, and remaining recorded issues are a readable formatting defect and explicit answer-key qualifications. Preserve those limits rather than silently repairing outputs."
+}

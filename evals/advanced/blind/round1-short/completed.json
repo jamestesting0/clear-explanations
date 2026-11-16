@@ -1,0 +1,448 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0001",
+      "response_sha256": "81c4e0a3b58277728c332280fc5aa14dd5314361b32938f1d24b0917818269c6",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer immediately defines dependency injection, then shows a constructor receiving an EmailSender and separate setup code supplying it. The contrast with constructing the sender inside OrderService makes the mechanism clear, and the explanation correctly separates ordinary Java injection from Spring automation. The testing claim is appropriately limited to a replacement compatible with the constructor type. The small illustrative snippets and brief Spring connection fit the stated Java background; no material weakness is present.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening says the object is given the objects it needs instead of creating them itself; the explanation explicitly contrasts a constructor parameter with an internal new EmailSender()."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The Java OrderService constructor, stored sender field, and external new OrderService(sender) call concretely show both receipt and supply of the collaborator."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Dependency is defined as something the object relies on, and injection is explained through receiving and passing that object into the constructor."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0002",
+      "response_sha256": "e62e4765a7d98daac0a004924d68934dc7d07809d98d2ae48272003dc9f0db28",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer explains both words directly and uses a coherent interface-based Java example to show how an externally chosen implementation reaches OrderService. The fake-sender testing example supplies a concrete reason for the separation. Spring and beans are introduced only after the ordinary Java mechanism is clear, and the response explicitly says a framework is unnecessary. The additional interface and method serve the explanation without becoming a code dump.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The answer says objects are supplied with dependencies, then contrasts externally choosing a MessageSender with OrderService constructing its own EmailSender."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The MessageSender interface, OrderService constructor and placeOrder method, and external constructor call form a small, relevant Java example; the omitted EmailSender implementation is explicitly identified."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The first paragraph defines dependencies as the other objects needed to work and injection as supplying them."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0003",
+      "response_sha256": "49eb19dd5b9c19e09c9fdd1a163aa6ca0c9a8b91e35e8abc9a941f3694b5daba",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer ties weights to the probability of encountering a group when selecting an original example and correctly computes the conditional average as 0.1 bits. Its comparison with the unweighted 0.5 shows why equal group weighting answers the wrong averaging question. The final node-denominator qualification is accurate and useful. A single small calculation supports the explanation without unnecessary general formula exposition.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening identifies the target as average remaining uncertainty for an example, then explicitly considers a randomly chosen example."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The response explains that larger groups are more likely to be encountered and gives the 90% versus 10% selection probabilities."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The 90-example pure group and 10-example evenly divided binary group have entropies 0 and 1 bit; 0.9 times 0 plus 0.1 times 1 correctly equals 0.1, while the unweighted average is 0.5."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0004",
+      "response_sha256": "18a85e0a660d13d545eb730e1d93f49d366e9f362a56a7b473279c25cb747413",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The explanation correctly identifies the desired quantity as average uncertainty per example and connects group fractions to random-example probabilities. The two-row table makes the unequal sizes and their weighted contributions easy to compare; its numerical results are correct. The distinction between the current split node and the entire training dataset prevents a denominator misunderstanding. Some ideas are stated both before and after the table, but the second statement explains the sampling reason and does not create a material structure or fit weakness.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The answer calls the result average uncertainty after learning group membership and explains it by randomly selecting one of the original 100 examples."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The 90% and 10% chances explicitly connect group size to frequency and contribution; the unweighted comparison identifies the mistaken equal-group assumption."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The table uses group sizes 90 and 10, entropies 0 and 1 bit, and contributions 0 and 0.1; the stated total 0.1 bits per example is correct and the table remains small."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0005",
+      "response_sha256": "92b2b2e98f971ab4202241b7f3f71fcbed609b765fb6e5d516b7ec6a86bb136a",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response correctly distinguishes OAuth authorization from the JWT representation format and directly answers that JWT does not replace OAuth. The photo-printing example explains delegated access and an access token in ordinary language. It correctly permits either JWT or opaque OAuth tokens and distinguishes signatures from encryption. The brief OpenID Connect context is accurate and proportionate, while the claims remain stable background explanations that do not require a citation under the supplied source policy.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The answer starts with no and defines OAuth as the process/framework for obtaining resource access permission, while JWT is a format carrying information in a token."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It explicitly says an OAuth access token may be a JWT or an opaque token and that OAuth does not require JWTs."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Authorization, access token, JWT contents, opaque token, and the difference between signing and hiding contents are explained through definitions and the photo-app example."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0006",
+      "response_sha256": "fa758761aef28f576f08f3750a48930e040e76527b44a67adc79bcc803ca6a5e",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer gives the correct format-versus-authorization distinction and then makes the relationship concrete with a calendar-permission flow. The compact comparison table serves the requested comparison rather than replacing explanation, and the subsequent steps define access and opaque tokens. It correctly states that signing does not conceal token contents and that choosing JWT leaves the permission and token-handling process to be designed. No material unsupported or erroneous claim is present.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening rejects replacement and describes JWT as a token format and OAuth as a framework for obtaining and using limited access permission."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The table says OAuth does not require JWTs, and the calendar example explains that its access token may instead be opaque."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The response explains limited access through the calendar example, defines an access token as a presented credential, describes opaque-token lookup, and separates signing from encryption."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0007",
+      "response_sha256": "b609a956aa08e242a385581c60b8db838bfdf592494791ee7c811f9ae1dfbf44",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response correctly gives second and traces the pending return through finally before explaining why its second return takes precedence. The numbered sequence clarifies the event order without changing the supplied program. The normal-finally counterfactual and warning about suppressing an exception are accurate. This is a source-based explanation, with no claim that code was actually executed.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The output block contains second, and the final trace step states that console.log prints the value returned by choose()."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The trace explicitly says finally runs before the first return completes and that return second overrides the pending return."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The explanation follows the exact try/finally snippet; the different finally behavior is clearly conditional, and no execution or testing is claimed."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0008",
+      "response_sha256": "24fff246c3c915b4051f9d07ec8d0e9b1b7bfeb11658fea0bd36198f3fd8da56",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The concise answer fully explains the supplied control flow: the first return is pending, finally runs, and its return replaces the pending result. It accurately states the output and distinguishes a normally completed finally block from a return or throw. The warning that a finally return can hide an earlier error is relevant and correct. There is no invented execution claim or omitted causal step.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The output is explicitly shown as second."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The response states that finally runs before function completion and that return second replaces the pending return first."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The original program is explained without alteration; the counterfactual is labeled with if, and the answer makes no claim of actual execution."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0009",
+      "response_sha256": "ed20f3d0e49cef9da647c99cf585e91c349b8cb1b6c3ec0a80ff210e547886bd",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The opening directly corrects the user confusion by distinguishing the best alternative forgone from an irrecoverable prior expense. The movie-ticket example correctly separates the sunk $15 from the $40 shift given up, explicitly conditional on work being the best alternative. The final paragraph extends the concept to non-money values and rejects adding all alternatives together. The response is clear, complete, and proportionate to the short request.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The definition identifies opportunity cost as the value of the best alternative given up by a choice, and the final sentence reinforces that it is not the sum of alternatives."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The opening defines spent, unrecoverable money as a sunk cost; the example explains that the $15 cannot be recovered under either current choice."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The movie-versus-work example gives a concrete $40 opportunity cost, and the final paragraph explicitly includes time, rest, and enjoyment, so the account permits non-money costs."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0010",
+      "response_sha256": "10171241acd70562bc006d9650225043816820fe9c8be372729aaf51bea71d5b",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response accurately distinguishes opportunity and sunk costs and explains why the timing of the present decision matters. Its ticket-versus-shift example correctly identifies the $15 as irrecoverable and the $40 earnings as the value of the specified next-best alternative. Rest and time with friends supply concrete non-money possibilities. The added reflection on the earlier purchase helps resolve the user misconception without unnecessary length.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The first sentence defines the value of the best alternative given up, and the conclusion limits the comparison to the alternative the person would actually choose."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The answer defines sunk cost as already-spent unrecoverable money and explains why the $15 ticket price is unaffected by the current choice."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The ticket and $40 shift give a concrete monetary tradeoff, while giving up rest or time with friends when working supplies concrete non-money alternatives."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0011",
+      "response_sha256": "5c090327993a6a9d336a146b69e6fd9e0d53769012dd667d5a6adab7662a6754",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response replaces the abstract terminology with the average package weight and repeated sample ranges. It correctly keeps the batch average fixed while the sample-dependent ranges change, explains approximate 95% coverage under a valid procedure, and separates uncertainty about one realized interval from the method coverage statement. The use of guarantee is immediately scoped to the repeated-sampling method and qualified by assumptions, so it does not assert an unconditional or interval-specific probability. The compact example and short list are accessible.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Instead of restating fixed parameter and realized interval, the answer uses a batch of packages, an unknown average, and a range of 98 to 102 grams."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The repeated-sampling list says each sample gives a new range but the batch true average stays the same, and the bold sentence restates that relation in plain language."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The answer says a valid 95% method yields ranges containing the true average about 95% of the time over repeated sampling, and its final interpretation explicitly adds when the assumptions hold."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The single concrete example, three short bullets, and ordinary descriptions of ranges explain the distinction without requiring statistical background; the level of detail remains compact."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0012",
+      "response_sha256": "91b6b61904be3d5907dc43b1275b07810782637134259a03f4bce535ed9634c7",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer changes presentation effectively by using two illustrative ranges around a fixed forest average, one containing it and one missing it. This makes the fixed-value versus varying-interval distinction concrete before introducing long-run coverage. It correctly qualifies the 95% statement by the procedure assumptions and does not assign a frequentist probability to the already fixed value from this interval. The closing sentence identifies that a different probabilistic treatment needs additional assumptions. The example and summary are proportionate to a confused beginner, with no material jargon or compression problem.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The response replaces the quoted technical wording with a forest-height example and two explicit possible ranges, illustrating a hit and a miss."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It says the forest average stays the same while different sampled trees change the interval, and later explains that sampling has finished once a particular interval is obtained."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The repeated-sampling statement gives about 95% coverage and explicitly says provided its assumptions hold; the final interpretation again refers to repeated samples."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The short numerical example and ordinary explanations make the concept understandable without statistical prerequisites; the roughly 216-word answer remains compact for repairing the stated confusion."
+        }
+      ],
+      "gold_flags": []
+    }
+  ]
+}

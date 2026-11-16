@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "review_id": "REVIEW-0005",
+  "case_id": "N03",
+  "case_sha256": "1ca95c3e40b102cfd5e9dc2db19c25a513235c6e6c767047652cc7aebe29e72c",
+  "prompt": "Is JWT a replacement for OAuth? Explain the difference.",
+  "constraints": {},
+  "response": "**No. OAuth and JWT do different jobs and can be used together.** OAuth defines how an application obtains permission to access a resource; JWT defines a format for carrying information in a token.\n\n**OAuth 2.0** is an authorization framework: a set of rules for granting access. For example, you could authorize a photo-printing app to read your photos from another service without giving the printing app your password. The app receives an **access token**, which it presents when requesting your photos.\n\nA **JWT**—JSON Web Token—is a way to represent information such as an account identifier, permissions, or an expiration time. JWTs are commonly signed, allowing a receiver to check that the contents have not been altered. A signature does not hide the contents; a signed JWT is generally readable unless it is also encrypted.\n\nAn OAuth access token might be a JWT. It could instead be an opaque token: a value whose meaning the service looks up rather than reads from the token itself. OAuth does not require JWTs.\n\nUsing a JWT alone does not provide OAuth’s process for granting access. And OAuth itself is about authorization; OpenID Connect adds a standardized way to establish the user’s identity for sign-in.\n",
+  "response_sha256": "92b2b2e98f971ab4202241b7f3f71fcbed609b765fb6e5d516b7ec6a86bb136a"
+}

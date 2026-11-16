@@ -1,0 +1,6 @@
+# Keep the byte-hashed Markdown and evaluation archives stable across checkouts.
+* text=auto eol=lf
+
+# Preserve recorded response and original fixture bytes, including final blank lines.
+evals/advanced/outputs/** whitespace=-blank-at-eof
+evals/advanced/fixtures/** whitespace=-blank-at-eof

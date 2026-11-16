@@ -1,0 +1,616 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0001",
+      "response_sha256": "e453c3965950cac132748948f6a378800bfe197b4d9e376b646ae687442447bb",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correct and complete across exact output, task lifetimes, cancellation handling, and the business requirement. The coordinator-owned preparation ledger addresses successful preparations as well as cancelled workers, and the external-transfer discussion carefully handles unknown outcomes. Detail is relevant to the requested production boundary; no material weakness found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Exact output gives both checkpoints as available 70, committed 0, and False/False for A done/cancelled."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The gate branch is shown as available 70 and committed 30; the explanation correctly keeps committed units out of availability."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The cancellation branch restores available 100 and committed 0 before the caller records cancellation observation."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Both complete traces have the required common prefix and the correct successful or cancelled tail; independent Python 3.12.14 execution reproduced them."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explicitly separates default gather propagation from sibling cancellation and from asyncio.run shutdown cancellation and waiting."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains CancelledError inheriting directly under BaseException, the missed refund with Exception, and the finally log still running."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The preparation TaskGroup cancels and awaits siblings; a coordinator-owned ledger releases all uncommitted holds after the scope, then permits the failure response. Ownership and asynchronous-release limits are explicit."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains that completed external effects survive cancellation and calls for durable state, idempotency, status reconciliation, and a protocol for uncertain outcomes without automatic reversal."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0002",
+      "response_sha256": "1ba0fa7806de89f285840a70abf4dff88b8f785fc2eb65dc689212dc5a23aded",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly separates gather failure propagation, explicit cancel-and-await cleanup, and loop shutdown. The concrete TaskGroup proposal is scoped to the existing example, with separate rules for release ownership, withheld success responses, and external commits. All essential conditions are stated clearly; no material weakness found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The printed after-gather lines correctly show available 70, committed 0, and A neither done nor cancelled in both runs."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The gate branch commits A and finishes at available 70, committed 30."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The cancellation branch refunds A before await a observes CancelledError and finishes at available 100, committed 0."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The exact traces include the correct shared prefix and each required tail; independent Python 3.12.14 execution reproduced them."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Distinguishes gather propagating B failure from the separate cancellation of pending tasks during asyncio.run shutdown."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explicitly says Exception misses CancelledError in Python 3.12 while finally still logs cleanup, leaving 30 units reserved in that altered program."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The concrete TaskGroup owns worker lifetimes, cancels the waiting A on B failure, and awaits release before group exit; participant success is withheld and real fallible release gets an explicit recovery caveat."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Requires durable per-participant states, idempotency, transfer-status checks, and reconciliation, while preserving already committed effects and rejecting any claim of automatic external atomicity."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0003",
+      "response_sha256": "6f83c77a0a4f070bec035c611bfaf7635ffa4acd2955b016ed95e80e3d8e9917",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The scheduling explanation gives causal ordering rather than a slogan, and the audit correction is operationally sound for both return and original-rejection outcomes. Local-retention, latency, and shutdown limits are expressly identified. The exact trace and correction passed independent execution checks; no material weakness found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Exact trace gives start, end, first, peer, await-resumed, nested, write:row, caught:write-failed, audit, outer:audit-failed, timer; an independent Node run matched."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains nested is appended behind the already queued peer and await continuation and cannot interrupt its currently running callback."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains that await 0 suspends and queues a continuation even though no I/O or timer is needed."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Describes downstream adoption of the fulfilled row promise and the asynchronous scheduling of later reactions, without relying on internal job counts."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Correctly follows write rejection to fulfilled fallback, then to the new audit-failed rejection thrown by finally."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "States only the final error callback runs and sees audit-failed, while success is not invoked."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The audit wrapper catches audit failures, awaits the collector, retains both errors on failed delivery, and preserves success, fallback, or the original no-fallback error. Independent execution passed all 128 tested sync/async combinations."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explicitly chooses to await audit and collection; explains latency/nonsettlement and the lack of a page-shutdown completion guarantee, including for a detached alternative."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0004",
+      "response_sha256": "ecd5d094e1cbac37183aefc7058c53f96476c58a220452787486c5076a9dc440",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Explains the queue dependencies and finally override accurately, then supplies a compact, tested correction whose await and collector-failure semantics are explicit. It preserves the no-fallback error object and does not promise durable background delivery. No material weakness found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Provides the full required observable sequence, independently reproduced in Node."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that queueing nested appends it after peer and await-resumed rather than running it immediately or preempting prior work."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Says await 0 resumes asynchronously without I/O or a dependency on the timer, and locates its continuation before nested."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains adoption of the returned fulfilled promise and that the next callback remains a queued reaction."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Correctly explains catch recovering to fallback and the throwing finally replacing that outcome with audit-failed."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explicitly identifies outer:audit-failed and states success:fallback never runs."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The try/return-await/catch/finally implementation retains the original result or error while auditAndReport observes audit and collector failures; independent execution passed all 128 tested sync/async combinations."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Chooses to await audit and delivery, identifies local storage and latency limits, and says detaching does not establish completion before page closure."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0005",
+      "response_sha256": "f85870fe58ab01f9b60bfe2011d70f2def58472e179301a4ee83c27843805791",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Accurately distinguishes reference replacement, shared-object mutation, wrapper delegation, and view invalidation. It anchors portability to the supplied API summary rather than overgeneralizing the observed exception, and the immutable-string snapshot meets the stated single-threaded contract. No material weakness found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The initial table and prose distinguish owning base, backed window, live unmodifiable wrapped, and captured independent copied membership."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains replacement with a new B2 builder changes base/window/wrapped while copied retains the unchanged original B object."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains the existing C builder is shared and mutated, so copied and wrapped both show C!."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Separates blocked list add/set operations from allowed mutation of referenced builders, including a concrete append example."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Attributes the local ConcurrentModificationException to this same thread modifying base outside the view, without inventing concurrency."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Grounds undefined subsequent view semantics in A03-API and limits the exact exception to the supplied OpenJDK observation."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The snapshot helper captures each builder with toString and returns List.copyOf of immutable strings; valid-source and consistent-capture boundaries are explicit."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains that a second copyOf still retains mutable element references and does not convert or recursively copy their content."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0006",
+      "response_sha256": "b26562da67535a827431a7a73d0f630b63a0d322586c8db6342a6a78d426e79f",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All reference and mutation outcomes are correct, including independent membership without deep immutability. The API guarantee and OpenJDK observation are properly separated, and the proposed immutable-value snapshot and deeper-copy limits are clearly explained. No material weakness found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The table and accompanying explanation distinguish mutable base, the backed subList, the live unmodifiable wrapper, and copied reference membership."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Correctly traces the new B2 reference through base/window/wrapped while the original B reference remains in copied."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains that append mutates the same C builder visible through every list, including copied and wrapped."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explicitly distinguishes unmodifiable membership and references from the mutable state of objects reached through those references."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains the observed exception as detection of an outside structural change in the supplied single thread, not evidence of another thread."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Uses the supplied Java API boundary to state undefined view semantics and rejects a universal fail-fast guarantee."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The List<String> helper captures builder text and freezes membership; it gives correct before/after capture examples and forbids relying on an already invalidated view."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Says repeated copyOf remains shallow and may reuse a suitable unmodifiable list, so it cannot freeze the builders."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0007",
+      "response_sha256": "96310cd284f0e47cd5a7d60c0ba6860edad6b03447e591e7c200659bd8d2e1d6",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The monetary and population defects are diagnosed separately, with exact intermediate pairs and business totals. The rewrite preserves correct grains and missing-child orders; independent SQLite checks also verified legitimate repeated amounts. Null semantics and future fanout risks are fully covered without changing the contract.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The faulty-result table gives Ada 4/320/40/280, Ben 1/40/NULL/40, and omits Cy; independent SQLite execution matched."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The four-row pairing table shows each of the two lines combined with each of the two refunds and explains both doubled measures."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains null-extended Cy is rejected by the paid WHERE condition and that moving this predicate into ON preserves customers but not monetary grain."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Correct-result table gives Ada 1/160/20/140, Ben 1/40/0/40, and Cy 0/0/0/0."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explicitly says COUNT DISTINCT repairs the order count while both joined sums remain duplicated."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains DISTINCT amounts collapse legitimate equal-valued records, including across orders, and distinguishes unit price from extended line amount."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The child GROUP BY order_id CTEs produce unique join keys; a paid-order relation left-joined from customer preserves all customers. SQLite verified the rewrite and edge cases."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains COALESCE as null handling only, distinguishes absence from a zero record, counts p.order_id, and preserves no-line/no-refund orders; a 7-cent refund without lines correctly gives negative net."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0008",
+      "response_sha256": "198ba76dad8c9687129d1f64457a0cc157ba2eccf04e30f31ac10318912e989d",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer derives the incorrect totals from the joined rows and demonstrates why either partial repair leaves errors. The pre-aggregation rewrite is correct on the supplied and edge-case data. Source-population, key uniqueness, zero handling, and future one-to-many joins are all explained; no material weakness found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The faulty-result table exactly states Ada 4/320/40/280, Ben 1/40/NULL/40, and no Cy; independent SQLite execution matched."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The joined-row table exposes four line/refund pairs for order 10 and explains repeated order IDs and doubled child sums."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains the paid WHERE rejects null-extended customers and that the ON repair works when the WHERE predicate is removed."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The business-result table correctly gives Ada 1/160/20/140, Ben 1/40/0/40, and Cy 0/0/0/0."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Says distinct order IDs restore the count but leave both monetary sums multiplied and empty totals requiring separate treatment."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Gives separate equal-valued line and refund examples showing why SUM DISTINCT discards legitimate contributions."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Uses independent per-order child aggregation, unique order joins, and a final customer-preserving left join. Independent SQLite execution verified the exact result and edge cases."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains absent versus zero refunds, empty sums, COALESCE limits, identifier counting rather than COUNT(*), and paid orders with no lines or refunds."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0009",
+      "response_sha256": "dfd2a50ae20386d894d634bd980cd8d41b16431f9b16a645f135f847cddb06ec",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly locates the two distinct suppression mechanisms and explains normal with exit during a return. The small refactor preserves ordinary failure types, while the separate fallible-cleanup policy explicitly warns that grouping changes the top-level caller contract. Original and corrected traces passed independent execution checks.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Gives clean returning ok with open,body,commit,close,outer-finally, independently reproduced on Python 3.12.14."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Gives parse returning recovered and the exact rollback-value/close/after-with/outer-finally order; locates suppression in normal generator termination after handling ValueError."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Gives lookup returning forced with open,body,close,outer-finally and explicitly excludes rollback and after-with."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains KeyError escapes the context manager and is then replaced by the return in the outer finally."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains that return inside with still resumes the generator normally, runs its else and finally, and only then completes the pending function return."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The corrected code catches ordinary Exception, rolls back and bare re-raises, commits only on normal exit, always finalizes, and has no overriding return; execution confirmed all three corrected traces."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Says the close append alone proves neither rollback nor propagation, and does not establish a real database action."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Discusses independently attempting cleanup, retaining all failures, chaining and ExceptionGroup, changed caller handling, and a primary-error interface if original top-level type must remain."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0010",
+      "response_sha256": "adbac39bf1d3fd85dd53dceda8bfc24ca0413f4f45c03187685104adfde8c7ac",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All original values, traces, and suppression sites are correct. The corrected ordinary-exception flow is executable and sound, and the combined-failure discussion preserves error information without falsely promising an unchanged top-level exception type. It keeps cancellation and shutdown outside the demonstrated guarantee.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Exact output gives clean ok with open,body,commit,close,outer-finally, independently reproduced on Python 3.12.14."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Exact parse trace returns recovered; explanation locates suppression at normal generator completion after the non-reraising ValueError handler."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Exact lookup trace returns forced with open,body,close,outer-finally and explicitly has neither rollback nor after-with."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Precisely separates KeyError propagation out of the context manager from its later suppression by return forced in outer finally."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains normal context-manager exit for a return and why the successful generator else executes while after-with remains skipped."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The small refactor performs rollback for both ordinary failures with bare raise, commits on success, finalizes without a return, and removes recovery; execution confirmed its three paths."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains close is only an executed event append and does not prove resource action, rollback, or caller-visible error propagation."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The combined-outcome policy preserves operation and cleanup errors, still closes after rollback failure, distinguishes exception-group members from top-level types, and offers observable separate reporting when preserving the primary type."
+        }
+      ],
+      "gold_flags": []
+    }
+  ]
+}

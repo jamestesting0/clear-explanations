@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-11-16T14:24:00.421502+00:00",
+  "release_variant": "v5",
+  "files": {
+    "SKILL.md": "c4b371b7a60b69ed7cf9b5a72f07e880f03523f875295d1f66d9157db4830bdb",
+    "references/evidence-and-sources.md": "08bb9148e8195b54233197e01ecc2b3e6fa93c2e0af440cd1999014713a7d853",
+    "references/explanation-patterns.md": "ab5621d87d42591d50fcc55b38c0cf10f29d4e15b58bbdd76ff0ae251750a63f",
+    "references/worked-examples.md": "df0ba2d6f812d934aac113b03441f702e42fdf5ef59dfed4e9d24544efe720f1"
+  },
+  "selection": "Retain the unchanged v5 bundle after 36/36 development,12/12 validation,and6/6 short passes. Secondary development and validation audits found no candidate material error.",
+  "timing": "Written before the skill author opens the sealed B19\u2013B30 cases, rubrics, or verification contents. No holdout responses have been generated.",
+  "evidence": {
+    "development-primary.json": "9129c55acf288e3cb75d6a1f582f3fb0342020092080b1a464be438fb344af56",
+    "validation-primary.json": "965df3bf4126b47fe3a5cabf7fc91732f05e3c8c3f8093a35c8b5b7cd696f21a",
+    "short-primary.json": "971c77f842c2df226e73b78233cb68532c0daa6ad7efd1e076593bcfc4b2f60b",
+    "round2-development.json": "4de39908c20941e63c821b6a492ba34977578580fe624ba30cfa331d8c1242aa",
+    "round2-validation.json": "803dcfb0bb4d80057a228d4cd1ebd4cb82da0c2eeaa88493b9e355d885ac1742"
+  },
+  "remaining": "Generate and independently review both conditions on the 12 sealed holdout prompts. Any subsequent runtime edit requires a new version and appropriately labeled retesting."
+}

@@ -1,0 +1,296 @@
+{
+  "status": "passed",
+  "fixture_origin": "All packets are original synthetic educational fixtures. No real source facts or generated model responses were used.",
+  "research": {
+    "performed": false,
+    "reason": "No real niche facts are essential; source IDs refer only to the supplied synthetic packets."
+  },
+  "schema": {
+    "cases": 18,
+    "development": 12,
+    "validation": 6,
+    "constraints": "language-only dictionaries",
+    "essential_criteria_min": 7,
+    "word_count_method": "Python str.split whitespace tokens",
+    "word_counts": {
+      "B01": 511,
+      "B02": 527,
+      "B03": 533,
+      "B04": 525,
+      "B05": 532,
+      "B06": 512,
+      "B07": 549,
+      "B08": 533,
+      "B09": 573,
+      "B10": 559,
+      "B11": 531,
+      "B12": 568,
+      "B13": 550,
+      "B14": 565,
+      "B15": 558,
+      "B16": 562,
+      "B17": 593,
+      "B18": 555
+    },
+    "source_ids_present": true
+  },
+  "checks": {
+    "B01": {
+      "type": "manual source-and-rubric consistency review",
+      "status": "reviewed during original authoring",
+      "dimensions": [
+        "No supplied hypothesis or proposal promoted to an observed fact.",
+        "No explicitly missing fact silently filled.",
+        "At least six substantive semantic requirements in rubric.",
+        "No real niche factual claims require outside sourcing."
+      ],
+      "limit": "This is an author review, not an independent model-response evaluation."
+    },
+    "B02": {
+      "type": "manual source-and-rubric consistency review",
+      "status": "reviewed during original authoring",
+      "dimensions": [
+        "No supplied hypothesis or proposal promoted to an observed fact.",
+        "No explicitly missing fact silently filled.",
+        "At least six substantive semantic requirements in rubric.",
+        "No real niche factual claims require outside sourcing."
+      ],
+      "limit": "This is an author review, not an independent model-response evaluation."
+    },
+    "B03": {
+      "type": "date comparison",
+      "agreement_before_cutoff": [
+        true,
+        true
+      ],
+      "physical_delivery_before_cutoff": [
+        false,
+        true
+      ],
+      "birch_filing_by_deadline": true
+    },
+    "B04": {
+      "type": "inventory and contribution reconciliation",
+      "baseline": {
+        "receipts": 1400,
+        "sales": 1260,
+        "waste": 140,
+        "sell_through": 0.9,
+        "contribution": 4200
+      },
+      "trial": {
+        "receipts": 1400,
+        "sales": 1330,
+        "waste": 70,
+        "sell_through": 0.95,
+        "contribution": 4900
+      },
+      "contribution_change": 700,
+      "limit": "No unmet demand is inferred from stockout hours."
+    },
+    "B05": {
+      "type": "manual source-and-rubric consistency review",
+      "status": "reviewed during original authoring",
+      "dimensions": [
+        "No supplied hypothesis or proposal promoted to an observed fact.",
+        "No explicitly missing fact silently filled.",
+        "At least six substantive semantic requirements in rubric.",
+        "No real niche factual claims require outside sourcing."
+      ],
+      "limit": "This is an author review, not an independent model-response evaluation."
+    },
+    "B06": {
+      "type": "toy HMAC and membership trace",
+      "same_bytes_same_signature": true,
+      "path_change_changes_expected_signature": true,
+      "all_incident_offsets_inside_window": true,
+      "membership_T1": true,
+      "membership_T2": false,
+      "limit": "Toy key only; validates supplied control-flow explanation, not a real service implementation."
+    },
+    "B07": {
+      "type": "energy balances",
+      "discharge_electric_kWh": 20,
+      "discharge_useful_kWh": 80,
+      "recharge_electric_kWh": 90,
+      "cycle_input_kWh": 110,
+      "cycle_loss_kWh": 30,
+      "cycle_useful_efficiency": 0.7272727272727273,
+      "installation_efficiency": 0.7079646017699115
+    },
+    "B08": {
+      "type": "finite-window accounting",
+      "arrival_rate_per_second": 1.0,
+      "completion_rate_per_second": 0.9,
+      "backlog_growth": 60,
+      "time_integrated_unfinished_job_seconds": 90000,
+      "conditional_clearance_seconds": 200.0,
+      "limit": "Clearance requires sustained completion rate and no admissions; completed-job durations include boundary time and cannot determine unfinished work ages."
+    },
+    "B09": {
+      "type": "manual source-and-rubric consistency review",
+      "status": "reviewed during original authoring",
+      "dimensions": [
+        "No supplied hypothesis or proposal promoted to an observed fact.",
+        "No explicitly missing fact silently filled.",
+        "At least six substantive semantic requirements in rubric.",
+        "No real niche factual claims require outside sourcing."
+      ],
+      "limit": "This is an author review, not an independent model-response evaluation."
+    },
+    "B10": {
+      "type": "composition and standardization",
+      "baseline_pooled": 0.55,
+      "tool_pooled": 0.35909090909090907,
+      "easy_before": 0.9,
+      "easy_after": 0.95,
+      "hard_before": 0.2,
+      "hard_after": 0.3,
+      "hard_share_before": 0.5,
+      "hard_share_after": 0.9090909090909091,
+      "baseline_mix_standardized_tool": 0.625
+    },
+    "B11": {
+      "type": "provided-handler branch execution",
+      "stale_epoch_status": 409,
+      "current_tombstone_status": 410,
+      "current_live_status": 200,
+      "limit": "Scoped to supplied handler; not an audit of unprovided import or restore paths."
+    },
+    "B12": {
+      "type": "manual source-and-rubric consistency review",
+      "status": "reviewed during original authoring",
+      "dimensions": [
+        "No supplied hypothesis or proposal promoted to an observed fact.",
+        "No explicitly missing fact silently filled.",
+        "At least six substantive semantic requirements in rubric.",
+        "No real niche factual claims require outside sourcing."
+      ],
+      "limit": "This is an author review, not an independent model-response evaluation."
+    },
+    "B13": {
+      "type": "exhaustive integer enumeration",
+      "enumerated_candidate_pairs_per_capacity": 3131,
+      "best_existing": {
+        "profit": 6300,
+        "standard": 100,
+        "rush": 10,
+        "contribution": 8300
+      },
+      "best_expanded": {
+        "profit": 7050,
+        "standard": 100,
+        "rush": 25,
+        "contribution": 10250
+      },
+      "incremental_profit": 750
+    },
+    "B14": {
+      "type": "working days and clock conversion",
+      "counted_working_days": [
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-11",
+        "2026-09-14"
+      ],
+      "local_portal_receipts": {
+        "delta_portal": "2026-09-14T17:03:00",
+        "echo_portal": "2026-09-07T16:45:00",
+        "foxtrot_portal": "2026-09-15T11:40:00"
+      },
+      "calendar_note": "2026 represents the weekday pattern explicitly supplied in the synthetic prompt; no historical event is asserted.",
+      "limit": "No upload-attempt fact inferred from a generic outage screenshot."
+    },
+    "B15": {
+      "type": "additive comparison",
+      "additive_expected_colonies": 8,
+      "reported_combined_colonies": 38,
+      "departure_from_additivity": 30,
+      "limit": "No statistical significance inferred from condition means without tank-level results."
+    },
+    "B16": {
+      "type": "assignment/completer arithmetic and decision rule",
+      "assignment_new": 0.75,
+      "assignment_existing": 0.7,
+      "completer_new": 0.9,
+      "completer_existing": 0.75,
+      "noncompleter_new_passes": 48,
+      "noncompleter_new_total": 80,
+      "noncompleter_existing_passes": 4,
+      "noncompleter_existing_total": 16,
+      "lower_bound_above_margin": false
+    },
+    "B17": {
+      "type": "manual source-and-rubric consistency review",
+      "status": "reviewed during original authoring",
+      "dimensions": [
+        "No supplied hypothesis or proposal promoted to an observed fact.",
+        "No explicitly missing fact silently filled.",
+        "At least six substantive semantic requirements in rubric.",
+        "No real niche factual claims require outside sourcing."
+      ],
+      "limit": "This is an author review, not an independent model-response evaluation."
+    },
+    "B18": {
+      "type": "actual JSON parser execution",
+      "first_wins_units": 1,
+      "last_wins_units": 40,
+      "gateway_cap_passes": true,
+      "executed_units_exceed_cap": true
+    }
+  },
+  "file_sha256": {
+    "cases.json": "2b77510545f8bd722d4bccd233f6373ce2942ecac248680191462e8d6c6de0c5",
+    "rubric.json": "e120f5720bd09437e1c46e5d64bd1b616d8b5e8f10de71b76f218296394358e4"
+  },
+  "holdout_handling": "No holdout prompt, rubric, category detail, or verification result is included here. Holdout verification is stored only under sealed/.",
+  "publication_provenance": {
+    "original_verification_file": "b/verification.json",
+    "original_verification_sha256": "24a52417562bb94ebc011ddf14688f5408cfc77d350de9d4f1df0686d2766675",
+    "normalization_note": "Publication export of the original B open authoring report. This report contains no environment-specific paths or interpreter command names, so no original fields were normalized. All original verification fields, results, hashes, and limitations are unchanged. publication_provenance is added metadata, not part of the original report. The original report SHA-256 identifies its unmodified bytes; it is not the SHA-256 of this export. The included aggregate statistics come only from the pre-existing authoring manifest; no sealed prompt, rubric, builder, or verification file was opened. No verification suite was rerun for publication.",
+    "normalized_json_pointers": [],
+    "original_source_bytes_preserved": true,
+    "source_files_sha256": {
+      "evals/advanced/fixtures/b/build_open.py": "b21f425677c94e73d68d59c55caa24648c4c589aff0d2dfd010073161c2f69ba",
+      "evals/advanced/fixtures/b/verify_open.py": "40f30382d043920d38488370a417000ee4315bc156531365dbe68123d071e47f"
+    },
+    "aggregate_statistics_source": "b/manifest.json",
+    "aggregate_statistics_source_sha256": "5503085daa1bfac6dacdeed9540b64165f3fcccc34bd185833a0e280d57b730d",
+    "aggregate_statistics": {
+      "development": {
+        "count": 12,
+        "minimum_words": 511,
+        "maximum_words": 573,
+        "mean_words": 537.75,
+        "median_words": 532.5,
+        "total_words": 6453
+      },
+      "validation": {
+        "count": 6,
+        "minimum_words": 550,
+        "maximum_words": 593,
+        "mean_words": 563.83,
+        "median_words": 560.0,
+        "total_words": 3383
+      },
+      "sealed_holdout": {
+        "count": 12,
+        "minimum_words": 538,
+        "maximum_words": 597,
+        "mean_words": 562.75,
+        "median_words": 562.0,
+        "total_words": 6753
+      },
+      "all": {
+        "count": 30,
+        "minimum_words": 511,
+        "maximum_words": 597,
+        "mean_words": 552.97,
+        "median_words": 556.5,
+        "total_words": 16589
+      }
+    },
+    "evidence_scope": "Authoring and fixture verification only; these records contain no model-response evaluation or human-comprehension measurement."
+  }
+}

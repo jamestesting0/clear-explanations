@@ -1,0 +1,211 @@
+{
+  "recorded_at": "2026-11-16T14:52:20.503976+00:00",
+  "candidate": "v5",
+  "status": "Revise after observed unsupported negative in B22; preserve original primary partial and differing secondary pass.",
+  "summaries": {
+    "v4": {
+      "responses": 60,
+      "pass": 60,
+      "partial": 0,
+      "fail": 0,
+      "critical_failures": 0,
+      "hard_constraint_failures": 0,
+      "mean_words": 848.2333333333333,
+      "mean_characters": 5773.216666666666,
+      "mean_score": 11.983333333333333,
+      "mean_dimensions": {
+        "accuracy": 1.9833333333333334,
+        "clarity": 2.0,
+        "coverage": 2.0,
+        "evidence": 2.0,
+        "fit": 2.0,
+        "structure": 2.0
+      }
+    },
+    "v5": {
+      "responses": 60,
+      "pass": 59,
+      "partial": 1,
+      "fail": 0,
+      "critical_failures": 0,
+      "hard_constraint_failures": 0,
+      "mean_words": 798.1166666666667,
+      "mean_characters": 5482.25,
+      "mean_score": 11.966666666666667,
+      "mean_dimensions": {
+        "accuracy": 1.9833333333333334,
+        "clarity": 2.0,
+        "coverage": 2.0,
+        "evidence": 1.9833333333333334,
+        "fit": 2.0,
+        "structure": 2.0
+      }
+    }
+  },
+  "short_summaries": {
+    "v4": {
+      "responses": 6,
+      "pass": 6,
+      "partial": 0,
+      "fail": 0,
+      "critical_failures": 0,
+      "hard_constraint_failures": 0,
+      "mean_words": 167.16666666666666,
+      "mean_characters": 1091.3333333333333,
+      "mean_score": 12.0,
+      "mean_dimensions": {
+        "accuracy": 2.0,
+        "clarity": 2.0,
+        "coverage": 2.0,
+        "evidence": 2.0,
+        "fit": 2.0,
+        "structure": 2.0
+      }
+    },
+    "v5": {
+      "responses": 6,
+      "pass": 6,
+      "partial": 0,
+      "fail": 0,
+      "critical_failures": 0,
+      "hard_constraint_failures": 0,
+      "mean_words": 170.0,
+      "mean_characters": 1072.6666666666667,
+      "mean_score": 12.0,
+      "mean_dimensions": {
+        "accuracy": 2.0,
+        "clarity": 2.0,
+        "coverage": 2.0,
+        "evidence": 2.0,
+        "fit": 2.0,
+        "structure": 2.0
+      }
+    }
+  },
+  "paired_summary": {
+    "hard": {
+      "pairs": 60,
+      "verdict_comparison": {
+        "wins": 0,
+        "ties": 59,
+        "regressions": 1
+      },
+      "score_comparison": {
+        "wins": 1,
+        "ties": 58,
+        "regressions": 1
+      },
+      "mean_score_delta": -0.016666666666666666,
+      "mean_words_delta": -50.11666666666667,
+      "mean_characters_delta": -290.96666666666664,
+      "mean_dimension_deltas": {
+        "accuracy": 0.0,
+        "clarity": 0.0,
+        "coverage": 0.0,
+        "evidence": -0.016666666666666666,
+        "fit": 0.0,
+        "structure": 0.0
+      }
+    },
+    "short": {
+      "pairs": 6,
+      "verdict_comparison": {
+        "wins": 0,
+        "ties": 6,
+        "regressions": 0
+      },
+      "score_comparison": {
+        "wins": 0,
+        "ties": 6,
+        "regressions": 0
+      },
+      "mean_score_delta": 0.0,
+      "mean_words_delta": 2.8333333333333335,
+      "mean_characters_delta": -18.666666666666668,
+      "mean_dimension_deltas": {
+        "accuracy": 0.0,
+        "clarity": 0.0,
+        "coverage": 0.0,
+        "evidence": 0.0,
+        "fit": 0.0,
+        "structure": 0.0
+      }
+    },
+    "by_split": {
+      "development": {
+        "pairs": 36,
+        "verdict_comparison": {
+          "wins": 0,
+          "ties": 36,
+          "regressions": 0
+        },
+        "score_comparison": {
+          "wins": 1,
+          "ties": 35,
+          "regressions": 0
+        },
+        "mean_score_delta": 0.027777777777777776,
+        "mean_words_delta": -63.55555555555556,
+        "mean_characters_delta": -383.0833333333333,
+        "mean_dimension_deltas": {
+          "accuracy": 0.027777777777777776,
+          "clarity": 0.0,
+          "coverage": 0.0,
+          "evidence": 0.0,
+          "fit": 0.0,
+          "structure": 0.0
+        }
+      },
+      "validation": {
+        "pairs": 12,
+        "verdict_comparison": {
+          "wins": 0,
+          "ties": 12,
+          "regressions": 0
+        },
+        "score_comparison": {
+          "wins": 0,
+          "ties": 12,
+          "regressions": 0
+        },
+        "mean_score_delta": 0.0,
+        "mean_words_delta": -26.833333333333332,
+        "mean_characters_delta": -172.08333333333334,
+        "mean_dimension_deltas": {
+          "accuracy": 0.0,
+          "clarity": 0.0,
+          "coverage": 0.0,
+          "evidence": 0.0,
+          "fit": 0.0,
+          "structure": 0.0
+        }
+      },
+      "holdout": {
+        "pairs": 12,
+        "verdict_comparison": {
+          "wins": 0,
+          "ties": 11,
+          "regressions": 1
+        },
+        "score_comparison": {
+          "wins": 0,
+          "ties": 11,
+          "regressions": 1
+        },
+        "mean_score_delta": -0.16666666666666666,
+        "mean_words_delta": -33.083333333333336,
+        "mean_characters_delta": -133.5,
+        "mean_dimension_deltas": {
+          "accuracy": -0.08333333333333333,
+          "clarity": 0.0,
+          "coverage": 0.0,
+          "evidence": -0.08333333333333333,
+          "fit": 0.0,
+          "structure": 0.0
+        }
+      }
+    }
+  },
+  "decision": "The local unsupported negative is visible in the supplied text regardless of the overall answer quality. A focused source adjudication and a general v6 revision follow; all original responses and review judgments remain unchanged.",
+  "integrity_note": "The 132-response archive was assembled and passed the integrity checker before beginning this revision. Subsequent manifests will add the new version and retain the earlier judgments."
+}

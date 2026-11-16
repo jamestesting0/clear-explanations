@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "review_id": "REVIEW-0002",
+  "case_id": "N01",
+  "case_sha256": "d820f9ea15878db4e26d48fbe95c328deb8821124303fd30af131dcb82019778",
+  "prompt": "I know basic Java but not Spring. What does dependency injection actually mean?",
+  "constraints": {},
+  "response": "Dependency injection means **giving an object the other objects it needs to do its work**. Those other objects are its *dependencies*; “injection” just means supplying them.\n\nFor example, an `OrderService` needs something that can send messages. You can supply that through its constructor:\n\n```java\ninterface MessageSender {\n    void send(String message);\n}\n\nclass OrderService {\n    private final MessageSender sender;\n\n    OrderService(MessageSender sender) {\n        this.sender = sender;\n    }\n\n    void placeOrder() {\n        sender.send(\"Order placed\");\n    }\n}\n```\n\nElsewhere, your application creates and connects the objects:\n\n```java\n// EmailSender is a class implementing MessageSender.\nMessageSender sender = new EmailSender();\nOrderService orders = new OrderService(sender);\n```\n\nThat constructor call is dependency injection. `OrderService` says what it needs, and the code constructing it chooses what to supply. Without injection, `OrderService` might create an `EmailSender` itself using `new` inside the class.\n\nWhy bother? You can change the supplied implementation without changing `OrderService`. A test could supply a fake `MessageSender` that records messages, so testing an order doesn't send real email.\n\nSpring automates the creation and connection of the application objects you configure it to manage. Those managed objects are called **beans**. The underlying idea is the ordinary Java constructor call shown above; dependency injection also works without Spring.\n",
+  "response_sha256": "e62e4765a7d98daac0a004924d68934dc7d07809d98d2ae48272003dc9f0db28"
+}

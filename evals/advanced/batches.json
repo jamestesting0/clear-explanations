@@ -1,0 +1,681 @@
+{
+  "schema_version": 1,
+  "batches": [
+    {
+      "variant": "v4",
+      "batch_id": "baseline-a-1",
+      "batch_order": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "0f96c05457562ddc8a250d17c6d07b1c2f674515ab8f26006a506bd21e91ebfe",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v4",
+      "batch_id": "baseline-a-2",
+      "batch_order": [
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "834c868ad63467a7d9f5585ea854fcfaa7cc61b705501c7189100f4306c36589",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v4",
+      "batch_id": "baseline-a-3",
+      "batch_order": [
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A15"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "8039f42fc37539ad76ec3333ae366dbbdb693c70fd1fcaa32ea591d591c37c2e",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v4",
+      "batch_id": "baseline-a-4",
+      "batch_order": [
+        "A16",
+        "A17",
+        "A18",
+        "A19",
+        "A20"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "e09a61697b91cb429ed615f9d31c5ae6e3e8ad34cd205e2ce7d14c7283ce6e69",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v4",
+      "batch_id": "baseline-a-5",
+      "batch_order": [
+        "A21",
+        "A22",
+        "A23",
+        "A24"
+      ],
+      "batch_size": 4,
+      "ordered_batch_sha256": "cd77e9252ca4e001290d09561c1159982b032850ef981f647d34b879e87d277b",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v4",
+      "batch_id": "baseline-b-1",
+      "batch_order": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "5de53ad3e4c963e733531064b0cbe5da8369188c74e544e77d506b1dd30c2d4c",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v4",
+      "batch_id": "baseline-b-2",
+      "batch_order": [
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "B12"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "8a78a65ef59deaa3aee2a2185c6cea6438b044575f6c5230796072e56749b93b",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v4",
+      "batch_id": "baseline-holdout-1",
+      "batch_order": [
+        "B19",
+        "B20",
+        "B21",
+        "B22",
+        "B23",
+        "B24"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "66e8767a875635c9119666fb3d08e86b4ea50c38b02b40b561b0e38f92e0fa7a",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v4",
+      "batch_id": "baseline-holdout-2",
+      "batch_order": [
+        "B25",
+        "B26",
+        "B27",
+        "B28",
+        "B29",
+        "B30"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "d9d5d98ec85a4681e4dbf96b890705ee0d12f4f52ba2cebb6bf27c7182031e56",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v4",
+      "batch_id": "baseline-short",
+      "batch_order": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "6a78cc229e8b35eb6ea86e39e36c477d86a8bd042659f51f4ea6941ca5102745",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v4",
+      "batch_id": "baseline-validation-a",
+      "batch_order": [
+        "A25",
+        "A26",
+        "A27",
+        "A28",
+        "A29",
+        "A30"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "34005c1579c932939776e4a3cb790a0bb2aae1546e7b2f5cd46180318a81bf01",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v4",
+      "batch_id": "baseline-validation-b",
+      "batch_order": [
+        "B13",
+        "B14",
+        "B15",
+        "B16",
+        "B17",
+        "B18"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "14b77fdfb565b29e34c57fb7085004cac836f00d32630602e50812f0fa9e3fbe",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v5",
+      "batch_id": "candidate-a-1",
+      "batch_order": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "647ec8a8f37a819fa199cf06f39f74b70bb0f7bee38024ebb6269c89b9e36be6",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v5",
+      "batch_id": "candidate-a-2",
+      "batch_order": [
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "727d8b59c5e70faa7dc2e02817816b2179c4b6aef3ed3cd102ae2f925c58d0ba",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v5",
+      "batch_id": "candidate-a-3",
+      "batch_order": [
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A15"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "94fad9d74f7f0174b68e134046027e5e64284f22935ae7ec990dd2ecae942b15",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v5",
+      "batch_id": "candidate-a-4",
+      "batch_order": [
+        "A16",
+        "A17",
+        "A18",
+        "A19",
+        "A20"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "af2dc78a695750e6b923b5a0b68feb2ef6dc786d1263b0572a2deafd660f5b4e",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v5",
+      "batch_id": "candidate-a-5",
+      "batch_order": [
+        "A21",
+        "A22",
+        "A23",
+        "A24"
+      ],
+      "batch_size": 4,
+      "ordered_batch_sha256": "3e0ea4af91fda3b4d3de76a0b546e28d76af3d03d100c5c79db3caa9cfe40472",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v5",
+      "batch_id": "candidate-b-1",
+      "batch_order": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "f5d601ccb3c17563eef0556372d67cc9dac50cbde9e5d7bd4320780d5c9cb8c8",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v5",
+      "batch_id": "candidate-b-2",
+      "batch_order": [
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "B12"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "cae20a1c7377e7ab3ba15815cac082b10e4384fac92fe10212216d20043f8279",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v5",
+      "batch_id": "candidate-holdout-1",
+      "batch_order": [
+        "B19",
+        "B20",
+        "B21",
+        "B22",
+        "B23",
+        "B24"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "851ae1480a7a033693b1cefed1f27923a91355fab4d623a1ff3fa6a52bee3655",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v5",
+      "batch_id": "candidate-holdout-2",
+      "batch_order": [
+        "B25",
+        "B26",
+        "B27",
+        "B28",
+        "B29",
+        "B30"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "7c52bd7546eb6d9015718aff8fedb6498a4d38e7427544ccb71e4cb21e4d3ea2",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v5",
+      "batch_id": "candidate-short",
+      "batch_order": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "e6237022a79a3c283df7766975123e051571595315c505e6e69c1fbc74ec774d",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v5",
+      "batch_id": "candidate-validation-a",
+      "batch_order": [
+        "A25",
+        "A26",
+        "A27",
+        "A28",
+        "A29",
+        "A30"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "df4b17b19cd2c1a844998f63f0475d635d63965f4ba4fc3d5a5956c1862b7be5",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v5",
+      "batch_id": "candidate-validation-b",
+      "batch_order": [
+        "B13",
+        "B14",
+        "B15",
+        "B16",
+        "B17",
+        "B18"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "ed4f185172cd2fc7997922285f1eb6f7c331b9e05c90db1c09263465e592dbd5",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v6",
+      "batch_id": "revision-a-1",
+      "batch_order": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "9d492066f92a470b9f60eef4c050c1a5f000bd9338a33825cd4dec0afed6ec4e",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v6",
+      "batch_id": "revision-a-2",
+      "batch_order": [
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "f3385c9b34c561a8e1766d1cdf118151fc35ff0fa37143cf6cf1c2629b380c47",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v6",
+      "batch_id": "revision-a-3",
+      "batch_order": [
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A15"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "b6277ea014eec7d9d864eea78eebee7d3fa0e0fdd73c7e20f74d835234d43a68",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v6",
+      "batch_id": "revision-holdout-1",
+      "batch_order": [
+        "B19",
+        "B20",
+        "B21",
+        "B22",
+        "B23",
+        "B24"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "4c62a4ff5c910834fa6cc10be24369eff3bee66226ec2208f7f39bf327606fb4",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v6",
+      "batch_id": "revision-holdout-2",
+      "batch_order": [
+        "B25",
+        "B26",
+        "B27",
+        "B28",
+        "B29",
+        "B30"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "2ae9dce9a63e303369bac6d54d6b321990c4c8fe022d0f73f1927af576835718",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v7",
+      "batch_id": "final-a-1",
+      "batch_order": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "f9392e535a7aa4ee0295ef995b701f04dfac5821b0806ed8ae05f15e0b0c313f",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v7",
+      "batch_id": "final-a-2",
+      "batch_order": [
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "46a6602d0a3449cbe1117bd5c7b0f9a587095a7c5d4c205d8c5bd6bf3cf05e3a",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v7",
+      "batch_id": "final-a-3",
+      "batch_order": [
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A15"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "8c75d5f5b22625af6d4a27dd722ce9b978ac7f96a2b04affc2cf37bd3a2df43d",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v7",
+      "batch_id": "final-a-4",
+      "batch_order": [
+        "A16",
+        "A17",
+        "A18",
+        "A19",
+        "A20"
+      ],
+      "batch_size": 5,
+      "ordered_batch_sha256": "5b03df6c9f9302f2db42f7726d0bff4701d7989517bb8585488c0f569f11b83f",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v7",
+      "batch_id": "final-a-5",
+      "batch_order": [
+        "A21",
+        "A22",
+        "A23",
+        "A24"
+      ],
+      "batch_size": 4,
+      "ordered_batch_sha256": "dc87082086afcd88c8daf1122e934911d664cb0fb24878322d780f47fd467562",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v7",
+      "batch_id": "final-b-1",
+      "batch_order": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "ad609f453ee10688240855eb083c8ac56f712aebde6abec53d5811c82f65ede5",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v7",
+      "batch_id": "final-b-2",
+      "batch_order": [
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "B12"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "827d25e7f49d4947ffc9e118f52b55ab1a6465475f9f5ec3a68a00cbafc901b3",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v7",
+      "batch_id": "final-holdout-1",
+      "batch_order": [
+        "B19",
+        "B20",
+        "B21",
+        "B22",
+        "B23",
+        "B24"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "00b25b8cfd260acb857067d2665cee307b6229034bebf603e9e208e3d2da668e",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v7",
+      "batch_id": "final-holdout-2",
+      "batch_order": [
+        "B25",
+        "B26",
+        "B27",
+        "B28",
+        "B29",
+        "B30"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "d5177b4cfb6df3efbb8f07d776dc7c42ae60da3fd2d0e8336348c65966005292",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v7",
+      "batch_id": "final-short",
+      "batch_order": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "5c6e562b0deb126c0a3e1f7971e33139f1a381ce4fc0bfc4cd898027b629b624",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v7",
+      "batch_id": "final-validation-a",
+      "batch_order": [
+        "A25",
+        "A26",
+        "A27",
+        "A28",
+        "A29",
+        "A30"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "5c0ae39d7aa62f3a33b97cf9ad0540d9772b9b3b7c093207f374ffe08c79103e",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    },
+    {
+      "variant": "v7",
+      "batch_id": "final-validation-b",
+      "batch_order": [
+        "B13",
+        "B14",
+        "B15",
+        "B16",
+        "B17",
+        "B18"
+      ],
+      "batch_size": 6,
+      "ordered_batch_sha256": "ef85fc5409b218fc61b04a729090e37b425b18ed074edc2059b350bfd0e5f996",
+      "generation_instructions_sha256": "e799a886192b3a4d458e50e7953a628f7b7c888d1a7f7449ef3256d1fadf254f",
+      "runtime_prompt_file": null,
+      "runtime_prompt_sha256": null
+    }
+  ]
+}

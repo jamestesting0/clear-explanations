@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "reason": "Independent design round1 recommendations, accepted before any response results were inspected. The first baseline batch had been scheduled; no validation or holdout generation had begun.",
+  "primary_reporting": "Descriptive paired comparison: pass/partial/fail, critical failures, six dimension scores, and word counts by split. Report wins, ties, and regressions; do not choose a favorable metric after seeing results or infer statistical superiority from this purposive sample.",
+  "selection": "Prioritize resolving material accuracy/support errors and essential-answer omissions over shortening answers. Inspect any candidate regression relative to baseline. Report residual failures; a high mean score cannot erase them. No universal superiority threshold is claimed.",
+  "matched_generation": "Use the same case batches and case order across baseline and candidate where both are scheduled. Use the same fresh-context transport, inherited model configuration, tool policy, and output instructions. Record exposed settings and leave unobserved settings unknown. Bind each response to its ordered batch descriptor and exact packet hashes.",
+  "review_binding": "Each blind review set binds the exact prompt/response and gold-file hash. The protocol and this addendum are supplied to reviewers; their hashes are recorded in published provenance.",
+  "constraints": "Only explicit hard length/format requirements are mechanical failure gates. Approximate preferences are assessed under fit, not silently converted to strict limits.",
+  "short_transfer_check": "After selecting the final candidate, separately evaluate the six original natural short prompts N01–N06 to inspect the concrete risk that expanded references inflate or overformat simple answers. These do not count toward the 60 hard prompts and are not unseen.",
+  "second_review_sample": "In round2, independently review every failure/dispute and a deterministic sample of apparent passes: the lexicographically first passing case in each split for each compared final variant. Inspect more only if that sample reveals a concrete concern.",
+  "holdout": "Any revised bundle evaluated after holdout exposure has retrospective results on those cases. A rerun does not restore unseen status."
+}

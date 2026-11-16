@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "response_sha256": "e84cd69a535602126be4c310e4fd87fedd2a92a3511db9e63e86ebc4679eec7a",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly explains every reported output and separates the raw coroutine, shared Task, and successful result value. Independent execution of the supplied A25-CODE fixture under Python 3.12.14 reproduced the full stated trace, including both event orders and later lookups. The explanation traces cancellation through each await boundary and addresses every production requirement with concrete ownership, expiry, retry, identity-guard, and exception-observation policies. It correctly attributes fixture outcomes to A25-CODE and additional lifecycle requirements to A25-INTENT, clearly distinguishing proposed policies from demonstrated behavior. The table and ordered design serve the requested explanation without excessive code or repetition. No material weakness or hard-constraint violation was found; the design is descriptive rather than a complete implementation, as the prompt requests.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains that lru_cache retains the raw coroutine object rather than its eventual string; the first await produces loaded:x and reuse raises RuntimeError."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Traces cancellation from A through its unshielded await to the one shared fetch Task; identifies fetch:finally, cancellation observed by both A and B, and the cached Task remaining cancelled."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explicitly states that setting the gate does not restart cancelled work and that the later lookup retrieves the same cancelled Task and raises CancelledError again."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that shielding cancels A’s wait while the fetch survives, B receives loaded after the gate opens, and a later await reuses the successfully completed Task outcome."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Defines the reader-to-fetch cancellation boundary and states that direct task.cancel() during owner-driven eviction or shutdown can still cancel the underlying Task and reach shielded waiters."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Proposes separate in-flight Task and successful-value maps, a monotonic expiry measured from successful loading, atomic per-loop in-flight registration, and removal of failed or cancelled work so later requests can retry."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Provides the inflight.get(key) is task deletion guard, explains the old-completion/new-replacement race, and also guards publication and invalidation with current task identity or generation."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Requires exception retrieval even for abandoned or stale tasks, selects continuation when all consumers leave while explaining counted-consumer cancellation as an alternative, and states that shield does not implement TTL, lifecycle management, or coordination across processes."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A25"
+    }
+  ],
+  "blind_review_provenance": {
+    "source_review_sha256": "c5df493c4e42174e9d451eff139b96b82a7c9c5bbe5edad1397040b521c15bd0",
+    "review_index_sha256": "ccf9b40072d1e02ce138f4ece8a13a97546c0d1a12ec49d31836bf74ae48fbc4",
+    "private_key_sha256": "153bb8fd2d03cb57723ed5ef11b4a5b0144abb13f687063819101d2c329f3287",
+    "scheduled_runs": [
+      {
+        "name": "v7-validation",
+        "index_sha256": "d1978238117b5668fc4aa12f9435318c9082c00df1d96d56944f91d1040de394"
+      }
+    ],
+    "reviewed": 1,
+    "scheduled": 12
+  }
+}

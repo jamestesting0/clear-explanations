@@ -1,0 +1,8 @@
+{
+  "recorded_at": "2026-11-16T15:24:19.722522+00:00",
+  "prompt_length": "Python str.split whitespace token counts, as specified by the authoring protocol and minimum floor.",
+  "response_word_count": "The existing harness core.word_count uses Unicode word-token matching, not str.split. Its regex is [^\\W_]+(?:['\u2019\\-][^\\W_]+)*. All mean_words summaries use this unchanged function.",
+  "character_count": "Python len(response): Unicode code points in the exact response string.",
+  "limits": "The word-token metric includes words/numbers in code, treats supported internal apostrophes/hyphens as part of a token, and does not linguistically segment Chinese. Neither length measure establishes comprehension.",
+  "clarification": "Distinguish prompt whitespace counts from response word-token counts in publication. No response, score, constraint check, or numeric aggregate changed. A15 v6 is 306 harness word tokens and 320 whitespace tokens; both are below its 350-word constraint."
+}

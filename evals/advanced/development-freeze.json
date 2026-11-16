@@ -1,0 +1,7 @@
+{
+  "frozen_at": "2026-11-16T12:53:55.578667+00:00",
+  "case_sha256": "4f5c7f5a85b5985b2c52b132736ab33dfcdd96fd4252c876a697ad98834766cb",
+  "rubric_sha256": "7033b46857bcc03a0db97dc1b40005eab394027db00fb659fc8f20c88e42a998",
+  "case_count": 36,
+  "note": "Each author finalized a case and its criteria before that case was scheduled. This combined file was assembled while the first baseline batch was running; no answer results were inspected."
+}

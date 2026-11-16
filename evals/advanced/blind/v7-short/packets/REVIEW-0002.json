@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "review_id": "REVIEW-0002",
+  "case_id": "N02",
+  "case_sha256": "5096bfa982337e12f9de4970a8be093a0048a077ca3542c90065013707f5f9d7",
+  "prompt": "I do not understand entropy weights: why do you multiply each group's entropy by its fraction of the original examples?",
+  "constraints": {},
+  "response": "You multiply by each group's fraction because you want **the average uncertainty remaining for an original example**. A group containing more examples should contribute more to that average.\n\nHere, entropy measures how uncertain an example's label is within its group. Suppose a split divides 100 examples into:\n\n| Group | Examples | Labels | Entropy |\n| --- | ---: | --- | ---: |\n| A | 90 | All the same | 0 bits |\n| B | 10 | Half one label, half another | 1 bit |\n\nZero means the label is certain. One bit here is the uncertainty of a fair yes/no choice.\n\nPick one of the original 100 examples at random. It has a 90% chance of belonging to A, where there is no label uncertainty, and a 10% chance of belonging to B, where there is one bit. So the average remaining uncertainty is:\n\n\\[\n\\frac{90}{100}\\times 0 + \\frac{10}{100}\\times 1\n= 0.1\\text{ bits per example}.\n\\]\n\nA plain average, \\((0+1)/2=0.5\\), would give the 10-example group as much influence as the 90-example group. **Weighting by group size makes every example count equally.**\n\nFor a decision-tree split, the denominator is the number of examples in the group being split—the current node—not necessarily the entire training dataset.\n",
+  "response_sha256": "1be325b2ea1ed14037fc4f24ef7a6263003d99a0b26eaabca61532cfd19e3dbb"
+}

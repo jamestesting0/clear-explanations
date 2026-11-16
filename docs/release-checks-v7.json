@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-11-16T16:17:48.107991+00:00",
+  "runtime_variant": "v7",
+  "advanced_archive_actual_responses_verified": 225,
+  "runtime_materialization": {
+    "files": 4,
+    "all_frozen_hashes_match": true,
+    "hashes_sha256": {
+      "SKILL.md": "bf209d2419999cce2451be7a1c5eaf8d24ebe46bc2270299aebceb2204d27aa2",
+      "references/evidence-and-sources.md": "438ad5342c7236e432eb664b3723730f63298b951af24e5e821e51cd34db705e",
+      "references/explanation-patterns.md": "af8cc5d4c1aa324b7da18e6274782536878766a77cfb66e3f807fc9ad588fb51",
+      "references/worked-examples.md": "df0ba2d6f812d934aac113b03441f702e42fdf5ef59dfed4e9d24544efe720f1"
+    }
+  },
+  "replay_packets_created": 60,
+  "new_model_responses_generated": 0,
+  "skill_format_validation": "passed using the skill-creator quick validator on the prepared personal skill",
+  "scope": "Actual archive materialization and packet preparation, separate from 81 synthetic software tests and 225 recorded model answers."
+}

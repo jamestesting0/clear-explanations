@@ -2,7 +2,7 @@
 
 Clear Explanations uses original wording and a synthesis of ideas from the sources below. The development provenance records these influences; no source skill was concatenated or copied verbatim into the canonical [`SKILL.md`](../SKILL.md).
 
-The links identify the upstream projects and documents. Links to moving branches may change after the v4 evaluation recorded on November 16, 2026. Attribution describes an influence on this project, not an endorsement by an upstream author.
+The links identify the upstream projects and documents. Links to moving branches may change after the evaluations recorded on November 16, 2026. Attribution describes an influence on this project, not an endorsement by an upstream author.
 
 ## Skill design
 
@@ -34,6 +34,20 @@ The README's structure follows these primary guides, consulted on November 16, 2
 | [Write the Docs: How to write software documentation](https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/) | Include a small common-use example, short basic installation instructions, contribution and support paths, and the license. |
 | [Open Source Guides: Starting an Open Source Project](https://opensource.guide/starting-a-project/) | State what users can do and set clear expectations for participating in the project. |
 | [Diátaxis: Diátaxis as a guide to work](https://diataxis.fr/how-to-use-diataxis/) | Add documentation that serves a concrete need, without imposing empty categories or a large documentation structure. |
+
+## Evidence, examples, and the expanded benchmark
+
+The additional runtime guides and worked examples are original writing. These primary sources informed their design and were consulted on November 16, 2026:
+
+| Source | Application and limit |
+| --- | --- |
+| [Google Technical Writing: Audience](https://developers.google.com/tech-writing/one/audience) | Infer the reader's existing knowledge, explain the prerequisites they need, and choose vocabulary for that audience. This is writing guidance, not proof of a benchmark gain. |
+| [Google developer documentation style guide: Jargon](https://developers.google.com/style/jargon) | Replace unnecessary specialist language and define useful terms where the reader first needs them. |
+| [Gao et al., *Enabling Large Language Models to Generate Text with Citations* (EMNLP 2023)](https://aclanthology.org/2023.emnlp-main.398/) | Evaluate correctness and citation quality separately. Our evidence rubric checks whether important claims are supported and whether citations support the actual wording. The benchmark is not ALCE, does not reuse its metrics unchanged, and does not claim its validation results. |
+| [Institute of Education Sciences: *Organizing Instruction and Study to Improve Student Learning*](https://ies.ed.gov/ncee/WWC/PracticeGuide/1) | Use concrete worked examples to connect an abstract idea with its application. The guide concerns human instruction; it does not establish that adding examples improves an agent skill. We test that candidate empirically here. |
+| [Agent Skills specification](https://agentskills.io/specification) | Keep the core instructions in `SKILL.md` and load supporting references only when relevant. Text-only benchmark packets inject the references, so those runs evaluate content rather than native on-demand loading. |
+
+Writing references support the design of this skill. They are not authorities for claims in a user's subject matter. An answer about code, science, policy, or a text must use evidence applicable to that question.
 
 ## Installation references
 

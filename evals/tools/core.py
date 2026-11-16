@@ -5,6 +5,7 @@ import hashlib
 import json
 import math
 import re
+import stat
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -13,6 +14,14 @@ IDENTIFIER = re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]{0,63}\Z")
 WORD = re.compile(r"[^\W_]+(?:['’\-][^\W_]+)*", re.UNICODE)
 CONSTRAINTS = {"max_words", "min_words", "require_table", "forbid_table",
                "exact_sentences", "language", "no_code_change"}
+BUNDLE_MODE = "bundled_guide_injection"
+BUNDLE_NOTE = ("Bundled-guide injection tests the supplied guidance content, not on-demand "
+               "resource selection. Only SKILL.md and direct references/*.md are frozen; "
+               "keep evaluation material, README files, prior answers, and answer rubrics outside runtime references.")
+RESOURCE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*\.md\Z")
+RESERVED_REFERENCES = {"readme", "rubric", "rubrics", "answer-key", "answer-keys", "answer_key",
+                       "answer_keys", "answers", "prior-answers", "prior_answers", "expected-answers",
+                       "expected_answers", "responses", "results", "cases", "protocol", "evidence"}
 
 
 def now():
@@ -25,6 +34,29 @@ def sha(data):
 
 def canonical(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+
+
+def format_packet(case, skill=None, resources=None):
+    """Reconstruct canonical replay bytes; this does not describe surrounding runtime context.
+
+    Keep this format stable: historical packet hashes bind the exact whitespace,
+    resource order, headers, and supplied UTF-8 bytes below.
+    """
+    if skill is not None and resources is not None:
+        raise ValueError("Choose a single skill file or runtime resources, not both")
+    prompt = ("Answer the single user request below. Return only your answer. "
+              "Do not access other evaluation cases, answer keys, reviewer rubrics, or previous responses. "
+              "If general style guidance conflicts with the user's explicit request, follow the user's request.\n\n").encode("utf-8")
+    if resources is not None:
+        prompt += b"## General explanation guidance\n\n"
+        prompt += b"The following runtime skill resources are supplied in full.\n\n"
+        for resource_path, contents in sorted(resources, key=lambda item: item[0]):
+            prompt += (f"### Runtime resource: {resource_path}\n"
+                       f"SHA-256: {sha(contents)}; bytes: {len(contents)}\n\n").encode("utf-8")
+            prompt += contents + b"\n\n"
+    elif skill is not None:
+        prompt += b"## General explanation guidance\n\n" + skill + b"\n\n"
+    return prompt + ("## User request\n\n" + case["prompt"] + "\n").encode("utf-8")
 
 
 def read_json(path):
@@ -51,21 +83,115 @@ def within(root, relative):
     return result
 
 
+def runtime_resource_name(relative):
+    """Accept a small portable runtime allowlist, never recursive repository content."""
+    if relative == "SKILL.md":
+        return relative
+    if not isinstance(relative, str) or not relative.startswith("references/"):
+        raise ValueError(f"Not a runtime resource path: {relative!r}")
+    name = relative[len("references/"):]
+    if not RESOURCE_NAME.fullmatch(name) or name[:-3].casefold() in RESERVED_REFERENCES:
+        raise ValueError(f"Not a runtime reference filename: {relative!r}")
+    return relative
+
+
+def read_runtime_bundle(directory):
+    """Read exact UTF-8 bytes from SKILL.md and direct references/*.md only.
+
+    Symlinks (including source-directory ancestors), special files, nonportable
+    Markdown filenames, and case-insensitive filename collisions are rejected.
+    Other root content and non-Markdown/nested reference content are not read.
+    The caller remains responsible for keeping answer keys out of runtime guides.
+    """
+    root = Path(directory).absolute()
+    if any(part.is_symlink() for part in (root, *root.parents)):
+        raise ValueError(f"Runtime bundle source must not traverse symlinks: {directory}")
+    if not root.is_dir():
+        raise ValueError(f"Runtime bundle source is not a directory: {directory}")
+    selected = [("SKILL.md", root / "SKILL.md")]
+    references = root / "references"
+    if references.is_symlink():
+        raise ValueError("Runtime references directory must not be a symlink")
+    if references.exists():
+        if not references.is_dir():
+            raise ValueError("Runtime references must be a directory")
+        selected.extend((f"references/{path.name}", path)
+                        for path in references.iterdir() if path.name.lower().endswith(".md"))
+    resources, seen = [], set()
+    for relative, path in sorted(selected):
+        runtime_resource_name(relative)
+        if relative.casefold() in seen:
+            raise ValueError(f"Case-insensitive runtime resource collision: {relative}")
+        seen.add(relative.casefold())
+        if path.is_symlink() or not stat.S_ISREG(path.lstat().st_mode):
+            raise ValueError(f"Runtime resource must be a regular file, not a symlink: {relative}")
+        raw = path.read_bytes()
+        raw.decode("utf-8")
+        resources.append((relative, raw))
+    return resources
+
+
+def bundle_digest(resources):
+    """Bind names, exact content hashes, and byte lengths independently of run paths."""
+    return sha(canonical([{key: resource[key] for key in ("resource_path", "sha256", "bytes")}
+                          for resource in sorted(resources, key=lambda item: item["resource_path"])]))
+
+
+def validate_bundle_packet(packet):
+    """Optional schema-1 extension; historical single-file packets need no new fields."""
+    fields = {"runtime_resources", "bundle_sha256", "guidance_mode"}
+    present = fields.intersection(packet)
+    if not present:
+        return
+    if present != fields or packet["guidance_mode"] != BUNDLE_MODE:
+        raise ValueError("Incomplete or unsupported runtime bundle metadata")
+    resources = packet["runtime_resources"]
+    if not isinstance(resources, list) or not resources:
+        raise ValueError("Runtime bundle must name its frozen resources")
+    seen, root = set(), None
+    for resource in resources:
+        if not isinstance(resource, dict) or set(resource) != {"resource_path", "frozen_path", "sha256", "bytes"}:
+            raise ValueError("Invalid runtime resource manifest entry")
+        name = runtime_resource_name(resource["resource_path"])
+        if name.casefold() in seen:
+            raise ValueError(f"Duplicate runtime resource: {name}")
+        seen.add(name.casefold())
+        expected = f"skills/{valid_id(packet['variant'])}/{name}"
+        if resource["frozen_path"] != expected:
+            raise ValueError(f"Unexpected frozen runtime path: {resource['frozen_path']!r}")
+        if not isinstance(resource["sha256"], str) or not re.fullmatch(r"[a-f0-9]{64}", resource["sha256"]):
+            raise ValueError(f"Invalid runtime resource hash: {name}")
+        if type(resource["bytes"]) is not int or resource["bytes"] < 0:
+            raise ValueError(f"Invalid runtime resource byte length: {name}")
+        if name == "SKILL.md":
+            root = resource
+    if root is None or (root["frozen_path"], root["sha256"]) != (packet["frozen_skill_path"], packet["skill_sha256"]):
+        raise ValueError("Runtime bundle must bind its SKILL.md to the legacy skill fields")
+    if packet["bundle_sha256"] != bundle_digest(resources):
+        raise ValueError("Runtime bundle manifest hash mismatch")
+
+
 def validate_cases(cases):
     if not isinstance(cases, list) or not cases:
         raise ValueError("cases.json must be a nonempty array")
     seen = set()
+    required = {"id", "split", "category", "prompt", "constraints"}
+    optional = {"source_ids", "complexity_features"}
     for case in cases:
-        if not isinstance(case, dict) or set(case) != {"id", "split", "category", "prompt", "constraints"}:
-            raise ValueError("Each case must contain exactly id, split, category, prompt, constraints")
+        if not isinstance(case, dict) or not required.issubset(case) or set(case) - required - optional:
+            raise ValueError("Each case must contain id, split, category, prompt, constraints; "
+                             "only source_ids and complexity_features are optional")
         cid = valid_id(case["id"])
         if cid in seen:
             raise ValueError(f"Duplicate case ID: {cid}")
         seen.add(cid)
-        if case["split"] not in {"development", "holdout"}:
+        if case["split"] not in {"development", "validation", "holdout"}:
             raise ValueError(f"Invalid split: {cid}")
         if any(not isinstance(case[key], str) or not case[key].strip() for key in ("prompt", "category")):
             raise ValueError(f"Empty or non-string prompt/category: {cid}")
+        for field in optional.intersection(case):
+            if not isinstance(case[field], list) or any(not isinstance(value, str) or not value.strip() for value in case[field]):
+                raise ValueError(f"Invalid {field}; expected an array of nonempty strings: {cid}")
         constraints = case["constraints"]
         if not isinstance(constraints, dict) or set(constraints) - CONSTRAINTS:
             raise ValueError(f"Unknown or invalid constraints: {cid}")
@@ -100,6 +226,9 @@ def read_index(run):
         within(run, packet["prompt_path"])
         if packet["frozen_skill_path"]:
             within(run, packet["frozen_skill_path"])
+        validate_bundle_packet(packet)
+        for resource in packet.get("runtime_resources", []):
+            within(run, resource["frozen_path"])
     return index, by_id
 
 
@@ -124,9 +253,26 @@ def packet_integrity(run, packet, case):
             if packet[hash_field] is not None:
                 errors.append(f"{field}: inconsistent null hash")
             continue
-        path = within(run, packet[field])
-        if not path.is_file() or sha(path.read_bytes()) != packet[hash_field]:
+        try:
+            path = within(run, packet[field])
+            matches = path.is_file() and sha(path.read_bytes()) == packet[hash_field]
+        except (OSError, ValueError):
+            matches = False
+        if not matches:
             errors.append(f"{field}: missing or hash mismatch")
+    try:
+        validate_bundle_packet(packet)
+        if "runtime_resources" in packet:
+            actual = dict(read_runtime_bundle(Path(run) / "skills" / packet["variant"]))
+            expected = {resource["resource_path"] for resource in packet["runtime_resources"]}
+            if set(actual) != expected:
+                errors.append("runtime resource inventory mismatch")
+            for resource in packet["runtime_resources"]:
+                raw = actual.get(resource["resource_path"])
+                if raw is None or sha(raw) != resource["sha256"] or len(raw) != resource["bytes"]:
+                    errors.append(f"runtime resource {resource['resource_path']}: missing or hash/byte mismatch")
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        errors.append(f"runtime bundle integrity failure: {error}")
     if sha(canonical(case)) != packet["case_sha256"]:
         errors.append("case snapshot hash mismatch")
     return errors
@@ -153,6 +299,8 @@ def collect(run, packet, case, response, metadata, stderr=None):
         "model_requested": metadata.get("model_requested"), "model_observed": metadata.get("model_observed"),
         "status": metadata.get("status", "completed"), "source_metadata": metadata,
     }
+    if "bundle_sha256" in packet:
+        meta.update(bundle_sha256=packet["bundle_sha256"], guidance_mode=packet["guidance_mode"])
     with output.open("xb") as handle:
         handle.write(response)
     if stderr is not None:
@@ -217,11 +365,9 @@ def constraint_checks(text, constraints):
     return checks
 
 
-def load_reviews(path):
-    if path is None:
-        return {}, {}
-    document = read_json(path)
-    if document.get("schema_version") != SCHEMA or not isinstance(document.get("reviews"), list):
+def validate_reviews(document):
+    """Validate reviewer judgments without converting them into mechanical scores."""
+    if not isinstance(document, dict) or document.get("schema_version") != SCHEMA or not isinstance(document.get("reviews"), list):
         raise ValueError("Review document must have schema_version:1 and a reviews array")
     if not isinstance(document.get("reviewer"), str) or not document["reviewer"].strip():
         raise ValueError("Review document must name its reviewer")
@@ -242,6 +388,14 @@ def load_reviews(path):
         if not isinstance(criteria, list) or any(not isinstance(c, dict) or c.get("verdict") not in {"pass", "partial", "fail"} or not isinstance(c.get("criterion"), str) or not isinstance(c.get("notes", ""), str) for c in criteria):
             raise ValueError(f"Invalid review criteria: {key}")
         reviews[key] = entry
+    return reviews
+
+
+def load_reviews(path):
+    if path is None:
+        return {}, {}
+    document = read_json(path)
+    reviews = validate_reviews(document)
     header = {k: v for k, v in document.items() if k != "reviews"}
     header["review_file_sha256"] = sha(Path(path).read_bytes())
     return reviews, header
@@ -286,6 +440,9 @@ def evaluate(run, reviews_path=None, allow_extra_reviews=False):
                 for field in ("variant", "case_id", "skill_sha256", "prompt_sha256", "case_sha256"):
                     if meta.get(field) != packet[field]:
                         errors.append(f"metadata {field} mismatch")
+                for field in ("bundle_sha256", "guidance_mode"):
+                    if meta.get(field) != packet.get(field):
+                        errors.append(f"metadata {field} mismatch")
                 if meta.get("response_sha256") != sha(raw):
                     errors.append("response hash mismatch")
                 if meta.get("status") != "completed":
@@ -313,6 +470,13 @@ def evaluate(run, reviews_path=None, allow_extra_reviews=False):
 
 def evaluate_many(runs, reviews_path=None):
     """Combine only explicitly scheduled packets, rejecting ambiguous duplicates."""
+    variant_fingerprints = {}
+    for run in runs:
+        index, _ = read_index(run)
+        for packet in index["packets"]:
+            fingerprint = (packet["skill_sha256"], packet.get("bundle_sha256"), packet.get("guidance_mode"))
+            if variant_fingerprints.setdefault(packet["variant"], fingerprint) != fingerprint:
+                raise ValueError(f"Different guidance shares one variant across runs: {packet['variant']}")
     reports = [evaluate(run, reviews_path, allow_extra_reviews=True) for run in runs]
     records = [record for report in reports for record in report["results"]]
     known, case_hashes = set(), {}

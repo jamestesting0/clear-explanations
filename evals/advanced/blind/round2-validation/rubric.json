@@ -1,0 +1,304 @@
+{
+  "A25": {
+    "must_include": [
+      "lru_cache stores the raw coroutine object, so the first await succeeds and the second attempt to await the already-used coroutine raises RuntimeError.",
+      "Without shielding, A's cancellation propagates to the shared Task; fetch finally runs, both A and B observe cancellation, and the cached Task remains cancelled.",
+      "The later unshielded-cache lookup returns that same cancelled Task and raises cancellation again rather than starting a new fetch.",
+      "With shielding, A observes its own cancellation while the shared fetch survives; setting the gate allows B to get loaded and a later await reuses the completed result.",
+      "shield creates a cancellation boundary for that await but does not make the underlying task immune to direct cancellation, eviction policy, or event-loop shutdown.",
+      "A complete design separates in-flight task ownership from successful cached values/expiry and evicts or otherwise retries failed and cancelled work under an explicit policy.",
+      "Eviction callbacks should check entry identity or generation before deleting, so an old task cannot remove a newer replacement for the same key.",
+      "Account for abandoned-task exception observation and the all-consumers-gone policy; shield alone does not implement TTL, lifecycle management, or cross-process deduplication."
+    ],
+    "must_not": [
+      "Do not call the lru_cache entry an already computed reusable value.",
+      "Do not claim each waiter owns a private copy of the shared Task.",
+      "Do not interpret shield as total cancellation immunity."
+    ],
+    "critical_errors": [
+      "Says the second await of the cached raw coroutine succeeds.",
+      "Says B survives A cancellation in the unshielded run.",
+      "Claims shield alone satisfies every cache lifecycle requirement."
+    ],
+    "source_expectations": [
+      "Use A25-CODE for exact outcomes and A25-INTENT for the additional TTL and cancellation-ownership requirements."
+    ],
+    "verification": [
+      "Executed coroutine-reuse failure, both cancellation-sharing runs, and later lookups; exact trace asserted."
+    ]
+  },
+  "A26": {
+    "must_include": [
+      "Respond in German and distinguish event counts from retained-user counts.",
+      "Current query counts three qualifying activity rows over six distinct signups, giving 50 percent.",
+      "Fully observed eligible users are ids 1,2,6 from January 1 and id 3 from January 2; only ids 1 and 3 are retained, giving 2/4=50 percent.",
+      "The equality of the percentages is accidental: duplicate qualifying events inflate the numerator while immature users inflate the denominator.",
+      "January 1 cohort is 1 retained out of 3, about 33.33 percent; January 2 is 1 out of 1, 100 percent; recent cohorts are not yet fully observed rather than zero-retention failures.",
+      "An appropriate query filters signups by the end of day 7 (signup midnight plus 8 days <= cutoff), then uses EXISTS or an equivalent one-per-user retained indicator before aggregation.",
+      "A cohort whose day-7 day starts at the cutoff is not fully observed; user 2's day-6 return does not qualify and user 6 remains in the eligible denominator.",
+      "Compute the overall rate from eligible user totals; merely hiding cohorts after aggregation leaves the wrong population, and equal-cohort averaging gives a different target (here about 66.67 percent)."
+    ],
+    "must_not": [
+      "Do not classify unobserved future outcomes as failures.",
+      "Do not treat equal final percentages as validation of their underlying counting logic."
+    ],
+    "critical_errors": [
+      "Claims all six signups are eligible.",
+      "Counts user 1 twice in the correct numerator.",
+      "Endorses hiding chart rows without repairing the aggregate denominator."
+    ],
+    "source_expectations": [
+      "Use A26-METRIC for eligibility and counting units, and distinguish unknown future outcomes from complete ingestion before the cutoff."
+    ],
+    "verification": [
+      "Executed faulty and corrected SQLite queries, verifying the coincident 3/6 and 2/4 overall results."
+    ]
+  },
+  "A27": {
+    "must_include": [
+      "Use prediction p_minus=0.80p+0.05(1-p)=0.05+0.75p before each observation, then update by the appropriate alarm/quiet likelihoods.",
+      "Minute 1 prediction is 0.125 and alarm posterior is 0.5625.",
+      "Minute 2 prediction is 0.471875 and quiet posterior is 151/1672≈0.09031.",
+      "Minute 3 prediction is 0.05+0.75×(151/1672)≈0.117733 and alarm posterior is 35433/64936≈0.5456603.",
+      "No-intervention minute-4 prediction is 596431/1298720≈0.4592453, applying one further transition without an observation.",
+      "The fixed-state likelihood calculation gives 0.5 but assumes one unchanged state; resetting to 0.1 discards the previous posterior and the transition dynamics.",
+      "Inspect when 20p exceeds 3, or p>0.15; after minute 2 do not inspect under this simplified rule, while after minute 3 inspect.",
+      "Minute-2 real-time filtering cannot use minute-3 evidence; using future data would be retrospective smoothing, and next-minute prediction concerns a different state/time horizon from the current-minute decision."
+    ],
+    "must_not": [
+      "Do not multiply observations as repeated tests of a fixed state under the supplied transition model.",
+      "Do not import future evidence into a historical real-time decision."
+    ],
+    "critical_errors": [
+      "Reports 0.5 as the correct final filtering probability.",
+      "Skips the transition before the first observation.",
+      "Uses minute-4 risk for the current-minute cost calculation without changing the decision problem."
+    ],
+    "source_expectations": [
+      "Use the complete synthetic state and sensor model and distinguish the immediate cost contract from the separate no-intervention forecast."
+    ],
+    "verification": [
+      "Executed exact Fraction-based filtering and forecasting plus the incorrect static-state comparison."
+    ]
+  },
+  "A28": {
+    "must_include": [
+      "R1 ends with adds a0/a1 and removed a0; R2 ends with adds a0/b1 and removed a0/b1.",
+      "Merged state contains adds a0,a1,b1 and removals a0,b1, leaving a1 live and apple present.",
+      "R2's remove cannot name unseen a1, so it does not globally defeat that concurrent re-add; wall-clock or last-local-button order is not the protocol's conflict rule.",
+      "Set-union merge is commutative and idempotent, so duplicate/reordered state delivery does not change this result.",
+      "A retransmitted add preserves its tag; a fresh user add gets a new tag. The membership data type does not define numeric quantity from the number of tags.",
+      "In the separate cleanup experiment, merging offline R3's surviving a0 into an empty compacted R2 makes apple visible again because the a0 tombstone was discarded.",
+      "Safe reclamation needs evidence that obsolete adds cannot reappear from any relevant replica or message, with a sound causal acknowledgement/retirement/epoch policy; local absence alone is insufficient.",
+      "Convergence under this merge is distinct from remove-wins total order, immediate disconnected consistency, quantity accounting, or inventory reservation guarantees."
+    ],
+    "must_not": [
+      "Do not apply the separate cleanup experiment as if it occurred after the earlier merged state.",
+      "Do not silently replace the observed-remove rule with a last-writer-wins rule."
+    ],
+    "critical_errors": [
+      "Claims apple is absent after the first merge.",
+      "Claims deleting both an add and its tombstone locally is always safe.",
+      "Treats network redelivery as a new unique-tag user action."
+    ],
+    "source_expectations": [
+      "Ground all behavior in the invented set algebra and distinguish state convergence from additional unstated application guarantees."
+    ],
+    "verification": [
+      "Executed set unions, visible-tag derivation, commutativity/idempotence checks, and unsafe-compaction resurrection."
+    ]
+  },
+  "A29": {
+    "must_include": [
+      "Deployed behavior accepts T1,T2,T3 and rejects T4 at the backend; this matches the trace.",
+      "Revision 7 permits only T3: T1 has the wrong audience, T2 is expired with no policy grace, and T4 lacks read scope.",
+      "A valid signature and issuer establish authenticity under the supplied assumptions but do not satisfy audience, time, or route-scope requirements.",
+      "SDK optional behavior describes available implementation configuration and does not override the normative policy; undeployed 2.7 behavior is not current enforcement.",
+      "Revision 8's later effective date and /v3/write scope do not impose hardware proof on this incident's /v2/inventory route.",
+      "Enable and configure exact expected audience enforcement and align expiration behavior with strict now<exp; merely setting leeway to zero still requires attention to the implementation's <= boundary.",
+      "Preserve the exact read-scope check and verify wrong audience, already expired, exactly-at-exp, valid future expiry, and write-only scope cases; the 2.7 audience note alone says nothing about fixing expiry semantics.",
+      "Tie conclusions to the supplied evidence and specify a sound trust-path assumption for gateway-only versus backend verification without inventing an observed bypass."
+    ],
+    "must_not": [
+      "Do not infer authorization from signature alone.",
+      "Do not treat the future/latest document as automatically governing the deployed route.",
+      "Do not assume a zero leeway fixes a <= versus < equality mismatch."
+    ],
+    "critical_errors": [
+      "Calls T1 or T2 compliant with revision 7.",
+      "Rejects T3 solely for lacking the future hardware proof.",
+      "Claims undeployed gateway 2.7 already protects the current route."
+    ],
+    "source_expectations": [
+      "Use A29-POLICY7 for the normative matrix, A29-DEPLOYMENT/A29-TRACE for actual behavior, and A29-DOCS only within its version/date/route scope."
+    ],
+    "verification": [
+      "Executed the deployed and normative acceptance predicates for all four synthetic claim packets."
+    ]
+  },
+  "A30": {
+    "must_include": [
+      "Respond in Portuguese and correctly convert MWh to kWh and grams to kilograms, giving electricity emissions Alpha 40000 kg, Beta 2000 kg, Gamma 10000 kg CO2e.",
+      "Alpha gas adds 4000 kg; Gamma gas adds between 0 and 6000 kg; network emissions are therefore between 56000 and 62000 kg.",
+      "Divide by 150000 shipments to get current intensity approximately 0.37333–0.41333 kg CO2e per shipment; baseline intensity is 0.35.",
+      "Current absolute emissions are about 11.43–20 percent below baseline, while intensity is about 6.67–18.10 percent above baseline.",
+      "The draft's equal-site average with zero Gamma gas is about 0.29667 kg per shipment and weights sites rather than shipments; the requested overall rate is a shipment-weighted combination or total over total.",
+      "Missing gas is bounded unknown, not known zero; midpoint is not an expected value without a distribution and the bounds are not a 95 percent confidence interval.",
+      "Volume fell 25 percent, so reduced total emissions can coexist with higher per-shipment intensity; neither ratio by itself identifies a causal process-efficiency change.",
+      "Provide accurate report wording and request baseline/current site output, fuel/electricity use, factors, and relevant mix data to separate within-site changes from composition or factor changes."
+    ],
+    "must_not": [
+      "Do not substitute an unstated real emissions standard for the packet's boundary.",
+      "Do not present bounded missing data as a probabilistic estimate.",
+      "Do not compare an unweighted current site mean with a total-based baseline as the same estimand."
+    ],
+    "critical_errors": [
+      "Claims network per-shipment intensity improved.",
+      "Treats Gamma gas as known zero.",
+      "Calls the supplied physical bounds a 95 percent confidence interval or their midpoint an established expectation."
+    ],
+    "source_expectations": [
+      "Use A30-CURRENT for units and missing-data bounds, A30-BASELINE for the comparable historical denominator, and avoid inventing disaggregated history."
+    ],
+    "verification": [
+      "Executed emissions conversions, bound propagation, weighted intensity, baseline contrasts, and incorrect equal-site comparison."
+    ]
+  },
+  "B13": {
+    "must_include": [
+      "Standard contributes 70/hour; Rush contributes 130/job but 65/hour, so scarce hours favor Standard until its demand ceiling.",
+      "Baseline revenue/contribution/profit are 10000/7000/5000; proposed mix gives 11600/8200/6200.",
+      "Best existing-capacity mix is 100 Standard plus 10 Rush, using 120 hours with contribution 8300 and profit 6300.",
+      "Explain that serving 120 Standard is infeasible because demand is capped at 100, leaving room for Rush.",
+      "With the 30-hour block, optimal mix is 100 Standard plus 25 Rush; incremental contribution is 1950 and net incremental profit is 750.",
+      "Total expanded profit is 7050 after 2000 base fixed cost and 1200 block fee.",
+      "Exact-model result does not identify price-optimal strategy, realized survey demand, welfare, or empirical causal effect of introducing Rush."
+    ],
+    "must_not": [
+      "Treat design prize as demand evidence",
+      "Assume Rush demand exceeds its stated cap"
+    ],
+    "critical_errors": [
+      "Prioritize Rush solely by per-job contribution",
+      "Charge unchanged fixed expense as a marginal per-job cost to alter ranking",
+      "Claim more revenue necessarily implies more profit"
+    ],
+    "source_expectations": "Use S1-S3 for model arithmetic; use S4 to distinguish conditional optimization from empirical and welfare conclusions.",
+    "verification": "Exhaustively enumerate integer product mixes with and without capacity block; compare stated schedules."
+  },
+  "B14": {
+    "must_include": [
+      "New-policy September 4 results have five counted working days September 7,8,9,11,14, giving September 14 at 17:00 local.",
+      "Delta’s email at 16:58 during declared outage is an authorized timely receipt; its portal duplicate at 17:03 local is later but does not negate the valid email.",
+      "Echo remains under old seven-calendar-day rule, with September 7 at 17:00 local deadline; 14:45 UTC is 16:45 local and timely.",
+      "Foxtrot’s 09:40 UTC filing is 11:40 local September 15, before the possible noon extension but after normal deadline.",
+      "Foxtrot qualifies for extension only if an upload attempt during outage is established; screenshot of notice alone does not show that attempt.",
+      "Informal helpdesk notes do not amend governing policy or prove event facts.",
+      "Differentiate event selecting policy, excluded publication day, holiday, receipt route, and evidence required for exception."
+    ],
+    "must_not": [
+      "Use average upload duration as individual attempt evidence",
+      "Assume all September filings use new rule"
+    ],
+    "critical_errors": [
+      "Count September 10 as working day",
+      "Treat UTC timestamps as local",
+      "Declare Foxtrot definitely timely without attempt evidence"
+    ],
+    "source_expectations": "Use S1/S2 for deadlines and exception conditions, S3 for records, and S4 only for claims to correct.",
+    "verification": "Execute working-day list, calendar-day difference, and UTC-plus-two conversions."
+  },
+  "B15": {
+    "must_include": [
+      "The grazer intervention restores film/light intermediates but low M can still limit final establishment.",
+      "M-only treatment leaves the film/light route impaired; failure of one rescue does not show that its targeted factor is irrelevant.",
+      "Dual restoration near untreated establishment is compatible with complementary necessary conditions and a strong interaction, not arithmetic impossibility.",
+      "The additive forecast is 5+(6-5)+(7-5)=8; observed 38 shows a 30-colony departure from that additive comparison in the reported means.",
+      "Direct grazer addition bypasses frond shelter and cannot prove the frond link or sole cause of warming harm.",
+      "Side effects, film/light mediation not independently manipulated, small tank-level sample and missing uncertainty limit mechanistic certainty.",
+      "Propose independent light/film manipulation and controlled M or shelter manipulation that separates shade/side effects, with interpretable predictions."
+    ],
+    "must_not": [
+      "Use resilience rhetoric as causal evidence",
+      "Treat one filmed event as a measured ecosystem-wide contribution"
+    ],
+    "critical_errors": [
+      "Claim failed single rescue proves no causal role",
+      "Claim dual rescue proves frond loss is the sole cause",
+      "Assert additive responses are mandatory"
+    ],
+    "source_expectations": "Separate proposed network S1, randomized condition means S2, and design limitations S3; critique S4 claims.",
+    "verification": "Execute additive expectation and interaction contrast; conceptual check of conjunctive pathway predictions."
+  },
+  "B16": {
+    "must_include": [
+      "German answer computes assignment rates 120/160=75% and 112/160=70%, difference 5 percentage points.",
+      "Assignment analysis addresses offering modules with actual participation; it is not necessarily the effect of completing either module.",
+      "Completer rates 90% versus 75% yield 15 percentage points, but conditioning on nonrandom completion can destroy comparability.",
+      "Noncompleter counts are 48/80 passing for new offer and 4/16 for existing offer, if calculated; these illustrate selection without proving its cause.",
+      "Interval -5 to +15 percentage points does not establish superiority and does not prove zero effect.",
+      "Noninferiority criterion fails because lower bound -5 is not above -4, despite positive point estimate.",
+      "Mandating completion or changing schedules is a different intervention; effectiveness, equitable access, durability, and costs need relevant new evidence."
+    ],
+    "must_not": [
+      "Conflate percent and percentage points",
+      "Assume noncompleters received no exposure",
+      "Use video production quality as outcome evidence"
+    ],
+    "critical_errors": [
+      "Call completer contrast randomized causal effect",
+      "Claim all subsets preserve randomization",
+      "Claim noninferiority is established",
+      "Ignore German output requirement"
+    ],
+    "source_expectations": "Use S1 for assignment estimand, S2 for selected comparison, S3 for decision rule and time horizon, and S4 as claims to evaluate.",
+    "verification": "Execute all pass rates, residual noncompleter counts, and interval/margin comparison."
+  },
+  "B17": {
+    "must_include": [
+      "Chinese explanation distinguishes original/gloss, translation choices, and modern titles; var has limited contextual evidence, not one settled meaning.",
+      "Fuel, labor and neighbor-roof language plus ledger directly support organized support/contribution more than complete ownership abolition.",
+      "Translator A inserts stronger surrender/collective meaning not established by supplied wording; Translator B fits contextual evidence but does not prove voluntary practice.",
+      "Missing property-transfer column in a fuel/labor ledger cannot establish either no transfers or abolition.",
+      "Year 60 plaque has retrospective political context and cannot alone demonstrate year 12 implementation.",
+      "Partial alleged sale is conditional counterevidence with authenticity, object, dating, and rights-type uncertainty.",
+      "Identify relevant complete deeds, contemporaneous title/tax registers, enforcement/contribution records, and broader linguistic parallels to distinguish live interpretations."
+    ],
+    "must_not": [
+      "Invent real-language etymologies",
+      "Translate var into a single certain ownership concept",
+      "Treat sculptor invoice as implementation evidence"
+    ],
+    "critical_errors": [
+      "Claim ownership abolition is proven",
+      "Claim mutual aid was necessarily voluntary",
+      "Claim partial photograph definitively disproves abolition",
+      "Ignore Chinese output requirement"
+    ],
+    "source_expectations": "Attribute linguistic evidence to S1, translator additions to S2, ledger/plaque scope to S3, and conditional counterevidence to S4.",
+    "verification": "Qualitative provenance and scope check; no external language or history facts invoked."
+  },
+  "B18": {
+    "must_include": [
+      "The exact signed bytes are unchanged and validly authenticated; first-wins gateway sees units=1, last-wins downstream sees units=40.",
+      "Gateway cap of 10 passes its representation, while downstream executes 40, establishing a semantic/business-rule enforcement mismatch for Q9.",
+      "A valid signature does not make different parsers agree or ensure the client satisfies a resource rule.",
+      "No cross-account access or cryptographic break is shown by the supplied incident.",
+      "Reject duplicates and enforce one authoritative validated representation, or enforce the cap at the executing service with suitable parser rules.",
+      "Canonicalizing only signing input while forwarding ambiguous original bytes does not by itself establish semantic agreement and may require a protocol change.",
+      "Valid K signature cannot identify the human intent or exclude key misuse; current implementation supersedes removed checklist features.",
+      "Limit conclusions to observed route/incident rather than claiming the proposed changes prove all API security."
+    ],
+    "must_not": [
+      "Use encrypted transport or success rate as semantic-validation proof",
+      "Assume account owner deliberately attacked"
+    ],
+    "critical_errors": [
+      "Claim HMAC forgery is necessary",
+      "Claim forwarding identical signed bytes guarantees same execution meaning",
+      "Claim obsolete duplicate rejection was active"
+    ],
+    "source_expectations": "Trace S3 through current S1/S2 rules; compare proposed S4 fixes against actual forwarded representation.",
+    "verification": "Execute JSON parsing using first-wins and default last-wins object-pair handling; check cap divergence."
+  }
+}

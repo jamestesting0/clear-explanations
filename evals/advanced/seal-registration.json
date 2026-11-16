@@ -1,0 +1,10 @@
+{
+  "registered_at": "2026-11-16T13:04:04.194003+00:00",
+  "sealed_case_count": 12,
+  "files": {
+    "cases.json": "c4e3ff87ee5be9339bd59ec522e58beedae48368d91868bd445095105f0e4602",
+    "rubric.json": "bcdfbb22bc4dc37983e40370a939cea6c93f3858a065eb555fdbf8f719ea0f00",
+    "verification.json": "e4065899b1521b457db67ef95057d65e4e65780b9ab18bace543c08542ed901c"
+  },
+  "note": "Only byte hashes were computed. The skill author has not inspected the sealed prompt, rubric, or verification contents."
+}

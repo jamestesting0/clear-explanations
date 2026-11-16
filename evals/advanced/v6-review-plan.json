@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "phase": "v6 retrospective review",
+  "instructions": "The same protocol, addendum, phase gold, and review instructions used for v4/v5 remain in force. Each new response is reviewed independently with variant identity hidden.",
+  "batching": "Primary v6 review jobs follow the original generation batch membership: four to six answers per reviewer job. The initial v4/v5 review jobs contained both anonymous answers per case, so their workload was eight to twelve answers. This difference is disclosed; comparisons remain descriptive.",
+  "second_review": "Audit the first passing original case in each hard split, all new failures/disputes, and B22 specifically because it motivated the revision. Do not replace a primary judgment silently.",
+  "scope": "All v6 cases are retrospective. No new unique prompts or unseen status are created by rerunning them."
+}

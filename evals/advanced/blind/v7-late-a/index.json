@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "kind": "blind-review-packets",
+  "created_at": "2026-11-16T15:45:39.306443Z",
+  "note": "Review scores are separate judgments, not mechanical checks. Same case IDs have identical case snapshots. Anonymous order is shuffled within each case. No independent review is implied by preparing these files; answer text may contain identity clues.",
+  "packets": [
+    {
+      "review_id": "REVIEW-0001",
+      "case_id": "A16",
+      "packet_path": "packets/REVIEW-0001.json",
+      "packet_sha256": "7cef2487527c892054f33dd15274347c1532c163d33efd5d77fb9288d5dca3eb"
+    },
+    {
+      "review_id": "REVIEW-0002",
+      "case_id": "A17",
+      "packet_path": "packets/REVIEW-0002.json",
+      "packet_sha256": "daf42e0353eeb3de65e21d772d6dadfca836ab0b01f7d008566713701607595c"
+    },
+    {
+      "review_id": "REVIEW-0003",
+      "case_id": "A18",
+      "packet_path": "packets/REVIEW-0003.json",
+      "packet_sha256": "066a0f478e87a229eca3b088a4209f6a72d0282e43971321bf61276793a1d70a"
+    },
+    {
+      "review_id": "REVIEW-0004",
+      "case_id": "A19",
+      "packet_path": "packets/REVIEW-0004.json",
+      "packet_sha256": "79d468e6aadfe709819efa305aabcdcb232dc8d81259b8326f836f71e92b484e"
+    },
+    {
+      "review_id": "REVIEW-0005",
+      "case_id": "A20",
+      "packet_path": "packets/REVIEW-0005.json",
+      "packet_sha256": "f98b54a1c8f6103e962ecbe45821bfce240fa8fbbfcba7644f2ec88d483e5c0d"
+    },
+    {
+      "review_id": "REVIEW-0006",
+      "case_id": "A21",
+      "packet_path": "packets/REVIEW-0006.json",
+      "packet_sha256": "bcb3e226a6fdff0791df5331930cd6f5bbf6fd824cbbd3fea7f40bbf52bd7736"
+    },
+    {
+      "review_id": "REVIEW-0007",
+      "case_id": "A22",
+      "packet_path": "packets/REVIEW-0007.json",
+      "packet_sha256": "9f2f249dcd017142c5775fdc6ce9efee728fd74ece35c98e1131e3942784d674"
+    },
+    {
+      "review_id": "REVIEW-0008",
+      "case_id": "A23",
+      "packet_path": "packets/REVIEW-0008.json",
+      "packet_sha256": "28f43e14d7eceb4c41caf19997b56a4f8a88c498d0269e539a5826472908b1ff"
+    },
+    {
+      "review_id": "REVIEW-0009",
+      "case_id": "A24",
+      "packet_path": "packets/REVIEW-0009.json",
+      "packet_sha256": "09b7cb29072044fb03b1880015125c4f61e97e7140739eff6d2361568b03db19"
+    }
+  ],
+  "rubric_path": "rubric.json",
+  "rubric_sha256": "7033b46857bcc03a0db97dc1b40005eab394027db00fb659fc8f20c88e42a998"
+}

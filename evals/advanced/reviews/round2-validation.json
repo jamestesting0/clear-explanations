@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "response_sha256": "f9c13cd0a5971b915201a9b960900c0915bbba4b2d09edae907cc2f6515b0b65",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly explains every requested fixture outcome and supplies the requested lifecycle design with cancellation ownership, expiry, retry, guarded completion handling, and abandoned-work observation. Its source labels distinguish the executable A25-CODE behavior from the additional A25-INTENT design requirements, and it explicitly identifies behavior the fixture does not test. I independently executed the unchanged supplied fixture under Python 3.12.14 and asserted the complete printed trace, including both later lookups; it matches the answer exactly. The stored response hash also matches its text. The three-row object comparison and lifecycle sequence serve the request, with no material omission, unsupported central claim, hard-constraint violation, or erroneous gold criterion found. This independent rerun verifies the reported behavior, not the historical provenance of the answer author's execution claim.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains that lru_cache stores the raw coroutine object, the first await returns loaded:x, and the second retrieves that same completed coroutine and raises RuntimeError; distinguishes the reusable string from the coroutine."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that A directly awaits the shared Task, so cancelling A cancels that Task; fetch:finally runs, both readers catch CancelledError, and cached-cancelled is True. The stated event trace matches the executed fixture."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explicitly says opening the gate cannot restart the cancelled Task, the dictionary retains that Task, and the later lookup receives cancellation without creating another fetch."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that shielding lets A receive its own cancellation while the existing fetch continues; gate.set allows B to receive loaded and the later lookup reuses the successful Task. The stated event trace matches the executed fixture."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Describes shield as a boundary for the particular consumer await, while the consumer remains cancellable and the cache owner can directly cancel the inner Task during eviction or shutdown."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Proposes separate in-flight ownership and successful-value records, a monotonic TTL starting at successful completion, sharing without a yield between check and insertion, guarded publication, and removal of failed or cancelled work to permit a later retry."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Gives the concrete old-T1/new-T2 callback race and the identity guard in_flight.get(key) is completed_task before deletion; also guards successful publication against obsolete completions."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Assigns background exception retrieval and recording to the owner, retains strong task references, explicitly chooses to continue admitted work after all consumers leave, describes the alternative consumer-count policy, and separates TTL, shutdown, and process-local coordination from what shielding or the fixture establishes."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "A25"
+    },
+    {
+      "response_sha256": "04c74437b5b3df9476a6702d9e23306d1310a8d2f6cbbcf294ed59fd70445ed9",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer satisfies all eight essentials, correctly separates coroutine reuse from Task outcome reuse, and explains why reader cancellation propagates without shielding but leaves the shared fetch alive with shielding. Its concrete design covers expiry, successful and failed completion, stale callback identity, deliberate background-task ownership, and exception observation. It appropriately separates demonstrated fixture behavior from unimplemented production concerns. I independently executed the unchanged supplied fixture under Python 3.12.14 and asserted that the full printed trace, including later lookups, matches the answer; the stored response hash also matches its text. The opening wording about caching preventing a second execution is compressed, but the following explanation correctly locates the failure in retrieving the same already-completed coroutine, so no substantive imprecision remains. No material error, missing essential, format violation, or flawed gold criterion was found. The independent rerun establishes output behavior, not historical execution provenance.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains that the lru_cache wrapper stores the coroutine rather than its eventual string, that the first await succeeds, and that the same completed coroutine raises RuntimeError on the second await; the comparison table distinguishes coroutine, Task, and value."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that the no-await cache check and insertion share one Task, that A cancellation propagates into that Task, that finally runs, and that both A and B catch cancellation while the cached Task remains cancelled. The trace matches the executed fixture."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "States that setting the gate cannot restart the cancelled Task and that the later lookup returns that retained Task and raises CancelledError again."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that A still receives CancelledError under shield while the fetch survives, B obtains loaded after the gate opens, and the later lookup reuses that same successful result without a new fetch."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Limits shielding to cancellation propagated through the caller await; explicitly allows direct owner cancellation during eviction or shutdown and correctly notes that deleting a dictionary entry alone does not cancel a Task."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Provides separate in-flight and successful-result maps, monotonic expiry with an explicit TTL origin, atomic join-or-create behavior under the stipulated event-loop assumptions, guarded successful publication and removal, and failed/cancelled-task eviction with a lookup fallback if a completion callback is pending."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Gives an identity-checked removal snippet, explains how an old callback could otherwise delete a newer Task, and extends the ownership or generation guard to successful result publication."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explicitly chooses continued fetching after the last consumer leaves, describes owner-directed invalidation and shutdown and the alternative counted-consumer policy, requires exception observation even for obsolete or abandoned work, and states that TTL and cross-process coordination are not supplied by shield."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "A25"
+    }
+  ],
+  "blind_review_provenance": {
+    "source_review_sha256": "6aa3276f4f283e7f1e82c3ff34687978a32556911932dee99d25af394e12baa6",
+    "review_index_sha256": "c6b7213f17ef130be36ac302b3c71000a4517539d830f4d98803b3212c9697aa",
+    "private_key_sha256": "be24037413eec8e986def120366d00b9ca284659c41cc4394eefcaf4f0d97e44",
+    "scheduled_runs": [
+      {
+        "name": "advanced-validation-v4-v5",
+        "index_sha256": "565fa853f2efc13f131898920d9f6ba7aa18ad9873e6dff7a7d5549885f13418"
+      }
+    ],
+    "reviewed": 2,
+    "scheduled": 24
+  }
+}

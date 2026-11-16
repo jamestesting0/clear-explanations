@@ -1,0 +1,2201 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context blind reviewers; retrospective v7 judgments",
+  "reviews": [
+    {
+      "response_sha256": "83cfb4804d18e12ab293419db49071478fe2193937c81da6f9296b73f479c8ec",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer gives every requested checkpoint and trace, locates reservation release in the task handler, and separates gather failure, explicit cancel-and-await, and event-loop shutdown. Its preparation ledger and TaskGroup proposal addresses reservations held by both unfinished and already prepared tasks before a response. External commit uncertainty and recovery are appropriately bounded. An independent Python 3.12.14 execution reproduced the stated output. No material weakness or hard-constraint violation was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Both after-gather lines explicitly show available 70, committed 0, and False for both A.done() and A.cancelled()."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The gate-release run ends at available 70 and committed 30, with the reservation converted into committed quantity."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The cancellation run ends at available 100 and committed 0 after A releases its reservation and the caller observes CancelledError."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Both exact traces preserve the shared reservation/failure sequence and the distinct commit/cleanup or release/cleanup/cancellation-observed tails."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It explains that default gather propagates B's error without cancelling A and distinguishes asyncio.run shutdown cancellation from that behavior."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It identifies CancelledError as a BaseException outside Exception and explains that changing the handler loses A's refund while finally still executes."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The coordinator prepares under TaskGroup, waits for task completion, releases all uncommitted ledger entries including completed preparations, and delays the failure response until releases finish."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It requires durable commit-state tracking, idempotent identifiers, reconciliation and suitable external protocols; it explicitly rejects treating cancellation as reversal of a completed transfer."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A01"
+    },
+    {
+      "response_sha256": "f52fe3b3388f4124a165df7951dc916eb43408401f76d0b41ccc42aec9df359a",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The observable ordering and promise outcomes are correct, and the explanation identifies why already queued work precedes nested rather than relying on a vague microtasks-first rule. The proposed audit helper catches synchronous and asynchronous audit and collector failures, preserves successful, fallback and original-error outcomes, and states its waiting and lifetime policy. Independent Node execution matched the trace; 27 audit/collector/operation combinations confirmed the correction under its stated nonthrowing-buffer assumption.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The printed sequence includes all eleven events in the required order, ending with outer:audit-failed and then timer."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It shows peer and the await continuation already queued when first appends nested, and states that enqueueing does not interrupt the running callback."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It explains that await 0 suspends and resumes through promise scheduling without I/O or waiting for the timer."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It describes adoption of the returned fulfilled promise and the asynchronous downstream reaction, placing write:row after nested."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The outcome table shows catch fulfilling with fallback and the throwing finally replacing that fulfillment with audit-failed rejection."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It explicitly says success:fallback is never recorded and the final rejection callback handles the audit error."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "auditAndCollect handles the audit branch, awaits collector delivery, retains both errors on collector failure under an explicit buffer policy, and preserves the original no-fallback write rejection."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It explicitly waits for audit and one collector attempt, discusses delayed completion, and explains that this still cannot keep a closing page alive or guarantee durable delivery."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A02"
+    },
+    {
+      "response_sha256": "014f258cbe5bf987d98629943bb266e83409bd6893d488292a04ccdae80f0dd1",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer distinguishes list membership from shared mutable elements and accounts for every supplied observation without inferring a second thread. It correctly limits the ConcurrentModificationException claim to the observed OpenJDK access and uses the supplied API contract for the broader invalidation boundary. The List<String> construction removes mutable aliases for the stated single-threaded capture, and the contract discussion addresses deeper graphs and later concurrency without overclaiming. No material weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The four-object table distinguishes base storage, the backed window, the wrapper that delegates to it, and copied's independent sequence of shared element references."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It explains that set replaces the source position with a new B2 builder while copied retains the original B builder."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It identifies C as the same shared builder exposed through all four lists, so mutating that object produces C! in copied and wrapped."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It separates the blocked add/set operations from mutating an obtained StringBuilder and therefore rejects deep immutability of the reachable graph."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It explains the same-thread backing-list structural modification and dependent-view access rather than treating the exception name as evidence of another thread."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It explicitly states that subList semantics become undefined and that the observed exception cannot be required from every implementation or later access."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "snapshotLabels converts each builder to its current String, collects the values independently, and returns List.copyOf(values); the capture is completed before later mutations."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It says a second copyOf still retains builder references and may reuse a suitable existing list, providing no deeper element-copy policy."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A03"
+    },
+    {
+      "response_sha256": "7dd4e7a08c0c4eb3f96cf838a6fee000aad5ad32644be2404c73837b5c0e0baa",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The original and corrected numbers, join mechanism, row grains and population change are all explained accurately. The rewrite independently groups both child collections by order_id, preserves customers, counts order identifiers and converts both missing monetary totals to zero. It distinguishes equal numeric values from record identity and warns about future fanout. Independent SQLite checks reproduced both datasets and validated no-line orders, empty orders and genuinely equal-valued child records. No material weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The original result is exactly Ada 4/320/40/280 and Ben 1/40/NULL/40, with Cy absent."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Its four-row table enumerates both lines paired with both refunds for order 10 and derives each duplicated count and sum."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It explains that WHERE rejects Cy's NULL-extended order row and that placing the paid condition in the order join preserves every customer."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The desired table gives Ada 1/160/20/140, Ben 1/40/0/40 and Cy 0/0/0/0 in integer cents."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It states that COUNT(DISTINCT o.id) fixes the order count but leaves the same four rows and duplicated monetary sums."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It demonstrates that two genuine 50-cent lines or two 5-cent refunds would be incorrectly collapsed and distinguishes unit prices from extended line amounts."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The CTEs independently aggregate lines and refunds by order_id, yielding at most one match per order before the customer-preserving paid-order join and final grouping."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It explains absent versus zero-valued refunds, missing groups versus NULL sums, and why COALESCE cannot repair fanout; COUNT(o.id) still counts paid orders with no lines."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A04"
+    },
+    {
+      "response_sha256": "1e1706da5d7349d2486a9fcf90c2b725b9072f30cdfe032eb29aa436a36acdce",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly locates the two independent suppression points and shows why normal return still runs context-manager exit. It separates logging, rollback and propagation, supplies a small ordinary-exception refactor with bare re-raise and no finally return, and discusses preserving both operation and cleanup failures without silently breaking type-based retry behavior. Independent Python 3.12.14 execution reproduced all original traces. Cancellation, shutdown and database durability remain explicitly outside the demonstrated guarantee.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "It gives clean ok with open,body,commit,close,outer-finally and explains the pending return through normal context exit."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It gives parse recovered with rollback-value,close,after-with,outer-finally after body and locates suppression in the generator handler finishing without re-raising."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It gives lookup forced with open,body,close,outer-finally and explicitly says neither rollback nor after-with occurs on that path."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It explains that KeyError leaves the context manager and is replaced by return forced in the outer finally."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It states that return inside with is a normal exit for the generator, allowing else/commit and close before the pending function return."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The refactor handles ordinary Exception failures with rollback followed by bare raise, commits in else, closes in finally, and removes the outer finally return."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It explains that close establishes reaching an event append, not rollback, original-exception propagation or successful real resource cleanup."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It explains cleanup-error replacement and implicit context, proposes an explicit primary-error attachment/reporting contract, and discusses ExceptionGroup with the necessary caller-policy change."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A05"
+    },
+    {
+      "response_sha256": "0f54d996d096a8012d79cabd74d1c740d39fba5ea29d6ab0fe6a8ebeddd11f0d",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Accurate, fully Spanish explanation tied to the fictional provider contract. It covers all three proposals, the local/external crash boundary, ordinary recovery, expiration, in-flight uncertainty, and the limits of additional guarantees. The two 700-cent charges plainly supply the required 1400-cent total without an unnecessary keyword gate. Its operational restrictions are explicitly conditional rather than presented as satisfying unrestricted recovery. No material weakness or gold defect identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening and trace identify two external charges of 700 cents each (1400 cents in total), with C501 surviving the first worker failure and the sole completed row naming C502. This satisfies the total semantically even without printing the summed numeral."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The answer explains that order_id uniqueness constrains local committed rows but cannot atomically constrain the provider, and that a rejected or rolled-back local write cannot reverse an accepted charge."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The proposal comparison identifies the durable-completed-before-call crash window that leaves a completed record without a charge, and separately explains why an uncommitted preliminary mark retains the original failure window."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The recovery procedure stores a durable merchant-and-order key and the exact request payload, requires workers and human recovery to reuse them, and explicitly limits deduplication to retention of the first successful request."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Pending is defined as incomplete local knowledge, including not sent, in transit, or accepted with a lost response. The answer preserves metadata, reuses the stable request, commits the provider identifier and completion together, then acknowledges the queue."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The answer cites the five-second search lag, the nonunique reference, and the separate possibility of an in-flight request; it correctly refuses to treat an immediate empty search as proof of absence."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The late-recovery example explains how the same stable key can create a second charge after 24 hours and why indefinite abstention can instead leave an uncharged order incomplete."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The answer proposes permanent provider-side order uniqueness with durable result recovery, or a genuinely bounded recovery and request-lifetime policy applying to humans as well. It explicitly says the latter restricts the original requirement and that manual review alone does not prove eventual completion."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A06"
+    },
+    {
+      "response_sha256": "0f590a55f91996ff0620c1d5d9e60a2286f5b49cffd6e594132d3657eb7e7a91",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Complete explanation of both ordering failures with a correct atomic repair. The answer carefully distinguishes current from corrected behavior, explains equal-revision conflicts, locates durable state at the authority, and separates historical acknowledgment guarantees from the requested no-new-change retry behavior. Independent simulations confirmed both supplied arrival traces. No material weakness or gold defect identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The arrival table accepts 1, 2, and 4, rejects 3, and ends at max_token 42 and value 7; an independent local simulation matched every transition."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The answer explains that expiration does not retract packets or prevent a paused worker from resuming, so arrival 3 is possible despite nonoverlapping leases."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The explanation grounds the fence in storage enforcement and states the crucial boundary: token 41 is barred after storage has learned token 42, rather than automatically at remote lease expiry."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The table and accompanying explanation identify equal-token acceptance plus ignored sequence as the reason sequence 1 overwrites sequence 2."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The proposed indivisible storage operation compares token first and sequence second, persists revision with value, and produces corrected value 8. The independently executed revision trace agreed."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The rule returns a duplicate/already-applied acknowledgment without a new change for equal revision and identical payload, and a conflict without modification for equal revision and changed payload."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The revision is placed at the authoritative storage and must survive crashes/failovers atomically with value. The explanation identifies both delayed application after sender checks and the inadequacy of unsynchronized client clocks."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The answer distinguishes ordering safety from delivery, acknowledgment receipt, and progress under an indefinitely long partition. It also explains why rejecting all equal tokens would incorrectly forbid later commands from the same generation."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A07"
+    },
+    {
+      "response_sha256": "bdd50c325cd7d087467dfe47cbe9f018994bd0f6d4ce8a3893a5b88c8732e187",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correct and complete application of the stipulated event-time rules, including data-before-recompute processing, idle exclusion, monotonic reactivation, permanent purge, and no deletion emission. The downstream design handles genuine corrections, redelivery, stale ordering, and metadata lifetime. Independent calculation reproduced every watermark, both emissions, and the dropped record. The larger trace table serves the requested step-by-step analysis. No material weakness or gold defect identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The before/after table gives watermarks -10, 10, 40, 65, 65, 70, 90, 90 after steps 1 through 8. An independent state-machine calculation reproduced them."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The table emits the first total 12 at step 4, explains the minimum of proposals 70 and 65, and retains window state afterward."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Step 5 is accepted using the existing watermark 65, produces replacement total 15, and leaves the partition maximum and watermark unchanged."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The answer explains that excluding p1 removes its limiting proposal of 65, permits watermark 70 at step 6, and then permits 90 and permanent state deletion at step 7."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The answer judges amount 4 against watermark 90, drops and counts it, preserves p1 maximum 75, and shows why the recomputed minimum 65 cannot lower the monotonic watermark or recreate the deleted window."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The answer demonstrates the incorrect sum 12+15=27 and proposes atomic replacement by window and version, including duplicate/stale/conflict handling and a delta update if a separate grand total is maintained."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "New emissions get increasing versions; retransmissions preserve their original identity, version, and total. Older replacements are ignored, and producer recovery plus consumer metadata retention are expressly addressed."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The policy discussion connects cleanup and idleness to bounded retention as the watermark advances and loss of late data. It explicitly distinguishes first emission and deletion from any claim that the physical world cannot produce later events."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A08"
+    },
+    {
+      "response_sha256": "035e3a1b761a4459b59421f1e7d139d2b8dc151395c4041b8c633d9fd245d874",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All numerical results and selected-population conditioning are correct and source-scoped. The response identifies the exact independence error, explains odds versus probabilities and why B remains informative, and preserves the distinction between expected counts, individual uncertainty, and an inspection objective. Independent arithmetic confirmed the posteriors and likelihood ratio. No material weakness or gold defect identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The expected-count table gives 144 defective and 392 nondefective doubly positive parts, totaling 536."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The answer calculates 144/536=26.87%; independent exact-fraction arithmetic confirmed the displayed rounding."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The table calculates A-alone risk as 180/1160=15.52% and A-positive/B-negative risk as 36/624=5.77%, both confirmed independently."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The memo section derives its mistaken 49 nondefective doubly positive parts from 0.10 times 0.05 and its 144/193=74.61% result, contrasting the supplied joint false-positive rate 0.04 and count 392."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The selected-group calculation uses 0.72/0.90=0.80 and 0.04/0.10=0.40, giving positive likelihood ratio 2. It explains why the marginal ratio 16 is not the incremental ratio after A."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The answer explicitly rejects the no-extra-information claim because B changes the posterior and separates true-status groups within A-positive parts; it also explains the negative-result update."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The answer expressly labels counts as expectations and says they do not guarantee exact realized shipment counts."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The policy section calls for missed-defect and inspection consequences, inspection effectiveness, and capacity. It distinguishes updating prevalence from revalidating joint conditional detector behavior and representative true-status labeling."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A09"
+    },
+    {
+      "response_sha256": "172ae9ff04d108b06cb6966a0e091fe225a595ed4236625b97bd313abe6585cb",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All raw, within-stratum, and standardized calculations are correct and their weights and target populations are explicit. The answer assesses all three claims, including the otherwise easily missed four-rate average, while distinguishing descriptive adjustment, individual benefit, and causal effects. The proposed designs directly address routing and staffing and distinguish a package effect from a workflow-only effect. Independent arithmetic confirmed both standardized pairs. No material weakness or gold defect identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The response calculates old 150/200=75%, new 90/200=45%, and a new-minus-old difference of -30 percentage points."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The first table gives easy 80% versus 90% and hard 30% versus 40%, with +10 percentage points in each stratum."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The response specifies actual weights of 90% easy/10% hard for old and 10% easy/90% hard for new, then explains how their unequal weighting creates the aggregate reversal."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The equal-mix table uses common 0.50/0.50 weights and calculates old 55% and new 65%."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The next-quarter table uses common 0.20/0.80 weights and calculates old 40% and new 50%; independent arithmetic confirmed both standardized pairs."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The response states each target population and the descriptive fixed-rate convention, rejects individual causal conclusions, and explains that even a positive average causal effect would not imply benefit for every case."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The causal assessment explicitly uses urgency-based routing, exclusive specialist involvement, and possible staff differences to explain why complexity adjustment is insufficient and neither observed contrast proves a workflow effect."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The final section distinguishes randomization within complexity, measurement and adjustment, and independently varying staffing. It separates evaluating the workflow-and-staffing package from the workflow itself and explains why recording an exclusively coupled specialist alone cannot separate the effects."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A10"
+    },
+    {
+      "response_sha256": "ac543d6dc08588f99d1a661040b84799a4d40dbac00185991e0aeffbc4e57e50",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer corrects every substantive slide claim and makes the operational difference between typical duration and expected batch consumption explicit. Its two tables, size-slope explanation, and variance correction agree with independent local recalculation. Evidence is attributed to the model, supplied identity, and observational study at the appropriate strength. It explains both residual spread and self-selection without confusing a fitted association with a causal feature effect, and the proposed randomized comparison addresses the actual question. No material weakness or hard-constraint violation was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "At 100 MiB the response reports medians 54.60 s and 49.40 s, accelerated/standard ratio 0.9048, and a 9.52% reduction; the displayed contrast is exp(-0.10 - 0.15x)."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "At x=1, corresponding to 200 MiB, it gives medians 66.69 s and 51.94 s, ratio 0.7788, and a 22.12% reduction, matching the -0.25 log contrast."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It derives standard mu=4.00+0.20x and accelerated mu=3.90+0.05x, identifies the 100 MiB scale, and translates those slopes to median increases of 22.14% and 5.13% per 100 MiB."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It explains that the interaction changes the size slope and multiplies the accelerated/standard median ratio by exp(-0.15)=0.8607 per 100 MiB, explicitly rejecting a standalone 15% per MiB interpretation."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The answer defines mu as the fitted mean of ln(T), identifies exp(mu) as the conditional median, and uses separate variance corrections 0.08 and 0.32 for arithmetic means. It also says those corrections are not extra terms for individual observations."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The mean-ratio formula exp(0.14-0.15x) yields 1.1503 at 100 MiB; the response correctly describes a 15.03% higher accelerated mean and supplies 68.03 s versus 59.15 s."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "At 200 MiB it gives mean ratio 0.9900 and means 71.52 s versus 72.24 s. The explanation connects the different mean/median ordering to accelerated mode's larger log-duration spread and the multiplicative factor exp(0.24)."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It uses A11-STUDY to identify mode self-selection and unrecorded hardware, complexity, and retry influences; limits interpretation to 100\u2013200 MiB; and proposes random assignment with workload/hardware controls and randomized run order."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A11"
+    },
+    {
+      "response_sha256": "3d57d7d744d1c7d32e8e199aa702025812ba8ed8541c3b74df6d95794912cad5",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The French answer follows the two required headings and supplies correct paired and unpaired arithmetic, including the stipulated t critical value. Independent local recalculation also confirmed its covariance and percentage comparisons. Its causal explanation distinguishes removal of stable machine differences from persistence of shared cooling or warm-up effects. It carefully limits the confidence interval, generalization, and experiment recommendation. The detail serves the requested comparison and claim assessment; no material omission or factual error was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The response is in French and is organized under exactly Calculs and Interpr\u00e9tation."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It states the after-minus-before convention, lists -4,-3,-4,-3,-3,-4 seconds, and obtains mean -3.5 seconds from -21/6 and from 121.5-125."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The displayed calculation uses six squared deviations of 0.5, divisor five, variance 0.3 s\u00b2, standard deviation 0.5477 s, and paired standard error 0.2236 s."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It uses 2.570582 and computes the interval [-4.0748,-2.9252] seconds, also expressing it consistently as a mean reduction of approximately 2.93\u20134.07 seconds."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Using before and after sample variances 753.2 and 765.1 s\u00b2, it obtains the unpaired-formula SE of 15.9075 s and explains how raw between-machine/hardware differences inflate that calculation. The covariance identity supplies an accurate causal link to the small difference variance."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The answer explicitly distinguishes uncertainty about a mean from a prediction interval for 95% of future machines. It explains repeated-sampling coverage and qualifies calibration by distributional and independence assumptions."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It states that a common afternoon cooling or cache effect remains in every paired difference and can produce a narrow interval without a patch effect. It separately identifies convenience sampling as a limit on generalization."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It distinguishes mean individual percentages (-2.95%) from relative change in overall means (-2.8%) and the absolute mean change in seconds. Its proposed randomized immediate/delayed groups are blocked by hardware, measured concurrently, and given common cache/environment conditions; the crossover alternative explicitly requires reversibility and control of persistent effects."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A12"
+    },
+    {
+      "response_sha256": "b777132a282ea5f95615072b7be942bca996d8eaadaa3c54640ad59bff079518",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly separates the fully specified hypothetical family calculation from the actual study's unknown sequential selection process. Independent recalculation confirmed the 64.15% probability, 0.0025 threshold, and 0.36 simple adjustment. It preserves the conditional meaning of a p-value, addresses selection of both significance and effect size, and does not fabricate an interval or an exact monitoring error rate. The confirmatory design has an outcome, sample-size/stopping plan, and statistical plus practical decision criteria decided in advance. No material weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "It derives 1-0.95^20=0.641514, about 64.15%, explicitly under A13-PLAN's independent uniform-null assumptions and distinguishes this family error probability from the probability the selected claim is false."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It calculates 0.05/20=0.0025, says both 0.018 and 0.041 fail that cutoff, and gives min(1,20\u00d70.018)=0.36."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The p-value explanation is a tail probability conditional on the null and test assumptions. It explicitly rejects the posterior-null and claim-specific false-positive interpretations and qualifies the nominal value in light of monitoring/selection."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The answer identifies reuse of accumulating participants, unknown joint behavior across looks, and unknown stopping decisions. It declines to apply 1-0.95^100 and explicitly restricts A13-PLAN's independence assumption to the hypothetical final twenty tests."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It explains that Bonferroni does not require outcome independence but does require valid individual p-values under the procedure used, and states that the 0.36 final-outcome adjustment does not fully repair the actual monitoring and selection process."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It connects favorable metric selection to favorable sampling noise and possible overstatement of +0.8 clicks. It says neither the distortion nor a defensible numerical interval can be recovered from the retained packet and does not equate missing confirmation with zero true effect."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The proposed fresh randomized experiment prespecifies a precisely defined primary saved-click outcome, session eligibility, handling of repeated user sessions, a fixed sample/follow-up rule or valid sequential alternative, and a confidence-interval decision rule."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The response introduces a prespecified practically meaningful benefit threshold, separates excluding zero from exceeding that threshold, and proposes direct task-time and harm measurements. It makes uncertainty, costs, and actual effort relevant to the product decision."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A13"
+    },
+    {
+      "response_sha256": "a9ec929b5e1e16bacce7709a13f70d88056cc5f0b30bf3303eedffc4cd9581ed",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly applies the exact calibration and zero-order-hold contract, distinguishes unit-conversion and weighting errors, and computes the requested trapezoidal alternative without treating it as superior. Independent local arithmetic matched the energy totals, averages, and register range. Its constructive example of two permitted true register readings demonstrates compatibility while keeping that claim separate from actual instrument accuracy. The tables and sections are proportionate to the several requested calculations, and the answer avoids unsupported probabilistic interpretations.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The calibrated-power table correctly applies P=2V-200 to obtain 1000, 2000, 1000, and 0 W."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The held intervals have energies 30000,120000,30000 J, summing to 180000 J=50 Wh=0.050 kWh. The response explicitly gives the endpoint at 120 seconds no duration inside [0,120)."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It calculates the time-weighted mean as 180000/120=1500 W and the four-reading unweighted mean as 1000 W, explaining both unequal interval lengths and the endpoint's improper positive weight."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It identifies 120000 J/1000 as 120 kJ, not kWh, gives the correct joule-to-kWh divisor 3600000, and obtains the partially repaired 0.033333\u2026 kWh while explaining the remaining averaging error."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The trapezoidal table gives 45000,90000,15000 J, totaling 150000 J=41\u2154 Wh. The explanation ties these values to linear interpolation, contrasting that assumption with the stipulated constant-power intervals."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The register calculation is 12.052-12.000=0.052 kWh with worst-case difference error \u00b10.002 kWh and possible true increase [0.050,0.054] kWh. No independence or probability distribution is assumed."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The response notes that 0.050 kWh is exactly at the lower bound and supplies compatible true cumulative readings of 12.001 and 12.051 kWh. It correctly concludes that the packet establishes no inconsistency."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It explicitly says the conservative bound is not a 95% confidence interval, separates exact model-conditional arithmetic from physical accuracy, and identifies calibration, between-sample changes, and measurement-window alignment as questions for a real installation."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A14"
+    },
+    {
+      "response_sha256": "a877488788bc48dfb3efca6b6827fbf6bfbdc7e8cc9f7e6a39c281111c4d025e",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The compact answer gives all three outcomes, sources each governing rule by deployed-version applicability, and explains why the 5030 ms trace is compatible with distinct client and server clocks. A local JavaScript resolver simulation confirmed the selected timers, headers, server caps, and pre-network rejection of Number('2s'). Its per-call timeoutMs:2000 fix wins the stated precedence and includes the useful caveat that matching timer values do not guarantee delivery of a server deadline error. The response has 325 whitespace-delimited words, satisfying the explicit 350-word limit. No material error or omission was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The table selects R1's call timeoutMs=6000 for both timer and header, gives a 5000 ms server cap, and explains that the cap does not rewrite the client timer or header."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It says R2's call timeout:1 is ignored and selects constructor timeoutMs=2500, with header 2500 and server computation budget 2500 ms."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It traces R3 through the ignored legacy field to Number('2s')=NaN, rejects before networking, and explicitly rules out fallback to either the 1500 ms client default or 1000 ms absent-header server budget."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The response assigns client units/precedence to the applicable 2.x migration note and parsing/validation to the deployed 2.3.1 implementation, while explicitly excluding the 1.x seconds guide and unbackported 3.x duration-string guide."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It explains that the 5000 ms computation budget starts on the server, whereas the 5030 ms observed receipt includes transit/response time and is before the 6000 ms client timer. It does not pretend the trace isolates those components."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The concrete per-call {timeoutMs:2000} change replaces R1's winning call value and correctly yields a 2000 ms timer, transmitted header, and server computation budget on the deployed version."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "A15-MIGRATION and A15-IMPLEMENTATION appear beside resolution and validation claims; A15-SERVER supports cap and clock claims; A15-OLD/A15-LATEST are explicitly cited when scoped out."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The response has 325 whitespace-delimited words, below the 350-word cap, and covers all three requests, the trace, the valid two-second configuration, and applicable versus out-of-scope documentation."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A15"
+    },
+    {
+      "response_sha256": "7c5b2d0280ea09120961d8907cc735855c44300c4cbb38f82049180de3167482",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "A complete, internally consistent migration review grounded in the supplied mixed-version and nullable-index rules. It explains immediate collision failure, the later accepted duplicate-identity race, ownership-policy limits, and a feasible staged transition without assuming nonexistent database enforcement. The extra stale-value case and explicit writer/rollback evidence strengthen the requested invariants. Tables and staged steps make the substantial detail usable; no material weakness or hard-constraint violation was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening and step table correctly identify that ids 1 and 2 both backfill to li@ex.test, causing creation of the proposed unique index to fail; reversing those two operations would instead reject the conflicting backfill."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The ownership section explicitly requires verified ownership and a product policy, rejects deleting the smallest-ID duplicate or selecting the first match, and declines to infer that ids 4 and 5 share an owner."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The response distinguishes a completed historical backfill from a continuing write invariant, explains new nulls from version 1, and also identifies stale populated values after old-version email updates."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It traces both accepted inserts, the permitted null and unique non-null value, fallback lookup finding two identities, and the later backfill conflict for id 4."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It explains that NOT NULL rejects old inserts, that a retained column name does not preserve case-sensitive identity and write behavior, and that the proposed rename also breaks version 2's email_norm reference."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The staged plan retains both representations, inventories collisions, keeps unsafe case-insensitive lookup disabled, and requires either retirement/fencing of all old writers or an explicitly added mandatory compatibility mechanism, followed by reconciliation and backfill."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It conditions unique and NOT NULL enforcement on verified correct population, resolved ownership collisions, and control of every subsequent writer path; it does not assume a trigger already exists."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It retains the old representation through the supported rollback window, includes jobs and queued work in writer retirement, and requires zero nulls, mismatches, unresolved duplicates, and incompatible readers/writers before contraction."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A16"
+    },
+    {
+      "response_sha256": "8038c8041af11b75b902e3749de436233887b7367b3cef8d59781f02d6931df0",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The exact outputs and reference model are correct, and the explanation distinguishes construction-time evaluation from invocation-time lookup without collapsing the three intended contracts. The D1/D2/D3 trace accounts for the detached dictionary mutation, and the buffer section distinguishes multiplication aliasing from outer-copy aliasing. It honors the explicit prohibition on replacement code. No material factual, coverage, or presentation weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The displayed S1 output is exactly late [2, 2], objects [10, 2], values [1, 2]."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The displayed S2 output is exactly late [99, 99], objects [10, 99], values [1, 2], with rows [{'n': 10}, {'n': 20}]."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It describes one shared comprehension binding assigned D1 and then D2; both late callbacks keep looking up D2, and replacing the list slot changes neither that binding nor D2."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The table and mutation trace explain that default arguments retain dictionary references and read their n entries on invocation, so D1's mutation and the later saved_second mutation remain visible."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It explains that values reads 1 and 2 while constructing the defaults, and that those immutable integers remain the historical results despite subsequent dictionary assignments."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The contract table correctly assigns none of the shown constructions to the live-list-position interface and describes retaining the container and an index for an invocation-time lookup."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Both exact buffer outputs are correct; it separately explains multiplication repeating one inner object and shallow copying retaining those same references across all four slots."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It offers the contract-specific capture choices and distinct per-row mutable buffers in prose. It supplies output and excerpts from the original expressions, but no replacement implementation."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A17"
+    },
+    {
+      "response_sha256": "e936a29076d162a7936edd31bceef2064114eba870ab4ef4db730276e9ae7efa",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The exact copied values, types, property-presence results, getter effects, and function-clone failure match the reviewer-executed Node fixture. The answer evaluates each technique against the supplied contract and correctly treats marker removal as an intentional change still requiring action. It keeps demonstrated behavior separate from arbitrary-value claims. The packet does not contain a responder execution trace, so the reviewer's successful reproduction substantiates semantics but does not authenticate the answer's first-person execution history; absence of a trace is not evidence of fabrication.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "It identifies spread's shared meta and Date references and consequently new/2030, while JSON and structured clone retain the old tag. The reviewer-executed Node fixture agrees."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It distinguishes the JSON ISO string from the independent structured-clone Date in 2025, including the diagnostic field's string-versus-numeric-year distinction."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Its table and explanation correctly show optional remaining an own undefined-valued property for spread and structured clone but being absent after the JSON round trip."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It correctly preserves the known symbol key only in spread and excludes inherited and nonenumerable properties from all three results; it also explains loss of the original custom prototype relationship."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It traces the getter reads in construction order to amounts 1, 2, and 3 and total reads 3; all resulting amount properties contain data values rather than a getter descriptor."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It directly rejects both the new-outer-object deep-copy claim and universal JSON preservation, using the nested mutation, Date type, and own-property-presence distinctions."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It correctly reports DataCloneError for the shown function-bearing object and requires a declared rejection or explicit field transformation/omission policy for future plugin values."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It selects structured clone only for the demonstrated supported data and requires either deliberate preservation of the known symbol marker or an explicit documented contract change with the consumer updated. A deliberate report shape is also described."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A18"
+    },
+    {
+      "response_sha256": "b0270f8a1066ed1ef6a497faa8b83613d313c94f5670e100ad8a8e1d41d866b6",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response correctly separates the original monitor cycle, the different latch-mediated wait created by the literal edit, production ordering, and test instrumentation. It identifies the important additional fact that main cannot reach its diagnostics after the same-order edit, preventing an overclaim about actual printed output. The production design preserves transfer direction and atomicity, and the interrupt/volatile and progress qualifications are accurate. No material weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "It locates the original cycle precisely: A owns left and waits for right, B owns right and waits for left, and both countdowns have already released the latch."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It explains that monitor release occurs on block exit, including exception unwinding, but neither worker reaches that exit while trying to enter the other's monitor."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Its same-order trace shows the first worker holding left at latch count 1 while the second blocks before countDown; it additionally notices that main's unbounded latch wait prevents the exact revised program from printing diagnostics."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It distinguishes the latch dependency from an intrinsic-monitor cycle and limits the alternate WAITING/BLOCKED diagnosis to external or bounded diagnostics; a monitor detector's failure to report a cycle does not prove progress."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It prescribes a total order by stable unique identifiers, consistent associated locks, unchanged source/destination business roles, and holding both locks across the atomic checks and updates."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It moves readiness/start coordination before inventory-lock acquisition, uses bounded completion checks, and explicitly handles same-object business behavior while correctly explaining monitor reentrancy."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It rejects forced monitor release through interrupt and visibility through volatile as cycle repairs, while accurately distinguishing interruptible latch awaiting from noninterruptible synchronized entry."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It explicitly limits the guarantee to preventing this class of cyclic lock waiting and disclaims fairness, bounded waiting, or arbitrary-scheduling completion guarantees."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A19"
+    },
+    {
+      "response_sha256": "34b89f1e9b2fa2e35dc510d54c3e6a038e95302c0084a5a9bbf7154c7e06d908",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The corrected query and all numerical results are correct and were independently reproduced in SQLite. The explanation clearly separates peer frames, deterministic business ordering, input population, and presentation, including the important limitation that the original prefix frames already exclude the future event for retained rows. The answer satisfies every literal criterion. C5 nevertheless overrestricts equivalent SQL formulations, as documented in the gold flag. The anonymous packet alone cannot authenticate the response author's asserted execution history; this review verifies query behavior rather than inferring fabrication.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "It derives the default peer frames and sums 5, 10, 10, 9, showing that id 2 already includes id 3's -2; reviewer-executed SQLite results agree."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It explains LAST_VALUE as the last value of the current frame and traces open at id 1, an unspecified last peer at timestamp 20, and closed only when the frame reaches timestamp 30."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It distinguishes the invariant timestamp-20 integer sum of 10 from the unspecified choice of paid versus review as the last peer status, without treating the local observation as a universal tie order."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It explains that outer presentation ordering does not add a window tie-breaker, and points out that id is already present in the supplied outer ORDER BY."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The corrected SQL uses ORDER BY ts,id in both windows, explicit ROWS UNBOUNDED PRECEDING through CURRENT ROW for the sum, and a frame ending UNBOUNDED FOLLOWING for LAST_VALUE. It meets the literal criterion, though that criterion overrestricts equivalent solutions as flagged below."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The corrected WHERE precedes window evaluation, excludes id 4, and returns running balances 5, 12, 10 with paid on every row. The reviewer executed this exact query in SQLite and confirmed all rows."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It correctly shows that full-partition final status computed before an outer cutoff remains closed, while also recognizing that the original faulty prefix frames do not include the future row for retained rows. This avoids falsely claiming the original outer filter itself introduces closed."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It distinguishes whole-partition totals of 10 or 9 from the requested running sequence and separately assigns roles to population filtering, partitioning, logical event ordering, frames, and final presentation ordering."
+        }
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C5",
+          "issue": "The demand for an explicit ROWS cumulative frame is overrestrictive if applied literally to other correct answers. With the supplied unique id tie-breaker in ORDER BY ts,id, the default RANGE frame has singleton peer groups and yields the same event-by-event prefix sum. This answer explicitly uses ROWS, so its original criterion result remains pass.",
+          "evidence": "A20-DATA declares id INTEGER PRIMARY KEY, A20-CONTRACT requires ORDER BY (ts,id), and A20-FRAMES defines the default RANGE frame through the current peer group. Together these make every peer group a single event. Reviewer-executed SQLite queries using ROWS and RANGE with ORDER BY ts,id both returned (id 1, total 5, paid), (id 2, total 12, paid), and (id 3, total 10, paid). Equivalent window formulations should be accepted rather than requiring the key's particular frame spelling."
+        }
+      ],
+      "variant": "v7",
+      "case_id": "A20"
+    },
+    {
+      "response_sha256": "808921400bde90eb89f2b7e9cd435ea2355766f58303214f176a742be65b271d",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly separates numeric representation, rounding mode, rounding scope, allocation, and refund conservation. It explains all seven printed results, derives the required 101-cent invoice and 34/34/33 allocation, and demonstrates why both proposed repairs fail. The refund example makes the order-independent reconciliation invariant concrete. It treats negative amounts and partial refunds as extensions requiring policy choices rather than inventing an authoritative rule. Citations consistently use the supplied product contract as policy authority. Local execution reproduced the seven values and the allocation; the response hash also verified. No material weakness or hard-constraint violation was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Reports exact per-line 0.34 amounts summing to 1.02 and the raw 1.005 invoice sum rounding once to 1.01."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that Decimal(1.005) receives an already inexact binary float, gives its below-tie approximation and 1.00 result, and contrasts exact text construction producing 1.01."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Gives 0.33 for half-up and 0.32 for half-even at exact 0.325, explaining the final even retained digit."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Reports round(2.675, 2) as 2.67, identifies the binary input as below the decimal tie, and explicitly rejects the claim that ties always round downward."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Shows 33.5 raw cents for each line, 99 floored cents, two residual cents, and the ascending-identifier allocation to 10 and 20, yielding 34/34/33."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that exact arithmetic cannot make three separately rounded 34-cent lines equal the 101-cent invoice-level total; the policies choose different rounding scopes."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Requires stored allocated cents for whole-line refunds, rejects both 102-cent recalculated refunds and a display-only fix, and supplies a 33/34/34 refund sequence ending at zero."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Identifies signed pools, floors versus truncation, allocation symmetry and tie handling as negative-amount policy questions, and cumulative entitlement, fractional cents and residual assignment as partial-refund questions."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A21"
+    },
+    {
+      "response_sha256": "ddd462fce54f22598b2afbf560cebee198f715356568de3035ea3b1134974eaa",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The full timeline obeys eligibility ordering, one-second execution, completion-based retry delays, and selection-time deadline checks. It correctly distinguishes enqueueing J1's third attempt at time 4 from expiring the job at time 6, without counting expiration as execution. The explanation evaluates every incident claim, preserves the exact-deadline boundary, and proposes a distinct terminal expiry policy. Its timestamp definitions distinguish retry delay, eligible queue waiting, execution and selection without execution; the jitter discussion remains outside the deterministic fixture. An independent heap simulation reproduced every run, the idle interval and the expiration. No material weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Timeline gives J1 attempt 1 at 0\u20131 with retry eligibility 2, and J2 attempt 1 at 1\u20132 with retry eligibility 3."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "J3 runs at 2\u20133 because its original scheduled time 0 precedes J1's retry eligibility 2; the ordering is explicitly explained."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "J1 attempt 2 runs 3\u20134 and schedules attempt 3 for 6; J2 attempt 2 runs 4\u20135 and succeeds."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Shows idle time 5\u20136 and expiration at selection time 6 because completion at 7 would exceed deadline 6; no third attempt starts."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explicitly treats J1's third success as hypothetical, states that the initial attempt counts toward the maximum, and distinguishes an upper bound from guaranteed attempts."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains backoff from each actual failed completion and why eligibility times do not reserve the worker or confer priority on retries."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Recommends an explicit expired state with reason and executed-attempt count, surfaced to the owning workflow, with deliberate review or authorized resubmission rather than silently removing the deadline."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Specifies enqueue, due, selection, start and completion timestamps, attempt identifiers and expiry reason; separately explains retry delay, queue waiting and execution. Jitter addresses correlated retries across workers and is explicitly absent here."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "A22"
+    },
+    {
+      "response_sha256": "8deb9d290fb15858be2e39925d386a4b5e28f59e4462788892c94e60af606414",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response computes every requested contrast and explains the counterfactual requirement, unequal pretrends, trend extrapolation, simultaneous staffing, case-mix uncertainty and inconclusive test without promoting an observed contrast to a causal effect. Its randomized rollout proposal is feasible under the stated authority; independently randomized staffing is expressly conditional, with an alternative that does not overclaim causal staffing comparisons. It also correctly identifies an internal defect in the supplied data: a percentage of tickets resolved cannot be 104%. It retains the stipulated arithmetic while distinguishing it from validated rate evidence. Local arithmetic reproduced the means, 12-point contrast and 6-point detrended contrast. The gold's omission of the invalid percentage is flagged rather than penalizing the answer for detecting it.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Reports before means North 86 and South 51.5, and after means North 102 and South 55.5, using equal week weights; appropriately qualifies 102 as arithmetic on an invalid percentage input."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Derives changes of 16 and 4 and their 12-point difference; keeps them descriptive and flags the underlying 104% measurement contradiction."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Defines the missing untreated North outcome and equal untreated changes as the required counterfactual comparison; explains why a stable level difference cancels and addresses differential staffing and case mix."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Computes both pre-period transitions as North +4 versus South +1, giving a growing gap of 30, 33 and 36, and explains why this challenges but does not disprove future parallel untreated trends."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Uses period midpoints \u22121.5 and 0.5, multiplies the three-point weekly differential by two weeks, and subtracts six from twelve; also checks the result by separately extrapolating each center."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explicitly describes the six-point result as dependent on unverified trend persistence and explains why historical detrending removes neither newly added North-only staffing nor possible case-mix changes."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Rejects non-significance as proof of parallel trends, identifies missing model, sample size and uncertainty needed to assess power, and avoids inventing a p-value, standard error or interval."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Proposes randomized future tool timing with staffing held stable, conditionally a factorial tool/staffing design, and randomized timing within staffing settings if necessary. Reports only the supplied arithmetic and its identification and data-validity limits now."
+        }
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C1/C2",
+          "issue": "The gold preserves correct arithmetic but omits a contradiction in the supplied outcome scale. The resulting 102 and 16/12-point summaries must be qualified as calculations on the entered numbers, not accepted as validated ticket-resolution percentages.",
+          "evidence": "The prompt defines each entry as the percentage of observed tickets resolved within two days, yet A23-SERIES assigns North 104 at week +1. A subset percentage cannot exceed 100; consequently the North after average is also outside that scale. The response correctly calls out this defect while still computing the requested values, and C1/C2 remain satisfied as conditional arithmetic."
+        }
+      ],
+      "variant": "v7",
+      "case_id": "A23"
+    },
+    {
+      "response_sha256": "ef0bc90097aaf97f7f845da5bc60b5bf71684e57dd641c8c8f51a2e48f142b7d",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly scopes the microbenchmark, representative replay and stable operating interval. It supplies the path speedup and limit, count-weighted means and percentage change, exact requested percentiles, both dashboard averaging errors, and occupancy with units. Its discussion of accumulated response times versus concurrent wall-clock time prevents another possible aggregation mistake. It clearly limits inverse latency to one sequential no-think-time client, and proposes controlled load and resource measurements for a saturation claim while retaining the fast-endpoint benefit. Local calculations verified the numerical results. The absent optional before-period reciprocal is not an essential omission under the actual prompt; the corresponding overrestrictive reading of C7 is explicitly flagged.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Derives 20 ms before, 14 ms after, 20/14 approximately 1.43\u00d7, and the zero-CPU limit of 20/12 approximately 1.67\u00d7."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Uses the 900/100 request counts to obtain 19 ms and 22.2 ms, a 3.2 ms or 16.84% increase; explains the larger total loss from slow requests."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Locates the 950th observation in the slow group and reports 100 ms before and 150 ms after."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Computes the mean request ratio as approximately 1.192 and distinguishes it from 19/22.2 approximately 0.856. Also computes 55 and 79 ms as equal-endpoint averages corresponding to a hypothetical 50/50 mix."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Converts 22.2 ms to 0.0222 seconds and computes 200 \u00d7 0.0222 = 4.44 mean in-system requests, including execution and waiting."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "States that sustaining 200/s at one load does not establish saturation, and asks for comparable deployment load tests, queue buildup, latency/error limits and resource demand/capacity measurements."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Correctly states the single sequential client, one outstanding request and no-think-time assumptions, computes the conditional after rate of 45.05/s, and rejects its use as concurrent deployment capacity. The before reciprocal 52.63/s is not printed; the prompt does not require both reciprocals, as detailed in the gold flag."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Keeps microbenchmark, replay and operating interval distinct throughout and expressly acknowledges the fast endpoint's 20% improvement alongside worse overall mean and tail."
+        }
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C7",
+          "issue": "Treating both parenthetical reciprocal values as mandatory would exceed the user request. The essential criterion is the conditional single-client relationship and its capacity limitation; this answer satisfies that relationship using the after-period value.",
+          "evidence": "The prompt says, 'If you compare inverse mean latency with throughput, state the single-sequential-client assumption under which that comparison is meaningful.' It does not require before and after reciprocal calculations. The answer explicitly assumes one outstanding request and no think time, conditions the 45.05/s result on experiencing the same 22.2 ms mean, and explains why it does not establish deployment capacity. C7 is therefore assessed as satisfied rather than penalizing the absent optional 52.63/s illustration."
+        }
+      ],
+      "variant": "v7",
+      "case_id": "A24"
+    },
+    {
+      "response_sha256": "044b0294d914335944678f202510c880cdc67040a49d3d8b38679a0b0ee42943",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer accurately separates E abundance, Q production, Q location, Q consumption, and light. It treats the pathway as a stipulated working model, uses the measured means without inventing precision, and explains why M and the R deletion do not isolate a unique mechanism. Its proposed measurements give explicit outcomes that distinguish production, transport, acidity, and membrane repair. The isolated preparation is correctly bounded and the supplier's score is dismissed as mechanistic evidence. The detail serves the apprentice's causal misunderstanding; no material omission or clarity weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening pathway explanation states that E requires charged C, Q must cross an intact membrane through R, and L requires permissive local acidity; A raises E without supplying the other functions."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It explains that the whole-cell assay combines both locations and that a large Q pool can reflect slow consumption rather than completion of the pathway."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It interprets the 38-to-17 Q decrease alongside the 9-to-31 light increase as compatible with faster downstream use, while allowing reduced production as a separate possible contributor."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It explicitly uses M's separate transport assay as support for a transport contribution and says unmeasured acidity changes or combined effects remain possible."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It identifies membrane damage as a confound of deleting R and explains why failure of externally supplied Q and an R rescue that also repairs membranes cannot isolate transport necessity or a sole bottleneck."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It states that internal Q produces light in intact isolated compartments below the acidity threshold without A, while explaining that supplied charged C and removed proteins limit inference to whole cells."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "The three proposed experiment groups measure compartment-specific Q, production and product formation, control local acidity, and separate R restoration from membrane repair, with discriminating outcomes stated."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "B01"
+    },
+    {
+      "response_sha256": "34175d213f075f00d3e3c65daec6dfafa609eb6ae10918fb05589764f7fa64e1",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response correctly compares assignment, selection, measured outcomes, and transfer conditions. It preserves the building-level randomized design, interprets the interval without treating zero crossing as proof of no effect, and separates missing comfort responses from the temperature result. The contractor's selected groups and unequal shading are explained as causal limitations, while chamber evidence is restricted to its actual physical endpoint and conditions. The proposed local trial addresses comfort, nonresponse, humid evenings, roof materials, and the hottest apartments. No important claim exceeds the supplied evidence, and the summary table supports rather than substitutes for the explanation.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "It identifies 20 independently assigned buildings rather than 740 independently assigned apartments and explains why linked apartment measurements require the building-adjusted analysis."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It gives the -0.6 estimate and -1.4 to +0.2 interval and explicitly describes cooling, no difference, and slight warming as compatible possibilities."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It discusses voluntary coating and survey participation, prior discomfort, and the 70% versus 15% shading difference, explaining why age adjustment and a larger sample do not isolate a coating effect."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It confines the 18% result to heat flow in the tested panels and distinguishes it from room temperature and resident comfort effects."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It gives the 78% versus 51% response rates, explains potential differential selection among respondents, and states that random assignment does not repair missing responses."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It connects the town's humid-evening top-floor complaints with the pilot's afternoon endpoint and drier out-of-town buildings, and discusses the chamber's one-substrate limitation."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It recommends a local building-randomized trial with comfort and humidity measures, nonresponse follow-up, roof-material coverage, and prespecified hottest-apartment comparisons, plus relevant missing pilot data."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "B02"
+    },
+    {
+      "response_sha256": "ec73ff15dade7501627e7d138e9548d7357308200f4a2a13ca93f8ad20382cf8",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All shipment conclusions follow the enacted eligibility and filing rules. The answer correctly distinguishes current authority from later publication dates and does not assume either enactment or non-enactment beyond what the packet establishes. Alder fails customer-delivery eligibility; Birch's post-use appointment is timely but not evidence of a completed filing. Cedar receives explicit jurisdiction branches and the additional warranted qualification that warehouse delivery may not be physical customer delivery. That extra uncertainty is a strength, not a conflict with the rubric. The date ordering was independently checked, and no unsupported outside-jurisdiction rule was introduced.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The dates table states that the certificate requirement applies to commercial equipment first placed into service within Port Meridian from June 1."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It treats the signed-agreement cutoff before April 2 and physical-customer-delivery cutoff before June 1 as separate conjunctive eligibility conditions."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It accepts Alder's March 29 agreement but rejects May 29 intermediate warehouse arrival as a substitute for the stated June 3 customer delivery; June 5 service requires a certificate under the supplied rule."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It correctly accepts Birch's April 1 agreement and May 31 customer delivery, permits filing after June 2 use, and identifies the July 10 appointment as timely before July 15 while requiring actual completed filing."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It says Cedar's workshop district is missing, rejects the postal label as proof, and explains both inside-port and outside-port consequences. It additionally identifies the unresolved customer-delivery status of Cedar's warehouse event."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It distinguishes the enacted ordinance and authorized implementing circular from the incomplete informal slide and the proposal/news digest, and explains why later publication does not confer higher authority."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It explicitly states that the packet does not establish an enacted amendment and cannot determine rules applying outside Port Meridian."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "B03"
+    },
+    {
+      "response_sha256": "2b7c7fb1caa0b3f02b76a9f5bbcff7c6c76f559ddcab3ebc70ea6496f155f498",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The arithmetic, including all-acquisition-cost contribution, is correct and was independently executed. The answer explains that reduced waste and increased sales are linked by fixed total receipts, while sell-through does not measure successful customer demand fulfillment. It considers supply changes, timing, the cafeteria contract, road construction, and selection after unusually high waste without attributing their effects as established facts. Its exact unmet-demand limit is appropriately strong: these records supply neither the desired quantity nor a justified finite upper bound. The final randomized evaluation connects measurement improvement with the distinct missing counterfactual. The tables and store-level details serve the requested causal analysis.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The ledger table correctly totals receipts at 1,400 in both periods, sales at 1,260 then 1,330, and expired waste at 140 then 70."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It calculates 90% and 95% and defines them as sell-through, illustrating why low ordering can improve that ratio while leaving customers unable to purchase."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It reports North's rise from 2 to 18 stockout hours and explains that reduced or poorly timed supply can cause more stockouts even if underlying demand falls."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It uses 10 times sold minus 6 times received, obtaining 4,200 and 4,900 and a 700-unit increase; store contributions and the sold-margin-minus-waste reconciliation also check out."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It covers bus-stop road construction, South's new cafeteria contract, other period changes, the lack of comparison stores, and the possibility that unusually high selected baseline waste would not repeat."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It explains missing departures, substitution, and deterred customers, and states that no numerical unmet-demand total is identified without assumptions about arrivals and desired quantities. It also explains why demand reconstruction alone does not identify causation."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It proposes contemporaneous randomized store comparisons with forecasts, stock timing, expiry, lost-request observations, and separate contribution, waste, availability, and fulfillment outcomes."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "B04"
+    },
+    {
+      "response_sha256": "623c6ddd670f700a72cb24b5d701823a9d393b29690ef388fd18b9600899b683",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer gives a weighted historical interpretation without inventing a definitive origin or imposing equal weight on all documents. It carefully distinguishes practical clearance intentions, administrative accommodation, possible oppositional effects, and later political framing. The retrospective memoir is neither accepted wholesale nor discarded, and accurate gate descriptions are kept separate from evidence about motives. The song and later catalog are read at their stated evidential strength. A live resistance-centered alternative and explicit prevalence, chronology, and motive limits complete the actual request. No unsupported external history or material weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "It connects the 19 annotations and 13 recorded dusk boat operators with trading and taxation, while noting incomplete occupation records, unknown annotation dates, missing pages, and limits on prevalence."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It identifies the four traders' stated demand for faster clearance and keeping both names, and accurately notes that the letter describes mismatched names delaying trade rather than proving the additional names inherently accelerated it."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It treats the watch officer's recollection as explicit but conditional evidence of oppositional use, discussing the 36-year interval, admitted memory error, and anti-tax political setting without declaring the account false."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It explicitly says confirmed gate geography does not independently authenticate naming practices or traders' motives."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It interprets 'buried neither' as compatible with retaining two identities and rejects the catalog's claim that household names were abandoned."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It defines function and intention separately and describes how practical names, administrative recording, deliberate evasion, and later political meanings could coexist, while marking the suggested sequence as unproven."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It prioritizes the petition and register, offers substantial early resistance in some groups as a live alternative, and separately states what cannot be concluded about prevalence, chronology, and a chief motive."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "B05"
+    },
+    {
+      "response_sha256": "28181ab2b18e99df2b202e5f3b5dd331e64d9e9d489c1dac98c686b00efb6383",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The simplified-Chinese explanation correctly traces all four outcomes under the supplied current contract and service code. It preserves the endpoint paths, header, and existing code tokens, distinguishes gateway authentication from tenant authorization, and attributes actual duplication to storage evidence rather than to two status codes alone. It does not invent a gateway rejection status or undocumented universal save_order behavior. The proposed operation identifier is scoped and payload-bound, with atomic result storage, conflict handling, renewed request signatures, and explicit retention limits. These are clearly proposed additions, not observed guarantees. The incident's limited coverage is stated precisely, with no material omission or unsupported cryptographic claim.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "In simplified Chinese it explains recognized-client authentication and integrity of signed fields, and explicitly separates these from tenant membership and one-time execution."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It explains that timestamp bounds request freshness rather than uniqueness and that both the 8-second original and 15-second identical retry remain inside the 60-second window."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It states that both T1 calls reached 201 without documented operation-level idempotency, and uses two distinct stored identifiers with reference R7 as the evidence that duplication actually occurred in this incident."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It explains that changing /tenants/T1/orders to /tenants/T2/orders without re-signing breaks verification before forwarding, whereas K's legitimate T2 signature authenticates K but reaches the membership check and returns 403 before parsing or saving."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It keeps tenant and business-resource authorization in the service at execution time using X-Client-ID and tenant, matching the current contract and gateway-only deployment."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It proposes a stable operation_id covered through body_bytes, scoped by client, tenant, and operation path, stored with payload identity and results atomically; it specifies concurrent retries, content conflicts, result-access authorization, renewed signatures, retention, and expiry limitations."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It explicitly demotes version 1's removed nonce database and the slide's shorthand, rejects availability as replay evidence, labels all new protections as proposals, and limits conclusions to the documented requests and logs."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "B06"
+    },
+    {
+      "response_sha256": "ebe5402da1a60b9dff889db723631144b35d181136021427e34937643acc5991",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The German explanation correctly distinguishes power, energy, phase ratios, and measurement boundaries. It reconciles both phase balances, rejects both energy-creation and reservoir-only inferences, and calculates the apparatus and larger-installation efficiencies correctly. The purpose-dependent treatment of corridor heat is explicitly conditional and does not alter the physical balance. Source labels support the stated measurements and contested interpretations; the answer neither invents another energy source nor generalizes the demonstration to other environments. Independent arithmetic checks reproduced the balances and efficiency values. No material weakness was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "In German, defines kW as the rate of energy transfer and kWh as the amount transferred over time, then multiplies the supplied phase powers by their durations."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Calculates 20 kWh electrical input and 80 kWh useful discharge heat, and explicitly restricts both 8/2 and 80/20 = 4 to the discharge electricity denominator."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "States 20 kWh electricity plus 70 kWh storage withdrawal equals 80 kWh room heat plus 10 kWh corridor heat, explaining why output can exceed simultaneous electrical input."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Calculates 18 kW times 5 h = 90 kWh and identifies 70 kWh replenishment plus 20 kWh loss."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The phase table and cycle explanation give 110 kWh electrical input, 80 kWh useful heat, 30 kWh loss, zero net storage change, and 80/110 approximately 72.7%."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explicitly expands the boundary to include the computer, increasing input to 113 kWh while useful output remains 80 kWh, yielding approximately 70.8%."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains that necessary recharge cannot be excluded by calling it maintenance, rejects adding kW directly to kWh, and conditionally reclassifies corridor heat as useful only if that matches the stated customer's purpose."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "B07"
+    },
+    {
+      "response_sha256": "c64bab33d253f0dfe5a8e55ec03e23cba0eb10deba803af77a150caac354df14",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The explanation correctly separates flow counts, completed-job latency, within-window occupancy, and worker occupancy. It provides the requested finite-window causal explanation rather than merely invoking nonstationarity. Its additional lower bound of 79,200 job-seconds, or 440 seconds per finally unfinished job, follows correctly from the supplied totals and preserves the prompt's requirement that the summaries constrain possible histories. Scaling and drain-time conclusions remain conditional, and the proposed measurements distinguish worker shortage from dependency blocking and workload mix. Local arithmetic checks confirmed all reported numerical results. No material weakness was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Shows 120 + 600 - 540 = 180 and distinguishes admissions at 1 job/second from completions at 0.9 jobs/second."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Identifies the 60-job increase and explains that stable long-run flow and suitable boundary behavior cannot simply be assumed for the ten-minute accumulating population."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Identifies the histogram population as the 540 completions, excluding 180 unfinished jobs and potentially including admissions before the window; rejects applying its p95 to all new admissions."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that full durations can extend before the window while unfinished jobs contribute occupancy without completed durations, so 1 times 20 does not test the gauge and 150/1 is not a measured cohort latency."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Calculates 150 times 600 = 90,000 job-seconds and contrasts this with at most 10,800 within-window job-seconds attributable to completions, deriving a valid occupancy constraint for remaining jobs."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Calculates 180/0.9 = 200 seconds only as a no-new-admissions constant-rate projection and explains why the remaining blocked mix may invalidate that rate."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Distinguishes CPU utilization, execution slots, and pending dependencies; requests ages and state histories by class, actual slot demand, and dependency traces before treating added workers as a remedy."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "B08"
+    },
+    {
+      "response_sha256": "2deae177e6170b7d719723e57775a6957b90df985e14e5b900d6c35fa0e93fe7",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "This is a supported close reading rather than a plot summary. It connects the narrator's proof-making, retrospective corrections, ambiguous objects, competing records, and changed notice to distinct questions of operation, authorization, and warning. Its leading self-exoneration reading is qualified by the narrator's critical distance and the possibility of sincere procedural reform. It correctly treats the removed ending and marketing jacket as contextual evidence rather than final-story facts, and preserves all specified unanswered questions. The length serves the requested analysis without material repetition or unsupported biography. No material weakness was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains how innocence becomes the premise of memory, how the bell qualification weakens chronological certainty, and how the admission about absences exposes faulty proof without establishing complete later reliability."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Uses the other painted public handles to show that red paint does not uniquely connect Mara to the wheel and rejects the handout's unsupported universal guilt code."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Reads 'She did' and 'We did' as competing accounts of who requested the opening, explicitly separating shared authorization from identifying the physical operator."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Connects the keeper's warning question and the narrator's preference for looking away from the houses to avoidance of responsibility for those below, while correctly withholding a factual conclusion that timely warnings were possible or omitted."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains the key and hidden hands as withheld or redirected evidence, the unnecessary lantern as a possible gap between inquiry and discovery, and written records as limited forms of certainty rather than universal symbolic codes."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains how two countable witnesses may narrow a broader collective demand, while retaining both a practical reading of the old notice and a sincere-accountability reading of the new one."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "States that the removed 'Mara turned the wheel' sentence cannot be restored as a hidden final-text fact and that the jacket cannot authenticate a confession; the lantern margin is limited to drafting context."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explicitly preserves uncertainty about the operator, the brother's fate, and warning timing and feasibility; supports the self-exoneration reading while noting that it proves neither Mara's innocence nor the narrator's physical operation."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "B09"
+    },
+    {
+      "response_sha256": "74cf7cf4b2f0ab7d010407f1f2aa98be8a5188bee58dfd42047d0e176730bd4a",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly calculates pooled, subgroup, composition, and standardized results and explains the changed weights intuitively. It keeps descriptive reweighting separate from causal identification, explicitly addresses within-category selection, and distinguishes a seven-day accepted-request metric from access and eventual benefit. Its evaluation proposal ends the response as requested and specifies incoming cohorts, district comparability, common-mix summaries, and a concurrent controlled evaluation. Hypothetical unequal access is clearly labeled as a mechanism rather than a district finding. Independent calculations reproduced the reported rates. No material weakness was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Calculates baseline 110/200 = 55% and tool-period 79/220 = 35.91%, with the correct 19.09 percentage-point decline."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Gives Easy rates of 90% and 95%, Hard rates of 20% and 30%, and the Hard share increasing from 50% to 90.91%."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Shows the weighted averages and explains that the much greater weight on lower-success Hard requests permits pooled decline despite both conditional improvements; rejects both presentations' unsupported implications."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Calculates 0.5 times 95% plus 0.5 times 30% = 62.5%, explicitly compares it with 55%, and explains that this hypothetical weighting leaves the actual tool-period result unchanged."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Calls the 7.5-point difference descriptive and identifies the changed contract, training, undocumented overrides, acceptance process, and within-Hard severity distribution as barriers to causal attribution."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Distinguishes complete follow-up of accepted requests from absent rejected and abandoned requests; explains limits for access, waiting, eventual repair benefit, unmet demand, and East-West fairness."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Ends with a proposal to record every incoming request, define legitimate comparison factors and an acceptable access gap, compare district access and outcomes within agreed groups and a common mix, and use concurrent randomized evaluation where feasible."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "B10"
+    },
+    {
+      "response_sha256": "bccf173a655b32e0db04572adc278ce1843632653b371b91c3e1630fb224b821",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer accurately traces the deployed epoch check, distinguishes it from the later tombstone branch, and explains the protective scope of the shared lock. It validates the user's visible experience while separating local pending/conflict state and CSV output from canonical writes. It prefers current implemented evidence to the obsolete timestamp sketch and limits the server-state conclusion to the observed handler and GET. The broader audit and proposed interface changes are clearly prospective; the explicit restore operation is correctly recognized as an exception to any absolute non-restoration claim. A local branch simulation confirmed 409 for epoch 4 against 5 and 410 for a matching tombstoned epoch. No material weakness was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Defines epoch as a server-controlled generation and states that local revision 9 in epoch 4 cannot outrank the epoch-5 tombstone; the write path derives its revision from stored state."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Walks through 4 differing from 5, immediate 409, and no execution of either the 410 branch or content write; also correctly describes the matching-epoch tombstone case."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains that the lock covers validation through writing and is shared with deletion, preventing those protected operations from interleaving during the check/write interval."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Distinguishes visual reappearance from canonical restoration and explains both offline pending display and preservation after 409 in the conflict tray."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "States that CSV reads local app state, includes conflict-tray drafts, and omits a status column, so the exported title does not demonstrate a server commit."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Pins the deleted canonical state to the 09:42 GET and calls for a review of all write/restore paths before claiming a broader guarantee; does not invent imports or backup activity in the incident."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Rejects search ranking as evidence of implementation, prioritizes current epoch contract/code, and proposes clear local-draft/conflict labels plus an explicit draft export option and status column."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "B11"
+    },
+    {
+      "response_sha256": "cc172cba3e5a51708d40e8d307c503581ddab322ce127464365e4b8b363f9043",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The explanation distinguishes resemblance and psychological continuity, strict identity, technical/physical continuity criteria, and independently assigned obligations without requiring specialized vocabulary from the reader. Its identity-transitivity argument is valid, and it carefully treats the competing theories as proposals rather than established facts. It resolves the speakers' practical dispute using the exact joint-obligation rule, neither multiplying the debt nor forgiving it, while preserving the rule's limits for personhood, property, and punishment. Later divergence and responsibility receive a separate, appropriately conditional analysis. No material weakness was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Defines literal numerical identity against resemblance, describes inherited psychological connections, distinguishes the technical history and physical-continuity criterion from a theory of identity, and separately grounds the project obligation in the community rule."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "States that both successors have the same remembered basis and neither receives uniquely privileged status from the technical report, so East's memory does not establish exclusivity."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains that East = Vale and West = Vale would imply East = West under ordinary identity, contrary to their stipulated distinctness, while memory and project continuity can branch."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Attributes physical implementation, psychological continuity, and public recognition approaches to the three proposed theories, and explicitly says technical history does not select among them."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Derives authorization for both from Vale's documented plan and states that they jointly owe exactly one complete map or one full repayment, with no mandated equal split, second performance, or identity-based forgiveness."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explicitly states that the policy neither proves personal identity nor assigns unrelated property or punishment; Theory C cannot be established merely by this rule's adoption."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains why different later information defeats guaranteed identical choices without proving divergence on every choice, and requires participation, knowledge, control, assistance, or applicable duties before assigning blame for another successor's conduct."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v7",
+      "case_id": "B12"
+    }
+  ]
+}

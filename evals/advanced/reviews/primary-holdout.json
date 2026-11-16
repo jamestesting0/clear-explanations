@@ -1,0 +1,1494 @@
+{
+  "schema_version": 1,
+  "reviewer": "Separate independent fresh-context blind reviewers; primary holdout judgments",
+  "reviews": [
+    {
+      "response_sha256": "f46ac916c53a8c0abc483bab44184b113cce47cf04eff208d46272978bc1ca38",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Accurate and complete distinction among causal initiation, feedback-supported maintenance, and a lingering readout. The 12.5-unit calculation was independently executed and confirmed. Citations support the reported observations without converting them into indefinite persistence or an established inhibitor mechanism. The explanation includes the establishment-versus-maintenance limitation and useful proposed tests; no substantive weakness or hard-constraint violation found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains S as the initiating cause and the A\u2013B positive-feedback loop as the proposed means of maintaining an already-started state after S removal."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Uses the direct A assay: deleting B preserves the early S response but eliminates persistence; distinguishes establishment from continuing maintenance."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Limits S necessity to the standard resting preparation and tested interventions, explicitly leaving alternative initiation routes untested."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Calculates three halvings as 100 \u00d7 (1/2)^3 = 12.5 units and the observed difference as 0.5; neither invents uncertainty nor rejects fractional units."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Says residual old reporter does not prove continued A or feedback activity, while declining fluorescence does not establish direct A inhibition."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Distinguishes cell-free validation from uncharacterized action within the complete device; does not assume reporter production definitely stopped in this batch."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains late B removal with procedural controls and simultaneous direct A/new-reporter measurements; clearly labels these experiments as proposed."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Limits demonstrated persistence to two hours and leaves indefinite operation and energy/material requirements unresolved."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B19"
+    },
+    {
+      "response_sha256": "623217c3b17f60d4685f4a80c0ab7b0c68290a961a10fc463b0f81213d544d0e",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All essential claims and the executed 12.5-unit decay check agree with the supplied evidence. The answer handles the pre-stimulation deletion confound and cell-free versus whole-device distinction particularly carefully. Its source-linked explanation remains clear and proportionate, without claiming that residual fluorescence resolves current A activity or that two-hour persistence is perpetual.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Opening directly separates S starting A, A\u2013B feedback sustaining activity, and reporter lingering after activity; identifies the reinforcing mechanism."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Interprets preserved early response and lost persistence without B as evidence of B-dependent sustained activity, without uniquely proving every feedback step."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Says S is necessary only for the stated resting preparation under tested interventions, not every conceivable route to activation."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Computes the 100 \u2192 50 \u2192 25 \u2192 12.5 sequence; treats 13 as 0.5 higher without assigning precision, significance, or an integer requirement."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Rejects both residual fluorescence as proof of ongoing feedback and the decline as proof of direct inhibition of A."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explicitly says cell-free validation does not establish the inhibitor\u2019s full intracellular action or complete production cessation in this batch."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Uses selective removal of B after establishment, matched controls, direct A measurement, and separate old/new reporter measurements to explain the proposed tests."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains that two hours cannot establish perpetual activity or the required energy/material supplies; dismisses the packaging award as evidence."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B19"
+    },
+    {
+      "response_sha256": "ac5f0d903a40fe8bb51b412ddb059a41d3f553aea8ace4f43e55d32bd21cbd45",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly separates ordinary aggregation, departure-specific exception conditions, and authority to certify versus extend. Executed arithmetic/date checks confirm 55,000, 90,000, eight days between Ash/Beech, and fifteen days from April 20 to May 5. The conditional Elm conclusions and April non-retroactivity follow the stipulated policy; no invented approval or general authorization claim appears.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Adds Ash 30,000 and Beech 25,000 to 55,000 under their shared agreement and eight-day interval; rejects avoiding aggregation by splitting dates."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Identifies Ash\u2019s River Rooms agreement, April 20 departure, and approved report as satisfying the April exception."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Says Beech lacks the necessary recorded report approval and can qualify only if certification is completed and the report accompanies departure."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "May 5 lies outside the exception, and the curator\u2019s certification power cannot extend the director\u2019s exception."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Conditionally totals 90,000 for all three loans in April 20\u2013May 5 if Elm is River Rooms, versus 35,000 on supplied records if separately agreed."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Excludes the digital image license from physical insured value and applies Fir\u2019s internal-network exemption despite its 90,000 value."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Distinguishes aggregation for Elm from the still-valid exception for qualifying April departures, without retroactive cancellation."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Limits conclusions to conservation review and expressly refuses to infer that missing condition reports or other approvals are satisfied."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B20"
+    },
+    {
+      "response_sha256": "f99ba6dc57895d81682f991300349b7794219f7236ac2da89e411bc6f86eecd5",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "A complete source-grounded application of the closed rules, including same-agreement aggregation, the unapproved Beech report, Elm\u2019s missing agreement, and the curator\u2019s limited authority. The independent value/date calculations confirm its results. The table and conditional branches add useful organization, and other approvals remain explicitly unresolved.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Correctly derives the 55,000 Ash/Beech total from the same agreement and eight-day interval, explaining why separate shipments do not avoid review."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Applies the named exhibition, April date, and approved-report conditions to Ash and allows threshold-review waiver."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Keeps Beech\u2019s expected certification distinct from actual approval; without approval the exception is unavailable and the aggregate triggers review."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Treats Elm\u2019s May departure as outside the documented exception; expressly distinguishes curator report certification from authority to extend it."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains both Elm branches: shared agreement produces 90,000 in a thirty-day window, while a separate agreement leaves 35,000 on the listed facts."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Excludes the 20,000 digital license and exempts the 90,000 internal Fir transfer; does not use borrower identity as exhibition identity."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains that including earlier loans in Elm\u2019s calculation is compatible with honoring qualifying April waivers; Beech\u2019s own condition remains independent."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Opening and conclusion limit the result to this threshold policy and note that unprovided other approval rules cannot be resolved."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B20"
+    },
+    {
+      "response_sha256": "09c11c4384232fe960ab7ad523d13a83f1acd1364b5643c998515927fab81264",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The complete account/revenue reconciliation and all three retention calculations were independently executed and confirmed. The response keeps acquisition outside cohort retention, explains how concentrated expansion offsets cancellations, and clearly distinguishes contracted rates, cash, earned revenue, and profit. It also addresses survivor-only survey limitations and the evidence needed for durability and cancellation explanations; no substantive defect found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Computes 45 + 9 + 4 = 58 survivors, identifies seven cancellations, and gives 58/65 = 89.23% account retention."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Computes same-cohort closing revenue 900 + 900 + 6,000 = 7,800 and net retention 111.43%."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Excludes the 2,000 expansion, using 900 + 900 + 4,000 = 5,800 and gross retention 82.86%."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Adds 22 genuinely new accounts and 600 recurring units to obtain 80 accounts and 8,400 recurring units at closing."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Labels 8,400/7,000 as 120% of opening revenue or 20% total growth; reconciles 2,000 expansion against 1,200 canceled revenue."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains why contract snapshots cannot determine receipts or monthly earned revenue, and asks for dated cash/contract/revenue records."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Identifies absent cost totals and survivor/response selection; the survey cannot explain canceled accounts or show cancellations stopped."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Highlights four-account concentration and one-month scope; declines causal explanations for staying/leaving or durability claims and proposes longitudinal evidence."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B21"
+    },
+    {
+      "response_sha256": "2c238d9147b50c3ff7b404ef00d7ab61fe59dfa6e8f944e80295d0d8ffc40628",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All totals and retention percentages match an independently executed reconciliation. The answer defines cohort membership, keeps expanded accounts distinct from acquisitions, and identifies the 120% ratio as total growth rather than retention. It covers cash timing, earned revenue, missing costs, survey selection, and future durability with useful next records; no essential omission or material overstatement found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Shows 58 surviving opening accounts out of 65, identifies the seven cancellations, and computes 89.23% account retention."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Keeps the opening cohort distinct, totals its 7,800 monthly units, and correctly computes 111.43% net retention."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Subtracts 2,000 expansion to obtain 5,800 surviving opening revenue and 82.86% gross retention."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Accounts for 22 new customers contributing 600, with complete closing totals of 80 accounts and 8,400 units/month."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains 1,200 canceled revenue versus 2,000 expansion and labels the 120% ratio as 20% company-wide recurring-revenue growth, not cohort retention."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Distinguishes a closing contract rate from both cash received and earned revenue during the month; requests service-period and contract-change records."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Calls for earned revenue and a corresponding cost ledger before profit conclusions, and explains survey exclusion/nonresponse and absent cancellation timing."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Says one month cannot establish future renewals or expansion and that respondent praise does not establish why customers stayed; recommends later-cohort tracking."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B21"
+    },
+    {
+      "response_sha256": "5343255aa5231e0c3714256105057fce1b68b6934a1adca09be86b268ed33f02",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The central propositions are kept at their observed strength: contemporary non-hearing is not a mechanical diagnosis, later agreement may be dependent, and rope replacement or reconstruction cannot establish a unique storm-night cause. It develops useful alternatives and discriminating evidence and supplies careful museum wording. The exact-prior term is not repeated, but the explanation establishes the missing probability foundation without inventing odds; that is an acceptable substantive equivalent.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Distinguishes the diarist\u2019s location-specific non-hearing, actual non-ringing, and mechanical inability; normal North Bell audibility remains unknown."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Uses the chronicle bibliography and the school history\u2019s unusual phrase, shared error, and bibliography as evidence against counting three independent witnesses."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explicitly avoids tracing every sentence with certainty or ruling out additional information not resolved by the packet."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that rope replacement fits storm damage, later failure, or preventive work, and cannot date a storm-night malfunction."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Separates independent weather corroboration from bell behavior and treats reconstruction as physical plausibility without calibrated historical odds."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains the later works\u2019 value for the representation of the storm and leadership symbolism even if dependent on earlier event accounts."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Compares inaudibility with actual silence, then distinguishes broken mechanisms from failure to operate a working bell; ties evidence and limits to each."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Rejects numerical odds due to unsupported dependence and event-specific likelihoods, proposes careful museum wording, and identifies a contemporary tower-keeper record that would discriminate explanations."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B22"
+    },
+    {
+      "response_sha256": "3cc1c59b07bb2957b0c46b99f38b48d66d786a0176a4f4b42fd281a01b84134a",
+      "dimensions": {
+        "accuracy": 1,
+        "evidence": 1,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 10,
+      "max_score": 12,
+      "verdict": "partial",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The principal historical reasoning and all requested alternatives are sound, but one local factual overstatement matters to this evidence-strength exercise: \u201cThe diarist did not inspect the North Bell\u201d is not in S1, which only leaves inspection unreported. This converts absence of evidence into evidence of absence. Accuracy and evidence are each reduced to 1; the mistake is local and does not reverse the central conclusion or constitute a critical failure. Coverage, language, organization, and fit otherwise satisfy the request.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "partial",
+          "notes": "Correctly separates reported non-hearing from non-ringing and mechanical inability, but says \u201cThe diarist did not inspect the North Bell.\u201d S1 only says the page does not state whether anyone inspected it."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains dependence through the diary citation and the school history\u2019s shared unusual phrase, error, and bibliography; does not count three independent observations."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Qualifies inheritance as possible or likely and says exact sentence origins cannot be fully reconstructed."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Treats the two-month-later rope invoice as compatible with storm failure, later failure, or preventive replacement rather than a dated diagnosis."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Uses the weather log only for storm conditions and the imperfect reconstruction only for conceivable inaudibility, without an event-specific probability."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Identifies later historical storytelling and public memory as valid uses, while rejecting inference that absent-leadership symbolism proves historical absence."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Develops mechanical obstruction, inaudibility, and failure to ring a usable bell as live alternatives, identifying positive evidence and absent support appropriately."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Identifies missing prior, dependence, and event-specific probabilities behind the 97% claim; supplies careful caption wording and independent bellkeeper/near-bell evidence."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B22"
+    },
+    {
+      "response_sha256": "0cdb06477ea6c0af15279125f0ee42cba283d5225c965494ece45d24743877ca",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The German answer correctly follows the stipulated key and plaintext paths without inventing a cryptographic mode or exploit. It distinguishes service capability, authorized observed recovery, and unproved human misuse; compares compromises within the stated permissions; and correctly leaves the separate file\u2019s cryptographic deletion unresolved. Proposed architecture and audit changes directly address the stronger promises; no substantive defect found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "German explanation follows device encryption and wrapped document keys to authorized vault unwrapping, preview plaintext in service memory, and recovery for a new device."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explicitly distinguishes non-exportability of the private vault key from release of document keys and consequent server decryption capability."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Assesses the literal device-only promise against current preview and recovery capabilities, giving the old marketing no authority to override them."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Treats logged recovery as the designed workflow, not an algorithm break; distinguishes organizational capability from unproved unauthorized human access."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Contrasts ciphertext-only compromise with usable preview-service credentials, preserving tenant and authorization limits and missing implementation/audit guarantees."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains the retrieval-blocking tombstone, up-to-thirty-day retention, and ordinary deletion acknowledgment\u2019s failure to certify key destruction."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Allows retained ciphertext to become unusable after effective destruction of every usable key, while finding no completion evidence for the separately deleted file."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Proposes device-side preview and user-controlled recovery for exclusive access, file-specific destruction/path evidence, and fuller access/authorization/vault audit records."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B23"
+    },
+    {
+      "response_sha256": "5d6d4803089f7fde194d156d1b7a7c230e6e8850aa2c36a23ece93faf0dc472a",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "A complete German explanation of current key access, preview, recovery, and deletion boundaries. The response appropriately conditions compromise consequences on usable privileges and checks, and does not infer unauthorized access from capability or recoverability from retained ciphertext alone. The device-exclusive architecture changes and file-specific destruction/audit evidence answer the requested next steps; no material weakness found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Uses German to trace device-generated document keys, wrapped keys, authorized unwrap, preview decryption in server memory, and server-authorized account recovery."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that unwrapping returns document keys without exporting the private hardware-module key, so non-exportability does not remove server access capability."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Uses the current architecture to reject the literal device-only claim; the old end-to-end label cannot substantiate that promise."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Interprets recovery logs as the intended workflow, not a broken algorithm or evidence that an unauthorized person read a file."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Contrasts a ciphertext-only store without the documented key route against preview services handling keys/plaintext, without assuming unlimited tenant access or perfect cryptography."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Ordinary deletion blocks normal retrieval but permits retained encrypted backups/wrapped keys and does not certify completion of separate key destruction."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains conditional inaccessibility if the only usable key is destroyed, while withholding either conclusion about the separate file absent its completion record."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Identifies device-local preview/user-controlled recovery changes, time-appropriate authorization logs, and file-specific destruction and recovery-path evidence for stronger promises."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B23"
+    },
+    {
+      "response_sha256": "61c1ab9ba68a8955b985d4828dbb2a2a58a33803c9824910e252534e6ee97824",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The independently executed mass balance confirms every key numerical result, including the four liquid amounts, 300 mg contrast, 950 mg accounted amount, and 50 mg gap. The Chinese explanation separates concentration, liquid-phase amount, physical recovery, and unverified transformation, preserves the useful but limited paired observation, and proposes discriminating assays. No material factual, causal, or language-constraint error found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Simplified Chinese table correctly calculates 1,000 mg initially, 600 mg in treated liquid, 900 mg in comparison liquid, and 600 mg after dilution."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains how halving volume allows concentration to rise from 10 to 12 mg/L despite a 400 mg, 40% liquid-phase reduction."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Uses the unchanged 600 mg before and after adding Q-free water to distinguish the 50% concentration reduction from additional removal or destruction."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Computes the observed 300 mg treated\u2013comparison contrast and explicitly separates it from the 400 mg initial-to-treated loss and 350 mg filter recovery."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Adds liquid 600 mg and recovered filter 350 mg to account for 950 mg, leaving a correctly calculated 50 mg gap."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Leaves the gap\u2019s cause unresolved among surface retention, assay/extraction limitations, and conversion; explains that parent-Q assays omit possible products."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Notes the comparison\u2019s 100 mg loss, retains the paired observation\u2019s usefulness, and rejects general causal-performance or safety conclusions from one run."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Proposes thorough filter extraction, wall/surface assays, transformation-product identification/quantification, and controlled randomized repeated trials with broader-use evidence."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B24"
+    },
+    {
+      "response_sha256": "3ec39359e5f5ed490ff148b9254909a9f392c0ce47e7bb762a5aaaeee1adbd04",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The Chinese response gives a complete and verified numerical accounting while keeping measured differences separate from filter-specific causation and general performance. It carefully distinguishes the three different loss/recovery/contrast quantities, avoids attributing the missing 50 mg to an unmeasured mechanism, and provides relevant extraction, product, and replication checks. Structure and detail serve the requested educational distinctions; no substantive defect found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Gives the four correct amounts in Simplified Chinese with clear units: initial 1,000 mg, treated 600 mg, comparison 900 mg, diluted 600 mg."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains the 20% concentration increase alongside the 50% volume reduction and 400 mg, 40% decline in measured liquid Q."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Shows Q-free dilution spreads the same 600 mg across twice the volume, reducing concentration 50% without additional net Q reduction."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explicitly distinguishes the 300 mg inter-vessel contrast, 350 mg recovered from the filter, and 400 mg initial-to-treated liquid reduction."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Reconciles 600 + 350 = 950 mg and 1,000 \u2212 600 \u2212 350 = 50 mg, describing the latter as a 5% accounting gap."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Says the missing 50 mg is not a measured destruction quantity and leaves wall retention, measurement/extraction limits, and conversion open."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Identifies the comparison\u2019s separate 100 mg gap, refuses to assume identical unmeasured fates, and limits general efficacy/safety inferences from one unreplicated comparison."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Recommends surface wash assays, extraction recovery checks, product identification with appropriate Q-equivalent accounting, randomized repetition, and broader-condition evidence."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B24"
+    },
+    {
+      "response_sha256": "1f5cc595fb6bcd1dd58e9ce02a41b85c5afb75715a6d49201e3c820120e5cbfe",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly separates resource workloads, elapsed schedules, individual deadlines, and worst-case guarantees. Both scanner orders and the competing review order are feasible as shown; independent enumeration confirmed the nominal and expedited schedules. The earliest-path argument rules out an ordinary-process guarantee without inventing probabilities. The explanation and citations cover the supplied constraints, and no material weakness or gold conflict was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The table gives A scanner 0\u20135, B scanner 5\u20138, both OCR completions at 11, and reviews A 11\u201313 then B 13\u201316; both nominal deadlines are met."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The B-first table gives B scanner 0\u20133, OCR 3\u20136, review 6\u20139, and A scanner 3\u20138, OCR 8\u201314, review 14\u201316; the text distinguishes A lateness from the shared 16-hour makespan."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains 22 hours as eight scanner-hours plus nine OCR-hours plus five reviewer-hours, with overlap reducing elapsed time; correctly avoids calling all processing time human effort."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Says additional compute changes neither runtime nor concurrent capacity because existing compute already runs both OCR jobs simultaneously."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Expedited A-first schedule has A OCR 5\u20139 and review 9\u201311, then B review 11\u201314, with two hours of nominal deadline margin for each job."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Derives earliest ordinary A completion as 7+d and evaluates d=9 to obtain hour 16, so the hour-13 deadline cannot be guaranteed."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explicitly rejects a lateness probability without a duration distribution and distinguishes the expedited nominal quote and uptime from worst-case runtime bounds."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Identifies the 100-unit fee and says its value requires earlier-completion, avoided-lateness, or other cost information absent from S3."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B25"
+    },
+    {
+      "response_sha256": "44ad72554dc81241f218339dceb5694b68a83f898a715392a3dee27d372c3c93",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All requested schedules, resource constraints, deadline distinctions, and proposed changes are explained accurately. Executed schedule enumeration confirms the table and the 14-hour expedited schedule. Source references support the claims at the stated strength; the earliest-path bound correctly separates nominal success from a guarantee. The detail is proportionate, with no material omission or gold dispute.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Lists A calibration/scan 0\u20135, B calibration/scan 5\u20138, OCRs both ending at 11, and A-first reviews ending at 13 and 16."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Lists B-first scanning 0\u20133 then 3\u20138, B OCR/review 3\u20136/6\u20139, and A OCR/review 8\u201314/14\u201316, explicitly showing A misses despite final completion at 16."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Computes operation durations as 13 for A and 9 for B, then explains why their sum of 22 is not elapsed project time because OCR overlaps other resources."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Ties the lack of benefit from another OCR computer to already sufficient simultaneous capacity and unchanged individual runtimes."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Shows expedited A OCR 5\u20139, A review 9\u201311, B review 11\u201314, and nominal completion two hours earlier for each job."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Uses 1+4+d+2=7+d and the allowed d=9 to show even the earliest A path finishes at 16 rather than 13."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Does not infer a distribution or probability; explicitly says uptime and the expedited nominal quote supply no worst-case guarantee."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "States that the fee is 100 and no supplied monetary value establishes that paying it is profitable."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B25"
+    },
+    {
+      "response_sha256": "06e7c0556c1c42c106a5f41cabaf64afd92349c4db915bbfa9ce69fa6c85c0b3",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The party accounts and direct resource calculations reconcile correctly for all three scenarios; executed arithmetic confirmed every surplus total. Transfers, real costs, nuisance, and distributional judgments are distinguished clearly, and the answer does not infer future behavioral responses or profits from gross sales. Citations correspond to the synthetic assumptions, with no material weakness or overrestrictive gold criterion identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Calculates 100\u00d722=2,200 purchaser benefit in every scenario and explicitly treats product and tax payments as transfers that cancel inside the island."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The baseline table reports buyer surplus 700, producer contribution 500, council 0, and nuisance damage 300; the stated sum gives social surplus 900."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The Tax table gives buyer 200, producer 500, council 300, and damage 300; the prose shows 2,000\u2212500\u22121,000 and 500\u2212200, correctly including remittance and administration."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The Clean table gives buyer 500, producer 500, council \u221280, nuisance 0, and total 920, including monitoring paid from existing funds."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Provides each requested direct resource calculation: 2,200\u22121,000\u2212300=900; subtracting tax administration yields 700; 2,200\u22121,200\u221280=920 for Clean."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains Tax leaves nuisance unchanged and adds 200 real administration cost, while Clean avoids 300 damage at 280 additional real costs, raising surplus by 20 despite buyer losses."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explicitly identifies equal weighting as a value judgment and explains that a higher total does not show universal benefit or acceptable distribution."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Says alternative rates, future output, methods, prices, costs, and unconstrained market outcomes require evidence absent from these stipulated scenarios."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B26"
+    },
+    {
+      "response_sha256": "4865b02b054e1ed4e6221f761091a0ec87ca4d74674ab2a3d53532d427d47c21",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response gives all three correct distributional accounts and reconciles them through both a cancellation identity and executed numerical checks. It consistently handles administration once, tax remittance, equal weighting, and omitted common fixed costs. The symbolic equation is fully defined and serves the requested explanation; no material accuracy, support, coverage, or format issue was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "States total purchaser benefit of 2,200 for each scenario and shows product payments P and tax transfers T cancel when island parties are summed."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Table and explicit party sum give baseline 700+500+0\u2212300=900."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Table and party sum give Tax 200+500+300\u2212300=700; production resources are 1,000, tax remittance 500, and administration 200."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Table and party sum give Clean 500+500\u221280\u22120=920, with production resources 1,200 and monitoring cost 80."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Lists all three direct benefit-minus-resource calculations and derives their agreement with (V\u2212P)+(P\u2212T\u2212C)+(T\u2212A)\u2212D."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains unchanged Tax output/method preserves damage of 300; Clean gains 300 avoided damage while adding 200 production and 80 monitoring costs, net +20 despite buyer surplus falling."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains that equal currency weighting allows one resident\u2019s gain to offset another\u2019s loss and does not establish distributive acceptability or compensation."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Rejects identification of an optimal future tax or responses of prices, output, methods, and damage, requiring additional behavioral and cost evidence."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B26"
+    },
+    {
+      "response_sha256": "217cb0ca851975867223cd8869ec3376472c53e59f9c48c9859ee1031d4b94af",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The interpretation stays grounded in performed wording, stage actions, and production notes. It explains the transformation of limited assent into official agreement and the narrowing of participation by the minutes, while preserving motive, motion, vote, and safety ambiguities. The account of shared practical need and unequal shelter avoids both universal prop symbolism and a simple villain story. No unsupported event or material weakness was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Contrasts the interrupted roof statement and the later urgency statement with approval of east-wall removal; repeated \u201cAgreement recorded\u201d makes these distinct statements procedurally equivalent."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains how preselected YES cards, inaccessible alternatives, and three inaudible lines constrain the apparent choice, while refusing to infer private beliefs or a final vote."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Analyzes \u201cpresent\u201d and \u201centered\u201d as limits on whose voices and objections enter the record, linking changing chairs and \u201cPresent when?\u201d to unstable membership and timing."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Reads empty places as questions about representation and the blank card as possible refusal, uncertainty, or an unexpressible position, explicitly rejecting fixed symbolism."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Uses the real rain, instruction that the Clerk must not sneer, and his participation in shelter to complicate corruption as a complete explanation."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that the table shelters the original group while the child remains outside, making the boundary of collective protection and \u201cwe\u201d physically consequential."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Leaves the Treasurer\u2019s fear/excuse, inaudible proposal, cupboard safety, and any final vote unresolved rather than completing the action."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explicitly treats the discarded dishonest-Treasurer draft and publisher\u2019s simple-corruption account as unable to establish motives or events in the performed scene."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B27"
+    },
+    {
+      "response_sha256": "a203c527174d43edfaa9916714f1e0c1e2b8ed75e623bbe74bef1e6382e3b081",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "This is a complete, well-supported reading of how official unanimity exceeds the available assent. It connects the dramatic techniques to participation and exclusion without converting suggestions into established motives. The ending and complicating practical circumstances receive sufficient attention, and the unperformed vote and discarded draft remain outside the factual account. No material omission or gold dispute was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains that agreement about the roof and urgent action is narrower than consent to the complete proposal, and that the repeated recording formula converts limited statements into apparent agreement."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Connects cards already placed on chairs, the closed OTHER CARDS cupboard, and inaudible motion lines to a procedure that steers assent without proving private beliefs."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains how recognized \u201cvoices present\u201d and recorded objections exclude other evidence of disagreement; shifting chairs and the Teacher\u2019s timing question challenge stable membership."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Offers several possible meanings for the blank card and treats empty chairs as possible absent or unrepresented people without fixing a group or symbolic code."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Uses non-sneering Clerk direction, shared rain, practical bowl work, and the Clerk\u2019s sheltering with the group to complicate a one-corrupt-official interpretation."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Identifies the child\u2019s exclusion from the final shelter and connects the audience question to which people receive the benefit of collective action."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explicitly preserves unresolved danger versus excuse, the missing motion text, cupboard safety, and the absence of any shown final vote."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Distinguishes the performed version from both the discarded accusation of Treasurer dishonesty and the publisher\u2019s simplifying promotional account."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B27"
+    },
+    {
+      "response_sha256": "4fc3bcb7200315784aa4ffbf517cc4e76ee1881eb4528671f1d00b7abd4f3189",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly defines the allocation-specific causal contrast and distinguishes it from actual checklist receipt, a peer-held-fixed own effect, and full rollout. Executed rate and allocation checks confirm the two-point gap and four-versus-five peer counts. The proposed study discussion usefully preserves the fact that a fixed partial quota alone still does not identify an own effect at unchanged peers; this is a correct qualification of C7, not a missing design answer. No material weakness or gold correction was needed.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Computes 160/2,000=8% and 200/2,000=10%, identifies a two-percentage-point lower assigned rate, and does not treat the estimate as an exact future effect."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that invitations were randomized but receipt through colleagues was not; at least six unassigned employees received explanations, and regrouping by receipt would not preserve randomization."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Table gives four other assigned teammates for an assigned employee and five for an unassigned employee; explicitly notes averaging over randomized identities that may matter."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "States that the allocation-specific causal contrast remains meaningful but mixes own and peer assignments; universal and zero training are different unobserved configurations."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Allows beneficial sharing and lost helping time, and explicitly refuses to assign a necessary direction or size to spillover effects or bias."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that the prior task version confounds the historical decline and that distant teams with different tasks and experience do not supply the missing randomized policy counterfactual."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Proposes many-team zero/partial/full allocation, comparable assessment and cross-team spillover handling; identifies full-versus-zero and unassigned-partial-versus-zero comparisons, and specifies further assignment variation needed for peer-held-fixed own effects."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains that a communication ban changes the workplace intervention and may leave other peer effects; repeatedly preserves the usefulness of the present randomized allocation contrast."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B28"
+    },
+    {
+      "response_sha256": "c47bb68df7df7ab0d117e91339530bb14f4489aa9d92a47886457023f468fc0a",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer is precise about assignment, exposure, the fixed quota, peer identities, and the limited rollout estimand. The arithmetic and peer counts were verified locally. It neither invents statistical significance nor assumes contamination attenuates effects, and it evaluates both proposed designs, including independent invitations as a way to obtain equal peer-assignment distributions. This nuance satisfies the direct-effect design requirement without assuming fixed quotas solve it. No material issue was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explicitly gives rates of 8% and 10% and assigned-minus-unassigned \u22122 percentage points, qualifying this as an estimate from one allocation."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Separates randomized invitations from nonrandom sharing and unknown learning, citing the six unassigned recipients and explaining why post hoc reclassification loses the assigned comparison."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Table and explanation give four versus five assigned peers; changing own status under the five-person quota entails another assignment change, and identities may matter."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Describes a meaningful contrast under the actual allocation while rejecting an own-assignment effect with every peer held fixed or a direct full-versus-none comparison."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains how sharing, time competition, and behavioral responses can affect the gap differently, with no established direction of bias relative to the rollout effect."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Rejects the historical comparison because task versions and time differ, and the distant trend because assignment, tasks, and baseline experience are not comparable by design."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Discusses many-team zero/partial/full randomization for rollout and spillovers, then correctly says own effects at equal peer distributions need suitable variation such as independent invitations; also addresses cross-team sharing."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Says randomization is not meaningless and communication restrictions test a different collaborative context without automatically removing every peer effect."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B28"
+    },
+    {
+      "response_sha256": "5f34ef4925a3728b4bc004dcb733b8b5aff0e8732572065ab5923ae5eb1d8fe0",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Accurately traces the separate local transactions and remote reservation effects, including lost acknowledgments and crashes after receiving success. A local contract simulation confirmed two attempt-key reservations, one stable-key reservation within retention, a 409 payload conflict, and a permissible new reservation after expiry. The proposed fixes preserve the limited retention and scope guarantee and distinguish deduplication from eventual delivery; no material weakness or invented execution was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Specifies the atomic order/outbox transaction, external receiver database, later separate sent-flag transaction, and ambiguous lost-response or crash windows."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains A1 and A2 are distinct scoped idempotency keys, so identical event_id bodies still create R101 and R102 under the receiver contract."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The incident table ends with one sent event and two remaining reservations; prose explicitly says local row counts do not determine attempt or effect counts."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Describes a crash after committing \u201csent\u201d but before transmission, causing normal dispatch to skip an event with no reservation; moving the flag cannot make two databases atomic."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Proposes a stable key derived from E8 with account, route, and payload fixed; the one-minute retry returns the original R101 without creating R102."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "States that changing the payload while reusing the retained key returns 409, while correct retries retrieve the original result."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Says a 36-hour replay may create a new reservation and proposes atomic durable business uniqueness, aligned deduplication/replay horizons, or reliable reconciliation protected against concurrent duplicate creation."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Separates durable creation, repeated delivery attempts, and remote effects; limits the stable-key claim to protection after first use and rejects both permanent uniqueness and guaranteed eventual success."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B29"
+    },
+    {
+      "response_sha256": "d73da998552437ade38cef1d760505255a107e7020b2fc540862d2fab8669ca6",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The architectural explanation is complete and respects the fictional receiver contract rather than importing a broader exactly-once promise. Executed simulation confirms the attempt-key, stable-key, changed-payload, and expired-key behaviors. The answer makes each failure window explicit and correctly requires atomic receiver enforcement or protected reconciliation for long replays, while retaining the need to reconcile existing duplicates. No material issue was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Locates order/event creation and the sent update in different local transactions, excludes the receiver database, and explains success followed by lost acknowledgment or crash before recording."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Traces A1 to R101 and A2 to R102, explaining that event_id in an unchanged body is not independently deduplicated by this receiver."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "States that one local event, two requests, and two external reservations are compatible; the table preserves both reservations after E8 is sent."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Shows that marking first followed by a pre-request crash leaves no reservation and suppresses normal retry, rather than providing a lossless atomic guarantee."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Calls for a stable collision-free event-derived key in the same account/route scope and with identical payload, returning R101 on the observed one-minute retry."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Correctly explains same-key same-payload replay of the original result versus changed-payload 409 protection during retention."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Notes that 36 hours exceeds retention and may allow another reservation; describes atomic durable uniqueness, a retained and enforced replay horizon, or authoritative reconciliation with race prevention."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Distinguishes local atomic creation, transmission attempts, bounded remote deduplication, and eventual delivery; rejects the overview\u2019s unconditional exactly-once wording."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B29"
+    },
+    {
+      "response_sha256": "7e5d83abffd5b0d4d88bb53af7f2ea34fd2473c30930999d63d17744a4822ae7",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The overlap derivation, witness tables, and strict threshold are correct; enumeration of all 401 feasible integer tables confirmed the sharp bounds and decision ambiguity. The answer separates assumptions and selected reports from population evidence, and identifies a threshold certificate as less information than an exact count or personal records. All supplied criteria are met without any material weakness or gold dispute.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Derives x\u2265100 from 1,100\u2212x\u22641,000 and x\u2264500 from the smaller marginal, with nonnegative cells showing attainability."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains 1,100 counts flag memberships, including each doubly flagged learner twice, so the certified totals are consistent."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Provides the required extreme compositions: (both,A-only,B-only,neither)=(100,500,400,0) and (500,100,0,400)."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The table verifies both population and marginal totals and opposite trigger answers, demonstrating that unavoidable overlap does not decide opening."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Identifies independence as an added assumption behind 300 and explains more simulations stabilize the assumed model average without discovering the actual relationship."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explicitly says exactly 300 does not trigger, supplies a feasible boundary composition, and refuses to treat the informal summary as an amendment or redefinition."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Rejects projection from the voluntary intensive-support sample and unverified reports; also notes that projecting 80% would exceed the certified maximum and satisfaction is irrelevant."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Requests only a reliable authorized certificate that at least 301 same-date enrolled learners have both flags; exact count or decisive bounds also suffice without personal identifiers."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "B30"
+    },
+    {
+      "response_sha256": "f627be2c9b25172a0cd04a109f9ec6970006b6264a03ca21509e1e8602b908fd",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly derives the full feasible overlap interval, supplies extreme and threshold-adjacent witness tables, and preserves the strict more-than-300 rule. Executed enumeration validates all stated compositions and the unresolved decision. The explanation properly treats simulated expectations and the selected discussion group as insufficient, and the minimal aggregate request is both sufficient and proportionate. No material error, omission, or gold conflict was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Uses 1,100\u2212x\u22641,000 for the minimum 100 and min(600,500)=500 for the maximum; explains nonnegative cells for all integers in that interval."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Distinguishes flag memberships from distinct learners and explicitly rejects the claimed contradiction with population size."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Includes the extreme tables (100,500,400,0) and (500,100,0,400), with correct marginals and totals."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Also supplies feasible 300 and 301 overlaps with opposite trigger decisions, making nonidentification from the shared marginals especially explicit."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Treats 0.6\u00d70.5\u00d71,000=300 as assumption-based and explains that simulation estimates a model expectation rather than the realized population overlap."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explicitly rejects exactly 300 as sufficient and says the informal summary neither amends the threshold nor clarifies the relevant group."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains selection into the intensive-support channel and unverified, unlinked reports prevent using the group as population or random-validation evidence; satisfaction adds no overlap information."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Says a certified yes/no answer for at least 301 jointly flagged learners suffices, as would a decisive bound or exact count, and individual records or complete cross-tabulations need not be released."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "B30"
+    }
+  ]
+}

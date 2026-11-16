@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-11-16T15:15:38.976746+00:00",
+  "variant": "v7",
+  "files": {
+    "SKILL.md": "bf209d2419999cce2451be7a1c5eaf8d24ebe46bc2270299aebceb2204d27aa2",
+    "references/evidence-and-sources.md": "438ad5342c7236e432eb664b3723730f63298b951af24e5e821e51cd34db705e",
+    "references/explanation-patterns.md": "af8cc5d4c1aa324b7da18e6274782536878766a77cfb66e3f807fc9ad588fb51",
+    "references/worked-examples.md": "df0ba2d6f812d934aac113b03441f702e42fdf5ef59dfed4e9d24544efe720f1"
+  },
+  "design_review_sha256": "241eac9168fed133d60a752f594a26bb14a4ab22b719babb3f56dc06c6961e23",
+  "retest_plan_sha256": "10779987df110d85bbb97cadb46a6b3f213357f12be1f8b2636d606940220b1f",
+  "accepted_optional_polish": "Explicitly say available and permitted tools; use a manual fallback when tools cannot be used.",
+  "scope": "All 60 long and six short prompts are now known; all final-version results on this suite are retrospective regression evidence.",
+  "generation_status": "No v7 response generated before this freeze."
+}

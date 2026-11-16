@@ -1,0 +1,551 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "response_sha256": "1ba0fa7806de89f285840a70abf4dff88b8f785fc2eb65dc689212dc5a23aded",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All requested states, traces, cleanup boundaries, and production limitations are correct. Independent execution of the supplied fixture on the locally available Python 3.12.14 matched the printed output exactly. The proposed TaskGroup structure places failure reporting after sibling cancellation and cleanup; its accompanying discussion correctly qualifies committed and uncertain external effects. The length is proportionate to the many requested distinctions, and the source labels are used at the right scope. The answer reports its own execution; the packet does not expose that earlier tool trace, so this review corroborates the output rather than independently certifying the responder execution history.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Prints both after-gather states as available 70, committed 0, followed by False False, and explains the outstanding 30-unit A reservation."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Prints the successful final state as available 70, committed 30 and explains why committing does not restore availability."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Prints the cancelled final state as available 100, committed 0; caller cancellation observation follows release and finalization."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Both complete traces have the stipulated common prefix and the correct successful or cancelled tail; local execution corroborated them."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explicitly separates ordinary gather failure propagation from sibling cancellation and from asyncio.run shutdown cancellation."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that CancelledError bypasses Exception but is caught by BaseException; finally still runs, while the refund would be skipped after that replacement."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "TaskGroup cancels pending A after the ordinary B failure, waits for cleanup, and raises outside the scope; a coordinator gates participant success and failure responses."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains durable state, idempotency, processor status/reconciliation, uncertain outcomes, and why task cancellation cannot undo a completed external transfer."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "A01"
+    },
+    {
+      "response_sha256": "e453c3965950cac132748948f6a378800bfe197b4d9e376b646ae687442447bb",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer is correct and complete on the actual program and on the broader business requirement. Independent local Python 3.12.14 execution reproduced every checkpoint and trace. Its coordinator-owned ledger and synchronous toy commit sketch make ownership, double-release avoidance, and the response boundary concrete, while preserving uncertainty about real external transfers. The additional discussion of pending gather cancellation and suppressed cancellation is relevant context rather than an unsupported production guarantee. Earlier responder execution provenance is not in the packet; the present check verifies the claimed output.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Gives 70 available, 0 committed and False False at both after-gather checkpoints, with the reservation accounting explained."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Gives 70 available and 30 committed when the gate opens and A finishes normally."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Gives 100 available and 0 committed after explicit cancel-and-await, with caller:cancel-observed after A cleanup."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The exact displayed traces and narrative preserve every required event-order relation; independently reproduced locally."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Distinguishes child failure in gather, cancellation of a pending gather, and later asyncio.run shutdown behavior."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "States the correct CancelledError inheritance, unchanged ValueError handling, and the 70/0 reservation leak despite finally if only Exception were caught."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Proposes preparation in TaskGroup, coordinator-owned release of every remaining uncommitted ledger entry after children finish, and response publication only after the required result is known."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explicitly rejects local cancellation as external rollback; requires durable states, stable identifiers, querying/reconciliation, and care with unknown commit outcomes."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "A01"
+    },
+    {
+      "response_sha256": "ed0a794ebb37ea3bca8846e7030e2c8db2c84a65a759242e48e71236aac21475",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The explanation accurately handles both the observed monitor cycle and the different latch/monitor dependency introduced by the literal same-order edit. It also catches the important exact-program consequence that main never reaches its diagnostic loop in that edited version. The production total-order argument, stable monitor identity, same-object behavior, corrected test barrier, interrupt distinction, and limited progress guarantee are all covered clearly. No material weakness or source mismatch was found; the code was analyzed directly rather than claimed to have been executed in this review.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains A holds left while needing right, B holds right while needing left, and both countdowns have already reduced the latch to zero."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Correctly ties automatic release to exiting the synchronized scope and explains that blocked inner entry prevents that exit."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Walks through whichever worker acquires left first decrementing the latch to 1 and retaining left, blocking the other worker before its countdown."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Distinguishes WAITING on the latch from BLOCKED on monitor entry, explains the detector limitation, and notes that main itself cannot reach the diagnostics."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Uses stable unique IDs for a universal lower-ID-then-higher-ID acquisition order while preserving transfer direction and keeping both inventory checks/updates inside both locks."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Moves the test rendezvous before all inventory acquisition; explicitly handles same-object business behavior and correctly explains monitor reentrancy."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Correctly says intrinsic monitor entry is not interruptible; separates interruptible latch unwinding from forced release, and visibility from cycle prevention."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explicitly limits the result to cycle prevention rather than fairness, starvation freedom, or guaranteed deadlines under arbitrary scheduling."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v5",
+      "case_id": "A19"
+    },
+    {
+      "response_sha256": "64ee49a4942db78a25ed779b6188aceeddee24c6783aee146a49401910d661cc",
+      "dimensions": {
+        "accuracy": 1,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 11,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All essential deadlock, instrumentation, production, and progress questions are answered correctly, including the main-thread hang in the same-order edit. One localized scheduling imprecision remains: the opening observed-run enumeration says the latch forces A to count down before B and A to attempt its second monitor before B. The code and reported final observation establish the first-lock barrier and final cycle, not that named thread order. This does not undermine the central explanation and is scored as accuracy 1 rather than a material failure. The remainder is clear, well organized, and proportionate.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Correctly identifies both held and awaited monitors and says the latch has reached zero. Its A-before-B enumeration is a permissible schedule but is overstated as forced; the required final relationships remain correct."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that automatic release requires block exit and that acquiring the inner monitor can indefinitely prevent reaching that exit."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Works through either possible first winner holding left with latch count 1, while the second is blocked before its countdown."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains the mixed latch/monitor dependency and monitor-detector limitation; correctly notes main never reaches the diagnostic loop in this exact edit."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Prescribes a universal increasing stable-ID order, preserves debit/credit direction, and keeps both checks and updates protected by both locks."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Puts readiness and the start signal before inventory locking, and handles same-object transfer explicitly while accurately describing reentrancy."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Distinguishes noninterruptible intrinsic acquisition from interruptible latch waiting and explains why volatile reference visibility cannot remove the cycle."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "States that total ordering does not imply fair admission, absence of scheduler starvation, or a deadline guarantee."
+        }
+      ],
+      "gold_flags": [],
+      "variant": "v4",
+      "case_id": "A19"
+    },
+    {
+      "response_sha256": "104b51daa3396f76f449d037881393bcce7ba66e8fcd707358e0617c00c9514c",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer computes every requested descriptive contrast correctly, checks the stated measure against the supplied values, and does not convert the 12-point or six-point contrast into a causal claim. Independent arithmetic confirmed the means, two-week midpoint separation, and detrended residual. The distinction between equal baseline levels and parallel counterfactual changes is clear; simultaneous staffing, case mix, weak pretrend-test evidence, and the limits of new randomization are handled carefully. The source percentage inconsistency is a material fixture issue, not an answer error. The tables each support a requested computation or design comparison.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Computes North before 86 and after 102, South before 51.5 and after 55.5, using equal weekly weights; explicitly flags the impossible 104% input and 102% mean."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Computes changes 16 and 4 and their 12-point difference, properly conditional on interpreting corrected inputs as valid percentages."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Defines the untreated-change counterfactual, explains why persistent level differences cancel, and discusses differential coincident causes and changing composition."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Shows both pre-period transitions as +4 for North and +1 for South, hence +3 per week in the regional gap, without claiming this determines the future."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Uses before midpoint -1.5 and after midpoint 0.5: 12 minus 3 times 2 equals 6. Also checks projected regional means and their departures."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Labels six as an assumption-dependent residual and explains that linear extrapolation does not separate staffing, case mix, or other differential changes."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Rejects proof from a nonsignificant test, notes missing model/power information, and declines to invent significance, standard errors, or confidence intervals."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Offers randomized center-level tool timing with staffing held constant, and a conditional factorial staffing/tool design; clearly limits present reporting to descriptive arithmetic and identification/data-validity caveats."
+        }
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C1",
+          "issue": "The arithmetic criterion is correct only as a formal calculation; the source itself contains an impossible percentage, which the gold does not acknowledge. A correct answer should preserve the requested arithmetic and flag data validity rather than endorse 102% as a valid observed resolution rate.",
+          "evidence": "A23-SERIES defines the outcome as percentage of tickets resolved within two days but lists North at 104 in week 1. Equally weighting 100 and 104 yields 102. Both values above 100 are incompatible with the stated percentage measure; both reviewed answers explicitly identify this inconsistency."
+        }
+      ],
+      "variant": "v4",
+      "case_id": "A23"
+    },
+    {
+      "response_sha256": "0ed05b78b62354a7201f86276eff11459d87dacf2e47d51b65a7e7c9a778a427",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response is accurate, complete, and readable. Independent arithmetic confirmed every numerical result, and the response correctly flags the logically impossible 104% source entry rather than silently changing it. It keeps the formal 12-point contrast, conditional six-point detrending, and unestablished causal effect distinct. The follow-up design distinguishes randomized tool effects within staffing conditions from still-confounded staffing/package comparisons, which is a useful qualification to the stated operational capabilities. No material answer defect was found; the fixture/gold validity issue is documented separately.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Computes the four required means as 86, 102, 51.5, and 55.5 and makes the rate-validity problem explicit without changing the input."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Computes 16 and 4 point changes and their descriptive difference of 12, subject to the stated data-validity caveat."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains North without the tool as the missing counterfactual and requires equal untreated changes rather than equal starting levels, with no other differential contributing change."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Calculates the repeated pretrend changes of +4 versus +1 and the +3 weekly gap growth, while leaving the future untreated trajectory uncertain."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Calculates the two-week separation of period centers and 12 - 3 times 2 = 6, and verifies it through the individual regional extrapolations."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explains that the residual may include staffing, case mix, other North-specific changes, and extrapolation error; no automatic causality is claimed."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Defines test power, rejects nonsignificance as proof, and states that no numerical standard error, significance level, or interval follows from the supplied packet."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Proposes randomized future tool timing with controlled staffing and, conditionally, independent staffing assignment; gives correct conditional contrasts and bounds what is reportable now."
+        }
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C1",
+          "issue": "The arithmetic criterion is correct only as a formal calculation; the source itself contains an impossible percentage, which the gold does not acknowledge. A correct answer should preserve the requested arithmetic and flag data validity rather than endorse 102% as a valid observed resolution rate.",
+          "evidence": "A23-SERIES defines the outcome as percentage of tickets resolved within two days but lists North at 104 in week 1. Equally weighting 100 and 104 yields 102. Both values above 100 are incompatible with the stated percentage measure; both reviewed answers explicitly identify this inconsistency."
+        }
+      ],
+      "variant": "v5",
+      "case_id": "A23"
+    },
+    {
+      "response_sha256": "ed402b114b250cd884db52d46b6a322b91ff81ed6352fcd4c117acab5c8b879a",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All actual requested computations and explanatory distinctions are correct; independent calculation verified the microbenchmark, weighted means, percentile ranks, mean ratio, and in-flight population. The answer keeps the two experiments separate and is unusually careful about replay overlap and about a change of concurrency altering response times. Its one reciprocal-rate example fully satisfies the prompt conditional on the sequential-client assumption. The rubric parenthetical also lists a before rate that the user did not request; that missing exemplar is preserved in the C7 note and gold flag, not treated as an essential omission. No material accuracy, support, or coverage issue was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Calculates 20 ms original, 14 ms optimized, 20/14 = 1.4286 complete speedup, and limiting 20/12 = 1.6667."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Weights the actual 900/100 requests to obtain 19 and 22.2 ms, a 3.2 ms or 16.84% mean increase; explains the larger absolute slow-endpoint regression."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Identifies sorted ranks 901-1000 as slow, so the requested 950th values are 100 ms before and 150 ms after."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Computes mean request ratio 1.1917 but aggregate mean-time ratio about 0.856; explains equal endpoint means 55 and 79 ms represent a different 50/50 mix."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Converts 22.2 ms to 0.0222 seconds and computes L = 200 times 0.0222 = 4.44 mean requests."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Treats 200/s as an observed achieved operating rate, not demonstrated maximum, and requests controlled increasing-load tests plus capacity, demand, bottleneck, latency, and error evidence."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Gives the correct after reciprocal 45.05/s and explicitly requires a single sequential no-think-time client experiencing that mean. It does not state 52.63/s before, a parenthetical gold exemplar not demanded by the actual prompt; the required relation, caveat, and deployment distinction are complete."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Keeps the path microbenchmark, replay, and operating interval scoped separately and explicitly retains the real 20% latency benefit for the fast endpoint despite worse mean and tail."
+        }
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C7",
+          "issue": "The parenthetical before-and-after reciprocal values should be treated as examples rather than an additional essential numeric requirement. The actual prompt requires the single-sequential-client condition if inverse latency is compared with throughput; it does not require calculating both reciprocal rates. This clarification is applied consistently to both A24 answers.",
+          "evidence": "The prompt says, \"If you compare inverse mean latency with throughput, state the single-sequential-client assumption under which that comparison is meaningful.\" REVIEW-0047 provides 1/0.0222 = 45.05/s, explicitly assumes one outstanding request and no think time, and explains why that is not deployment capacity; it does not state the unrequested 52.63/s before value. REVIEW-0048 additionally supplies both values."
+        }
+      ],
+      "variant": "v5",
+      "case_id": "A24"
+    },
+    {
+      "response_sha256": "c068aacf8a04651a9997ba4c0c3058535d4d6d7ec128b119acd1b49fe92de6ae",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Every requested numerical calculation and causal scope distinction is correct. Independent arithmetic reproduced the stage speedups, request-weighted means and change, 950th percentiles, ratio summaries, in-flight population, and conditional sequential rates. The answer explains both dashboard averaging errors without dismissing the fast endpoint benefit and distinguishes achieved throughput from saturation capacity. The required extra measurements are practical and relevant. No material weakness was found; the shared C7 clarification avoids treating optional reciprocal examples as a hidden prompt requirement.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Correctly derives 8/4 = 2 ms CPU, 20 to 14 ms total, speedup 10/7, and the limiting 20/12 = 5/3."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Calculates count-weighted 19 and 22.2 ms means and +16.84%; uses aggregate saved and added milliseconds to explain why 90% improving is insufficient."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Uses the stipulated 950th rank to give 100 and 150 ms, with a correct 50% tail increase."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Computes 143/120 = 1.1917 for mean request ratios versus 19/22.2 = 0.8559 for aggregate mean-time speedup, and explains the endpoint-equal 50/50 average."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Uses the correct second conversion and computes mean in-system occupancy of 4.44, clearly distinguishing it from a fixed instantaneous count or worker count."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Calls 200/s an achieved stable rate and specifies increasing-load before/after tests, resource evidence, queues, errors, and service requirements to assess sustainable capacity."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Gives both conditional sequential rates 52.63/s and 45.05/s with one request at a time, no think time, and an explicit warning that concurrency changes can change mean response times."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Does not substitute microbenchmark stages into replay requests and explicitly acknowledges fast-endpoint improvement alongside worse aggregate mean and tail."
+        }
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C7",
+          "issue": "The parenthetical before-and-after reciprocal values should be treated as examples rather than an additional essential numeric requirement. The actual prompt requires the single-sequential-client condition if inverse latency is compared with throughput; it does not require calculating both reciprocal rates. This clarification is applied consistently to both A24 answers.",
+          "evidence": "The prompt says, \"If you compare inverse mean latency with throughput, state the single-sequential-client assumption under which that comparison is meaningful.\" REVIEW-0047 provides 1/0.0222 = 45.05/s, explicitly assumes one outstanding request and no think time, and explains why that is not deployment capacity; it does not state the unrequested 52.63/s before value. REVIEW-0048 additionally supplies both values."
+        }
+      ],
+      "variant": "v4",
+      "case_id": "A24"
+    }
+  ],
+  "blind_review_provenance": {
+    "source_review_sha256": "3d4d9b35d2def012c85baf91ac456701c0764c93072d39fa59e76f1572e82b68",
+    "review_index_sha256": "5b87ddd23e348721bfe2e6446df6b7a6ee4d0d749c1dca5072e7d6e4dc16258c",
+    "private_key_sha256": "d288337c65b3c99e9634e2b1050eb469f7c4659530842535b5bb3b7cc4c59848",
+    "scheduled_runs": [
+      {
+        "name": "advanced-v4-A01-A15",
+        "index_sha256": "9af224ae183a516be6aacc05cc48769eb7a1397beb09c492f1996cd3358c1780"
+      },
+      {
+        "name": "advanced-v5-A01-A15",
+        "index_sha256": "f75cd413f574dd0692e8c83d777445bd9d4909280bdcbdf9eafa9f79ce1bdce5"
+      },
+      {
+        "name": "advanced-v4-A16-A24",
+        "index_sha256": "c3ab49dfde3d024c0cbf93daadfe12184df472f199a40ed90df85f11b992f2e7"
+      },
+      {
+        "name": "advanced-v5-A16-A24",
+        "index_sha256": "acbe65fbdf4a970886931f9b20cd8de61fd4895fa9823023d9a9ab2ce20825e7"
+      }
+    ],
+    "reviewed": 8,
+    "scheduled": 48
+  }
+}

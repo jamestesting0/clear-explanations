@@ -1,0 +1,616 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0001",
+      "response_sha256": "d85a754fc74a64e82b8058aec23b77ad35c92a824a8722c06c38b0a4314f1694",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Complete, accurate migration analysis grounded in the supplied null/index and version contracts. It explains the immediate collision, the continuing mixed-writer race, and both syntactic and behavioral incompatibility. The staged plan closes the final write gap, preserves ownership and rollback during the compatible phase, and makes contraction contingent on verified consumers and data. Although source labels are not attached, the reasoning explicitly uses the supplied rules without inventing enforcement. No material weakness or essential omission identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains that the backfill gives ids 1 and 2 li@ex.test and that the subsequent unique-index creation fails; reversing index/backfill order only moves the failure."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Reserves verified address changes, account identifiers, and any consolidation for an ownership policy; rejects deleting the higher id or moving purchases merely because normalized strings match."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "States that a completed backfill says nothing about later version 1 inserts, which can introduce nulls, and additionally identifies stale normalized values after old-version updates."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Traces the null/non-null race for ids 4 and 5, the two effective pat@ex.test identities, ambiguous fallback reads, and the later backfill conflict."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains why old inserts fail under NOT NULL and why preserving the name email loses original values and behavior; also notes that renaming email_norm breaks current version 2 references."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Preserves both columns, gates ambiguous login behavior, repeats reconciliation, transitions all writer paths, and proposes a bounded identity-write pause to drain old writes and close the enforcement gap."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Requires no nulls, no normalized collisions, and equality with lowercase(email), with old writers fenced out and constraints established before writes resume."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Defers contraction until active readers, jobs, and approved rollback dependencies are gone, while expressly requiring verified data consistency and controlling any further rename."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0002",
+      "response_sha256": "9c2ec40c4ffda2f84b967c60eed9aa67edaebb74a36368cbf2e72c03f16ab3be",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Accurate and complete explanation with concrete source labels, clear race arithmetic, and a workable staged rollout. It treats account ownership as a policy issue, gates normalized login until unambiguous, and requires both clean data and control over all future writers. The distinction between unchanged column names and changed semantics is explicit. No material weakness or essential omission identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The initial-data table shows ids 1 and 2 mapping to li@ex.test; explains that unique-index creation fails after backfill and an earlier index would instead reject backfill."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Calls for verified ownership decisions and preservation of purchases and account identifiers; explicitly rejects lowest-id selection, deletion, or automatic merge from string equality."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Describes old inserts creating nulls after the backfill and old updates making previously populated normalized values stale."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Shows id 4 with null and id 5 with pat@ex.test, explains why both constraints accept them, and distinguishes ambiguous fallback results from actual uniqueness enforcement."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "States NOT NULL rejects old-version inserts and explains why keeping a column named email does not retain case-sensitive identity or old write semantics."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The staged plan preserves the old representation, introduces dual writers, repeats reconciliation, fences every old writer path and in-flight write, and performs final catch-up."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Requires a clean scan plus future-writer control, verifies zero nulls/equality/uniqueness, and demands concurrent conflicting writes be rejected before final enforcement."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Contraction depends on moved readers and writers, retired old jobs, completed reconciliation, and a rollback target that no longer requires the original representation."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0003",
+      "response_sha256": "41b700c15e4f6015cd25c2ccc4dc2cf9af17a4f89f727136eb13b4dd05353d20",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All outputs and reference relationships are correct. The two tables clarify construction-time evaluation, invocation-time lookups, and the three distinct contracts without treating defaults as universal copying. Both aliasing operations and all reviewer claims are addressed, while the no-replacement-code requirement is respected. No material weakness identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Gives exact S1 output: late [2, 2], objects [10, 2], values [1, 2]."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Gives exact S2 output: [99, 99], [10, 99], [1, 2], and final rows containing n=10 and n=20."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains the single captured comprehension variable ending at D2 and why replacing the list slot leaves that binding and other D2 references unchanged."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Distinguishes construction-time dictionary references in defaults from invocation-time n lookups; D1 and D2 mutations remain visible, without a deep snapshot."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains the immediate n lookup and immutable integer capture, so values satisfies the historical-number contract only for the demonstrated immutable values."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The contract table says none follows current positions; prose describes retaining a list and fixed index then looking up the current occupant at invocation."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains one inner list repeated by multiplication and all four retained references after shallow copy; both displayed buffer lists correctly contain x,y twice."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Assesses each reviewer and contract, describes distinct per-row buffer creation and positional access in prose, and provides only output and references to existing expressions, not replacement code."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0004",
+      "response_sha256": "e5309f9d4bb2669e4df1154da9ff4db7d1d8271b55d6cd18e2a1a47da6021699",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All requested outputs, capture timing, mutation-versus-replacement effects, contract choices, and nested aliasing are correct and clearly explained without replacement code. The statement that the program was run is not independently auditable from this packet because execution traces are absent; no fabrication is inferred merely from that absence. No substantive semantic weakness identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The exact-output block gives S1 [2, 2], [10, 2], [1, 2]."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The exact-output block gives S2 [99, 99], [10, 99], [1, 2] and rows with n=10,n=20; subsequent reference tracing explains both."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains the shared comprehension binding ending at D2, that later comprehensions do not reassign it, and that replacing rows[1] does not change D2."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The table and prose identify construction-time default evaluation as retaining each dictionary, with a current n lookup on invocation rather than dictionary copying."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Identifies immediate integer capture as historical behavior and explains why replacing a dictionary entry cannot mutate the retained immutable integer."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "States none accesses current list slots; describes a separate position-following interface retaining list and index with lookup at invocation and policies for disappearing positions."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Both buffer outputs are correct; multiplication repeats one inner reference and the outer copy preserves that reference in all four positions."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Provides prose-only implementation choices and no rewritten program; clearly separates callback contracts and the requirement for independent mutable per-row buffers."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0005",
+      "response_sha256": "7bd758cab91b7663067b2961ef602da8234588e835cdb7fe849f0fb8a126d763",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly covers all requested types, own-property distinctions, getter counts and descriptors, and nested sharing. It evaluates suitability against the actual contract, keeps the symbol requirement binding until intentionally changed, and offers explicit handling of unsupported plugin behavior. The observational table and subsequent mechanisms are proportionate to the many requested distinctions. No material weakness identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The table and reference explanation give spread new/2030 while JSON and cloned retain old; spread explicitly shares both nested objects."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Correctly reports JSON created as the original ISO string and the structured clone as an independent Date with the 2025 timestamp."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Correctly lists optionalOwn true/false/true and states surviving optional values are undefined."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Lists secretOwn true/false/false and hiddenOwn/inheritedOwn false for all; explains enumerable-symbol copying by spread and loss of the custom prototype."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Gives amounts 1,2,3 in construction order, reads 3, and explains each resulting data property has no get member rather than retaining an accessor."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Distinguishes outer allocation from nested independence and explains the concrete JSON type/property losses and why JSON appearance is not API equivalence."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Reports DataCloneError for the enumerable function value and recommends a declared supported schema with clear rejection or explicit omission of plugin behavior."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Selects structuredClone for this contract while explicitly requiring same-symbol marker preservation or documented consumer migration before intentional removal."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0006",
+      "response_sha256": "2038bc2b0291515d3aea24d8bf753164339bdeb62b23e7e270600b03696ece48",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Accurate and complete contract-based analysis of the three techniques. It explains the printed fields and their limits, construction-time getter side effects, the function exception, and explicit marker/schema policy without claiming universal cloning. The claimed fixture execution is not independently auditable from the supplied packet; absence of traces is not treated as proof of fabrication. No substantive semantic weakness identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The result table and spread explanation correctly show shared meta new and shared Date in 2030; JSON and cloned preserve old."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Distinguishes the JSON ISO string from the independent structured-cloned Date representing 2025-01-01T00:00:00.000Z."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Reports optionalOwn true/false/true and explains the semantic difference between present undefined and an absent property."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Reports symbol preservation only in spread and no own hidden/inherited property; carefully distinguishes own-property observations from custom-prototype conclusions."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains three getter evaluations in order, numeric amounts 1,2,3, reads 3, and ordinary data descriptors without getters on all results."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Refutes deep-copy-by-new-outer-object and universal JSON preservation, grounding both in concrete consumer-visible behavior."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains that the function-bearing object throws DataCloneError and needs a declared reject/omit policy rather than a silent JSON fallback."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Selects structuredClone or an explicit transfer shape while preserving the known marker or documenting and migrating its removal; willingness to remove is not treated as permission for silent loss."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0007",
+      "response_sha256": "ed0a794ebb37ea3bca8846e7030e2c8db2c84a65a759242e48e71236aac21475",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Complete account of both the observed monitor cycle and the different latch dependency created by the literal edit. It additionally notices that main blocks before the edited fixture diagnostics. Production ordering, stable lock identity, atomic updates, same-object behavior, corrected instrumentation, interruption, visibility, and progress limits are all handled accurately. No material weakness identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Gives the observed A-holds-left/B-holds-right cycle and explicitly explains that both countDown calls bring the latch to zero before second-lock attempts."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains release on block exit or exception unwinding, and that blocked inner acquisition prevents reaching the outer exit."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Traces whichever worker acquires left first counting 2 to 1 and waiting while the second is prevented from acquiring left and counting down."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Distinguishes WAITING on the latch from BLOCKED on the monitor and explains why a monitor-only detector misses this dependency; also notes main never reaches diagnostics."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Proposes universal ascending acquisition by stable unique inventory IDs while keeping checks and both updates inside both monitors, independently of transfer direction."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Moves the readiness rendezvous before inventory-lock acquisition and treats same-object transfers explicitly while accurately noting monitor reentrancy."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Distinguishes noninterruptible synchronized entry from interruptible latch waiting and exception-driven release; volatile changes visibility, not the wait cycle."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Limits the guarantee to cyclic waiting among consistently ordered locks and explicitly disclaims fairness, starvation freedom, and deadline completion."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0008",
+      "response_sha256": "64ee49a4942db78a25ed779b6188aceeddee24c6783aee146a49401910d661cc",
+      "dimensions": {
+        "accuracy": 1,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 11,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "All essential concurrency conclusions and fixes are correct, including the unchanged-latch trap, main-thread diagnostic blockage, detector scope, atomic production operation, and limits on progress guarantees. A localized precision issue remains: the original-run introduction says the latch forces a numbered sequence with A acquiring/counting down before B. The supplied code permits B to arrive first and guarantees only that both first-lock countdowns precede second-lock attempts. This overstates an incidental interleaving without changing the correct deadlock analysis.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Correctly states A holds left while waiting for right, B holds right while waiting for left, and the latch has reached zero. Its claimed A-before-B acquisition sequence is a local scheduling overstatement, not a wrong terminal dependency."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains that automatic monitor release requires exiting the block and does not let a thread blocked on inner entry reach that exit."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Traces either possible first worker in the revised test holding left, reducing the latch to 1, and preventing the other worker from reaching countDown."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains the latch WAITING/monitor BLOCKED dependency and detector limitation; correctly notes main remains at its own latch wait before diagnostics."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Uses a total order by stable unique IDs, shared stable lock identity, unchanged business direction, and atomic checks/updates while both locks are held."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Redesigns readiness and start signals before lock acquisition and describes explicit same-object policy plus correct monitor reentrancy."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Correctly distinguishes intrinsic entry from interruptible await, describes exception-unwinding release, and rejects volatile as a cycle or atomicity repair."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explicitly separates ordered-lock deadlock prevention from fairness, starvation prevention, and deadlines; also limits what a timed regression test proves."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0009",
+      "response_sha256": "2646ba14cb13baa92e6f0e541945f8667b1eb3f866686f51cfe28d32443bbdf2",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The peer-frame and arithmetic explanation is correct, the replacement SQL implements the exact selected population and business ordering, and the answer separates frame, logical order, filter scope, and presentation. It carefully avoids claiming that outer filtering changes the surviving original prefix frames, while explaining how a whole-partition final status would retain the future closed event. No material weakness identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Traces whole timestamp peer frames and computes 5,10,10,9, distinguishing the required event-by-event 5,12,10,9."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Explains LAST_VALUE uses the current frame boundary, with timestamp 10 seeing open rather than a future partition endpoint."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Identifies paid as the observed last peer but not a guarantee over review; sum 10 for the supplied integer deltas is invariant to that peer ordering."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Notes the outer ts,id ordering is already present and cannot supply the missing window tie-breaker."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Provides ORDER BY ts,id inside both windows, explicit ROWS cumulative sum, and a final-status frame ending UNBOUNDED FOLLOWING."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Filters ts<=20 in the same query block before window evaluation and gives the exact rows with balances 5,12,10 and paid repeated."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explains that an inner whole-partition final-status window followed by an outer cutoff retains closed, while qualifying that the original current frames happen to exclude the future row already."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Separates population, partition, window order, frame, and display; gives repeated totals 9 unfiltered or 10 filtered when sum ordering is removed, neither a running balance."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0010",
+      "response_sha256": "1ecf19dec7a87c7d39ed8ae834b2047e42573a4c7397eafcb22f790ae854eb04",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The corrected CTE/window query and resulting balances/statuses satisfy the contract. The answer accurately distinguishes invariant peer sums from nondeterministic tied statuses, explains window frames and the outer-order limitation, and qualifies when filter placement does and does not change this exact data. No material weakness identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains both ts=20 rows share the full peer frame and computes the current 5,10,10,9 totals."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Defines LAST_VALUE as the endpoint of the current frame and distinguishes event status, peer endpoint, and final selected-population status."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains that the observed paid endpoint depends on unspecified peer order, whereas the included integer-delta sum 10 does not."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explicitly says outer ORDER BY ts,id controls display, is already present, and does not add a tie-breaker to either window."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The corrected query uses ORDER BY ts,id with ROWS through CURRENT ROW for SUM and through UNBOUNDED FOLLOWING for LAST_VALUE."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The reporting_population CTE filters ts<=20 before either window and the result table shows 5,12,10 with paid on all three rows."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Contrasts whole-partition evaluation before outer filtering, which leaks closed, with filtering first; correctly qualifies the unchanged current-query prefix frames."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Separates each query component and explains unordered SUM repeats 9 or 10 instead of running balances; also notes unordered LAST_VALUE loses the required business order."
+        }
+      ],
+      "gold_flags": []
+    }
+  ]
+}

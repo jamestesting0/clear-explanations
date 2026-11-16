@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "review_id": "REVIEW-0003",
+  "case_id": "N03",
+  "case_sha256": "1ca95c3e40b102cfd5e9dc2db19c25a513235c6e6c767047652cc7aebe29e72c",
+  "prompt": "Is JWT a replacement for OAuth? Explain the difference.",
+  "constraints": {},
+  "response": "No. **JWT is a format for a token; OAuth is a framework for giving an application permission to access a service.** They can be used together.\n\n- **JWT (JSON Web Token)** packages statements such as a user identifier, permissions, or an expiry time into a string. A signed JWT lets a recipient check that the contents were signed with a trusted key and have not been changed. The format itself does not specify how an application obtains permission.\n- **OAuth 2.0** defines how an application obtains and uses an **access token**: a credential it presents when requesting access to a service. That token can be a JWT, but it can also be a string whose meaning the service looks up.\n\nFor example, you might allow a photo-printing app to read photos from your storage account without giving it your password. OAuth handles the process of granting that access and obtaining a token. The storage service might issue a JWT containing the allowed access and expiry time.\n\nUsing JWTs alone would still leave you to design how permission is granted and tokens are issued. Conversely, using OAuth does not require JWTs.\n",
+  "response_sha256": "ae2fa1e2feed5a1b5f12ff97d39c2d2d27636a612e4026b48a7fdd88cd0d1e5f"
+}

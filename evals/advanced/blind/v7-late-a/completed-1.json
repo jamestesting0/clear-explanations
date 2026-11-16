@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0001",
+      "response_sha256": "7c5b2d0280ea09120961d8907cc735855c44300c4cbb38f82049180de3167482",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "A complete, internally consistent migration review grounded in the supplied mixed-version and nullable-index rules. It explains immediate collision failure, the later accepted duplicate-identity race, ownership-policy limits, and a feasible staged transition without assuming nonexistent database enforcement. The extra stale-value case and explicit writer/rollback evidence strengthen the requested invariants. Tables and staged steps make the substantial detail usable; no material weakness or hard-constraint violation was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The opening and step table correctly identify that ids 1 and 2 both backfill to li@ex.test, causing creation of the proposed unique index to fail; reversing those two operations would instead reject the conflicting backfill."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The ownership section explicitly requires verified ownership and a product policy, rejects deleting the smallest-ID duplicate or selecting the first match, and declines to infer that ids 4 and 5 share an owner."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The response distinguishes a completed historical backfill from a continuing write invariant, explains new nulls from version 1, and also identifies stale populated values after old-version email updates."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It traces both accepted inserts, the permitted null and unique non-null value, fallback lookup finding two identities, and the later backfill conflict for id 4."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It explains that NOT NULL rejects old inserts, that a retained column name does not preserve case-sensitive identity and write behavior, and that the proposed rename also breaks version 2's email_norm reference."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The staged plan retains both representations, inventories collisions, keeps unsafe case-insensitive lookup disabled, and requires either retirement/fencing of all old writers or an explicitly added mandatory compatibility mechanism, followed by reconciliation and backfill."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It conditions unique and NOT NULL enforcement on verified correct population, resolved ownership collisions, and control of every subsequent writer path; it does not assume a trigger already exists."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It retains the old representation through the supported rollback window, includes jobs and queued work in writer retirement, and requires zero nulls, mismatches, unresolved duplicates, and incompatible readers/writers before contraction."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0002",
+      "response_sha256": "8038c8041af11b75b902e3749de436233887b7367b3cef8d59781f02d6931df0",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The exact outputs and reference model are correct, and the explanation distinguishes construction-time evaluation from invocation-time lookup without collapsing the three intended contracts. The D1/D2/D3 trace accounts for the detached dictionary mutation, and the buffer section distinguishes multiplication aliasing from outer-copy aliasing. It honors the explicit prohibition on replacement code. No material factual, coverage, or presentation weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The displayed S1 output is exactly late [2, 2], objects [10, 2], values [1, 2]."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The displayed S2 output is exactly late [99, 99], objects [10, 99], values [1, 2], with rows [{'n': 10}, {'n': 20}]."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It describes one shared comprehension binding assigned D1 and then D2; both late callbacks keep looking up D2, and replacing the list slot changes neither that binding nor D2."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The table and mutation trace explain that default arguments retain dictionary references and read their n entries on invocation, so D1's mutation and the later saved_second mutation remain visible."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It explains that values reads 1 and 2 while constructing the defaults, and that those immutable integers remain the historical results despite subsequent dictionary assignments."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The contract table correctly assigns none of the shown constructions to the live-list-position interface and describes retaining the container and an index for an invocation-time lookup."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Both exact buffer outputs are correct; it separately explains multiplication repeating one inner object and shallow copying retaining those same references across all four slots."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It offers the contract-specific capture choices and distinct per-row mutable buffers in prose. It supplies output and excerpts from the original expressions, but no replacement implementation."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0003",
+      "response_sha256": "e936a29076d162a7936edd31bceef2064114eba870ab4ef4db730276e9ae7efa",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The exact copied values, types, property-presence results, getter effects, and function-clone failure match the reviewer-executed Node fixture. The answer evaluates each technique against the supplied contract and correctly treats marker removal as an intentional change still requiring action. It keeps demonstrated behavior separate from arbitrary-value claims. The packet does not contain a responder execution trace, so the reviewer's successful reproduction substantiates semantics but does not authenticate the answer's first-person execution history; absence of a trace is not evidence of fabrication.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "It identifies spread's shared meta and Date references and consequently new/2030, while JSON and structured clone retain the old tag. The reviewer-executed Node fixture agrees."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It distinguishes the JSON ISO string from the independent structured-clone Date in 2025, including the diagnostic field's string-versus-numeric-year distinction."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Its table and explanation correctly show optional remaining an own undefined-valued property for spread and structured clone but being absent after the JSON round trip."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It correctly preserves the known symbol key only in spread and excludes inherited and nonenumerable properties from all three results; it also explains loss of the original custom prototype relationship."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It traces the getter reads in construction order to amounts 1, 2, and 3 and total reads 3; all resulting amount properties contain data values rather than a getter descriptor."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It directly rejects both the new-outer-object deep-copy claim and universal JSON preservation, using the nested mutation, Date type, and own-property-presence distinctions."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It correctly reports DataCloneError for the shown function-bearing object and requires a declared rejection or explicit field transformation/omission policy for future plugin values."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It selects structured clone only for the demonstrated supported data and requires either deliberate preservation of the known symbol marker or an explicit documented contract change with the consumer updated. A deliberate report shape is also described."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0004",
+      "response_sha256": "b0270f8a1066ed1ef6a497faa8b83613d313c94f5670e100ad8a8e1d41d866b6",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response correctly separates the original monitor cycle, the different latch-mediated wait created by the literal edit, production ordering, and test instrumentation. It identifies the important additional fact that main cannot reach its diagnostics after the same-order edit, preventing an overclaim about actual printed output. The production design preserves transfer direction and atomicity, and the interrupt/volatile and progress qualifications are accurate. No material weakness was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "It locates the original cycle precisely: A owns left and waits for right, B owns right and waits for left, and both countdowns have already released the latch."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It explains that monitor release occurs on block exit, including exception unwinding, but neither worker reaches that exit while trying to enter the other's monitor."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Its same-order trace shows the first worker holding left at latch count 1 while the second blocks before countDown; it additionally notices that main's unbounded latch wait prevents the exact revised program from printing diagnostics."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It distinguishes the latch dependency from an intrinsic-monitor cycle and limits the alternate WAITING/BLOCKED diagnosis to external or bounded diagnostics; a monitor detector's failure to report a cycle does not prove progress."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It prescribes a total order by stable unique identifiers, consistent associated locks, unchanged source/destination business roles, and holding both locks across the atomic checks and updates."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It moves readiness/start coordination before inventory-lock acquisition, uses bounded completion checks, and explicitly handles same-object business behavior while correctly explaining monitor reentrancy."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It rejects forced monitor release through interrupt and visibility through volatile as cycle repairs, while accurately distinguishing interruptible latch awaiting from noninterruptible synchronized entry."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It explicitly limits the guarantee to preventing this class of cyclic lock waiting and disclaims fairness, bounded waiting, or arbitrary-scheduling completion guarantees."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0005",
+      "response_sha256": "34b89f1e9b2fa2e35dc510d54c3e6a038e95302c0084a5a9bbf7154c7e06d908",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The corrected query and all numerical results are correct and were independently reproduced in SQLite. The explanation clearly separates peer frames, deterministic business ordering, input population, and presentation, including the important limitation that the original prefix frames already exclude the future event for retained rows. The answer satisfies every literal criterion. C5 nevertheless overrestricts equivalent SQL formulations, as documented in the gold flag. The anonymous packet alone cannot authenticate the response author's asserted execution history; this review verifies query behavior rather than inferring fabrication.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "It derives the default peer frames and sums 5, 10, 10, 9, showing that id 2 already includes id 3's -2; reviewer-executed SQLite results agree."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "It explains LAST_VALUE as the last value of the current frame and traces open at id 1, an unspecified last peer at timestamp 20, and closed only when the frame reaches timestamp 30."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "It distinguishes the invariant timestamp-20 integer sum of 10 from the unspecified choice of paid versus review as the last peer status, without treating the local observation as a universal tie order."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It explains that outer presentation ordering does not add a window tie-breaker, and points out that id is already present in the supplied outer ORDER BY."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The corrected SQL uses ORDER BY ts,id in both windows, explicit ROWS UNBOUNDED PRECEDING through CURRENT ROW for the sum, and a frame ending UNBOUNDED FOLLOWING for LAST_VALUE. It meets the literal criterion, though that criterion overrestricts equivalent solutions as flagged below."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The corrected WHERE precedes window evaluation, excludes id 4, and returns running balances 5, 12, 10 with paid on every row. The reviewer executed this exact query in SQLite and confirmed all rows."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It correctly shows that full-partition final status computed before an outer cutoff remains closed, while also recognizing that the original faulty prefix frames do not include the future row for retained rows. This avoids falsely claiming the original outer filter itself introduces closed."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It distinguishes whole-partition totals of 10 or 9 from the requested running sequence and separately assigns roles to population filtering, partitioning, logical event ordering, frames, and final presentation ordering."
+        }
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C5",
+          "issue": "The demand for an explicit ROWS cumulative frame is overrestrictive if applied literally to other correct answers. With the supplied unique id tie-breaker in ORDER BY ts,id, the default RANGE frame has singleton peer groups and yields the same event-by-event prefix sum. This answer explicitly uses ROWS, so its original criterion result remains pass.",
+          "evidence": "A20-DATA declares id INTEGER PRIMARY KEY, A20-CONTRACT requires ORDER BY (ts,id), and A20-FRAMES defines the default RANGE frame through the current peer group. Together these make every peer group a single event. Reviewer-executed SQLite queries using ROWS and RANGE with ORDER BY ts,id both returned (id 1, total 5, paid), (id 2, total 12, paid), and (id 3, total 10, paid). Equivalent window formulations should be accepted rather than requiring the key's particular frame spelling."
+        }
+      ]
+    }
+  ]
+}

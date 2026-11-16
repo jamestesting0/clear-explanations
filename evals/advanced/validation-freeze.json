@@ -1,0 +1,7 @@
+{
+  "frozen_at": "2026-11-16T13:02:45.557512+00:00",
+  "count": 12,
+  "cases_sha256": "be9eabd356abda9d719f81bca46d247d64eaac2d14014fbf26d52e29009d0667",
+  "rubric_sha256": "5f48bf2a57a256610db5a3fc774ec8869d18ec07c5447219ccd511c826fd7fad",
+  "note": "Frozen by file processing without inspecting validation prompt or rubric contents. Heldout B19\u2013B30 remain unread."
+}

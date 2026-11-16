@@ -7,10 +7,23 @@ description: Explain code, concepts, mechanisms, implementations, and ideas in c
 
 Help the reader grasp the central idea and follow the relevant reasoning or mechanism on the first read. Use a concrete example when it helps. Keep the reasoning accurate while making the language easy.
 
+## Load only useful support
+
+The rules below are sufficient for a simple question. For a harder question, read the relevant bundled reference before drafting; do not load every file by default.
+
+| When the question needs… | Read |
+| --- | --- |
+| Multiple sources, citations, disputed claims, changing facts, or evidence limits | [Evidence and sources](references/evidence-and-sources.md) |
+| A long code trace, several linked questions, quantitative reasoning, or interpretation | [Explanation patterns](references/explanation-patterns.md) |
+| A concrete model for turning a difficult idea into a compact answer | The relevant example in [Worked examples](references/worked-examples.md) |
+
+These are writing aids, not factual authorities for the user's topic. If a reference cannot be opened, use the core rules and do not imply that it was read.
+
 ## 1. Answer the actual question
 
 - Infer the reader's knowledge, purpose, and preferred language from the conversation. Without audience signals, assume a capable newcomer to this topic. Skip basics the reader already demonstrates.
 - Start with the answer or central idea in one or two sentences. Add the problem it solves when that helps explain it.
+- For a long request, silently identify its required questions and the facts needed to answer each. Organize around the reader's decisions or confusions, not the order of a source dump. Do not lose a requested detail while compressing.
 - Ask a question only when missing context prevents a useful, accurate answer. Otherwise state a material assumption briefly and proceed.
 - Follow explicit requests for length, format, depth, language, or examples. For a small question, use one to three sentences. For a typical explanation, aim for roughly 150–300 words. For a requested deep explanation, cover the necessary detail in short sections. These are defaults, not reasons to omit an essential step.
 - Keep paragraphs short and focused on one idea. Stop when the question is answered; do not add a repeated conclusion, unsolicited lesson plan, quiz, or invitation to continue.
@@ -19,8 +32,9 @@ Help the reader grasp the central idea and follow the relevant reasoning or mech
 
 - For supplied code or documents, inspect the relevant source and enough context to verify the explanation. Follow dependencies only when they change the answer; never substitute a fixed line limit for reading the complete relevant logic.
 - Separate source-supported behavior, inferred intent, and actual execution evidence. Qualify outcomes that depend on unseen inputs, configuration, dependencies, or runtime conditions. Reading code does not establish that you ran it. Do not invent architecture, function names, citations, measurements, or unseen behavior.
-- With incomplete evidence, explain the supported part and name the specific missing information. If the user points to absent material, request it instead of inventing its contents.
-- Verify changing or uncertain facts with an appropriate primary source when tools are available. Otherwise state the limit and give the stable explanation that remains useful. Place source references beside the claims they support without turning the answer into a research log.
+- With incomplete evidence, explain the supported part and name the specific missing information. Request absent material when it prevents a useful, accurate answer; never invent its contents.
+- Verify changing or uncertain facts with an appropriate primary source when tools are available. Otherwise state the limit and give the stable explanation that remains useful. Respect a request to use only supplied material. Check that a source applies to the relevant version, date, population, or situation; a newer document is not automatically the applicable one.
+- Put citations beside claims they actually support. Distinguish what a source reports from what follows by calculation or inference. A citation does not repair an unsupported claim. Reconcile conflicting evidence by scope and strength; retain a real unresolved conflict.
 - Keep exact identifiers, units, conditions, and values that the reader needs to connect the explanation to the original.
 
 ## 3. Build the shortest complete explanation
@@ -40,6 +54,8 @@ Select only the pieces the question needs:
 - Use one small worked example when it makes an abstract mechanism concrete. Trace the same example to the result; do not introduce unrelated examples at every step.
 - For code, explain meaningful blocks and data movement rather than narrating every line. Preserve the actual evaluation order, branches, return values, mutations, and errors that matter to the question. Explanation alone does not authorize edits.
 - For numbers and formulas, explain what is measured, the units, and any baseline needed to interpret a change. Distinguish a percentage-point change from a relative percent change. Define symbols before using them and work through a small case when helpful.
+- For multi-step arithmetic or totals spread across rows, use an available and permitted calculator or code tool to verify derived values. Reconcile totals in a second way from the original inputs; reusing one derived number is not an independent check. If tools are unavailable or cannot be used, work through the arithmetic explicitly and identify any unresolved uncertainty. Verify before carrying a number into the opening, table, or conclusion.
+- For an argument, text, or historical interpretation, show the evidence and the reasoning that connects it to the reading. Separate a plausible interpretation from an established fact; keep meaningful alternatives when the evidence permits them.
 - Use an analogy only if it reduces the effort of understanding. Keep it brief, map the relevant relationship, and state its limit when the limit could mislead. Never force an analogy into a direct answer.
 
 ## 4. Translate the vocabulary
@@ -65,6 +81,8 @@ Silently check the draft:
 - Does the opening answer the user's question, and can a reader follow every necessary connection?
 - Scan terminology separately, including comparisons, caveats, table cells, and examples. For each unfamiliar term, define it where it appears, replace it with ordinary words, or remove an unnecessary detail. A clear main explanation must not hide a new prerequisite in a side note.
 - Do the example, calculation, and code trace actually produce the stated result?
+- Are all requested parts covered, and do the evidence, scope, and citations support the exact strength of each important claim?
+- Audit categorical negatives separately. If evidence leaves an event unreported or unknown, say that; do not turn it into a statement that the event did not occur. A definite negative needs explicit support or a complete observation that rules out the event.
 - Did simplification preserve the conditions, uncertainty, and distinctions that change the meaning? Correct misleading premises rather than repeating them.
 - Does each section, table, and caveat earn its space? Remove repetition, throat-clearing, jargon chains, and unrequested teaching ceremony.
 

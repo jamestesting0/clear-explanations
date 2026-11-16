@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0001",
+      "response_sha256": "e84cd69a535602126be4c310e4fd87fedd2a92a3511db9e63e86ebc4679eec7a",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Accurately distinguishes the cached coroutine, shared Task, and reusable result, and explains both cancellation paths and later lookups. Independently executing A25-CODE under Python 3.12.14 reproduced the complete quoted trace. The lifecycle design covers TTL, in-flight ownership, guarded completion, retries, abandoned exceptions, and all-consumers-gone policy without attributing those guarantees to shield. The opening, trace, object comparison, and lifecycle steps are proportionate to the multipart request. No material weakness or conflicting gold criterion was identified. Independent reproduction verifies the trace, not the historical provenance of the answer's statement that it ran the code.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Explains that lru_cache stores the coroutine object returned by the async call; the first await yields loaded:x and reawaiting that consumed object raises RuntimeError."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The unshielded explanation and exact trace show A cancellation propagating to the shared fetch, fetch:finally running, both readers recording cancellation, and cached-cancelled True."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "States that setting the gate does not restart the cancelled Task and that a later lookup returns the same cancelled Task and raises CancelledError again."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The shielded trace and explanation show A:cancelled while the fetch survives, B obtaining loaded after the gate opens, and the later lookup returning loaded from the completed Task."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Describes the cancellation boundary around the caller's wait and explicitly allows direct task.cancel() by the cache owner during eviction or shutdown; an underlying cancellation still reaches shielded waiters."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Proposes separate in-flight and successful-value maps, completion-based monotonic TTL, expired-value removal, and removal of failed or cancelled work so subsequent requests can retry."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Includes the concrete identity guard inflight.get(key) is task and explains how an old completion could otherwise remove a replacement; also guards publishing results against stale ownership."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Provides a deliberate continue-after-all-readers-leave policy, an alternative with consumer counting, independent exception observation even for stale tasks, and explicit limits concerning TTL, shutdown, and cross-process coordination."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0002",
+      "response_sha256": "40da3419bec0081e704f177232ed70bc89cf42e9e21403f5739188d3738be7db",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The German answer correctly audits both counting units and outcome-window maturity, preserves user 6 in the eligible denominator, and explains the coincidental equality of 3/6 and 2/4. Independently executed SQLite queries returned the stated faulty overall result and corrected cohort/overall results; adding a January 3 signup also confirmed exclusion when its day-7 date starts at the cutoff. The query, tables, and explanations supply a usable audit trail without treating future outcomes as failures. No material weakness or gold dispute was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Responds in German and explicitly distinguishes three qualifying activity events from two distinct retained users."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Lists events 101, 102, and 104, explains the LEFT JOIN denominator, and derives the current query's 3 events / 6 users = 50%."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Identifies eligible users 1, 2, and 6 from January 1 and user 3 from January 2; users 1 and 3 supply the correct 2/4 overall numerator and denominator."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains that duplicate events inflate the numerator and immature users inflate the denominator, so correcting both changes 3/6 into 2/4 without changing this sample's percentage."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Reports January 1 as 1/3, approximately 33.33%, and January 2 as 1/1, 100%; labels January 5 and January 8 outcomes not yet fully observable with missing/not-applicable rates rather than zero."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "The executable CTE filters datetime(signup_day, +8 days) <= cutoff before aggregation and uses EXISTS for one 0/1 indicator per eligible user."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Explicitly excludes a January 3 signup whose day-7 day starts at the cutoff, rejects user 2's day-6 return, and retains inactive user 6 with indicator 0."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Explains why hiding chart rows cannot repair an already aggregated denominator and derives equal-cohort averaging as 66.67%, contrasting it with the required user-weighted 50%."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0003",
+      "response_sha256": "a30da838a092e7d563ed30eceae6efdfe5e1135fc07b2b6f632256cb2fa9be56",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly implements prediction before each observation, separates the two time horizons, and connects the immediate decisions to the supplied costs. Independent Fraction calculations verified every displayed prediction and posterior, including the exact minute-3 fraction and minute-4 forecast. Decimal equivalents satisfy the criteria because the prompt explicitly permits rounding to four significant digits. Definitions and worked calculations make the mechanism understandable; no material weakness or flawed gold criterion was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Defines the previous updated probability and current pre-observation probability, derives q_t = 0.80p_(t-1) + 0.05(1-p_(t-1)) = 0.05 + 0.75p_(t-1), and supplies separate alarm and quiet update formulas."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Shows minute 1 prediction 0.1250 and posterior 0.5625, with the transition and Bayes calculation worked explicitly."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Gives minute 2 prediction 0.471875 in the worked example and posterior approximately 0.0903110, numerically equivalent to 151/1672."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Reports minute 3 prediction 0.1177 and posterior 0.5457 at the allowed precision, and supplies the unrounded posterior 35433/64936 for the following forecast."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Applies one further transition to the exact minute-3 posterior and reports the no-intervention minute-4 prediction 0.4592, equivalent at the requested precision to 596431/1298720."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Reproduces the fixed-state 0.50 calculation and identifies its omitted state transitions; explains that resetting to 0.10 throws away accumulated evidence and misuses the time-zero prior."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Derives inspection when 3 < 20p, hence p > 0.15, notes indifference at equality, and compares expected losses of approximately 1.806 and 10.91 to choose no inspection after minute 2 and inspection after minute 3."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Defines filtering with currently available readings and retrospective smoothing with later evidence; states that minute 3 cannot inform the historical minute-2 action and that the minute-4 forecast is a different state and assumes no intervention."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0004",
+      "response_sha256": "aac83a6419b236d05b3a0f1d28c1b937aed4702f462a2e590d420d29c1cb59a9",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly derives the observed-remove state and keeps the unsafe-cleanup experiment separate. It explains union's relevant algebra in plain language, identifies a1 as the surviving concurrent add, and identifies discarded a0 removal evidence as the cause of resurrection in the second experiment. Local set calculations verified both outcomes. The reclamation discussion correctly includes offline replicas, replayed old states, retirement, and compact causal metadata without promising an implementation supplied by the base protocol. No material weakness or gold dispute was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The state table gives R1 Adds {a0,a1}, Removed {a0}, and R2 Adds {a0,b1}, Removed {a0,b1}, with the item names retained in the Adds pairs."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The merged row contains Adds {a0,a1,b1}, Removed {a0,b1}, and only a1 as a visible tag, so apple is present."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Explains that R2 never observed a1 and cannot include it in its remove; its final local button press establishes no global or wall-clock remove ordering."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Explains idempotence, commutativity, and associativity without requiring those exact labels, and connects them to unchanged eventual state under duplicate, reordered, or regrouped merges."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Distinguishes globally unique tags for fresh user additions from preserved tags on redelivery, and explains that neither historical nor surviving tag counts define numeric quantity."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Explicitly treats cleanup as a separate experiment and derives empty compacted R2 merged with old R3 as Adds {a0}, Removed {}, making apple present."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Requires a protocol preventing discarded obsolete additions from becoming live through any valid replica or delayed message; discusses durable acknowledgements, offline-member retirement, new epochs, and retained compact progress metadata."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Separates eventual agreement after receiving the same state from immediate disconnected agreement, latest-wall-clock removal, quantity semantics, and inventory reservation guarantees."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0005",
+      "response_sha256": "84a77318ef53dec9e9ec5d4bc41c32be34fe704623f2d9ebadf4b8b6d6138a87",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The required acceptance matrix correctly separates deployed behavior from the applicable normative policy and attributes each discrepancy to its enforcing layer. Independent predicate calculations verified all four token outcomes and the equality-at-expiration mismatch. The answer handles document version, effective date, route scope, and the limits of the 2.7 release note, then proposes concrete configuration and boundary tests. Its gateway trust-path discussion is conditional and does not invent an observed bypass. No material weakness or gold dispute was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The matrix shows gateway acceptance for all four tokens, overall/backend acceptance for T1-T3, and backend scope rejection for T4, matching A29-TRACE."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Revision 7 permits only T3: the matrix rejects T1 for audience, T2 for already expired time, and T4 for missing inventory:read scope."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Separately explains signature/issuer authenticity, exact audience membership, strict expiry, and exact route scope, so authenticated claims are not equated with request authorization."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Treats optional SDK behavior as an implementation option rather than a policy exception, and notes mandatory audience checking in undeployed 2.7 is not active enforcement."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Explains that revision 8 is effective after the November 16 incident and concerns /v3/write, leaving revision 7 applicable to GET /v2/inventory."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Recommends enabling exact inventory-api audience membership and enforcing now < exp; explicitly shows that zero leeway alone leaves the supplied inclusive now <= exp boundary wrong."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Preserves the exact read-scope check and proposes controlled-clock tests for wrong/missing audience, expired tokens, exact expiration, future expiration, and write-only scope; does not infer an expiry fix from the audience-only release note."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Uses the supplied policy, deployment, trace, token, and document evidence at their stated scope; gateway-only reliance requires every request to traverse the verifier and an unforgeable authenticated handoff, with independent backend verification if that guarantee is unavailable."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0006",
+      "response_sha256": "3aeaf3c894ea4a9d226e6b2124103c4065fcbde41c74a74d534a6ce09b6f928e",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The Portuguese answer correctly converts units, propagates the bounded missing gas value, and contrasts absolute and per-shipment changes using comparable network totals. Independent arithmetic verified the endpoints, relative changes, and erroneous equal-site mean. It assesses every quoted draft claim, supplies accurate public wording, and identifies disaggregated measurements and causal-comparison needs without inventing historical site data. The detail is proportionate to the requested computation, claim review, wording, and attribution analysis. No material weakness or gold dispute was identified.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Responds in Portuguese, shows MWh-to-kWh and grams-to-kilograms conversion, and calculates electricity emissions of 40,000, 2,000, and 10,000 kg CO2e for Alpha, Beta, and Gamma."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "Includes Alpha gas at 4,000 kg and Gamma gas at 0-6,000 kg, giving network included emissions of 56,000-62,000 kg."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "Divides by 150,000 shipments for 0.373333-0.413333 kg CO2e per shipment and computes baseline 70,000/200,000 = 0.35."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "Correctly reports absolute emissions down approximately 11.4%-20.0% and per-shipment intensity up approximately 6.7%-18.1%, with the endpoint correspondence explained."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "Derives the draft's zero-Gamma-gas simple mean (0.44+0.20+0.25)/3 = 0.2967, explains its equal-site weighting, and gives the required shipment weights or total-over-total alternative."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "Distinguishes missing Gamma gas from observed zero, explains why 1,500 m3 is only an illustrative midpoint without an assigned distribution, and rejects a 95% confidence interpretation of physical bounds."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "Computes the 25% shipment decline and explains algebraically why totals can fall while intensity rises; explicitly denies that either aggregate comparison by itself establishes site-process improvement or deterioration."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "Provides supported public report wording and requests both-period site shipment volumes, electricity and gas use, applied factors, energy and shipment mix, operating/utilization context, and relevant intervention comparisons for stronger causal attribution."
+        }
+      ],
+      "gold_flags": []
+    }
+  ]
+}

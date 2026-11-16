@@ -1,0 +1,404 @@
+{
+  "status": "passed",
+  "fixture_origin": "Original synthetic educational fixtures; no real niche facts, generated model responses, or prior benchmark material used.",
+  "research": {
+    "performed": false,
+    "reason": "All source packets are fictional and self-contained."
+  },
+  "schema": {
+    "cases": 12,
+    "holdout": 12,
+    "constraints": "language-only dictionaries",
+    "essential_criteria_min": 8,
+    "word_count_method": "Python str.split whitespace tokens",
+    "word_counts": {
+      "B19": 555,
+      "B20": 574,
+      "B21": 538,
+      "B22": 559,
+      "B23": 583,
+      "B24": 564,
+      "B25": 573,
+      "B26": 542,
+      "B27": 597,
+      "B28": 561,
+      "B29": 563,
+      "B30": 544
+    },
+    "source_ids_present": true
+  },
+  "checks": {
+    "B19": {
+      "type": "calibrated decay execution",
+      "half_lives": 3,
+      "predicted_reporter_if_production_stops": 12.5,
+      "reported_reporter": 13,
+      "absolute_difference": 0.5,
+      "limit": "No assay precision or statistical significance is invented."
+    },
+    "B20": {
+      "type": "aggregation/date calculation",
+      "april_related_value": 55000,
+      "if_elm_related_total": 90000,
+      "if_elm_separate_value": 35000,
+      "first_to_last_departure_days": 15,
+      "digital_value_excluded": 20000,
+      "limit": "Elm agreement identity and Beech certification remain unknown/unapproved in the supplied packet."
+    },
+    "B21": {
+      "type": "cohort reconciliation",
+      "opening_accounts": 65,
+      "survivors": 58,
+      "canceled_accounts": 7,
+      "closing_accounts": 80,
+      "opening_recurring_revenue": 7000,
+      "same_cohort_closing_revenue": 7800,
+      "expansion_excluded_revenue": 5800,
+      "new_recurring_revenue": 600,
+      "all_closing_recurring_revenue": 8400,
+      "account_retention": 0.8923076923076924,
+      "net_revenue_retention": 1.1142857142857143,
+      "gross_revenue_retention": 0.8285714285714286,
+      "total_revenue_growth_ratio": 1.2
+    },
+    "B22": {
+      "type": "manual source-and-rubric consistency review",
+      "status": "reviewed during original authoring",
+      "dimensions": [
+        "No missing fact silently supplied.",
+        "Current/observed source scope distinguished from interpretation and publicity.",
+        "At least six meaningful essential criteria.",
+        "Alternative readings/paths retained where the packet does not discriminate."
+      ],
+      "limit": "Author review, not independent response evaluation."
+    },
+    "B23": {
+      "type": "manual source-and-rubric consistency review",
+      "status": "reviewed during original authoring",
+      "dimensions": [
+        "No missing fact silently supplied.",
+        "Current/observed source scope distinguished from interpretation and publicity.",
+        "At least six meaningful essential criteria.",
+        "Alternative readings/paths retained where the packet does not discriminate."
+      ],
+      "limit": "Author review, not independent response evaluation."
+    },
+    "B24": {
+      "type": "material accounting",
+      "initial_mg": 1000,
+      "treated_liquid_mg": 600,
+      "comparison_liquid_mg": 900,
+      "diluted_liquid_mg": 600,
+      "liquid_plus_filter_accounted_mg": 950,
+      "unaccounted_mg": 50,
+      "observed_liquid_contrast_mg": 300,
+      "limit": "No unmeasured fate or general causal effect is assigned to the missing material."
+    },
+    "B25": {
+      "type": "exhaustive resource-order schedules",
+      "nominal_schedules": [
+        {
+          "scanner": [
+            {
+              "job": "A",
+              "start": 0,
+              "end": 5
+            },
+            {
+              "job": "B",
+              "start": 5,
+              "end": 8
+            }
+          ],
+          "ocr_finish": {
+            "A": 11,
+            "B": 11
+          },
+          "review": [
+            {
+              "job": "A",
+              "start": 11,
+              "end": 13
+            },
+            {
+              "job": "B",
+              "start": 13,
+              "end": 16
+            }
+          ],
+          "complete": {
+            "A": 13,
+            "B": 16
+          },
+          "makespan": 16,
+          "deadlines_met": true
+        },
+        {
+          "scanner": [
+            {
+              "job": "A",
+              "start": 0,
+              "end": 5
+            },
+            {
+              "job": "B",
+              "start": 5,
+              "end": 8
+            }
+          ],
+          "ocr_finish": {
+            "A": 11,
+            "B": 11
+          },
+          "review": [
+            {
+              "job": "B",
+              "start": 11,
+              "end": 14
+            },
+            {
+              "job": "A",
+              "start": 14,
+              "end": 16
+            }
+          ],
+          "complete": {
+            "B": 14,
+            "A": 16
+          },
+          "makespan": 16,
+          "deadlines_met": false
+        },
+        {
+          "scanner": [
+            {
+              "job": "B",
+              "start": 0,
+              "end": 3
+            },
+            {
+              "job": "A",
+              "start": 3,
+              "end": 8
+            }
+          ],
+          "ocr_finish": {
+            "B": 6,
+            "A": 14
+          },
+          "review": [
+            {
+              "job": "A",
+              "start": 14,
+              "end": 16
+            },
+            {
+              "job": "B",
+              "start": 16,
+              "end": 19
+            }
+          ],
+          "complete": {
+            "A": 16,
+            "B": 19
+          },
+          "makespan": 19,
+          "deadlines_met": false
+        },
+        {
+          "scanner": [
+            {
+              "job": "B",
+              "start": 0,
+              "end": 3
+            },
+            {
+              "job": "A",
+              "start": 3,
+              "end": 8
+            }
+          ],
+          "ocr_finish": {
+            "B": 6,
+            "A": 14
+          },
+          "review": [
+            {
+              "job": "B",
+              "start": 6,
+              "end": 9
+            },
+            {
+              "job": "A",
+              "start": 14,
+              "end": 16
+            }
+          ],
+          "complete": {
+            "B": 9,
+            "A": 16
+          },
+          "makespan": 16,
+          "deadlines_met": false
+        }
+      ],
+      "expedited_A_first": {
+        "scanner": [
+          {
+            "job": "A",
+            "start": 0,
+            "end": 5
+          },
+          {
+            "job": "B",
+            "start": 5,
+            "end": 8
+          }
+        ],
+        "ocr_finish": {
+          "A": 9,
+          "B": 11
+        },
+        "review": [
+          {
+            "job": "A",
+            "start": 9,
+            "end": 11
+          },
+          {
+            "job": "B",
+            "start": 11,
+            "end": 14
+          }
+        ],
+        "complete": {
+          "A": 11,
+          "B": 14
+        },
+        "makespan": 14,
+        "deadlines_met": true
+      },
+      "ordinary_A_earliest_worst_case_finish": 16,
+      "total_effort_hours": 22,
+      "limit": "Nominal schedules and a worst-case bound are not probabilities or monetary valuations."
+    },
+    "B26": {
+      "type": "transfer/resource reconciliation",
+      "scenarios": {
+        "baseline": {
+          "price": 15,
+          "production_cost": 10,
+          "tax": 0,
+          "damage": 3,
+          "admin": 0,
+          "buyer_surplus": 700,
+          "producer_contribution": 500,
+          "council_net": 0,
+          "nuisance_cost": 300,
+          "distribution_sum": 900,
+          "resource_surplus": 900
+        },
+        "tax": {
+          "price": 20,
+          "production_cost": 10,
+          "tax": 5,
+          "damage": 3,
+          "admin": 200,
+          "buyer_surplus": 200,
+          "producer_contribution": 500,
+          "council_net": 300,
+          "nuisance_cost": 300,
+          "distribution_sum": 700,
+          "resource_surplus": 700
+        },
+        "clean": {
+          "price": 17,
+          "production_cost": 12,
+          "tax": 0,
+          "damage": 0,
+          "admin": 80,
+          "buyer_surplus": 500,
+          "producer_contribution": 500,
+          "council_net": -80,
+          "nuisance_cost": 0,
+          "distribution_sum": 920,
+          "resource_surplus": 920
+        }
+      },
+      "clean_increment_over_baseline": 20
+    },
+    "B27": {
+      "type": "manual source-and-rubric consistency review",
+      "status": "reviewed during original authoring",
+      "dimensions": [
+        "No missing fact silently supplied.",
+        "Current/observed source scope distinguished from interpretation and publicity.",
+        "At least six meaningful essential criteria.",
+        "Alternative readings/paths retained where the packet does not discriminate."
+      ],
+      "limit": "Author review, not independent response evaluation."
+    },
+    "B28": {
+      "type": "assignment arithmetic",
+      "assigned_error_rate": 0.08,
+      "unassigned_error_rate": 0.1,
+      "rate_difference_percentage_points": -2.0000000000000004,
+      "assigned_person_assigned_peers": 4,
+      "unassigned_person_assigned_peers": 5,
+      "limit": "No peer-effect sign, uncertainty interval, or universal-rollout causal effect is inferred."
+    },
+    "B29": {
+      "type": "receiver retry/expiration simulation",
+      "attempt_keys_one_minute_reservations": 2,
+      "stable_key_one_minute_reservations": 1,
+      "changed_payload_in_retention_status": 409,
+      "stable_key_after_36_hours_total_reservations": 2,
+      "mark_before_send_counterexample": {
+        "outbox_marked_sent": true,
+        "crash_before_network_send": true,
+        "remote_effects": 0
+      },
+      "limit": "Simulation implements supplied fictional contract, not an actual distributed protocol audit."
+    },
+    "B30": {
+      "type": "exhaustive feasible2x2-table enumeration",
+      "feasible_overlap_values": 401,
+      "minimum_overlap": 100,
+      "maximum_overlap": 500,
+      "low_witness": {
+        "both": 100,
+        "A_only": 500,
+        "B_only": 400,
+        "neither": 0
+      },
+      "high_witness": {
+        "both": 500,
+        "A_only": 100,
+        "B_only": 0,
+        "neither": 400
+      },
+      "independence_assumption_overlap": 300.0,
+      "exactly_300_triggers": false,
+      "trigger_identified": false
+    }
+  },
+  "file_sha256": {
+    "cases.json": "c4e3ff87ee5be9339bd59ec522e58beedae48368d91868bd445095105f0e4602",
+    "rubric.json": "bcdfbb22bc4dc37983e40370a939cea6c93f3858a065eb555fdbf8f719ea0f00"
+  },
+  "handling": "Sealed case-level contents and calculations must remain under sealed/ until freeze.",
+  "publication_provenance": {
+    "published_after_release_freeze": true,
+    "recorded_at": "2026-11-16T14:25:36.938088+00:00",
+    "source_verification_sha256": "e4065899b1521b457db67ef95057d65e4e65780b9ab18bace543c08542ed901c",
+    "normalization": "No original fields changed; publication_provenance added. The source programs are copied byte for byte. This export does not rerun their computations.",
+    "source_files_sha256": {
+      "fixtures/b/build_sealed.py": "891f266e488f86c62feab2fd9e58a62cc4b3f56c338b091ba6fc89bb7521e2c8",
+      "fixtures/b/verify_sealed.py": "237b9a967660644422dd963ad4e1013f7751ae183a45fd1fece569f3143916ed"
+    },
+    "case_count": 12,
+    "computed_case_records": 9,
+    "qualitative_author_review_records": 3,
+    "release_freeze_sha256": "eb29348e2813f9fa0b029678cb1d9a7fca05188aad26850777d376c55de650e4"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "review_id": "REVIEW-0008",
+  "case_id": "N04",
+  "case_sha256": "a79efc39c7f47f0e1c520817702607c1385b2b6e573c91cd937b7b7def8aac17",
+  "prompt": "Why does this JavaScript print what it does?\n```javascript\nfunction choose() {\n  try { return \"first\"; }\n  finally { return \"second\"; }\n}\nconsole.log(choose());\n```",
+  "constraints": {},
+  "response": "It prints:\n\n```text\nsecond\n```\n\nThe `return \"first\"` starts a return, but JavaScript runs the `finally` block before letting the function finish. Inside `finally`, `return \"second\"` replaces the pending return, so `choose()` returns `\"second\"` to `console.log`.\n\nIf `finally` finished normally, without its own `return` or `throw`, the original `\"first\"` return would complete. A `return` in `finally` can also override an earlier thrown error, which makes it easy to accidentally hide failures.\n",
+  "response_sha256": "24fff246c3c915b4051f9d07ec8d0e9b1b7bfeb11658fea0bd36198f3fd8da56"
+}

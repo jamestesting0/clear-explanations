@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "review_id": "REVIEW-0001",
+  "case_id": "N01",
+  "case_sha256": "d820f9ea15878db4e26d48fbe95c328deb8821124303fd30af131dcb82019778",
+  "prompt": "I know basic Java but not Spring. What does dependency injection actually mean?",
+  "constraints": {},
+  "response": "**Dependency injection means giving an object the other objects it needs, instead of having it create them itself.** A “dependency” is simply something the object relies on to do its work.\n\nSuppose you already have an `EmailSender` class, and `OrderService` needs one. You can pass the sender into the constructor:\n\n```java\nclass OrderService {\n    private final EmailSender sender;\n\n    OrderService(EmailSender sender) {\n        this.sender = sender;\n    }\n}\n```\n\nElsewhere, your setup code supplies it:\n\n```java\nEmailSender sender = new EmailSender();\nOrderService orders = new OrderService(sender);\n```\n\nThat is dependency injection already—just ordinary Java. The key is that `OrderService` receives its sender through a parameter rather than calling `new EmailSender()` inside itself. Passing it through the constructor is called **constructor injection**.\n\nThis separates using the sender from deciding how to create and configure it. It also makes testing easier: you can supply a test version of the dependency, provided it matches the constructor’s required type.\n\nSpring automates the setup. You configure which objects Spring should manage, and Spring creates them and supplies their dependencies. Where your setup code above calls `new OrderService(sender)`, Spring can do the equivalent work for you.\n",
+  "response_sha256": "81c4e0a3b58277728c332280fc5aa14dd5314361b32938f1d24b0917818269c6"
+}

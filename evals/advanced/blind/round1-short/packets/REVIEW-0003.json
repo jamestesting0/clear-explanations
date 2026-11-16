@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "review_id": "REVIEW-0003",
+  "case_id": "N02",
+  "case_sha256": "5096bfa982337e12f9de4970a8be093a0048a077ca3542c90065013707f5f9d7",
+  "prompt": "I do not understand entropy weights: why do you multiply each group's entropy by its fraction of the original examples?",
+  "constraints": {},
+  "response": "You multiply by each group's fraction because you want **the average remaining uncertainty for an example**. A randomly chosen example is more likely to come from a large group, so that group's entropy should contribute more.\n\nEntropy measures uncertainty about an example's label. Suppose a split divides 100 examples into two groups:\n\n- **Group A: 90 examples**, all with the same label. Its entropy is **0 bits**: once you know the group, the label is certain.\n- **Group B: 10 examples**, evenly divided between two labels. Its entropy is **1 bit**: either label is equally likely.\n\nA randomly chosen example has a 90% chance of belonging to A and a 10% chance of belonging to B. The average remaining entropy is therefore:\n\n\\[\n\\frac{90}{100}\\times 0 + \\frac{10}{100}\\times 1\n= 0.1\\text{ bits per example}.\n\\]\n\nSimply averaging the two entropies would give \\((0+1)/2=0.5\\). That gives the ten-example group as much influence as the ninety-example group. Weighting by group size makes each **example** count equally.\n\nFor a decision-tree split, use fractions of the examples reaching that split, which may be only part of the full dataset.\n",
+  "response_sha256": "49eb19dd5b9c19e09c9fdd1a163aa6ca0c9a8b91e35e8abc9a941f3694b5daba"
+}

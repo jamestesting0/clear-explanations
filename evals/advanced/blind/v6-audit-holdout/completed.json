@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0001",
+      "response_sha256": "17760e7ec41ab5b1ddf998e1c1f297e557d46c4f079d2c1fc7d3bedf1c0cd442",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly separates the initiating signal, proposed feedback maintenance, and accumulated reporter. It uses the direct A measurements and deletion controls at their actual evidential strength, distinguishes pre-stimulation deletion from a late maintenance intervention, and preserves the inhibitor's unknown intracellular effects. Executed arithmetic confirms the 12.5-unit decay prediction. The answer interprets 13 without inventing precision, rounding, or statistical significance, and explicitly limits the persistence and alternative-starting-route claims. Source labels support the relevant propositions, and the organization is clear and proportionate.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "S activates initially present inactive A; A promotes B, and B reinforces A after S removal. The opening and mechanism explanation explicitly distinguish starting from maintenance."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Explains that B deletion preserves the early A response but eliminates observed persistence, with unchanged initial A and sensor controls; limits the supported requirement to these conditions."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Interprets S as required for the stated resting preparation and tested interventions, while explicitly allowing untested starting routes."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Computes 100 times (1/2)^3 = 12.5 units, explains fractional fluorescence units, and identifies 13 as 0.5 above the prediction without asserting an unsupported precision model."},
+        {"criterion": "C5", "verdict": "pass", "notes": "States that accumulated R is not an instantaneous A readout, so residual fluorescence does not establish ongoing feedback and decline does not prove direct A inhibition."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Clearly distinguishes cell-free validation of production inhibition from uncharacterized effects inside the complete device."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Explains how verified late B removal with controls would test continued maintenance, and how direct A plus new-versus-old reporter measurements would resolve readout ambiguity. These are explicitly unperformed proposals."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Restricts demonstrated persistence to two hours and rejects unsupported unlimited memory or independence from energy/material supply; packaging recognition is not treated as mechanism evidence."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0003",
+      "response_sha256": "d2b8e3b12286b7630bcb1642821d94fc7a293a9085748d75ca8eba80fcf76f43",
+      "dimensions": {"accuracy": 0, "evidence": 1, "coverage": 0, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 7,
+      "max_score": 12,
+      "verdict": "fail",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [
+        "Material account arithmetic error: 45 Starter + 9 Pro + 4 Enterprise survivors equals 58, not 59. Therefore seven of 65 opening accounts canceled, closing accounts are 58 + 22 = 80, and account retention is 58/65 = approximately 89.23%, not six cancellations, 81 accounts, and 90.77%.",
+        "Essential requested outputs for closing account count and account retention are wrong. The incorrect survivor count is repeatedly presented as a reconciled source-based total, including the internally inconsistent phrase 'six cancellations' followed by five Starter, one Pro, and one Enterprise cancellation."
+      ],
+      "rationale": "The conceptual explanation and all recurring-revenue calculations are useful and correct, but an incorrect addition propagates through several expressly requested account metrics and requires failure. Executed reconciliation confirms 58 survivors, seven cancellations, 80 closing accounts, and 89.23% account retention. Evidence is generally drawn from the right sources and definitions, but the answer presents the mistaken account derivation as reconciled from those sources, preventing full evidence credit. Coverage is zero because two essential requested numerical outputs are wrong. The net and gross retention calculations, acquisition distinction, cash/earned-revenue/profit limitations, survey caveats, and suggested next records remain sound; the explanation is otherwise readable and appropriately organized.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "fail", "notes": "Reports 59 survivors, six cancellations, and 90.77% account retention. The supplied counts instead give 45 + 9 + 4 = 58 survivors, seven cancellations, and 58/65 approximately 89.23%."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Correctly totals same-cohort recurring revenue as 900 + 900 + 6000 = 7800 and net retention as approximately 111.43%."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Correctly excludes Enterprise expansion, retaining their original 4000, to obtain 5800 and gross retention of approximately 82.86%."},
+        {"criterion": "C4", "verdict": "partial", "notes": "New accounts are correctly 22 with 600 recurring units, and total closing recurring revenue is correctly 8400. However, total closing accounts are incorrectly 81 instead of 80."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Correctly labels 8400/7000 = 120% as the total recurring-revenue growth ratio, equivalent to 20% growth, and explains how 2000 expansion offsets 1200 canceled revenue."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Separates month-end contract value from cash receipts and revenue earned during the month; identifies missing receipt amounts, effective dates, service periods, and a revenue ledger."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Explains that absent costs prevent a profit conclusion and that an active-account survey with unknown response rate cannot establish cancellation reasons or cessation of cancellations."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Identifies the concentration of expansion in four large accounts and explains that a single snapshot does not show recurrence or durable retention; declines to infer customers' reasons from the survey and recommends following cohorts over later months."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0004",
+      "response_sha256": "53fe9cff703a7d0edf4819b955fc46b12cebab8e774ad2952479155223f4e222",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Maintains the essential distinction among a reported listening experience, actual non-ringing, and mechanical inability. It weighs textual dependence without claiming a fully reconstructed copying history, retains the later sources' value for public memory, and develops three live explanations with appropriately bounded support. Weather, replacement rope, and reconstruction evidence are not inflated into proof of ringing or failure. The answer rejects the unsupported numerical probability, proposes genuinely discriminating contemporaneous records, and gives careful museum wording. Its table and headings help rather than replace the causal explanation.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Explicitly distinguishes the diarist's non-hearing at the south quay from a bell that never rang and from a mechanism unable to ring."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Uses the listed diary, repeated unusual phrase, shared spelling error, and bibliography to explain why three independent confirmations are not established."},
+        {"criterion": "C3", "verdict": "pass", "notes": "States that the ancestry of every sentence is not proven and avoids claiming all later details were certainly copied."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Treats the later rope purchase as compatible with a rope problem but not as dating failure to the storm or establishing replacement after breakage, leaving preventive replacement open."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Limits the weather log to storm corroboration and the reconstruction to support for possible inaudibility; differences in height and material preclude calibrated event-specific inference."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Explains that dependent later histories remain evidence for literary representation, public memory, and transmission of the story."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Compares ringing-but-unheard, prevented operation including possible rope failure, and a functioning bell not operated. It identifies the specific support and limitations for each without inventing a unique cause."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Rejects 97% because necessary witness, dependence, and likelihood assumptions are unsupported; supplies cautious museum wording and proposes a contemporary bell-keeper account or an independent nearby observer as discriminating evidence."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0010",
+      "response_sha256": "1173dd7b3715ec68faa8880deb2de561ae7d1ac1efbad036a39ddab7f2e7a150",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "Correctly computes the observed contrast and explains assignment, actual exposure, interference, and the fixed four-versus-five peer allocation. It preserves the allocation-specific causal interpretation while rejecting unsupported universal-rollout, bias-direction, historical, and distant-team claims. The proposed-study discussion covers policy and spillover contrasts and correctly notes that fixed-count individual randomization still cannot isolate own assignment while holding peers fixed; independent invitations offer a suitable way to average over a common peer-assignment distribution. Executed enumeration of all 252 fixed-five allocations confirms this support issue. The answer also conditions team-level rollout inference on containing relevant interactions and does not invent precision. The qualification to C7 is mathematically appropriate and should not count against the response.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "Correctly gives 160/2000 = 8%, 200/2000 = 10%, and an assigned-minus-unassigned difference of minus two percentage points; its additional 20% relative reduction is also correct."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Distinguishes randomized invitations from actual learning or use and notes that at least six unassigned employees received explanations. Defines the assignment comparison in plain language before naming intention-to-treat."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Explicitly shows four assigned peers for an assigned employee and five for an unassigned employee, explains the resulting joint-condition contrast, and includes variation in teammate identities."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Affirms an allocation-specific causal contrast while explaining that it neither holds every peer's assignment fixed nor compares universal with zero training."},
+        {"criterion": "C5", "verdict": "pass", "notes": "Explains potentially helpful shared explanations, reduced colleague help from training time, and other responses; rejects a known direction or size of bias for other target effects."},
+        {"criterion": "C6", "verdict": "pass", "notes": "Identifies different task versions and times in the historical comparison, and nonrandom selection, experience, and task differences in distant teams; neither supplies the missing policy counterfactual."},
+        {"criterion": "C7", "verdict": "pass", "notes": "Explains full-versus-zero team comparisons and unassigned-partial-versus-zero spillover comparisons with appropriate uncertainty and interaction conditions. For the stricter own-effect-with-peers-held-fixed target, it correctly qualifies fixed-count second-stage assignment and proposes independent invitations to create comparable peer-assignment distributions. This satisfies the intended design assessment; see the gold clarification."},
+        {"criterion": "C8", "verdict": "pass", "notes": "Says the current randomized contrast remains informative, and explains that forbidding communication changes the intervention and may not eliminate competition for colleagues' time."}
+      ],
+      "gold_flags": [
+        {
+          "criterion": "C7",
+          "issue": "The phrase 'can address ... direct ... contrasts' needs a defined direct-effect target and a specified second-stage allocation. It would be overrestrictive to require endorsement of fixed-count within-partial-team randomization as sufficient for an own-assignment effect holding peers fixed. The answer's qualification and independent-invitation alternative are correct. This is a clarification of an under-specified key, not a scoring penalty or a claim that every saturation design fails.",
+          "evidence": "B28-S1 and B28-S2 stipulate five of ten assigned and the four-versus-five peer difference; B28-S4 explicitly distinguishes the allocation contrast from holding all peer assignments fixed. Executed enumeration of all 252 fixed-five assignments gives peer-count support {4} for an assigned focal employee and {5} for an unassigned focal employee, with no common peer-assignment vector. Adding only fixed-zero and fixed-ten teams still gives no such common support. A pure direct-effect interpretation consequently needs additional design support or assumptions; independent individual invitations can provide a common peer-assignment distribution. C7's broader wording remains satisfied when read with these qualifications."
+        }
+      ]
+    }
+  ]
+}

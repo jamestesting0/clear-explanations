@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-16T14:18:21.242185+00:00",
+  "scope": "Post-review annotations; original prompts, gold, raw answers, and review scores are preserved. These annotations were not supplied to the primary reviewers.",
+  "entries": [
+    {
+      "case_id": "A23",
+      "criterion": "C1",
+      "finding": "The source supplies 104 on a percentage-of-tickets scale; its after mean is 102. These are invalid observed percentages. Formal arithmetic still gives a 12-point contrast and 6-point trend adjustment.",
+      "resolution": "Both primary and secondary blind reviewers accepted the answers because they independently flagged the impossible source value and qualified the arithmetic. Keep the source defect visible; do not silently repair the packet. No score changed.",
+      "follow_up": "Both v7 review rounds again flagged the invalid source percentage, accepted the qualified calculation, and retained 12/12, pass."
+    },
+    {
+      "case_id": "A24",
+      "criterion": "C7",
+      "finding": "The key names before and after reciprocal rates, but the actual user only requires the sequential-client assumption if inverse latency is compared with throughput.",
+      "resolution": "Both review rounds accepted an equivalent explanation using the after rate and full assumptions. Both values are illustrative, not separate essential requests. No score changed.",
+      "follow_up": "Both v7 review rounds identified the overrestriction. The secondary reviewer preserved C7 as partial against the literal key while explicitly retaining 12/12 and an overall pass against the actual prompt. Preserve this representational distinction and gold flag; no primary score changed."
+    },
+    {
+      "case_id": "B22",
+      "criterion": "C8",
+      "finding": "The prompt says the museum may choose careful wording; a proposed caption is optional, not a separate mandatory output.",
+      "resolution": "The secondary reviewer flagged this overrestriction for both v4 and v5. Both supplied captions, so the clarification does not change their outcome. Preserve the original criterion. The independent source adjudication confirms the prompt wording."
+    },
+    {
+      "case_id": "B28",
+      "criterion": "C7",
+      "finding": "A fixed training count within a team changes trained-peer count when own assignment changes; this alone does not isolate an own-assignment effect with peer assignment fixed.",
+      "resolution": "Both primary and independent secondary v6 reviewers accepted the qualified answer and flagged the broad C7 wording. The secondary review enumerated all 252 fixed-five assignments to confirm the lack of a common fixed peer allocation when own assignment changes. Preserve original gold; no score changed.",
+      "follow_up": "The v7 secondary review independently confirmed the same C7 qualification by enumerating fixed-five assignments; no score changed."
+    },
+    {
+      "case_id": "A20",
+      "criterion": "C5",
+      "finding": "An explicit ROWS cumulative frame is unnecessary for this unique (ts,id) ordering: each peer group has one row, so the default RANGE frame gives an equivalent cumulative total.",
+      "resolution": "The v7 primary reviewer executed the original, corrected, alternative-frame, and outer-filter queries and flagged the overrestriction. The candidate already uses ROWS, so its pass is unaffected. The secondary reviewer independently verified the candidate and retained 12/12, pass, without repeating this gold flag. Preserve original key and judgments."
+    }
+  ],
+  "review_disagreements": [
+    {
+      "case_id": "B22",
+      "variant": "v5",
+      "primary": "10/12, partial; local unsupported negative about the diarist inspecting the mechanism.",
+      "secondary": "12/12, pass; did not identify that sentence as an error.",
+      "source_adjudication": "The focused source adjudication confirms inspection remains unknown and the definite negative exceeds the packet. Retain the original primary partial; preserve the differing secondary pass rather than silently replacing it.",
+      "record": "reviews/B22-adjudication.md"
+    },
+    {
+      "case_id": "A09",
+      "variant": "v6",
+      "primary": "11/12, pass; one odds-calculation step attributes all inputs to A09-JOINT although prevalence also comes from A09-BASE, correctly cited earlier.",
+      "secondary": "12/12, pass; all computations and essential criteria confirmed, without a local evidence deduction.",
+      "resolution": "Retain the primary 11/12 and both judgments. This is a local attribution/scoring difference; the outcome is pass in both reviews."
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0001",
+      "response_sha256": "6791ab7a550755d74e264741ab70d1e8b8aa88946bc4c6f72e8bc598c933bb03",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response gives the correct ordinary-language definition, then shows constructor injection and the separate code that supplies the collaborator. It explicitly establishes that plain Java is sufficient before explaining Spring's optional role. The benefit is connected to construction decisions and interchangeable implementations without claiming that the concrete EmailSender parameter already accepts arbitrary implementations. The short illustrative snippets are proportionate for someone who knows basic Java; no material weakness or unsupported execution claim is present.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "The opening says an object receives needed objects instead of creating them itself; the constructor receives EmailSender from application setup code."},
+        {"criterion": "C2", "verdict": "pass", "notes": "The OrderService constructor and the new OrderService(sender) call provide a small, concrete Java example of the receiving and supplying sides."},
+        {"criterion": "C3", "verdict": "pass", "notes": "Dependencies are defined as the other objects an object needs, and injection is identified as supplying sender to the constructor."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0002",
+      "response_sha256": "1be325b2ea1ed14037fc4f24ef7a6263003d99a0b26eaabca61532cfd19e3dbb",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The explanation makes the weights follow directly from randomly selecting an example, so their role is causal rather than an arbitrary importance setting. The unequal group sizes, entropies, weighted result of 0.1 bits per example, and contrasting unweighted result of 0.5 are correct. The compact table and arithmetic make the argument concrete, and the final current-node qualification prevents an overgeneralization about the denominator. The answer explains bits sufficiently for this introductory question and does not require unnecessary general formula exposition.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "It explicitly identifies the target as average uncertainty remaining for an original example and explains it by randomly choosing one of the 100 examples."},
+        {"criterion": "C2", "verdict": "pass", "notes": "The random example has a 90% chance of landing in A and a 10% chance of landing in B, connecting larger groups to greater contribution and equal treatment of individual examples."},
+        {"criterion": "C3", "verdict": "pass", "notes": "The 90-example pure group has entropy 0 and the 10-example balanced binary group has entropy 1; (90/100)*0 + (10/100)*1 = 0.1 is a correct small calculation."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0003",
+      "response_sha256": "ae2fa1e2feed5a1b5f12ff97d39c2d2d27636a612e4026b48a7fdd88cd0d1e5f",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response correctly separates a token's representation from the framework for obtaining delegated access. Its photo-printing example shows how OAuth and JWT can participate in the same process, while the opaque-token alternative explains why OAuth does not require JWT. The signature description concerns trusted-key verification and unchanged contents, without implying payload secrecy. The answer is appropriately scoped to the conceptual distinction and defines its important terms in context; the stable background claims need no additional source under the supplied review policy.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "The direct answer is no. JWT is described as a token format packaging statements, while OAuth is described as a framework through which an application obtains permission to access a service."},
+        {"criterion": "C2", "verdict": "pass", "notes": "It says they can be used together, illustrates an OAuth flow with a possible JWT access token, and explicitly states that OAuth does not require JWTs."},
+        {"criterion": "C3", "verdict": "pass", "notes": "JWT is expanded, token contents are illustrated with identifiers, permissions and expiry, access token is defined as a credential presented to a service, and delegated access is explained through the photo-printing example."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0004",
+      "response_sha256": "6866b88ab9e2fc12def859526a0c5a83bfefa5b20a50918086d3387f8e40bd86",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The output and control-flow explanation are correct for the supplied JavaScript. The ordered trace distinguishes preparing a return from completing it, explains how finally replaces that pending return, and connects the function result to the single console.log output. The final conditional comparison clarifies what would happen if finally completed normally without rewriting the actual example or confusing that comparison with its behavior. No execution is claimed.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "The displayed output is second and the response explicitly says first never reaches console.log."},
+        {"criterion": "C2", "verdict": "pass", "notes": "The response states that finally runs before the function finishes returning and that its return of second replaces the pending return of first."},
+        {"criterion": "C3", "verdict": "pass", "notes": "It traces the supplied code as written, labels the normal-finally comparison conditionally, and makes no claim of having executed the snippet."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0005",
+      "response_sha256": "7ce1fd6ab679e8c089d3115c302d2f3e0ae95e85f2f8da9afadfd75c6a670347",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response directly resolves the user's confusion by separating the best alternative forgone now from an already paid, irrecoverable amount. The non-refundable ticket and possible work shift make that distinction concrete, and the qualification that the shift is the best alternative avoids adding all forgone possibilities together. The extension to rest, study, and friends makes non-monetary opportunity costs explicit. The simplified amounts are appropriate to the conceptual example, and the presentation is concise without omitting an essential distinction.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "The opening defines opportunity cost as the value of the best alternative given up by a choice; the $60 example is explicitly conditional on the shift being that best alternative."},
+        {"criterion": "C2", "verdict": "pass", "notes": "Money already spent that cannot be recovered is defined as sunk cost, and the $20 ticket is classified this way because neither present option recovers it."},
+        {"criterion": "C3", "verdict": "pass", "notes": "The concert-versus-work example demonstrates the distinction with concrete amounts, and the concluding examples of rest, study time, and time with friends explicitly allow non-money costs."}
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0006",
+      "response_sha256": "6f14e66aad7639ff8c6a44ce68452bb436e79fa01f35f4171c56e69859b7a0c5",
+      "dimensions": {"accuracy": 2, "evidence": 2, "coverage": 2, "clarity": 2, "structure": 2, "fit": 2},
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The response replaces the unfamiliar abstract sentence with a concrete commute-time example, explaining both the fixed unknown average and the sample-dependent interval. It locates 95% in the repeated-sampling behavior of a valid procedure and explicitly conditions that interpretation on its assumptions. It distinguishes an unknown outcome for the particular interval from a probability calculated by that frequentist procedure, without implying that 95% of observations lie inside. The closing plain-language reading consolidates the explanation for a confused reader; its modest repetition serves that purpose and is proportionate.",
+      "criteria": [
+        {"criterion": "C1", "verdict": "pass", "notes": "It changes presentation to an everyday commute-time example and a concrete 20–30 minute interval, then translates the original technical terms within that example."},
+        {"criterion": "C2", "verdict": "pass", "notes": "There is one true average, while different random samples produce different estimates and intervals; the repeated intervals are described as containing that same true average."},
+        {"criterion": "C3", "verdict": "pass", "notes": "It states that about 95% of intervals from repeated new samples using a valid 95% method contain the true average, and expressly notes that the sampling and statistical assumptions must hold."},
+        {"criterion": "C4", "verdict": "pass", "notes": "Short connected paragraphs and the numerical example explain the distinction without formulas or presumed statistics knowledge; the final suggested reading is accessible and compact."}
+      ],
+      "gold_flags": []
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "revealed_at": "2026-11-16T14:24:19.596298+00:00",
+  "release_freeze_sha256": "eb29348e2813f9fa0b029678cb1d9a7fca05188aad26850777d376c55de650e4",
+  "sealed_hashes_match": true,
+  "cases": 12,
+  "note": "Reveal follows the release freeze. These cases were withheld from the skill author during development and selection; the fixture author and tools that created them necessarily had access."
+}

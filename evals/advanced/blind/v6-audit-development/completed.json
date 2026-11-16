@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent fresh-context model reviewer; anonymous conditions",
+  "reviews": [
+    {
+      "review_id": "REVIEW-0001",
+      "response_sha256": "b4d8cd124209464fe729b6af0a0744099da17c38cd3f556d9290e0c31b3a84db",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly gives every checkpoint and event sequence, distinguishes gather failure propagation from explicit cancellation and asyncio.run shutdown, and explains why this refund depends on catching BaseException. Its ledger-based TaskGroup structure waits for workers before releasing all remaining holds, including holds from completed preparation tasks, and delays the group response until cleanup. It preserves completed external transfers and explains durable state, reconciliation, retry identity, and the limits of a local preparation barrier. Claims about the supplied execution are attributed to A01-CODE; the reviewers' claims are explicitly rejected rather than treated as authoritative. I executed the supplied fixture under Python 3.12.14 and matched all six output lines, then executed the Exception substitution and confirmed the stated missing refund and surviving finally event. The proposed structure is intentionally pseudocode; its synchronous registration, nonfailing toy commit, and successful-release assumptions are explicit, and production uncertainty is addressed rather than hidden. No material weakness or gold conflict was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "Both printed after-gather lines show available 70, committed 0, False for done, and False for cancelled; the gate and outstanding reservation explain why."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The non-cancelling run opens the gate, awaits A, and gives final available 70 and committed 30."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The cancellation run requests cancellation, awaits A through release and finally, gives final available 100 and committed 0, and records caller:cancel-observed."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "The displayed traces have the exact common order A:reserved,B:reserved,B:released,B:cleanup,caller:caught and the correct successful and cancelled tails; local Python 3.12.14 execution matched them."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "The mechanism section states that default gather propagates B's failure while A stays active and identifies asyncio.run shutdown cancellation as a separate cause of cleanup in shorter examples."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It correctly places CancelledError under BaseException, explains that Exception misses A's cancellation but still catches B's ValueError, and gives the resulting available 70, committed 0 state while finally still executes. The substituted fixture confirmed that result."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "A coordinator owns responses and a reservation ledger; TaskGroup cancels unfinished siblings on ordinary failure and waits for them, then the finally block releases every held reservation before any failure response. This is an acceptable cleanup equivalent and also handles holds from workers that already finished preparing."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "The external-transfer section states that cancellation cannot make remote commits transactional, requires durable states, reconciliation and stable identifiers to prevent duplicate retries, preserves committed transfers, and reserves any all-or-none promise for a suitable external protocol."
+        }
+      ],
+      "gold_flags": []
+    },
+    {
+      "review_id": "REVIEW-0009",
+      "response_sha256": "a603eb2754e75261ffbb0ee4ba939bc7fbd1b9a1958ba0ca7de9c794b089ee6b",
+      "dimensions": {
+        "accuracy": 2,
+        "evidence": 2,
+        "coverage": 2,
+        "clarity": 2,
+        "structure": 2,
+        "fit": 2
+      },
+      "score": 12,
+      "max_score": 12,
+      "verdict": "pass",
+      "hard_constraints_satisfied": true,
+      "critical_errors": [],
+      "rationale": "The answer correctly computes the expected shipment counts and all three requested posteriors, locates the memo's error in the nondefective joint probability, and derives B's additional positive likelihood ratio from rates inside the A-positive subset. It explains odds versus probability and rejects both the sixteen-fold incremental-evidence claim and the no-information claim. All numerical rates are attributed to the synthetic packet, expected counts are distinguished from realized counts, and no real-detector performance claim is made. The policy discussion identifies missing losses, inspection characteristics and capacity, and separates a changed prevalence from changed conditional detector behavior or validation representativeness. I independently checked the counts, posterior fractions, erroneous-independence calculation and conditional likelihood ratios with exact rational arithmetic. The simplified decision-threshold illustration explicitly states its perfect-inspection and constant-cost assumptions. No material weakness or gold conflict was found.",
+      "criteria": [
+        {
+          "criterion": "C1",
+          "verdict": "pass",
+          "notes": "The table gives 144 expected defective and 392 expected nondefective doubly positive parts, totaling 536."
+        },
+        {
+          "criterion": "C2",
+          "verdict": "pass",
+          "notes": "The opening, table and displayed Bayes calculation give 144/536, approximately 26.87%; exact arithmetic confirms 18/67."
+        },
+        {
+          "criterion": "C3",
+          "verdict": "pass",
+          "notes": "The table gives A alone as 180/1160 = 15.52% and A-positive/B-negative as 36/624 = 5.77%, with the correct defective and nondefective counts."
+        },
+        {
+          "criterion": "C4",
+          "verdict": "pass",
+          "notes": "It contrasts 0.10 times 0.05 = 0.005 with the supplied 0.04, explains the eightfold undercount of nondefective double positives, and reproduces the memo's 144/(144+49) = 74.61%."
+        },
+        {
+          "criterion": "C5",
+          "verdict": "pass",
+          "notes": "It explicitly computes 0.72/0.90 = 0.80 and 0.04/0.10 = 0.40, yielding conditional LR 2; it correctly reserves LR 16 for B considered alone and shows how LR 2 updates A-positive odds."
+        },
+        {
+          "criterion": "C6",
+          "verdict": "pass",
+          "notes": "It rejects the claim that dependence removes all information, explains that no additional evidence would require equal conditional positive rates across true-status groups, and shows both the positive and negative updates."
+        },
+        {
+          "criterion": "C7",
+          "verdict": "pass",
+          "notes": "It explicitly states that shipment counts are expectations rather than guaranteed realized counts in a particular shipment."
+        },
+        {
+          "criterion": "C8",
+          "verdict": "pass",
+          "notes": "It requires missed-defect loss, inspection costs and consequences, inspection effectiveness and capacity for policy; it says to recalculate under a changed base rate and revalidate the joint conditional table when detector behavior, operating conditions or within-status population composition changes."
+        }
+      ],
+      "gold_flags": []
+    }
+  ]
+}

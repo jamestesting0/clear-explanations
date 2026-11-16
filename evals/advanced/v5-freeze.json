@@ -1,0 +1,17 @@
+{
+  "frozen_at": "2026-11-16T12:47:59.381998+00:00",
+  "files": {
+    "SKILL.md": "c4b371b7a60b69ed7cf9b5a72f07e880f03523f875295d1f66d9157db4830bdb",
+    "references/evidence-and-sources.md": "08bb9148e8195b54233197e01ecc2b3e6fa93c2e0af440cd1999014713a7d853",
+    "references/explanation-patterns.md": "ab5621d87d42591d50fcc55b38c0cf10f29d4e15b58bbdd76ff0ae251750a63f",
+    "references/worked-examples.md": "df0ba2d6f812d934aac113b03441f702e42fdf5ef59dfed4e9d24544efe720f1"
+  },
+  "design_changes": [
+    "Plain beginner language in worked examples",
+    "Explicit numeric baselines",
+    "Narrow interpretation to supported expectation",
+    "Applicable source type",
+    "Conditional request for absent material"
+  ],
+  "addendum_sha256": "d23b840bcd3876ada1897c8c4d6baab7d9fbe286bfad43d162f4df6cfe4b6d3c"
+}
