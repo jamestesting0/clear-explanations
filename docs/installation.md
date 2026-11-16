@@ -109,11 +109,11 @@ This is an instruction to read a file; it does not register a native skill or cr
 
 ## Installation check
 
-The v7 runtime was installed from the local release checkout into an isolated Linux project with **skills 1.9.0**, selecting Codex, Claude Code, Cursor, Gemini CLI, GitHub Copilot, and OpenCode. Source discovery found one skill. The core and all three references matched the frozen v7 files byte for byte, and the Claude alias resolved to the shared directory.
+The v7 runtime was installed from both the local release checkout and the public GitHub repository into separate isolated Linux projects with **skills 1.9.0**, selecting Codex, Claude Code, Cursor, Gemini CLI, GitHub Copilot, and OpenCode. Source discovery found one skill. The core and all three references matched the frozen v7 files byte for byte, and the Claude alias resolved to the shared directory.
 
 The standard installer also copies repository documentation and optional evaluation material; only the core and references provide runtime guidance. These checks establish installer discovery, file layout, and exact runtime bytes. Native agent invocation and Windows were not exercised.
 
-The [v7 local check](installation-check-v7-local.json) records the selected targets, runtime hashes, and observed scope. Earlier [v5](installation-check-v5-local.json) and [v4](installation-check.json) records remain as historical evidence.
+The [v7 public check](installation-check-v7-public.json) records the tested GitHub commit, selected targets, runtime hashes, and observed scope. The [local check](installation-check-v7-local.json) is retained separately. Earlier [v5](installation-check-v5-local.json) and [v4](installation-check.json) records remain as historical evidence.
 
 ## Official sources
 
