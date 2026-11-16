@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-16",
+  "installer": "skills 1.9.0",
+  "node": "24.22.1",
+  "platform": "Linux",
+  "source": "local public-package checkout",
+  "mode": "project, default symlink",
+  "targets": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "github-copilot",
+    "opencode"
+  ],
+  "canonical_file": ".agents/skills/explain-clearly/SKILL.md",
+  "alias": ".claude/skills/explain-clearly",
+  "core_sha256": "1e2af92c198e7891e19d67e5dbdb4214b82589c44ded0423917a1f125261be6f",
+  "canonical_bytes_match": true,
+  "claude_alias_resolves": true,
+  "native_agent_invocation_tested": false,
+  "windows_tested": false
+}

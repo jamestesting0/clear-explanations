@@ -1,0 +1,439 @@
+[
+  {
+    "id": "S01",
+    "split": "development",
+    "category": "simple_definition",
+    "prompt": "What is a prime number? Answer in exactly one sentence of at most 30 words, and make clear why 1 is not prime.",
+    "constraints": {
+      "max_words": 30,
+      "exact_sentences": 1,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S02",
+    "split": "development",
+    "category": "code_trace_beginner",
+    "prompt": "I am new to Python. Explain what this function does and what the print statement produces. Keep it under 150 words, explain unfamiliar terms when you use them, and do not change the code.\n```python\ndef transform(nums):\n    result = []\n    for n in nums:\n        if n < 0:\n            continue\n        if n % 2 == 0:\n            result.append(n // 2)\n        else:\n            result.append(n * 3 + 1)\n    return result\n\nprint(transform([-2, 0, 3, 4]))\n```",
+    "constraints": {
+      "max_words": 150,
+      "no_code_change": true
+    }
+  },
+  {
+    "id": "S03",
+    "split": "development",
+    "category": "code_debug_shared_references",
+    "prompt": "Why does changing one row change all three rows here? Explain the actual cause in no more than 150 words. I want an explanation, not rewritten code.\n```python\nrows = [[0] * 2] * 3\nrows[0][1] = 7\nprint(rows)\n```",
+    "constraints": {
+      "max_words": 150,
+      "no_code_change": true
+    }
+  },
+  {
+    "id": "S04",
+    "split": "development",
+    "category": "code_error_paths",
+    "prompt": "Explain both calls below, including where execution stops and whether the result is clamped to zero. Use no more than 200 words and do not rewrite the function.\n```python\ndef final_price(base, discounts):\n    total = base\n    try:\n        for d in discounts:\n            total -= float(d)\n    except ValueError:\n        return total, \"invalid discount\"\n    return max(total, 0), \"ok\"\n\nprint(final_price(20, [\"5\", \"bad\", \"50\"]))\nprint(final_price(20, [\"30\", \"bad\"]))\n```",
+    "constraints": {
+      "max_words": 200,
+      "no_code_change": true
+    }
+  },
+  {
+    "id": "S05",
+    "split": "development",
+    "category": "algorithm_binary_search",
+    "prompt": "Explain this binary search to someone comfortable with loops but new to algorithms. State its precondition, what it guarantees with duplicate values, what happens for an empty list, and why its search work grows slowly. Keep it within 210 words; do not change the code.\n```python\ndef find_index(values, target):\n    low, high = 0, len(values) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if values[mid] == target:\n            return mid\n        if values[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1\n```",
+    "constraints": {
+      "max_words": 210,
+      "no_code_change": true
+    }
+  },
+  {
+    "id": "S06",
+    "split": "development",
+    "category": "concurrency_parallelism",
+    "prompt": "I keep hearing that concurrency and parallelism mean the same thing. Explain the difference using one barista handling several orders versus two baristas. Then connect the analogy to a single-core computer. At most 170 words, no table.",
+    "constraints": {
+      "max_words": 170,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S07",
+    "split": "development",
+    "category": "cache_isolation_security",
+    "prompt": "A support assistant serves several companies. It caches an answer using only the question text as the key. Company A asks \"What were our March sales?\" and gets its own figures; Company B then asks the same question. Explain the risk and what a sound design needs to consider. Someone proposed hashing the question and adding a five-minute expiry: explain whether that solves the core problem. No code, at most 210 words.",
+    "constraints": {
+      "max_words": 210,
+      "no_code_change": true
+    }
+  },
+  {
+    "id": "S08",
+    "split": "development",
+    "category": "probability_base_rates",
+    "prompt": "A factory makes 10,000 parts. Exactly 1% are defective. A detector flags 90% of defective parts and also flags 5% of nondefective parts. If a part is flagged, what is the chance it is defective? Explain with a compact Markdown table of counts and a short conclusion, using at most 180 words.",
+    "constraints": {
+      "max_words": 180,
+      "require_table": true
+    }
+  },
+  {
+    "id": "S09",
+    "split": "development",
+    "category": "information_entropy_beginner",
+    "prompt": "What does Shannon entropy measure? Explain it using three cases: a fair coin; a coin that always lands heads; and a two-bit message that is 00 half the time and 11 half the time. The formula is H = -sum(p * log2(p)). Keep it under 230 words, and explain what \"bits\" means here without assuming I know information theory.",
+    "constraints": {
+      "max_words": 230
+    }
+  },
+  {
+    "id": "S10",
+    "split": "development",
+    "category": "correlation_causation",
+    "prompt": "On rainy days, more umbrellas are open and sidewalks are wetter. A friend says the correlation proves umbrellas make sidewalks wet. Another friend says correlations tell us nothing useful about causes. Explain what each gets wrong in at most 140 words, with no table.",
+    "constraints": {
+      "max_words": 140,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S11",
+    "split": "development",
+    "category": "comparison_encoding_hashing_encryption",
+    "prompt": "Compare encoding, encryption, and hashing for a new analyst. Use a compact Markdown table showing purpose, reversibility, and an example. Then add one short note on why storing passwords needs more than an ordinary fast hash. Stay under 240 words; no code.",
+    "constraints": {
+      "max_words": 240,
+      "require_table": true
+    }
+  },
+  {
+    "id": "S12",
+    "split": "development",
+    "category": "mathematics_derivative",
+    "prompt": "Explain a derivative to someone who knows basic algebra, using f(x) = x². Compare the derivative at x = 3 with the average rate of change from x = 2 to x = 5. Keep it within 190 words, no table, and explain any new mathematical term immediately.",
+    "constraints": {
+      "max_words": 190,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S13",
+    "split": "development",
+    "category": "everyday_economics_sunk_cost",
+    "prompt": "Explain opportunity cost and sunk cost using this situation: I already paid $20 for a nonrefundable movie ticket. The showing has not started. I would now enjoy a free walk more than the movie, and there are no other consequences or costs. What matters for the decision now? At most 150 words, no table.",
+    "constraints": {
+      "max_words": 150,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S14",
+    "split": "development",
+    "category": "weather_climate",
+    "prompt": "Can one unusually cold week disprove a long-term warming trend? Explain the difference between weather and climate to a curious teenager in at most 150 words. Use no current statistics or external sources; focus on the concepts.",
+    "constraints": {
+      "max_words": 150,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S15",
+    "split": "development",
+    "category": "broad_explanation_photosynthesis",
+    "prompt": "Explain photosynthesis from sunlight to plant growth for a curious adult. Use three short sections and no more than 250 words. Include where the carbon in the plant comes from and where the released oxygen comes from. Explain necessary scientific terms as you introduce them; do not turn this into a quiz.",
+    "constraints": {
+      "max_words": 250
+    }
+  },
+  {
+    "id": "S16",
+    "split": "development",
+    "category": "statistical_jargon_translation",
+    "prompt": "Explain \"effect size\", \"confidence interval\", and \"statistically significant\" for a product manager. Use this single example: an experiment estimates a 2-percentage-point improvement, with a two-sided 95% confidence interval from -1 to +5 percentage points. Assume this interval corresponds to the usual two-sided 5% significance test of zero effect. Keep it under 220 words, and explain why \"not significant\" does not mean \"no effect\".",
+    "constraints": {
+      "max_words": 220
+    }
+  },
+  {
+    "id": "S17",
+    "split": "development",
+    "category": "chinese_boiling_altitude",
+    "prompt": "请用简体中文、三个简短段落解释：为什么高山上的水会在低于 100°C 时沸腾？这会怎样影响用沸水煮食物？面向没有物理背景的读者，第一次用到专业词时就解释，不要使用表格。",
+    "constraints": {
+      "language": "zh-Hans",
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S18",
+    "split": "development",
+    "category": "german_linear_exponential",
+    "prompt": "Erkläre den Unterschied zwischen linearem und exponentiellem Wachstum auf Deutsch, ohne Tabelle und in höchstens 180 Wörtern. Beide Modelle starten bei 10. Im linearen Modell kommen pro Schritt 2 hinzu; im exponentiellen Modell wird der Wert pro Schritt mit 1,2 multipliziert. Zeige die Werte nach den ersten drei Schritten und erkläre, warum nicht jedes schnelle Wachstum exponentiell ist.",
+    "constraints": {
+      "max_words": 180,
+      "language": "de",
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S19",
+    "split": "development",
+    "category": "missing_code_context",
+    "prompt": "Can you explain why my program prints 0 instead of 5? I have not pasted the code or described the language or input yet. Keep your reply under 80 words.",
+    "constraints": {
+      "max_words": 80,
+      "no_code_change": true
+    }
+  },
+  {
+    "id": "S20",
+    "split": "development",
+    "category": "temporal_uncertainty_no_source",
+    "prompt": "Assume Northbridge Museum is a venue whose visitor-entry rules can change. I need its current rules today, but no official policy or source has been supplied, and you have no browsing access. In exactly two sentences, explain what you can responsibly tell me and what you need next. Do not guess the rules.",
+    "constraints": {
+      "max_words": 75,
+      "exact_sentences": 2,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S21",
+    "split": "development",
+    "category": "mathematics_division_by_zero",
+    "prompt": "Why can I not divide by zero? Explain the difference between 5/0 and 0/0 using multiplication to check division. Keep it within 170 words for a beginner, and address the claim that both simply equal infinity.",
+    "constraints": {
+      "max_words": 170
+    }
+  },
+  {
+    "id": "S22",
+    "split": "development",
+    "category": "electric_circuit_analogy",
+    "prompt": "Explain a simple closed circuit containing a battery, wires, and one bulb. Use a water-flow analogy, but explicitly say where it stops helping. Explain voltage, current, and resistance as you introduce them. At most 240 words, in three short sections.",
+    "constraints": {
+      "max_words": 240
+    }
+  },
+  {
+    "id": "S23",
+    "split": "development",
+    "category": "negative_trigger_pure_implementation",
+    "prompt": "Write a Python function clamp(value, low, high). It must raise ValueError if low > high; otherwise it returns low when value is below low, high when value is above high, and value when it is inside the inclusive range. Return only the function in one fenced Python code block, with no explanation.",
+    "constraints": {
+      "max_words": 100
+    }
+  },
+  {
+    "id": "S24",
+    "split": "development",
+    "category": "feedback_loops",
+    "prompt": "Explain positive and negative feedback using a thermostat and a microphone near a loudspeaker. I assume \"positive\" means helpful and \"negative\" means harmful—is that right? Keep the explanation under 190 words, and mention one reason a negative-feedback system might still oscillate.",
+    "constraints": {
+      "max_words": 190
+    }
+  },
+  {
+    "id": "S25",
+    "split": "holdout",
+    "category": "code_javascript_event_order",
+    "prompt": "In a browser running this single script with no other queued work, what order is logged, and why? Explain in at most 180 words without changing the code. Introduce \"microtask\" in plain language if you use it.\n```javascript\nconsole.log(\"A\");\nPromise.resolve().then(() => console.log(\"B\"));\nsetTimeout(() => console.log(\"C\"), 0);\nconsole.log(\"D\");\n```",
+    "constraints": {
+      "max_words": 180,
+      "no_code_change": true
+    }
+  },
+  {
+    "id": "S26",
+    "split": "holdout",
+    "category": "code_sql_join_aggregation",
+    "prompt": "Explain why this report returns 50 when the total order value is 40, and why SUM(DISTINCT o.amount) is not a correct general fix. Do not rewrite the query. Keep it within 210 words and explain \"row grain\" if you use it.\n\norders:\n| id | amount |\n|---|---|\n| 1 | 10 |\n| 2 | 10 |\n| 3 | 20 |\n\nitems:\n| order_id | sku |\n|---|---|\n| 1 | A |\n| 1 | B |\n| 2 | C |\n| 3 | D |\n\n```sql\nSELECT SUM(o.amount)\nFROM orders AS o\nJOIN items AS i ON i.order_id = o.id;\n```",
+    "constraints": {
+      "max_words": 210,
+      "no_code_change": true
+    }
+  },
+  {
+    "id": "S27",
+    "split": "holdout",
+    "category": "negative_trigger_format_conversion",
+    "prompt": "Convert these records to CSV. Return only the CSV text, with the header name,city and no Markdown fences, explanation, or extra lines. Use standard CSV quoting where needed.\nRecord 1: name = Lina; city = Paris\nRecord 2: name = Omar; city = Cairo, Egypt",
+    "constraints": {
+      "max_words": 25,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S28",
+    "split": "holdout",
+    "category": "information_theory_expert",
+    "prompt": "For an experienced data scientist who wants a concise refresher, explain entropy H(P), cross-entropy H(P,Q), and KL divergence D_KL(P||Q). Use P = (0.5, 0.5), Q = (0.75, 0.25), and base-2 logs, with log2(0.75) approximately -0.415 and log2(0.25) = -2. Relate the three quantities numerically and explain why KL is not an ordinary symmetric distance. At most 210 words, no table or motivational introduction.",
+    "constraints": {
+      "max_words": 210,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S29",
+    "split": "holdout",
+    "category": "probability_gamblers_fallacy",
+    "prompt": "A fair coin has landed heads ten times in a row. If the long-run fraction of heads tends toward one half, why are tails not \"due\" on the next toss? Assume the tosses are independent. Explain in at most 140 words, without a table.",
+    "constraints": {
+      "max_words": 140,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S30",
+    "split": "holdout",
+    "category": "physics_mass_weight",
+    "prompt": "Explain mass versus weight using a person of mass 60 kg on Earth and on the Moon. For this example use gravitational accelerations 9.8 m/s² and 1.6 m/s² respectively. Give the two weights and explain their units. Stay under 150 words; no table.",
+    "constraints": {
+      "max_words": 150,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S31",
+    "split": "holdout",
+    "category": "organization_centralization",
+    "prompt": "Explain centralization versus decentralization for a volunteer network running events in several towns. Use one concrete example, describe the main tradeoff, and show how a mixed arrangement could work. Use three short sections and at most 220 words; do not assume one structure is always best.",
+    "constraints": {
+      "max_words": 220
+    }
+  },
+  {
+    "id": "S32",
+    "split": "holdout",
+    "category": "chinese_density_mass",
+    "prompt": "请用简体中文解释“质量”和“密度”的区别，不要用表格。两个物体的质量都是 500 克，体积分别为 100 立方厘米和 250 立方厘米。算出它们的密度，并解释为什么“更重”不一定意味着“密度更大”。请写得简短，适合初中生。",
+    "constraints": {
+      "language": "zh-Hans",
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S33",
+    "split": "holdout",
+    "category": "german_mean_median",
+    "prompt": "Erkläre auf Deutsch den Unterschied zwischen Mittelwert und Median anhand der Werte 2, 3, 3, 4, 18. Berechne beide, erkläre die Wirkung des großen Werts 18 und sage, warum nicht grundsätzlich eine Kennzahl besser ist. Höchstens 150 Wörter, keine Tabelle.",
+    "constraints": {
+      "max_words": 150,
+      "language": "de",
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S34",
+    "split": "holdout",
+    "category": "evaporation_boiling",
+    "prompt": "Why can sweat cool skin even when the air is far below water's boiling point? Explain evaporation versus boiling, and why humid air often reduces that cooling. At most 170 words, no table. This is a physics question, not a request for personal health advice.",
+    "constraints": {
+      "max_words": 170,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S35",
+    "split": "holdout",
+    "category": "newton_third_law",
+    "prompt": "A small car and a much heavier truck collide. Someone says the truck must exert a larger force on the car than the car exerts on the truck, because the car's motion changes more. Explain the mistake using Newton's third law and F = ma. Keep it under 180 words in two short sections, with no table.",
+    "constraints": {
+      "max_words": 180,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "S36",
+    "split": "holdout",
+    "category": "average_speed_equal_distances",
+    "prompt": "I travel 60 km at 30 km/h, then another 60 km at 60 km/h, with no stops. Why is my average speed 40 km/h rather than the simple average 45 km/h? Explain with the actual times, in at most 150 words and without a table. Say when averaging the two speeds directly would work.",
+    "constraints": {
+      "max_words": 150,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "N01",
+    "split": "development",
+    "category": "natural_dependency_injection",
+    "prompt": "I know basic Java but not Spring. What does dependency injection actually mean?",
+    "constraints": {}
+  },
+  {
+    "id": "N02",
+    "split": "development",
+    "category": "natural_entropy_weights",
+    "prompt": "I do not understand entropy weights: why do you multiply each group's entropy by its fraction of the original examples?",
+    "constraints": {}
+  },
+  {
+    "id": "N03",
+    "split": "development",
+    "category": "natural_oauth_jwt",
+    "prompt": "Is JWT a replacement for OAuth? Explain the difference.",
+    "constraints": {}
+  },
+  {
+    "id": "N04",
+    "split": "development",
+    "category": "natural_finally_control_flow",
+    "prompt": "Why does this JavaScript print what it does?\n```javascript\nfunction choose() {\n  try { return \"first\"; }\n  finally { return \"second\"; }\n}\nconsole.log(choose());\n```",
+    "constraints": {}
+  },
+  {
+    "id": "N05",
+    "split": "development",
+    "category": "natural_opportunity_cost",
+    "prompt": "What is an opportunity cost? I keep thinking it is money I already spent.",
+    "constraints": {}
+  },
+  {
+    "id": "N06",
+    "split": "development",
+    "category": "natural_explanation_repair",
+    "prompt": "I am lost. You wrote: \"A confidence interval is not the probability that the fixed parameter lies in the realized interval.\" Explain that again.",
+    "constraints": {}
+  },
+  {
+    "id": "H01",
+    "split": "holdout",
+    "category": "practical_technology_qr_contents",
+    "prompt": "At an event, two QR codes work differently on the same phone. One contains a complete contact card and can add the contact with all network connections switched off. The other contains only the address of an event webpage: the phone can read the address offline, but it cannot load the page, which has never been saved on the phone. Why? Explain what scanning does and what needs a connection, in at most 170 words without a table. Assume the phone already has the software needed to read both codes.",
+    "constraints": {
+      "max_words": 170,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "H02",
+    "split": "holdout",
+    "category": "organization_process_capacity",
+    "prompt": "Our support team receives 10 new tickets each working day. Every ticket must first be triaged and then resolved. The team can triage 20 tickets per day but resolve only 5, and the triage staff cannot resolve tickets without extra training. We count a ticket as unfinished until it is resolved. A manager proposes doubling triage capacity to stop the unfinished backlog growing. Explain whether that addresses the problem, how fast the backlog grows at the stated rates, and what kind of change would address it. Keep this within 190 words, using short sections. Assume work flows through both stages throughout each day and both stages operate at their stated capacity whenever work is waiting.",
+    "constraints": {
+      "max_words": 190
+    }
+  },
+  {
+    "id": "H03",
+    "split": "holdout",
+    "category": "everyday_science_open_refrigerator",
+    "prompt": "Someone suggests leaving a running refrigerator door open to cool a kitchen. The entire refrigerator, including its warm parts, is inside the kitchen. For this thought experiment, ignore heat exchange through the walls and any other appliances, and consider normal running operation rather than the first instant after opening it. Why can the air near the open door feel cool while the kitchen as a whole does not get cooled? Would the conclusion necessarily be the same if a cooling appliance released its heat outdoors? Explain in at most 180 words, without a table.",
+    "constraints": {
+      "max_words": 180,
+      "forbid_table": true
+    }
+  },
+  {
+    "id": "H04",
+    "split": "holdout",
+    "category": "code_javascript_default_parameter_condition",
+    "prompt": "I expected every empty-looking input to use \"Guest\", but this JavaScript behaves differently. Explain the four outputs and the exact condition that selects the default. Keep it under 170 words and do not change the code.\n```javascript\nfunction badge(label = \"Guest\") {\n  return `[${label}]`;\n}\n\nconsole.log(badge());\nconsole.log(badge(undefined));\nconsole.log(badge(null));\nconsole.log(badge(\"\"));\n```",
+    "constraints": {
+      "max_words": 170,
+      "no_code_change": true
+    }
+  }
+]

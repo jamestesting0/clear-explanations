@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clear Explanations"
+  short_description: "Understand code and ideas through clear, compact text"
+  default_prompt: "Use $explain-clearly to explain this with plain terms and a useful structure. Add one concrete example when it helps."

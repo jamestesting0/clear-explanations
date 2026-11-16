@@ -1,0 +1,869 @@
+{
+  "note": "Earlier reviews of unchanged comparison answers. The main report uses the later blind review; these preserve reviewer variation.",
+  "reviews": [
+    {
+      "case_id": "N01",
+      "response_sha256": "34fe9c3eb7e27ce8e1e4d46fc195c038b96488a52992b306d9e022209ea983ec",
+      "verdict": "pass",
+      "score": 10,
+      "max_score": 10,
+      "rationale": "Explains the mechanism accurately through ordinary Java and makes the design choice explicit. The extra clarification that an interface is useful but optional prevents a common overgeneralization.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Correctly explains constructor injection and the division between using and creating the sender. It correctly states that neither an interface nor Spring is necessary."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Dependency is defined in plain words, and the exact line performing injection is identified. Constructor injection is named only after the ordinary operation is explained."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Includes the internal-construction alternative, injected class, assembly call, substitution rationale, and a clear account of Spring configuration and constructor supply."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The explanation follows definition, contrast, concrete construction, benefit, and framework relationship. Code and prose reinforce each other with no decorative wrapper."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The additional interface caveat is relevant and compact. The response gives enough context for a newcomer without attempting to teach Spring annotations or container internals."
+        }
+      ],
+      "variant": "plain-language",
+      "blind_label": "C",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N01",
+      "response_sha256": "015975f466a6794b0f79f1f5d2787c51e9da461dc44ce34d49317df457608a5e",
+      "verdict": "pass",
+      "score": 9,
+      "max_score": 10,
+      "rationale": "Correctly explains both words in dependency injection, shows ordinary Java construction and constructor passing, and places Spring in the right role. The useful examples pass; the generic Scope/Depth wrapper and repeated section labels create avoidable presentation overhead.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Correctly contrasts an internally constructed EmailSender with a sender received through the constructor. It explicitly permits plain Java and correctly requires both concrete implementations to implement Sender in the interface example."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Defines dependency as something the class uses and identifies the actual constructor call as injection. The phrase one object is passed to another makes the mechanism concrete."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Provides before/after Java, the assembly call, the separation of using versus creating a collaborator, substitution for tests, and Spring’s role in assembly. All essential criteria are present."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "partial",
+          "score": 1,
+          "max_score": 2,
+          "notes": "The code blocks and scenario-specific headings are useful, but the book-icon title and Scope/Depth metadata add no explanation. Remove that wrapper and let the direct definition lead."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The fuller interface example remains pertinent for someone who knows basic Java but not Spring. Its length is defensible for the requested concept and no unsupported framework requirement or invented word limit is introduced."
+        }
+      ],
+      "variant": "explain",
+      "blind_label": "A",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N01",
+      "response_sha256": "6f490d57da67c8528b1faaaef0db49a9bd035224569c3194f05e2735d34e572f",
+      "verdict": "pass",
+      "score": 10,
+      "max_score": 10,
+      "rationale": "A direct, accurate definition is followed by a small before/after Java example and a clear explanation of who assembles the objects. Testing and Spring provide useful motivation without changing the subject.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The EmailSender is a collaborator, constructor passing is injection, and Spring is described as automating setup rather than being required. The interface-based substitution example is sound."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Defines dependency immediately and explains injection as an ordinary constructor argument. The setup code versus order-handling distinction uses familiar Java concepts."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Covers internal construction, supplied construction, the actual wiring call, why the distinction matters, and how Spring fits. It satisfies every essential semantic criterion."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The before/after code and assembly call appear in causal order. Bold sentences mark the definition and Spring’s role without an unnecessary outline."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The example and short motivation are proportionate to a basic-Java reader’s conceptual question. The interface extension adds a useful benefit without requiring another large implementation."
+        }
+      ],
+      "variant": "no-skill",
+      "blind_label": "B",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N02",
+      "response_sha256": "cff4b3ec5e25919f90762291b655aeff2b7d3bc3dbe897bb5b8ed5a209e8c698",
+      "verdict": "pass",
+      "score": 9,
+      "max_score": 10,
+      "rationale": "The entropy explanation and arithmetic are correct, and the annotated general formula reinforces the probability interpretation. Generic Scope/Depth metadata and multiple framing headings add avoidable scaffolding.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The pure and balanced groups have the stated entropies, the weighted average is 0.1 bit, and the equal-group average is 0.5. The node-specific denominator and information-gain description are correct."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Repeated sampling is described as choosing an example, and the underbraces translate each factor into a chance and an uncertainty. The group-versus-example distinction is explicit."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Supplies all three required ideas: expected remaining uncertainty for a randomly chosen example, larger groups encountered more often, and a correct unequal-size calculation."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "partial",
+          "score": 1,
+          "max_score": 2,
+          "notes": "The table, arithmetic, and annotated rule serve the explanation, but the title, Scope/Depth lines, and generic What it does/How it works headings add a second organizational layer. Begin with the substantive answer and keep the useful example."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The extra formula is directly tied to the question and its symbols are explained, rather than derived at length. Its length alone is not a reason to penalize this natural request."
+        }
+      ],
+      "variant": "explain",
+      "blind_label": "C",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N02",
+      "response_sha256": "b25ada862feca56c66b4caf288c2e0e3ba8acb1dc1cca90a5176bd5166d8b740",
+      "verdict": "pass",
+      "score": 10,
+      "max_score": 10,
+      "rationale": "Correctly identifies the weighted result as an average over original examples, verifies it with unequal groups, and explains why an equal average answers a different question. The general expression is brief and relevant.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "A pure 90-example group has entropy 0 and a balanced binary 10-example group has entropy 1 bit. The calculation 0.9×0+0.1×1=0.1 and the equal-group average 0.5 are correct; the denominator is correctly localized to the current node."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Connects group fractions to the chance that a randomly selected example lands there. The distinction between averaging groups equally and examples equally directly resolves the confusion."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Explains average remaining uncertainty, why large groups contribute more, an unequal-size worked example, the mistaken equal average, and the current-node denominator."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The table fixes the scenario, two bullets describe the random draw, and the arithmetic follows naturally. The short general rule is placed after the intuition."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The symbolic generalization and one-sentence information-gain context are relevant extensions, with variables explained. This is not an extended derivation or disproportionate formula exposition."
+        }
+      ],
+      "variant": "no-skill",
+      "blind_label": "A",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N02",
+      "response_sha256": "f7922a0a2ee111ece1c60a83bfe59e3aee1ad43e3aaa9fa8d339339bbc0e54b8",
+      "verdict": "pass",
+      "score": 10,
+      "max_score": 10,
+      "rationale": "Accurately explains the weighting as an average over examples and offers a useful alternative picture: ninety zero scores and ten one scores. The denominator clarification closes a realistic ambiguity.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The binary entropy values, 90/10 selection chances, weighted 0.1-bit result, and equal-group 0.5 result are correct. Averaging ninety zeros and ten ones gives the same 0.1."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Defines entropy through label mixing, then ties group weight to selection frequency. The per-example score interpretation supplies an additional concrete bridge without changing the concept."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Answers why multiplication is needed, specifies the random-original-example interpretation, demonstrates unequal groups, and identifies the correct local denominator in deeper tree nodes."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The definition, table, arithmetic, alternative interpretation, and denominator note each perform a distinct role. Bold text highlights the main idea and a consequential denominator detail."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The additional entropy definition and ninety-zero/ten-one analogy are useful for the stated confusion. The response stays on the weighting question and remains proportionate."
+        }
+      ],
+      "variant": "plain-language",
+      "blind_label": "D",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N03",
+      "response_sha256": "76fe48e41e5f8ec6671fef3be9e41d2843c7889e1c44fc7dfea425a12472ddf1",
+      "verdict": "pass",
+      "score": 9,
+      "max_score": 10,
+      "rationale": "Correctly separates OAuth’s permission process from JWT’s representation format and shows how they work together. The table and scenario are useful; the generic metadata and many sections add presentation overhead, while the JSON payload is optional supporting detail.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Correctly allows OAuth access tokens to be JWTs or opaque values, allows JWT use without OAuth, and distinguishes signatures from encryption. The validation and OpenID Connect remarks are consistent with those distinctions."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The calendar scenario explains authorization as obtaining permission and using an access token. Claim examples give the intended meaning, although the optional iss/sub/aud abbreviations would be easier with plain-language labels."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Answers no, describes the permission framework and claims format, states both directions of independence, and explains their interaction. It also avoids the signed-means-secret misconception."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "partial",
+          "score": 1,
+          "max_score": 2,
+          "notes": "The comparison table and numbered calendar flow work well. Scope/Depth metadata and repeated generic headings add unnecessary framing before and around material that already has a clear structure."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The token-validation and login distinctions are pertinent to this common comparison, and the central answer appears early. The optional payload could be shortened, but the response is still proportionate to the open-ended difference question."
+        }
+      ],
+      "variant": "explain",
+      "blind_label": "A",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N03",
+      "response_sha256": "65762d5b2ee1c0d986c3805308227f8f0906447104d0ec06dc453fd9da566243",
+      "verdict": "pass",
+      "score": 10,
+      "max_score": 10,
+      "rationale": "Accurately distinguishes the two concepts, explicitly defines claims, and combines a comparison table with a concrete photo-access scenario. Signing and login caveats add relevant boundaries.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Correctly treats JWT as a claims-carrying format and OAuth as a permission framework that can use either JWT or opaque access tokens. It does not equate signing with encryption or OAuth alone with a complete login protocol."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Expands JWT, defines claims as statements, describes access tokens through their use, and explains opaque tokens as values the service looks up. The unfamiliar terms are translated in context."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Explicitly answers no, explains both roles, shows them working together, and states that OAuth does not require JWT. The example illustrates limited permission to another application."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Definitions establish the terms before the table and numbered example. Two final bullets isolate relevant distinctions without interrupting the central comparison."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The additional detail is useful to a reader comparing authentication-related concepts. Its length is not excessive merely because a shorter correct answer is possible."
+        }
+      ],
+      "variant": "plain-language",
+      "blind_label": "B",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N03",
+      "response_sha256": "86e9771d26bed704c4d0fe44b011a6383e55eeabd54cdd3f660dea9f35aa29b7",
+      "verdict": "pass",
+      "score": 10,
+      "max_score": 10,
+      "rationale": "Correctly describes the permission process and token format, with a photo-printing example that grounds delegated access. The signed-content and ID-token distinctions are helpful and clearly separated.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Correctly permits JWT and other OAuth access-token formats and independent JWT use. It accurately distinguishes signature integrity from secrecy and ID tokens from API access tokens."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Explains permission through the photo-service approval and token-presentation sequence. The table supplies concrete token fields, and opaque tokens are defined in ordinary language."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Answers the replacement question, explains the distinct roles, demonstrates how the technologies work together, and explicitly states that JWT does not define the permission-granting process."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The table gives an overview, the numbered flow supplies event order, and the final two bullets address adjacent confusion. The single descriptive heading helps navigation."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The extra example and two practical distinctions remain close to the user’s comparison. The response is proportionate without imposing an artificial brevity requirement."
+        }
+      ],
+      "variant": "no-skill",
+      "blind_label": "D",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N04",
+      "response_sha256": "1f8a5dd688065ec4ba7ed1d07873a634dbe0179f4fb2a4d079cfb339222ff2c9",
+      "verdict": "pass",
+      "score": 9,
+      "max_score": 10,
+      "rationale": "Correctly predicts second and explains the pending-return override in the supplied code. The clearly labeled cleanup counterexample adds a valid boundary, while generic metadata and framing headings slow access to a simple result.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The finally return replaces the pending try return, so only second is logged in the supplied program. The cleanup variant logs cleanup then first, and returning from finally can suppress an exception."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Explains prepares to return before saying the value is replaced. It explicitly notes that the first return is reached rather than skipped."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "States the original output and every causal step before introducing a clearly separate counterfactual. It neither substitutes a rewrite for the explanation nor claims to have executed the code."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "partial",
+          "score": 1,
+          "max_score": 2,
+          "notes": "The numbered execution sequence and separated counterfactual are useful. The book-icon title, Scope/Depth lines, and generic What it does heading unnecessarily precede the short answer."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The counterfactual illustrates exactly why the finally block’s own return matters. This remains a proportionate explanation of the supplied snippet, with no hard length limit violated."
+        }
+      ],
+      "variant": "explain",
+      "blind_label": "A",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N04",
+      "response_sha256": "166297edeb6d21d91afc29c6ed8494af2f2a3e054ff1d19a504b217897abeda1",
+      "verdict": "pass",
+      "score": 10,
+      "max_score": 10,
+      "rationale": "Gives the correct output immediately and explains both the control-flow order and the crucial distinction between running finally and returning from it. The counterfactual is clearly identified.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Correctly predicts second, explains replacement of the pending return, and gives the right cleanup/first output for the alternative. The exception-suppression caveat is sound."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The four steps track the exact supplied statements. The explicit note that merely executing finally does not discard the earlier return prevents a likely misunderstanding."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Covers the original output, the timing of finally, and the overriding return. The later modified example is illustrative only, and there is no invented execution evidence."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Output comes first, the execution sequence follows, and the normal-completion contrast comes after the original explanation. Code blocks and numbered steps have clear purposes."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The small extra example directly supports the why question and does not distract into unrelated JavaScript details. The explanation is compact for the mechanism it teaches."
+        }
+      ],
+      "variant": "plain-language",
+      "blind_label": "B",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N04",
+      "response_sha256": "d162b58d4ae91bd05bb25aea5f2bad4e8d929900b6adcb140175482b2df51c43",
+      "verdict": "pass",
+      "score": 10,
+      "max_score": 10,
+      "rationale": "Correctly explains the overriding return, makes the deferred exit explicit, and uses a clear cleanup variant to show the boundary. The material stays focused on the supplied code’s behavior.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Correctly predicts second and explains why finally’s return replaces the try return. The alternative output cleanup then first and the exception-suppression statement are correct."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The execution trace identifies what happens at each return and says the first does not immediately hand control back to the caller. This makes the timing understandable."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Fully explains the supplied program before showing the normal-cleanup alternative. The answer neither replaces the task with a rewrite nor alleges execution evidence."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The output and key rule precede the numbered trace; the counterfactual follows after the original result is resolved. Each code block is labeled by surrounding prose."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The extra example answers a natural why-not-first question and remains modest in scope. There is no reason to penalize it simply for being longer than another complete answer."
+        }
+      ],
+      "variant": "no-skill",
+      "blind_label": "D",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N05",
+      "response_sha256": "6a7d1b5b06505704bb072369cd3e84b78920895cba099c76bc24d3fb456af530",
+      "verdict": "pass",
+      "score": 10,
+      "max_score": 10,
+      "rationale": "Correctly defines both costs and distinguishes forgone earnings and enjoyment from the payment already lost. The example treats the ticket as unrecoverable; stating that it cannot be resold would sharpen that assumption but does not undermine the central explanation.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The opening correctly requires irrecoverability for a sunk cost, and the example explicitly treats the $20 as gone under either choice. The $50 forgone earnings and best-alternative rule are correct. Nonrefundable alone would not rule out resale, so cannot resell would improve the example’s premise."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The three bullets separately identify the ticket payment, earnings sacrificed by attending, and enjoyment sacrificed by working. The concluding question is a plain-language recognition aid."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Includes the best-alternative definition, irrecoverable past spending, a concrete comparison with both money and enjoyment, and the prohibition on adding all forgone options."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The opening definitions lead to parallel example bullets and a short preference explanation. The organization supports comparing the alternatives without generic labels."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The explanation is proportionate and the reminder that preferences decide between work and the movie is relevant. The minor recoverability wording can be improved without expanding the response."
+        }
+      ],
+      "variant": "no-skill",
+      "blind_label": "D",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N05",
+      "response_sha256": "7b542aa3b4cafd5877285b8ceb024f7a5b819753e79f4be0d9b747c317c2e6ae",
+      "verdict": "pass",
+      "score": 9,
+      "max_score": 10,
+      "rationale": "Correctly distinguishes the best forgone alternative from unrecoverable spending, with explicit no-refund/no-resale assumptions and a nonmonetary example. Generic metadata is the only material presentation deduction.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The $30 is unrecoverable under the stated assumptions, while the $80 is the earnings forgone if the shift is the best alternative. The answer correctly counts only the best alternative and allows noncash value."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Defines both opportunity cost and sunk cost plainly, then contrasts the amounts in prose and a small table. The recognition question gives the reader a practical way to distinguish them."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Includes the best-alternative definition, the irrecoverability condition, a concrete monetary comparison, and time with friends as a nonmonetary opportunity cost."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "partial",
+          "score": 1,
+          "max_score": 2,
+          "notes": "The amount-comparison table and final recognition question serve the confusion. The title, Scope/Depth metadata, and generic framing headings add unnecessary structure around a simple distinction."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The concert/shift example and second noncash example cover the actual misconception without an unrelated economics lesson. The table’s repetition is useful for comparing the two types of cost."
+        }
+      ],
+      "variant": "explain",
+      "blind_label": "A",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N05",
+      "response_sha256": "fd7b84110da437cd27f62ddeb70a7bad7f5c0048529f11b668fe4191e6f83a73",
+      "verdict": "pass",
+      "score": 10,
+      "max_score": 10,
+      "rationale": "Accurately distinguishes sunk spending from the value of the best alternative, including the reverse choice’s forgone movie experience. It explains that opportunity cost informs rather than dictates preferences.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The no-refund/no-sale premise makes the $30 sunk. With the stated best-alternative assumption, $80 is the opportunity cost of the movie; in the two-option example the movie experience is forgone by working."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Plain definitions and a three-row table distinguish money already paid, income forgone, and enjoyment forgone. The final paired questions directly target the user’s mix-up."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Includes the best-alternative definition, irrecoverable sunk costs, a concrete nonmoney cost, and the rule against summing every rejected possibility."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Definitions lead into one example, the table organizes its consequences, and the final paragraphs explain preference and the best-alternative boundary."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The added reverse-choice row and preference explanation help prevent treating the monetary number as an automatic decision rule. The scope remains proportionate to the question."
+        }
+      ],
+      "variant": "plain-language",
+      "blind_label": "B",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N06",
+      "response_sha256": "d6e3ad227aea144bcab7d0153cef0c35952437d24f4c6367ba91af337bd97418",
+      "verdict": "pass",
+      "score": 9,
+      "max_score": 10,
+      "rationale": "The main repair is correct and accessible, with a specific height interval and an explicit repeated-sampling sequence. The final Bayesian paragraph expands into a second framework after the requested confusion is already resolved, so fit loses one point.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Correctly fixes the population average, varies sample-derived intervals, and conditions 95% repeated coverage on assumptions. It appropriately distinguishes procedure coverage from parameter probabilities, and the Bayesian caveat is substantively correct."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Defines parameter and realized interval using the height example, then describes the sampling sequence in three concrete steps. The reassurance about not needing complete certainty avoids equating fixed truth with complete knowledge."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Includes the changed example-based presentation, fixed versus varying distinction, repeated-sampling interpretation, assumptions, and meaning of the observed interval. All essential facts are covered."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The definitions, numbered repetitions, interpretation, and suggested reading are logically arranged. The additional framework is separated into a final paragraph rather than mixed into the central example."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "partial",
+          "score": 1,
+          "max_score": 2,
+          "notes": "For a user who says they are lost, the final paragraph introduces Bayesian inference, priors, credible intervals, and frequentist terminology after the requested idea is complete. Omit that detour on the first repair and retain the concrete repeated-sampling explanation."
+        }
+      ],
+      "variant": "plain-language",
+      "blind_label": "B",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N06",
+      "response_sha256": "ecc275202a6b524089f02d08e8d5606b55c6123cbc390250752ebfad8fa93acb",
+      "verdict": "pass",
+      "score": 10,
+      "max_score": 10,
+      "rationale": "Changes the abstract wording into a concrete repeated-survey example, correctly separates a fixed average from varying intervals, and explains the observed interval without assigning it a frequentist posterior probability.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Correctly ties 95% to repeated comparable sampling under the method’s assumptions, holds the population average fixed, and states that the observed endpoints and parameter are fixed. It does not claim 95% of observations lie inside or assign probability to parameter values from the interval alone."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The 24-to-30-minute commute example gives meaning to the abstract sentence. Realized interval is translated into the one interval actually calculated, and the final fixed-value/moving-interval contrast is plain."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Changes presentation, explains what stays fixed and what varies, states the repeated-sampling coverage with assumptions, and returns to the user’s particular-interval confusion."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The main point comes first, the hypothetical repeated survey supplies the mechanism, and a quoted reading ties it back to a single result. The concluding contrast reinforces the central visual idea."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The response spends its detail on the exact misunderstanding rather than introducing another inference framework. The repeated restatements remain useful in a repair explanation and are not excessive merely because a shorter version is possible."
+        }
+      ],
+      "variant": "no-skill",
+      "blind_label": "A",
+      "review_method": "anonymized matched-prompt comparison"
+    },
+    {
+      "case_id": "N06",
+      "response_sha256": "4abad93572e1614639f5236e70ebe7b203b0f96ee4e09f4492e534c605380733",
+      "verdict": "partial",
+      "score": 8,
+      "max_score": 10,
+      "rationale": "The statistics are correct and the fixed-30-minute table is a particularly useful repair device. However, generic metadata and a multi-section wrapper add reading overhead, while repeated interpretations and the final Bayesian detour make this answer less compact than the repair task calls for. Keep the table, one explanation of the observed interval, and one assumptions-qualified interpretation; remove the wrapper and optional framework discussion.",
+      "criteria": [
+        {
+          "criterion": "accuracy",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "Correctly keeps the imagined population average at 30 while intervals change, identifies the table’s miss correctly, and gives long-run 95% coverage under assumptions. The caveat that 100 studies need not yield exactly 95 successes and the Bayesian distinction are correct."
+        },
+        {
+          "criterion": "clarity",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "The table concretely shows two intervals containing 30 and one missing it. Both unfamiliar phrases are defined, and the answer distinguishes not knowing the outcome from changing the true average."
+        },
+        {
+          "criterion": "coverage",
+          "verdict": "pass",
+          "score": 2,
+          "max_score": 2,
+          "notes": "All essential facts are included: a changed presentation, fixed parameter versus changing intervals, repeated-sampling coverage, assumptions, and no posterior probability inferred solely from the observed interval."
+        },
+        {
+          "criterion": "structure",
+          "verdict": "partial",
+          "score": 1,
+          "max_score": 2,
+          "notes": "The table is helpful, but Scope/Depth metadata and the generic explanatory wrapper sit around an already clear example. Remove the administrative preamble and organize the reply around the table and its immediate interpretation."
+        },
+        {
+          "criterion": "fit",
+          "verdict": "partial",
+          "score": 1,
+          "max_score": 2,
+          "notes": "After the table establishes the idea, several paragraphs restate method reliability and fixed endpoints, then add conventional shorthand and Bayesian modeling. For an explicitly confused reader, this extra scope delays closure; trim those repetitions and leave the alternative framework for a later question."
+        }
+      ],
+      "variant": "explain",
+      "blind_label": "D",
+      "review_method": "anonymized matched-prompt comparison"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "created": "2026-11-16",
+  "skill_name": "explain-clearly",
+  "v1_sha256": "37539fdf1a6c67af60761fb09aff9cff2f713ba9472a7b8b9c9df2ef00b0b7fd",
+  "sources": [
+    {
+      "name": "User Extended Karpathy Guidelines",
+      "url": "https://github.com/jamestesting0/extended-karpathy-guidelines/blob/main/SKILL.md",
+      "use": "Compact conventions, separate scope; no coding workflow duplicated"
+    },
+    {
+      "name": "plain-language",
+      "url": "https://github.com/arjunprabhulal/agent-skills/blob/main/skills/docs/plain-language/SKILL.md",
+      "use": "Teach necessary terms, preserve precision, focus on the central idea"
+    },
+    {
+      "name": "explain",
+      "url": "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/examples/skills/explain/SKILL.md",
+      "use": "Adjust depth and select useful structure and comparison criteria"
+    },
+    {
+      "name": "Microsoft code-explainer",
+      "url": "https://github.com/microsoft/waza/blob/main/examples/code-explainer/SKILL.md",
+      "use": "Result-first source-grounded code explanation and input-output examples"
+    },
+    {
+      "name": "wait-what",
+      "url": "https://github.com/mattpocock/skills/blob/main/skills/productivity/wait-what/SKILL.md",
+      "use": "Change approach when the explanation does not land"
+    },
+    {
+      "name": "Cloudflare eli5",
+      "url": "https://github.com/cloudflare/cloudflare-docs/blob/production/.agents/skills/eli5/SKILL.md",
+      "use": "Preserve technical accuracy and the limits of analogies; omit its heavy document workflow"
+    }
+  ],
+  "copyright_note": "Original wording and synthesis; source ideas are attributed here. No source skill was concatenated or copied verbatim.",
+  "transport_note": "Direct codex exec could not initialize in this environment. Live response generation uses collaboration agents with fresh contexts and no answer rubric. The command adapter remains available for independent reruns.",
+  "release": "v4",
+  "release_sha256": "1e2af92c198e7891e19d67e5dbdb4214b82589c44ded0423917a1f125261be6f",
+  "upstream_comparison_snapshots": [
+    {
+      "variant": "plain-language",
+      "sha256": "5e146a79331ef0bab7a5d41e3735327d77e41fad51ba1cd2cb9eb0db578ee9e8",
+      "snapshot_date": "2026-11-16"
+    },
+    {
+      "variant": "explain",
+      "sha256": "05c2565bcbbed3890dc9af6cab4039cda49d97c0906d4bb85a5ddb13126de324",
+      "snapshot_date": "2026-11-16"
+    }
+  ],
+  "license": "MIT; original synthesis, not a verbatim compilation of upstream skills"
+}

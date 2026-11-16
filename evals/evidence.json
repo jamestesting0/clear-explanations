@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "release": "v4",
+  "skill_sha256": "1e2af92c198e7891e19d67e5dbdb4214b82589c44ded0423917a1f125261be6f",
+  "actual_responses": 194,
+  "unique_scenarios": 46,
+  "final_responses": 46,
+  "final_pass": 46,
+  "synthetic_harness_checks": 20,
+  "natural_comparison": {
+    "v4": {
+      "cases": 6,
+      "mean_words": 189.66666666666666,
+      "pass": 6,
+      "mean_score": 10.0,
+      "per_case": {
+        "N01": {
+          "words": 202,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N02": {
+          "words": 203,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N03": {
+          "words": 220,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N04": {
+          "words": 119,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N05": {
+          "words": 184,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N06": {
+          "words": 210,
+          "score": 10,
+          "verdict": "pass"
+        }
+      }
+    },
+    "plain-language": {
+      "cases": 6,
+      "mean_words": 257.3333333333333,
+      "pass": 6,
+      "mean_score": 9.666666666666666,
+      "per_case": {
+        "N01": {
+          "words": 259,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N02": {
+          "words": 267,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N03": {
+          "words": 329,
+          "score": 9,
+          "verdict": "pass"
+        },
+        "N04": {
+          "words": 138,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N05": {
+          "words": 237,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N06": {
+          "words": 314,
+          "score": 9,
+          "verdict": "pass"
+        }
+      }
+    },
+    "explain": {
+      "cases": 6,
+      "mean_words": 276.3333333333333,
+      "pass": 5,
+      "mean_score": 8.833333333333334,
+      "per_case": {
+        "N01": {
+          "words": 281,
+          "score": 9,
+          "verdict": "pass"
+        },
+        "N02": {
+          "words": 299,
+          "score": 9,
+          "verdict": "pass"
+        },
+        "N03": {
+          "words": 352,
+          "score": 8,
+          "verdict": "partial"
+        },
+        "N04": {
+          "words": 156,
+          "score": 9,
+          "verdict": "pass"
+        },
+        "N05": {
+          "words": 225,
+          "score": 9,
+          "verdict": "pass"
+        },
+        "N06": {
+          "words": 345,
+          "score": 9,
+          "verdict": "pass"
+        }
+      }
+    },
+    "no-skill": {
+      "cases": 6,
+      "mean_words": 235.33333333333334,
+      "pass": 6,
+      "mean_score": 9.833333333333334,
+      "per_case": {
+        "N01": {
+          "words": 244,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N02": {
+          "words": 241,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N03": {
+          "words": 305,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N04": {
+          "words": 146,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N05": {
+          "words": 214,
+          "score": 10,
+          "verdict": "pass"
+        },
+        "N06": {
+          "words": 262,
+          "score": 9,
+          "verdict": "pass"
+        }
+      }
+    }
+  },
+  "review_rounds": {
+    "design": 2,
+    "behavioral": "Separate reviews of drafts, blind comparisons, and final regressions"
+  },
+  "date": "2026-11-16",
+  "files": {
+    "cases": "cases.json",
+    "rubric": "rubric.json",
+    "responses": "results.jsonl",
+    "results_report": "REPORT.md",
+    "frozen_final_skill": "versions/v4.md"
+  },
+  "publication_note": "Public export preserves exact response text, hashes, verdicts, scores and rationales. Environment-specific paths, agent workspace identifiers and private file-service links are omitted. Historical timing fields are omitted because they do not establish generation latency. Original review filenames in revision history are historical labels; the published response archive contains the corresponding primary reviews.",
+  "limits": [
+    "One assistant model family, with unknown observed model identifiers.",
+    "Fresh context per batch; four to sixteen requests shared a batch.",
+    "Model semantic grading; no human comprehension or automatic activation study.",
+    "All final cases are regression data after prior inspection.",
+    "The six-prompt comparison is descriptive, not a general ranking.",
+    "Direct Codex CLI initialization failed in the creation environment; live answers used collaboration agents. Adapter checks were synthetic."
+  ],
+  "historical_drafts": {
+    "v1": {
+      "responses": 24,
+      "pass": 24,
+      "partial": 0,
+      "fail": 0
+    },
+    "v2": {
+      "responses": 42,
+      "pass": 42,
+      "partial": 0,
+      "fail": 0
+    },
+    "v3": {
+      "responses": 46,
+      "pass": 44,
+      "partial": 2,
+      "fail": 0
+    },
+    "v4": {
+      "responses": 46,
+      "pass": 46,
+      "partial": 0,
+      "fail": 0
+    }
+  },
+  "recorded_files_sha256": {
+    "cases.json": "a14c9c36edee01021dd559395fad99bbe5d0a3f5341670c5f88cb3eeb53e4a39",
+    "rubric.json": "96149294d307bb5375d63dda1bf22837107aef94395f0f31af885000b77103b2",
+    "results.jsonl": "f433790cf1cd7e584782a8606ec68a19e044d7c0394716a37f2cff35abb44b3a"
+  },
+  "revision_history": {
+    "design_review_1": {
+      "blocking_findings": 0,
+      "accepted": [
+        {
+          "issue": "Source inspection is different from observed execution",
+          "change": "Qualify behavior dependent on unseen inputs, configuration or runtime; never imply execution from reading."
+        },
+        {
+          "issue": "Audience assumption could conflict with expert adaptation",
+          "change": "Use the smart newcomer default only when no audience signals exist."
+        },
+        {
+          "issue": "Some opening wording could force examples",
+          "change": "Make an example conditional on its explanatory value."
+        },
+        {
+          "issue": "Mechanism wording is narrow for arguments",
+          "change": "Include relevant reasoning as well as mechanisms."
+        }
+      ],
+      "status": "Integrated in v2 after v1 outputs were frozen"
+    },
+    "v1_behavior_review": {
+      "status": "Complete",
+      "cases": 24,
+      "pass": 24,
+      "partial": 0,
+      "fail": 0,
+      "notes": "No behavioral failures found. Optional polish suggestions retained in original review; no answer-specific patches.",
+      "historical_review_file_name": "v1-semantic.json",
+      "public_review_archive": "results.jsonl"
+    },
+    "v2": {
+      "sha256": "6031227601fed11e2341b2aff32430bae3ae0b705ccdd83d2ce1e3c48eeee7c1",
+      "words": 1103,
+      "changes": "Four accepted design-review corrections; no scenario answers or keywords added to the skill."
+    },
+    "harness_self_tests": {
+      "core_synthetic": 16,
+      "adapter_synthetic": 4,
+      "separate_from_live_response_tests": true
+    },
+    "v2_behavior_review": {
+      "cases": 36,
+      "pass": 36,
+      "partial": 0,
+      "fail": 0,
+      "minor_findings": [
+        "S17 pressure-balance condition implicit; separate blind Chinese review found no material omission for the requested audience.",
+        "S34 introduced an unexplained technical term in a comparison."
+      ],
+      "historical_review_file_name": "v2-core-semantic.json",
+      "public_review_archive": "results.jsonl"
+    },
+    "v3": {
+      "sha256": "79b7efdbd30196a07aa6609f43a14bdeb2502e1c605d44d891797e895cfe0703",
+      "words": 1133,
+      "change": "Replace generic jargon checklist item with a separate sweep across comparisons, caveats, tables and examples; define, replace, or remove each unfamiliar term. No scenario-specific terms added.",
+      "reason": "S34 terminology omission in secondary content despite overall passing score."
+    },
+    "v4": {
+      "sha256": "1e2af92c198e7891e19d67e5dbdb4214b82589c44ded0423917a1f125261be6f",
+      "words_whitespace": 1195,
+      "reason": "A separate terminology sweep did not reliably prevent unexplained terms in v3 S34 and H04; S16 also omitted a required distinction about change units.",
+      "changes": [
+        "Prefer meaning before labels and make explicit that a condition using a term does not define the term.",
+        "Ground syntax vocabulary in visible source characters.",
+        "Apply quantity, baseline and unit explanations to numbers as well as formulas."
+      ],
+      "test_scope": "All 46 scenarios regenerated after freezing v4; previously inspected cases are regression tests, not new holdouts."
+    },
+    "v3_behavior_review": {
+      "core_cases": 40,
+      "pass": 38,
+      "partial": 2,
+      "fail": 0,
+      "findings": [
+        "S16 omitted the distinction between percentage points and relative percentage change.",
+        "S17 was judged partial for an implicit causal connection; an earlier draft’s similar bubble-based account had received a pass with a minor deduction, illustrating reviewer judgment.",
+        "S34 and H04 still introduced unexplained technical labels despite the separate terminology sweep."
+      ],
+      "natural_cases": "Six additional v3 natural responses are included in the final anonymized review.",
+      "historical_review_file_names": [
+        "v3-development-semantic.json",
+        "v3-unseen-semantic.json"
+      ],
+      "public_review_archive": "results.jsonl"
+    },
+    "v4_behavior_review": {
+      "cases": 46,
+      "pass": 46,
+      "partial": 0,
+      "fail": 0,
+      "score_total": 459,
+      "minor_findings": [
+        "S32 has one context-dependent wording ambiguity about comparing density from mass alone; the reviewer deducted one clarity point."
+      ],
+      "readiness": "All 46 final regression cases pass the registered standard. The minor wording issue is documented; passing does not mean perfect prose or guaranteed human comprehension.",
+      "historical_review_file_names": [
+        "release-core-semantic.json",
+        "release-broad-semantic.json",
+        "release-blind-natural.json"
+      ],
+      "public_review_archive": "results.jsonl"
+    }
+  }
+}

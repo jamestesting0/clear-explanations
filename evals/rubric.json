@@ -1,0 +1,715 @@
+{
+  "S01": {
+    "expected": {
+      "must_include": [
+        "Define a prime as a positive integer greater than 1 with exactly two distinct positive divisors, or an equivalent precise definition.",
+        "Explain within the same sentence that 1 fails because it has only one positive divisor."
+      ],
+      "must_not": [
+        "Do not classify 1, negative integers, or nonintegers as prime.",
+        "Do not add headings, a second sentence, examples that displace the requested definition, or a follow-up question."
+      ],
+      "notes": "A minimal answer is appropriate. Distinct divisors matter: merely saying divisible by 1 and itself does not explain the exclusion of 1."
+    }
+  },
+  "S02": {
+    "expected": {
+      "must_include": [
+        "Give the exact printed list [0, 10, 2].",
+        "Explain that negative inputs are skipped, even nonnegative inputs are halved with integer division, and odd nonnegative inputs become three times the input plus one.",
+        "Explain continue as skipping the rest of this loop iteration, not ending the function.",
+        "Make the roles of % as remainder and append as adding to the result list understandable to a beginner."
+      ],
+      "must_not": [
+        "Do not include -2 or a transformed negative number in the result.",
+        "Do not say continue exits the whole loop or function.",
+        "Do not rewrite or optimize the supplied function."
+      ],
+      "notes": "A compact trace can be helpful but is not mandatory; a table is optional. The code and input completely determine the output."
+    }
+  },
+  "S03": {
+    "expected": {
+      "must_include": [
+        "Give or accurately describe the result [[0, 7], [0, 7], [0, 7]].",
+        "Explain that the outer repetition creates three references to the same inner mutable list, not three independent inner lists.",
+        "Connect mutating that shared list to the visible change through every row reference."
+      ],
+      "must_not": [
+        "Do not say the integers themselves are shared mutable objects or that every Python nested list behaves this way.",
+        "Do not claim the assignment updates three independent lists.",
+        "Do not supply replacement code despite the explicit request for explanation only."
+      ],
+      "notes": "An everyday analogy is optional. If used, it must preserve the distinction between multiple references and multiple underlying lists."
+    }
+  },
+  "S04": {
+    "expected": {
+      "must_include": [
+        "State that the first call returns (15.0, \"invalid discount\") and does not process \"50\".",
+        "State that the second call returns (-10.0, \"invalid discount\").",
+        "Explain that converting \"bad\" to float raises ValueError; the failed subtraction does not change total, and control jumps to the handler.",
+        "Explain that the return inside the handler bypasses the final max call, so this error path does not clamp negative totals."
+      ],
+      "must_not": [
+        "Do not claim processing resumes at the next discount after the exception.",
+        "Do not report zero for the second result.",
+        "Do not claim the handler catches every kind of exception."
+      ],
+      "notes": "Exact numeric values and control flow matter more than quoting every line. Printed quotation style need not match Python repr exactly if the returned values are unambiguous."
+    }
+  },
+  "S05": {
+    "expected": {
+      "must_include": [
+        "State that values must already be sorted in ascending or nondecreasing order with meaningful comparisons.",
+        "Explain that each comparison discards the half that cannot contain the target.",
+        "State that a found result is an index containing the target, but need not be its first or last occurrence when duplicates exist.",
+        "State that an empty list and an absent target return -1.",
+        "Explain logarithmic search work through repeated halving, with O(log n) if notation is used and constant-time indexing assumed."
+      ],
+      "must_not": [
+        "Do not claim it sorts its input, works correctly on arbitrary unsorted input, or always returns the first duplicate.",
+        "Do not claim an empty list accesses values[-1] or raises an index error.",
+        "Do not confuse the logarithmic number of comparisons with O(1) total work or include sorting cost as though sorting occurs in this function."
+      ],
+      "notes": "A tiny example can help, but all requested guarantees must fit. Big-O notation must be translated immediately if used."
+    }
+  },
+  "S06": {
+    "expected": {
+      "must_include": [
+        "Explain concurrency as multiple tasks making progress over overlapping periods, including by interleaving work.",
+        "Explain parallelism as work actually executing at the same time.",
+        "Map one barista switching between orders to concurrency and two baristas simultaneously doing work to possible parallelism.",
+        "Explain that a single CPU core can interleave execution of tasks without executing their CPU instructions simultaneously."
+      ],
+      "must_not": [
+        "Do not define concurrency as requiring simultaneous CPU execution or multiple cores.",
+        "Do not imply that merely having two workers guarantees useful simultaneous work at every moment.",
+        "Do not claim asynchronous programming automatically makes CPU-bound work parallel."
+      ],
+      "notes": "The analogy must illuminate scheduling without becoming a lengthy story. Avoid the overstatement that an entire single-core computer can never have parallel hardware activity."
+    }
+  },
+  "S07": {
+    "expected": {
+      "must_include": [
+        "Identify the risk that B receives A's confidential answer because the key omits company identity and relevant access context.",
+        "Explain that cache reuse must respect tenant or company isolation and the permissions or other result-affecting context of the requester.",
+        "Explain that hashing the same incomplete key does not add the missing context and expiry only limits duration, not the incorrect recipient.",
+        "Explain that authorization still has to hold when serving a cached result, including handling permission changes and stale data."
+      ],
+      "must_not": [
+        "Do not claim a hash encrypts or access-controls the cached answer.",
+        "Do not present a short time-to-live as sufficient to prevent cross-company disclosure.",
+        "Do not imply that including only a company identifier is always enough when users inside a company have different permissions."
+      ],
+      "notes": "This tests whether brevity preserves a security boundary. A sound explanation can describe design principles without prescribing a complete production architecture."
+    }
+  },
+  "S08": {
+    "expected": {
+      "must_include": [
+        "Use 100 defective parts and 9,900 nondefective parts.",
+        "Compute 90 true flags and 495 false flags, for 585 flagged parts in total.",
+        "Compute the requested chance as 90 / 585, approximately 15.4%.",
+        "Explain why the many nondefective parts produce more false flags despite the relatively small false-flag rate."
+      ],
+      "must_not": [
+        "Do not answer 90%, 95%, or 1% for the conditional chance requested.",
+        "Do not apply the 5% false-flag rate to all 10,000 parts or to the defective group.",
+        "Do not confuse the fraction of defects detected with the fraction of flags that are defects."
+      ],
+      "notes": "Treat the stated percentages as exact counts for this constructed example. A two-by-two table or a compact group/count table is acceptable."
+    }
+  },
+  "S09": {
+    "expected": {
+      "must_include": [
+        "Describe entropy as average uncertainty or average information associated with outcomes under a specified probability distribution.",
+        "Give entropy 1 bit for the fair coin and 0 bits for the always-heads coin.",
+        "Give joint entropy 1 bit, not 2, for the message with only two equally likely possible outcomes 00 and 11.",
+        "Explain that the second bit in the paired message supplies no additional uncertainty once the first is known.",
+        "Explain a bit of information in terms of one fair binary choice, rather than equating it unconditionally with physical message length."
+      ],
+      "must_not": [
+        "Do not say entropy measures how many characters or storage bits the message physically contains.",
+        "Do not add the marginal entropies of perfectly dependent bits as though they were independent.",
+        "Do not reduce Shannon entropy to heat, messiness, or a claim that every apparently irregular sequence has high entropy independent of a model."
+      ],
+      "notes": "The formula can be interpreted rather than derived. Technical terms such as joint entropy or conditional entropy should be translated if used."
+    }
+  },
+  "S10": {
+    "expected": {
+      "must_include": [
+        "Identify rain as a plausible common cause of both umbrella use and wet sidewalks.",
+        "Explain that the observed association alone does not establish that umbrella use causes wet sidewalks.",
+        "Explain that correlation can still help generate or evaluate causal hypotheses when combined with relevant design, assumptions, or additional evidence."
+      ],
+      "must_not": [
+        "Do not accept the first friend's causal inference from association alone.",
+        "Do not endorse the absolute claim that correlation is never useful for causal reasoning.",
+        "Do not overclaim that observing a common cause proves every possible direct effect between the variables is zero."
+      ],
+      "notes": "A causal term such as confounder must be explained in everyday language. The requested scope is small; a full research-methods lecture is unnecessary."
+    }
+  },
+  "S11": {
+    "expected": {
+      "must_include": [
+        "Describe encoding as changing representation for compatibility or transport, reversible by the public format rather than a secret.",
+        "Describe encryption as protecting confidentiality with a key and normally being reversible with the appropriate decryption key.",
+        "Describe hashing as producing a digest and designed to make recovering arbitrary inputs computationally infeasible, while recognizing that guesses can still be tested.",
+        "Give suitable examples, such as Base64, an encryption scheme, and a cryptographic hash, with their roles correctly assigned.",
+        "Explain that password storage needs a purpose-built, salted, deliberately costly password-hashing or password-derivation scheme, rather than just a fast general hash."
+      ],
+      "must_not": [
+        "Do not say encoding supplies confidentiality or hashing can be decrypted with a key.",
+        "Do not promise that a hash cannot be guessed, that hashes are guaranteed unique, or that any use of encryption provides integrity automatically.",
+        "Do not recommend an unsalted fast hash alone for password storage."
+      ],
+      "notes": "An example such as Argon2id, scrypt, bcrypt, or suitably configured PBKDF2 is acceptable, but no particular algorithm name is required. Precise purpose matters more than brand names."
+    }
+  },
+  "S12": {
+    "expected": {
+      "must_include": [
+        "Explain the derivative as the local or instantaneous rate of change, obtained as nearby-point average rates approach a limit.",
+        "Give f'(3) = 6, using f'(x) = 2x or an equivalent local calculation.",
+        "Compute the average rate from 2 to 5 as (25 - 4) / (5 - 2) = 7.",
+        "Distinguish the rate at a point from the rate over a finite interval."
+      ],
+      "must_not": [
+        "Do not report 9 as the derivative at 3 or confuse function value with rate of change.",
+        "Do not report 6 as the average rate over the specified interval.",
+        "Do not define a derivative as an arbitrary small but fixed difference or claim it always equals an interval average."
+      ],
+      "notes": "Tangent and secant language is optional; if used, translate it. A concise local interpretation is preferable to an unnecessary formal epsilon-delta treatment."
+    }
+  },
+  "S13": {
+    "expected": {
+      "must_include": [
+        "Explain sunk cost as a cost already incurred that cannot be recovered, identifying the $20 as sunk under the stated assumptions.",
+        "Explain opportunity cost as the value of the best alternative forgone, not the sum of every possible alternative.",
+        "Connect choosing the movie to giving up the preferred walk, and state that the given assumptions favor the walk.",
+        "Make clear that the current choice compares future benefits and costs rather than recovering the already-lost payment."
+      ],
+      "must_not": [
+        "Do not count the nonrefundable $20 as an additional cost that occurs only if the user takes the walk.",
+        "Do not say opportunity cost exists only when money changes hands.",
+        "Do not invent a refund, a social commitment, resale value, or another missing consequence to avoid the stated example."
+      ],
+      "notes": "This is a hypothetical concept explanation, not personalized financial planning. The answer should reason from the explicit assumptions."
+    }
+  },
+  "S14": {
+    "expected": {
+      "must_include": [
+        "Describe weather as short-term conditions and climate as long-term patterns or distributions of conditions.",
+        "Explain that one local or short cold spell does not by itself refute a long-term trend.",
+        "Explain that a warmer average or changing distribution still permits cold days or weeks.",
+        "Identify sustained measurements over appropriate time and geographic scales as relevant to assessing a trend."
+      ],
+      "must_not": [
+        "Do not claim warming means every place is warmer on every day or that cold weather becomes impossible.",
+        "Do not say a single warm event proves a long-term trend by itself.",
+        "Do not invent present-day measurements, forecasts, or citations absent from the prompt."
+      ],
+      "notes": "A brief analogy is optional. Avoid treating climate as only one average when variability and distributions are part of the concept."
+    }
+  },
+  "S15": {
+    "expected": {
+      "must_include": [
+        "Explain that plants use light energy to help produce energy-rich carbon compounds or sugars from carbon dioxide and water.",
+        "Identify carbon dioxide as the source of the carbon incorporated into sugars and plant material.",
+        "Identify water, rather than carbon dioxide, as the source of the oxygen gas released in oxygenic photosynthesis.",
+        "Connect light capture to chemical energy carriers and the use of that chemical energy for carbon fixation, without implying all reactions directly absorb light.",
+        "Connect the products to growth or construction of plant material and make clear that plants also use cellular respiration if respiration is discussed."
+      ],
+      "must_not": [
+        "Do not say most of a plant's carbon mass comes from soil or that sunlight is converted into carbon atoms.",
+        "Do not say released oxygen gas comes from splitting carbon dioxide in the described process.",
+        "Do not say plants only respire at night, or append a mandatory knowledge check."
+      ],
+      "notes": "Three short sections are a semantic formatting criterion. ATP, NADPH, chlorophyll, and Calvin cycle need not all be named; if a term is named, explain its role immediately."
+    }
+  },
+  "S16": {
+    "expected": {
+      "must_include": [
+        "Identify the estimated effect size as a 2-percentage-point improvement and distinguish percentage points from relative percent change.",
+        "Explain the interval as quantifying uncertainty under the method and its assumptions, with plausible values spanning a small negative effect, zero, and positive effects.",
+        "Conclude that the result is not statistically significant under the explicitly matched test because the interval includes zero.",
+        "Explain that failing to rule out zero is not proof the true effect is zero, and that practical importance is a separate question from statistical significance."
+      ],
+      "must_not": [
+        "Do not say the frequentist 95% interval means the fixed true effect has a 95% probability of lying in this particular realized interval.",
+        "Do not say significance proves a large, useful, or causal effect regardless of study design.",
+        "Do not convert the stated 2 percentage points into a 2% relative improvement without a baseline."
+      ],
+      "notes": "A concise repeated-sampling explanation of 95% coverage is welcome but not required if the wording avoids a false probability interpretation. Each requested term should get an immediate plain-language translation."
+    }
+  },
+  "S17": {
+    "expected": {
+      "must_include": [
+        "Explain in simplified Chinese that higher altitude generally means lower surrounding atmospheric pressure.",
+        "Connect boiling to water vapor pressure reaching surrounding pressure, translating vapor pressure in accessible language.",
+        "Explain that lower pressure permits boiling at a lower temperature, so 100°C is not a universal boiling point.",
+        "Explain that food cooked in the cooler boiling water can take longer to cook, without claiming every dish always takes the same extra time."
+      ],
+      "must_not": [
+        "Do not say altitude makes water boil at a higher temperature under the described open-pot conditions.",
+        "Do not say water can only boil at 100°C or that boiling always means the same heat level.",
+        "Do not switch the main explanation into English or use an unexplained cluster of physics jargon."
+      ],
+      "notes": "Check the three-paragraph request by review. No specific altitude, numerical boiling point, cooking-time multiplier, or pressure-cooker digression is required."
+    }
+  },
+  "S18": {
+    "expected": {
+      "must_include": [
+        "Explain in German that linear growth adds the same absolute amount per step while exponential growth multiplies by the same factor or changes by the same proportional rate.",
+        "Give linear values 12, 14, 16 after steps 1, 2, 3.",
+        "Give exponential values 12, 14.4, 17.28, accepting German decimal commas.",
+        "Explain that exponential describes a specific growth rule, not merely something growing quickly."
+      ],
+      "must_not": [
+        "Do not give 12, 14, 16 for both sequences or treat a 20% increase as adding 20 units.",
+        "Do not imply exponential growth must be faster at every time or remain physically sustainable forever.",
+        "Do not answer primarily in English or include a table."
+      ],
+      "notes": "The numbers are abstract model values, so fractional results are valid. A concise definition plus the two sequences is sufficient."
+    }
+  },
+  "S19": {
+    "expected": {
+      "must_include": [
+        "Acknowledge that the cause cannot be determined from the supplied information.",
+        "Ask for the relevant code, preferably a minimal reproducible snippet, and the language and inputs or invocation needed to understand it.",
+        "Keep the request targeted and easy to answer rather than requiring a long diagnostic questionnaire."
+      ],
+      "must_not": [
+        "Do not invent a specific bug, language, variable, or execution path.",
+        "Do not present a speculative diagnosis as established fact.",
+        "Do not supply a rewritten program or ask the user again what the already-stated actual and expected outputs are without a reason."
+      ],
+      "notes": "One short clarifying request is the intended behavior. A tentative example is permissible only if clearly marked as hypothetical and it does not crowd out the request for missing evidence."
+    }
+  },
+  "S20": {
+    "expected": {
+      "must_include": [
+        "State that the current rules cannot be verified from the information available.",
+        "Request the current official policy or official page text, or direct the user to verify with the venue, so the rules can then be explained.",
+        "Avoid implying that a remembered or generic museum policy is confirmed for this venue today."
+      ],
+      "must_not": [
+        "Do not invent opening hours, fees, identification requirements, bag rules, booking rules, or an official URL.",
+        "Do not claim to have browsed or checked an official policy.",
+        "Do not turn the answer into a lengthy generic visitor guide."
+      ],
+      "notes": "This is a constrained explanation request with deliberately unavailable time-sensitive facts. A clear limit plus a concrete next step satisfies it; there is no factual policy answer to recover."
+    }
+  },
+  "S21": {
+    "expected": {
+      "must_include": [
+        "Use division as finding x such that denominator times x equals numerator.",
+        "Explain that 5/0 has no real-number answer because 0 times any real number is 0, never 5.",
+        "Explain that 0/0 fails to specify a unique answer because every real number satisfies 0 times x equals 0.",
+        "State that neither expression is assigned the ordinary real-number value infinity; if limits are mentioned, their values depend on the surrounding expression."
+      ],
+      "must_not": [
+        "Do not assign 0, 1, or infinity as the standard arithmetic value of 0/0.",
+        "Do not say multiplying zero by a sufficiently large real number gives 5.",
+        "Do not claim every limit involving a zero denominator has the same infinite value."
+      ],
+      "notes": "Calling 0/0 an indeterminate form is acceptable only with an immediate explanation and without treating it as an ordinary defined quotient."
+    }
+  },
+  "S22": {
+    "expected": {
+      "must_include": [
+        "Explain current as rate of charge flow, voltage as energy difference per unit charge or an analogous electrical push, and resistance as opposition to current.",
+        "Map a pressure difference, flow rate, and restriction in water flow to the electrical concepts without claiming the analogy is exact.",
+        "Explain that the bulb converts electrical energy into light and heat while charge continues around the circuit; the current is not consumed by the bulb.",
+        "Identify at least one genuine limit of the analogy, such as charges already being present in wires, energy transfer not requiring individual electrons to race from battery to bulb, or the role of electromagnetic fields."
+      ],
+      "must_not": [
+        "Do not say the battery creates and sends out electrons that disappear in the bulb.",
+        "Do not say voltage flows, current is used up by the bulb in the single loop, or more charge leaves a component than enters in steady operation.",
+        "Do not present a water analogy as a full literal account of electrical behavior."
+      ],
+      "notes": "The explanation need not derive Ohm's law. Plain-language descriptions may precede formal units; preserving the distinction between charge and energy is essential."
+    }
+  },
+  "S23": {
+    "expected": {
+      "must_include": [
+        "Return valid Python defining the requested clamp function with the three requested parameters.",
+        "Raise ValueError for inverted bounds before choosing a clamped result.",
+        "Implement both boundaries and the inclusive in-range case correctly.",
+        "Output only one fenced Python code block containing the function."
+      ],
+      "must_not": [
+        "Do not add explanation sections, a summary, a quiz, tests, or follow-up questions.",
+        "Do not silently swap invalid bounds or ignore the required exception.",
+        "Do not use exclusive bounds that mishandle values equal to low or high."
+      ],
+      "notes": "Negative trigger: the task is implementation with a strict output shape, so an explanation workflow should stay out of the response. A docstring is unnecessary but not a failure if it remains within the sole function."
+    }
+  },
+  "S24": {
+    "expected": {
+      "must_include": [
+        "Define feedback as a system's output influencing what happens next or feeding back into its input.",
+        "Explain negative feedback as opposing a deviation and connect it to a thermostat correcting a temperature difference.",
+        "Explain positive feedback as reinforcing a change and connect it to a microphone-speaker loop amplifying its own sound.",
+        "Explain that positive and negative refer to the direction of the feedback, not whether the outcome is good or bad.",
+        "Identify delay, excessive response strength, or another valid mechanism by which negative feedback can overshoot and oscillate."
+      ],
+      "must_not": [
+        "Do not claim every negative-feedback system is stable or every positive-feedback process grows without any limit.",
+        "Do not label microphone amplification negative feedback simply because it is unpleasant.",
+        "Do not confuse a thermostat switching on heat with positive feedback solely because temperature increases."
+      ],
+      "notes": "The sign is determined by the effect on the initial deviation. A compact example should make that reference point clear."
+    }
+  },
+  "S25": {
+    "expected": {
+      "must_include": [
+        "Give the order A, D, B, C.",
+        "Explain that the current script runs synchronously through A and D before the queued callbacks execute.",
+        "Explain that the resolved-promise reaction is queued as a microtask and is processed after the current script but before the next timer task in the specified setting.",
+        "Explain that a zero-millisecond timer schedules later work and does not interrupt the current script or promise microtask."
+      ],
+      "must_not": [
+        "Do not give A, B, C, D or A, D, C, B for the stated environment.",
+        "Do not say the promise callback runs immediately inline because the promise is already resolved.",
+        "Do not claim setTimeout with zero delay guarantees execution at exactly zero elapsed milliseconds or creates a parallel thread for this callback."
+      ],
+      "notes": "The environment and absence of other queued work are supplied to avoid unrelated event-loop ambiguities. A short sequence explanation is enough."
+    }
+  },
+  "S26": {
+    "expected": {
+      "must_include": [
+        "Explain that the join creates two rows for order 1 and one each for orders 2 and 3, so the sum is 10 + 10 + 10 + 20 = 50.",
+        "Explain that the intended measure counts each order once, giving 10 + 10 + 20 = 40.",
+        "Explain that SUM(DISTINCT amount) removes repeated numeric values rather than duplicated order identities and would give 10 + 20 = 30 here.",
+        "Describe the conceptual need to aggregate or select at one row per order before summing, without presenting a rewritten query."
+      ],
+      "must_not": [
+        "Do not blame rounding, NULL handling, or a broken SQL SUM implementation.",
+        "Do not endorse DISTINCT amount as preserving two different orders with the same amount.",
+        "Do not claim the join adds exactly one output row per order or rewrite the query contrary to the request."
+      ],
+      "notes": "This tests reasoning about the unit represented by a row. An explanation can use the given rows directly without introducing specialist terminology."
+    }
+  },
+  "S27": {
+    "expected": {
+      "must_include": [
+        "Return exactly the header name,city and two data rows in the supplied order.",
+        "Represent the second city as the single quoted CSV field \"Cairo, Egypt\" so its internal comma does not create a third column.",
+        "Keep the output to raw CSV without Markdown fences or explanatory text."
+      ],
+      "must_not": [
+        "Do not produce a Markdown table, JSON, a numbered list, or prose.",
+        "Do not split Cairo and Egypt into separate CSV columns.",
+        "Do not add an explanation workflow to a pure conversion task."
+      ],
+      "notes": "Negative trigger: format conversion should not activate explanation scaffolding. Quoting all fields is also valid CSV if it preserves the exact values and required header names."
+    }
+  },
+  "S28": {
+    "expected": {
+      "must_include": [
+        "Define entropy as expected negative log probability under P and give H(P) = 1 bit.",
+        "Define cross-entropy as the expectation under P of negative log Q probability and compute approximately 1.2075 bits.",
+        "Give D_KL(P||Q) = H(P,Q) - H(P), approximately 0.2075 bits, interpreting it as excess expected log loss or ideal coding cost from using Q instead of P.",
+        "Explain that KL is generally asymmetric, so reversing P and Q need not give the same value, and is not an ordinary metric."
+      ],
+      "must_not": [
+        "Do not take the cross-entropy expectation under Q or reverse the subtraction.",
+        "Do not claim KL is symmetric, can be negative for these valid distributions, or is a metric merely because it is nonnegative.",
+        "Do not equate entropy with the number of categories or report 2 bits for this binary uniform P."
+      ],
+      "notes": "The reader is expert, so concise mathematical notation is appropriate. If coding lengths are mentioned, ideal or asymptotic expected lengths avoids promising a fractional single-message codeword."
+    }
+  },
+  "S29": {
+    "expected": {
+      "must_include": [
+        "State that the next toss still has probability 1/2 of tails because independence makes the past sequence irrelevant to that toss.",
+        "Explain that a long-run fraction can approach one half as a fixed early imbalance becomes a smaller share of many tosses.",
+        "Distinguish convergence of a proportion from a mechanism that compensates for prior results or forces exact balance at a particular time."
+      ],
+      "must_not": [
+        "Do not increase the next-tail probability because ten heads have occurred.",
+        "Do not claim the law of large numbers requires the next ten tosses to be tails or requires exact equality after any fixed number of tosses.",
+        "Do not suggest the hypothetical coin must be biased despite the explicit fairness assumption."
+      ],
+      "notes": "A short numerical dilution example is welcome but not required. Preserve the difference between an ideal model assumption and inference about an unknown real coin."
+    }
+  },
+  "S30": {
+    "expected": {
+      "must_include": [
+        "Explain mass as an intrinsic measure of inertia or amount of matter and keep it at 60 kg in both places for this example.",
+        "Explain weight as gravitational force and use W = mg.",
+        "Compute Earth weight 588 newtons and Moon weight 96 newtons.",
+        "Distinguish kilograms as mass units from newtons as force units."
+      ],
+      "must_not": [
+        "Do not say the person's mass becomes 9.8 kg, 10 kg, or 96 kg on the Moon.",
+        "Do not label 588 kg or 96 kg as the computed physical weights.",
+        "Do not equate weightlessness with having no mass."
+      ],
+      "notes": "Use the supplied accelerations rather than external values. This is a concept and units explanation, not a request for health or body-weight advice."
+    }
+  },
+  "S31": {
+    "expected": {
+      "must_include": [
+        "Explain centralization as concentrating relevant decision authority in a central group and decentralization as distributing it to local groups.",
+        "Use an event-related example that shows an actual decision, such as budget approval, scheduling, venue choice, or common publicity.",
+        "Describe a meaningful tradeoff between coordination or consistency and local responsiveness or autonomy, without treating the tradeoff as universal in every detail.",
+        "Offer a coherent mixed design, such as shared principles and total budgets with local decisions inside those boundaries."
+      ],
+      "must_not": [
+        "Do not define decentralization as the absence of all rules, coordination, or accountability.",
+        "Do not claim centralization guarantees efficiency or decentralization guarantees fairness or speed.",
+        "Do not imply a single organization must be entirely centralized or entirely decentralized across every decision."
+      ],
+      "notes": "Three short sections are checked semantically. Plain language and a concrete decision matter more than naming management theories."
+    }
+  },
+  "S32": {
+    "expected": {
+      "must_include": [
+        "Explain mass and density in simplified Chinese, with density as mass per unit volume.",
+        "Compute densities 5 g/cm³ and 2 g/cm³ for the respective volumes.",
+        "Explain that equal masses can occupy different volumes and therefore have different densities.",
+        "Explain that comparing heaviness or mass alone does not determine density because volume also matters."
+      ],
+      "must_not": [
+        "Do not invert the formula to volume divided by mass or reverse the two density values.",
+        "Do not say the two densities are equal merely because the two masses are equal.",
+        "Do not confuse density with total mass or answer chiefly in another language."
+      ],
+      "notes": "No hard word limit is imposed because Chinese segmentation makes naive word counts misleading. Judge brevity and beginner clarity directly."
+    }
+  },
+  "S33": {
+    "expected": {
+      "must_include": [
+        "Explain the arithmetic mean as sum divided by count and compute (2 + 3 + 3 + 4 + 18) / 5 = 6.",
+        "Explain the median as the middle value after sorting and compute 3.",
+        "Explain that the large value 18 pulls the mean upward more than the median.",
+        "Explain that the useful summary depends on the question and distribution rather than one measure being universally superior."
+      ],
+      "must_not": [
+        "Do not report a mean of 5 or a median of 4.",
+        "Do not define the median as the most frequent value, even though the mode happens also to be 3 here.",
+        "Do not say the median is never affected by changing any observations or that the mean is always misleading."
+      ],
+      "notes": "Keep the answer primarily German. The coincidence of median and mode in this dataset deliberately tests whether the explanation gives the correct definition."
+    }
+  },
+  "S34": {
+    "expected": {
+      "must_include": [
+        "Explain that evaporation can occur at a liquid surface below its boiling point as molecules escape into the air.",
+        "Connect evaporation to energy being carried away or absorbed from the liquid and skin, producing cooling.",
+        "Distinguish boiling as vapor bubbles forming throughout the liquid under suitable pressure and temperature conditions.",
+        "Explain that high humidity reduces the net evaporation rate because the surrounding air already contains more water vapor, limiting evaporative cooling."
+      ],
+      "must_not": [
+        "Do not claim water must reach 100°C before any molecules evaporate.",
+        "Do not say sweat cools equally well regardless of whether it evaporates or that humidity increases the available evaporation capacity.",
+        "Do not turn the response into unsolicited diagnosis or personal medical guidance."
+      ],
+      "notes": "The explanation can mention higher-energy molecules escaping, but should avoid implying that every escaping molecule has one fixed energy or that evaporation is identical to boiling."
+    }
+  },
+  "S35": {
+    "expected": {
+      "must_include": [
+        "Explain that the interaction forces between the car and truck are equal in magnitude and opposite in direction at each instant of their interaction.",
+        "Explain that these forces act on different objects, so they do not cancel on either individual object.",
+        "Use acceleration = force / mass to explain why the lighter car can undergo a larger acceleration or change in velocity for the same interaction force over the same time.",
+        "Distinguish the force pair from damage or motion change, which also depends on mass and other physical details."
+      ],
+      "must_not": [
+        "Do not claim the truck's interaction force is larger because the truck is heavier.",
+        "Do not say equal and opposite forces prevent either vehicle from accelerating.",
+        "Do not guarantee a specific damage ratio or assume that force equality implies equal accelerations."
+      ],
+      "notes": "Two short sections are checked semantically. The answer need not calculate a crash outcome because no masses, speeds, or structural properties are given."
+    }
+  },
+  "S36": {
+    "expected": {
+      "must_include": [
+        "Compute travel times of 2 hours and 1 hour for the two legs.",
+        "Compute average speed as total distance divided by total time, 120 km / 3 h = 40 km/h.",
+        "Explain that more time is spent at the lower speed, so the two speeds cannot be weighted equally by time in this trip.",
+        "State that the arithmetic average of the two speeds would apply if the traveler spent equal time at each speed."
+      ],
+      "must_not": [
+        "Do not give 45 km/h as the trip average or average the leg times without using total distance.",
+        "Do not say the arithmetic mean applies to equal distances.",
+        "Do not introduce stops, acceleration periods, or other unstated conditions to change the constructed example."
+      ],
+      "notes": "The harmonic-mean name is optional and should be translated if used. The actual distance/time calculation is sufficient and more accessible."
+    }
+  },
+  "N01": {
+    "must_include": [
+      "An object receives the collaborators it needs from outside, rather than constructing them internally.",
+      "Use a small Java-relevant example or equally concrete explanation.",
+      "Explain dependency and injection in ordinary words."
+    ],
+    "must_not": [
+      "Equating dependency injection with inheritance or downloading packages.",
+      "Claiming a framework is required."
+    ],
+    "notes": "Natural short request: no explicit style/length limits. Judge whether default presentation helps a smart newcomer; do not enforce an arbitrary word cap."
+  },
+  "N02": {
+    "must_include": [
+      "Explain that the weighted result is the average remaining uncertainty for a randomly selected original example.",
+      "Larger groups are encountered more often and therefore contribute more.",
+      "Make the idea concrete using unequal group sizes and a correct small calculation, without unnecessary formula exposition."
+    ],
+    "must_not": [
+      "An unweighted average regardless of group size.",
+      "Saying weights are arbitrary importance settings."
+    ],
+    "notes": "Natural short request: no explicit style/length limits. Judge whether default presentation helps a smart newcomer; do not enforce an arbitrary word cap."
+  },
+  "N03": {
+    "must_include": [
+      "Answer no: OAuth is a mechanism/framework for delegated authorization; JWT is a format for carrying claims/data in a token.",
+      "They can be used together; OAuth does not require JWT.",
+      "Explain the important terms in context for a reader unfamiliar with them."
+    ],
+    "must_not": [
+      "Calling OAuth a token format or JWT an authorization protocol.",
+      "Assuming a signed JWT hides/encrypts its payload."
+    ],
+    "notes": "Natural short request: no explicit style/length limits. Judge whether default presentation helps a smart newcomer; do not enforce an arbitrary word cap."
+  },
+  "N04": {
+    "must_include": [
+      "Output is second.",
+      "The finally block executes before the pending return completes; its own return replaces the earlier return.",
+      "Explain this supplied code without rewriting it or implying a real execution was observed."
+    ],
+    "must_not": [
+      "Output first or both.",
+      "Claiming finally is skipped after return."
+    ],
+    "notes": "Natural short request: no explicit style/length limits. Judge whether default presentation helps a smart newcomer; do not enforce an arbitrary word cap."
+  },
+  "N05": {
+    "must_include": [
+      "Opportunity cost is the value of the best alternative given up by the present choice.",
+      "Already spent irrecoverable costs are sunk costs.",
+      "Use a concrete example that also allows non-money costs."
+    ],
+    "must_not": [
+      "Adding all forgone alternatives together.",
+      "Treating money already spent as the opportunity cost of every later decision."
+    ],
+    "notes": "Natural short request: no explicit style/length limits. Judge whether default presentation helps a smart newcomer; do not enforce an arbitrary word cap."
+  },
+  "N06": {
+    "must_include": [
+      "Change the presentation rather than paraphrasing the jargon.",
+      "Explain that a fixed unknown quantity does not vary merely because a different sample was taken, whereas the interval does.",
+      "For a 95% procedure, under its assumptions, about95% of intervals constructed in repeated comparable sampling contain the true value.",
+      "Keep the explanation compact and understandable without a statistics background."
+    ],
+    "must_not": [
+      "Saying the 95% refers to95% of observations lying inside.",
+      "Assigning a frequentist95% probability to the already fixed parameter solely from this interval."
+    ],
+    "notes": "Natural short request: no explicit style/length limits. Judge whether default presentation helps a smart newcomer; do not enforce an arbitrary word cap."
+  },
+  "H01": {
+    "expected": {
+      "must_include": [
+        "Explain that a QR code stores encoded data in its visible pattern and the phone can read that data locally with the assumed software.",
+        "Distinguish the complete contact data contained in the first code from the webpage address contained in the second.",
+        "Explain that reading an address is different from retrieving the webpage at that address, and the latter needs a connection in the stated uncached situation.",
+        "Preserve the condition that offline usefulness depends on what the code contains and what resources are already available on the phone, rather than declaring all QR codes online or offline."
+      ],
+      "must_not": [
+        "Do not say a network server must decode every QR code or that the camera itself transmits the pattern to the website in order to read it.",
+        "Do not imply that a code containing only a webpage address also stores the whole webpage.",
+        "Do not invent a missing connection, saved webpage, or contact-service dependency that contradicts the supplied assumptions."
+      ],
+      "notes": "A short distinction between reading stored data and fetching remote content is sufficient. Technical terms are optional; if used, their meaning should be clear in context."
+    }
+  },
+  "H02": {
+    "expected": {
+      "must_include": [
+        "Identify resolution capacity of five tickets per day as the limiting stage given arrivals of ten and triage capacity of twenty.",
+        "Explain that the unfinished backlog increases by five tickets per working day because ten arrive and only five reach the defined completed state.",
+        "Explain that doubling an already sufficient triage capacity does not by itself increase the number resolved or stop growth in unfinished work.",
+        "Describe a relevant change, such as increasing actual resolution capacity through training or staffing, reducing resolution effort without sacrificing required outcomes, or reducing incoming demand.",
+        "Distinguish matching completion rate to arrival rate, which stops further growth, from exceeding the arrival rate, which is needed to shrink an existing backlog."
+      ],
+      "must_not": [
+        "Do not count triaged but unresolved tickets as finished.",
+        "Do not add the two stage capacities together to claim twenty-five completed tickets per day.",
+        "Do not claim doubling triage alone fixes the backlog or assume the triage staff can immediately perform resolution despite the stated constraint.",
+        "Do not claim a resolution rate of exactly ten per day automatically clears an already accumulated backlog."
+      ],
+      "notes": "This is a process explanation rather than a request to design a complete staffing plan. A compact causal account and one feasible direction for change are enough; section count is not fixed."
+    }
+  },
+  "H03": {
+    "expected": {
+      "must_include": [
+        "Explain that the refrigerator moves heat from its cold side to its warm side rather than making heat disappear.",
+        "Explain that with both sides in the same kitchen, heat removed from one part of the kitchen is returned to the kitchen elsewhere, along with energy supplied to run the refrigerator.",
+        "Conclude that during normal powered operation the net effect is to add heat to the kitchen, while local air near the cold side can still feel cool.",
+        "Explain that releasing the removed heat outdoors changes the boundary: such an appliance can cool the indoor space because the rejected heat does not all return to it."
+      ],
+      "must_not": [
+        "Do not claim the open refrigerator steadily cools the whole insulated kitchen under the stated conditions.",
+        "Do not say it only transfers exactly the same heat within the room and has zero net thermal effect while consuming electrical power.",
+        "Do not say local cool airflow proves that the whole room is losing energy.",
+        "Do not generalize the same-room conclusion to an appliance that actually transfers its rejected heat outdoors."
+      ],
+      "notes": "A correct energy balance is the central criterion. A brief explanation of the motor or compressor is optional; a full refrigerant-cycle account is unnecessary. The transient initially cold contents are explicitly outside the intended comparison."
+    }
+  },
+  "H04": {
+    "expected": {
+      "must_include": [
+        "Give the outputs in order as [Guest], [Guest], [null], and [].",
+        "Explain that the parameter default is used when the argument is omitted or its value is undefined.",
+        "Explain that explicitly supplied null and the empty string are distinct supplied values and do not trigger this default.",
+        "Explain enough of the string construction to show why null appears as the text null inside brackets and why the empty string leaves no characters between the brackets."
+      ],
+      "must_not": [
+        "Do not say every false-like or empty-looking value triggers a JavaScript default parameter.",
+        "Do not report [Guest] for the null or empty-string calls.",
+        "Do not claim null throws an error here or that the omitted argument becomes the literal text undefined.",
+        "Do not rewrite the function or introduce a replacement fallback expression despite the request to explain the existing code."
+      ],
+      "notes": "The default-parameter condition and later conversion to text are different steps. Terminology such as template literal or coercion is optional, but any introduced term should be understandable from its immediate context."
+    }
+  }
+}

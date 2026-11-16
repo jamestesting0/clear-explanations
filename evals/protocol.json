@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "registered_before_response_generation": true,
+  "objective": "Compact, accurate, immediately understandable explanations across domains, without unnecessary formatting or teaching ceremony.",
+  "splits": {
+    "development": 24,
+    "holdout": 12
+  },
+  "response_integrity": [
+    "Respondents receive only a frozen skill and user prompt, never answer criteria or prior response feedback.",
+    "Fresh agent context per batch; cases within a batch are not statistically independent.",
+    "Raw responses are retained without editorial correction; revisions require a new generation.",
+    "Report actual completed runs and failures. Missing responses cannot pass."
+  ],
+  "review_dimensions": {
+    "accuracy": "0-2: central mechanism, values, code behavior, evidence boundaries",
+    "clarity": "0-2: vocabulary explained for the stated reader; no circular definitions",
+    "coverage": "0-2: answers actual question with enough causal steps and example when useful",
+    "structure": "0-2: paragraphs, lists and tables serve the information",
+    "fit": "0-2: proportional length and compliance with explicit user constraints"
+  },
+  "verdicts": {
+    "pass": "At least 9/10; all essential scenario criteria and explicit constraints satisfied; no material factual error or invented evidence.",
+    "partial": "Useful answer with a correct central explanation but a meaningful clarity, coverage, or presentation weakness; below pass threshold.",
+    "fail": "Wrong central explanation, fabricated evidence, unanswered required question, explicit constraint violation, or missing response."
+  },
+  "acceptance": "Every final case has a semantic review and passes hard constraints; no unresolved material factual errors. Re-test failed/partial cases after targeted revisions and retain original outcomes.",
+  "comparison": "Same prompts with two original shortlisted skills and a no-skill baseline on a small selected development subset. Treat results as descriptive, not a general ranking of all models or skills.",
+  "limits": [
+    "One assistant model family",
+    "Subjective semantic grading",
+    "Small purposive test suite",
+    "No direct measurement of human comprehension",
+    "No universal performance guarantee",
+    "Agent contexts inherit environment instructions; recorded prompt hashes cover canonical replay packets, not all surrounding runtime instructions."
+  ],
+  "supplement": {
+    "cases": 6,
+    "purpose": "Check default explanation behavior when the user does not spell out table, jargon, or length requirements. The original matched six-case comparison contains explicit style constraints.",
+    "created_before_supplement_generation": true,
+    "cases_file": "natural-cases.json",
+    "rubric_file": "natural-rubric.json",
+    "scoring": "Same semantic dimensions; no invented hard length limit."
+  },
+  "final_refinement": {
+    "version": "v3",
+    "reason": "One unexplained term appeared in a secondary comparison despite a passing overall score.",
+    "old_holdout_status": "S25-S36 were originally held out for v2; after inspection they are regression cases for v3.",
+    "new_unseen_cases": [
+      "H01",
+      "H02",
+      "H03",
+      "H04"
+    ],
+    "new_case_prompts_created_after_v3_freeze": true,
+    "final_unique_cases": 46
+  },
+  "release_revision": {
+    "version": "v4",
+    "all_46_regenerated": true,
+    "test_status": "All scenarios are regression tests after earlier inspection. No final unseen holdout is claimed.",
+    "reason": "Check transfer of the meaning-first vocabulary and quantity-interpretation refinements across all existing domains.",
+    "batch_requests": [
+      16,
+      16,
+      14
+    ]
+  },
+  "publication_layout": {
+    "prompts": "cases.json",
+    "criteria": "rubric.json",
+    "note": "Historical supplement filenames are retained as registration history; their cases and criteria are merged into the two canonical files above. Scoring policy is unchanged."
+  }
+}
